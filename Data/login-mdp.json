@@ -1,0 +1,12 @@
+{
+    "John": {
+        "user": "john",
+        "mdp": "$2y$10$HuEJ1REGEVClepPNqin9mu0ZJzKBJKMFzR\/Xg.vpsBxOwO1IezZyS",
+        "groupe": "Direction"
+    },
+    "Jane": {
+        "user": "jane",
+        "mdp": "$2y$10$HuEJ1REGEVClepPNqin9mu0ZJzKBJKMFzR\/Xg.vpsBxOwO1IezZyS",
+        "groupe": "Commerciaux"
+    }
+}

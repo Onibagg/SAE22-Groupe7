@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-function page_setup()
+function setup()
 {
     ?>
     <!DOCTYPE html>
@@ -25,18 +25,16 @@ function page_setup()
 function page_header()
 {
     ?>
-        <div class="mt-0 p-4 bg-primary bg-opacity-50">
+        <div class="mt-0 p-4 bg-primary">
             <div class="row">
                 <div class="col-sm-4">
-                    <p class="display-6">Nom de</p>
-                    <p class="display-6">L'entreprise</p>
+                    <h1>Nom de l'entreprise</h1>
                 </div>
                 <div class="col-sm-4">
                 </div>
                 <div class="col-sm-4 text-center">
-                    <br><br>
                     <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal">
-                            Se Connecter
+                            Connexion
                         </button>
                         <div class="modal" id="myModal">
                             <div class="modal-dialog">
@@ -47,7 +45,7 @@ function page_header()
                                     </div>
                                     <div class="modal-body">
                                         <div class="login-form">
-                                            <form action="pageconnexion_traitement.php" method="POST">
+                                            <form action="page-accueil.php" method="POST">
                                                 <br>
                                                 <div class="form-group">
                                                     <label>Utilisateur</label>
@@ -66,6 +64,14 @@ function page_header()
                                         <button type="submit" class="btn btn-outline-dark">Se connecter</button>
                                     </div>
                                     </form>
+                                    <?php
+                                    if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+                                        connexion_traitement();
+                                    }
+                                    else {
+
+                                    }
+                                    ?>
                                 </div>
                             </div>
                         </div>
@@ -79,7 +85,45 @@ function page_header()
 
 function page_navbar()
 {
+}
 
+function file_decod($file)
+{
+    return json_decode(file_get_contents($file), true);
+}
+
+function connexion_traitement()
+{
+    if (!isset($_POST['user'])) {
+        echo 'Utilisateur non renseigné';
+        $user = "";
+    } else {
+        $user = $_POST['user'];
+    }
+    
+    if (!isset($_POST['mdp'])) {
+        echo 'Mot de Passe non renseigné';
+        $mdp = "";
+    } else {
+        $mdp = $_POST['mdp'];
+    }
+
+    $data = file_decod('Data\login-mdp.json');
+    $ok = false;
+
+    foreach ($data as $u) {
+        if ($u['user'] == $user && password_verify($mdp, $u['mdp']) == true) {
+            $ok = true;
+            break;
+        }
+    }
+
+    if ($ok) {
+        $_SESSION["user"] = $user;
+        header("Location: Accueil-Intranet.php");
+    } else {
+        echo "Mot de passe / Utilisateur non reconnu";
+    }
 }
 
 ?>
