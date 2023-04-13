@@ -3,7 +3,7 @@ session_start();
 
 function setup()
 {
-    ?>
+?>
     <!DOCTYPE html>
     <html lang="fr">
 
@@ -34,47 +34,49 @@ function page_header()
                 </div>
                 <div class="col-sm-4 text-center">
                     <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal">
-                            Connexion
-                        </button>
-                        <div class="modal" id="myModal">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <p class="modal-title display-5">Connexion</p>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="login-form">
-                                            <form action="page-accueil.php" method="POST">
-                                                <br>
-                                                <div class="form-group">
-                                                    <label>Utilisateur</label>
-                                                    <input type="text" class="form-control" id="user" name="user" placeholder="Utilisateur">
-                                                </div>
-                                                <br>
-
-                                                <div class="form-group">
-                                                    <label>Mot de passe</label>
-                                                    <input type="password" class="form-control" id="mdp" name="mdp" placeholder="Mot de passe">
-                                                </div>
-                                                <br>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-outline-dark">Se connecter</button>
-                                    </div>
-                                    </form>
-                                    <?php
-                                    if ($_SERVER['REQUEST_METHOD'] === 'POST'){
-                                        connexion_traitement();
-                                    }
-                                    else {
-
-                                    }
-                                    ?>
+                        Connexion
+                    </button>
+                    <div class="modal" id="myModal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <p class="modal-title display-5">Connexion</p>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                 </div>
+                                <div class="modal-body">
+                                    <div class="login-form">
+                                        <form id="connexion" action="page-accueil.php" method="POST" class="was-validated">
+                                            <br>
+                                            <div class="form-group">
+                                                <label for="uname" class="form-label">Utilisateur:</label>
+                                                <input type="text" class="form-control" id="user" name="user" placeholder="Utilisateur" required>
+                                                <div class="valid-feedback"></div>
+                                                <div class="invalid-feedback">Veuillez compléter ce champ</div>
+                                            </div>
+                                            <br>
+
+                                            <div class="form-group">
+                                                <label>Mot de passe</label>
+                                                <input type="password" class="form-control" id="mdp" name="mdp" placeholder="Mot de passe"required>
+                                                <div class="valid-feedback"></div>
+                                                <div class="invalid-feedback">Veuillez compléter ce champ</div>
+                                            </div>
+                                            <br>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-outline-dark">Se connecter</button>
+                                </div>
+                                </form>
+                                <?php
+                                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                                    connexion_traitement();
+                                } else {
+                                }
+                                ?>
                             </div>
                         </div>
+                    </div>
                 </div>
             </div>
             <div class="col">
@@ -85,34 +87,34 @@ function page_header()
 
 function intranet_navbar()
 {
-?>
-    <nav class="navbar bg-dark navbar-dark">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="Portail-de-connexion.php">Portail de Connexion</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="gest-fichiers.php">Gestionnaire de Fichiers</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="annuaire.php">Annuaire</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="gest-partenaires.php">Gestion des Partenaires</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="wiki.php">Wiki</a>
-                    </li>
-                </ul>
+    ?>
+        <nav class="navbar bg-dark navbar-dark">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="Portail-de-connexion.php">Portail de Connexion</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="gest-fichiers.php">Gestionnaire de Fichiers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="annuaire.php">Annuaire</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="gest-partenaires.php">Gestion des Partenaires</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="wiki.php">Wiki</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
-<?php
+        </nav>
+    <?php
 }
 
 function file_decod($file)
@@ -128,7 +130,7 @@ function connexion_traitement()
     } else {
         $user = $_POST['user'];
     }
-    
+
     if (!isset($_POST['mdp'])) {
         echo 'Mot de Passe non renseigné';
         $mdp = "";
@@ -149,9 +151,7 @@ function connexion_traitement()
     if ($ok) {
         $_SESSION["user"] = $user;
         header("Location: Accueil-Intranet.php");
-    } else {
-        echo "Mot de passe / Utilisateur non reconnu";
     }
 }
 
-?>
+    ?>
