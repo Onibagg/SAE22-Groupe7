@@ -83,8 +83,36 @@ function page_header()
     <?php
 }
 
-function page_navbar()
+function intranet_navbar()
 {
+?>
+    <nav class="navbar bg-dark navbar-dark">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Portail-de-connexion.php">Portail de Connexion</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gest-fichiers.php">Gestionnaire de Fichiers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="annuaire.php">Annuaire</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gest-partenaires.php">Gestion des Partenaires</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="wiki.php">Wiki</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+<?php
 }
 
 function file_decod($file)
