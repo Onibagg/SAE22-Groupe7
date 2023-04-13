@@ -44,8 +44,8 @@ intranet_navbar();
         </form>
         <?php
         if (isset($_POST['prenom']) && isset($_POST['nom']) && isset($_POST['pseudo']) && isset($_POST['mdp']) && isset($_POST['confirmation']) && isset($_POST['groupe'])) {
-            $nom = $_POST['prenom'];
-            $prenom = $_POST['nom'];
+            $prenom = $_POST['prenom'];
+            $nom = $_POST['nom'];
             $usr = $_POST['pseudo'];
             $mdp = $_POST['mdp'];
             $confirmation = $_POST['confirmation'];
@@ -55,7 +55,7 @@ intranet_navbar();
                 echo "<br>Les mots de passe ne correspondent pas.";
             } else {
                 addUser($prenom, $nom, $usr, $mdp, $grp);
-                echo "<br>L'utilisateur <b>$usr</b> a été ajouté avec succès !";
+                echo "<br><b>$prenom</b> <b>$nom</b> a été ajouté à l'équipe !";
             }
         }
         ?>
