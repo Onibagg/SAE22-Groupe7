@@ -1,12 +1,1 @@
-{
-    "John": {
-        "user": "john",
-        "mdp": "$2y$10$HuEJ1REGEVClepPNqin9mu0ZJzKBJKMFzR\/Xg.vpsBxOwO1IezZyS",
-        "groupe": "Direction"
-    },
-    "Jane": {
-        "user": "jane",
-        "mdp": "$2y$10$HuEJ1REGEVClepPNqin9mu0ZJzKBJKMFzR\/Xg.vpsBxOwO1IezZyS",
-        "groupe": "Commerciaux"
-    }
-}
+{"John":{"prenom":"John","nom":"Favreau","user":"john","mdp":"$2y$10$HuEJ1REGEVClepPNqin9mu0ZJzKBJKMFzR\/Xg.vpsBxOwO1IezZyS","groupe":"Direction"},"Jeane":{"prenom":"Jeane","nom":"Jouzel","user":"jeane","mdp":"$2y$10$HuEJ1REGEVClepPNqin9mu0ZJzKBJKMFzR\/Xg.vpsBxOwO1IezZyS","groupe":"Commerciaux"},"Gabin":{"user":"Gabin","mdp":"$2y$10$4QVj0kA\/bdJCpGrKci0iuesxC6NBz4RoXHbynRH2Pr.KR9K7EIUxG","groupe":"Direction"},"nriou":{"prenom":"Nicolas","nom":"Riou","user":"nriou","mdp":"$2y$10$Q8d7b7r3DWusKjj87Lp60.usSURQXRqUxVJPoqFZ4GdX1jle.DT6W","groupe":"R&D"},"emeric":{"prenom":"Marchand","nom":"Emeric","user":"emeric","mdp":"$2y$10$JDrg3XIdOsI.Tz8LRuJEPu5Zbjm6s5pIjeFcrSo\/H0nJzESEeuMwq","groupe":"IT"}}

@@ -82,12 +82,12 @@ function page_header()
             <div class="col">
             </div>
         </div>
-        <?php
-    }
+    <?php
+}
 
-    function intranet_navbar()
-    {
-        ?>
+function intranet_navbar()
+{
+    ?>
         <div class="row container-fluid" style="min-height: 100vh">
             <div class="col-sm-1 bg-dark text-center">
                 <nav class="navbar bg-dark navbar-dark">
@@ -156,6 +156,21 @@ function page_header()
                 $_SESSION["user"] = $user;
                 header("Location: Accueil-Intranet.php");
             }
+        }
+
+        function addUser($prenom, $nom, $usr, $mdp, $grp)
+        {
+            $users = file_decod('Data\login-mdp.json');
+
+            $users[$usr] = [
+                'prenom' => $prenom,
+                'nom' => $nom,
+                'user' => $usr,
+                'mdp' => password_hash($mdp, PASSWORD_DEFAULT),
+                'groupe' => $grp
+            ];
+
+            file_put_contents('Data\login-mdp.json', json_encode($users));
         }
 
             ?>
