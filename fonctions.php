@@ -57,7 +57,7 @@ function page_header()
 
                                             <div class="form-group">
                                                 <label>Mot de passe</label>
-                                                <input type="password" class="form-control" id="mdp" name="mdp" placeholder="Mot de passe"required>
+                                                <input type="password" class="form-control" id="mdp" name="mdp" placeholder="Mot de passe" required>
                                                 <div class="valid-feedback"></div>
                                                 <div class="invalid-feedback">Veuillez compléter ce champ</div>
                                             </div>
@@ -82,76 +82,80 @@ function page_header()
             <div class="col">
             </div>
         </div>
-    <?php
-}
+        <?php
+    }
 
-function intranet_navbar()
-{
-    ?>
-        <nav class="navbar bg-dark navbar-dark">
-            <div class="container-fluid">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="Portail-de-connexion.php">Portail de Connexion</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="gest-fichiers.php">Gestionnaire de Fichiers</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="annuaire.php">Annuaire</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="gest-partenaires.php">Gestion des Partenaires</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="wiki.php">Wiki</a>
-                        </li>
-                    </ul>
-                </div>
+    function intranet_navbar()
+    {
+        ?>
+        <div class="row container-fluid" style="min-height: 100vh">
+            <div class="col-sm-1 bg-dark text-center">
+                <nav class="navbar bg-dark navbar-dark">
+                    <div class="container-fluid">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="Portail-de-connexion.php">Portail de Connexion</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="gest-fichiers.php">Gestionnaire de Fichiers</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="annuaire.php">Annuaire</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="gest-partenaires.php">Gestion des Partenaires</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="wiki.php">Wiki</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
             </div>
-        </nav>
-    <?php
-}
-
-function file_decod($file)
-{
-    return json_decode(file_get_contents($file), true);
-}
-
-function connexion_traitement()
-{
-    if (!isset($_POST['user'])) {
-        echo 'Utilisateur non renseigné';
-        $user = "";
-    } else {
-        $user = $_POST['user'];
-    }
-
-    if (!isset($_POST['mdp'])) {
-        echo 'Mot de Passe non renseigné';
-        $mdp = "";
-    } else {
-        $mdp = $_POST['mdp'];
-    }
-
-    $data = file_decod('Data\login-mdp.json');
-    $ok = false;
-
-    foreach ($data as $u) {
-        if ($u['user'] == $user && password_verify($mdp, $u['mdp']) == true) {
-            $ok = true;
-            break;
+            <div class="col-sm-11 bg-dark bg-opacity-25">
+            <?php
         }
-    }
 
-    if ($ok) {
-        $_SESSION["user"] = $user;
-        header("Location: Accueil-Intranet.php");
-    }
-}
+        function file_decod($file)
+        {
+            return json_decode(file_get_contents($file), true);
+        }
 
-    ?>
+        function connexion_traitement()
+        {
+            if (!isset($_POST['user'])) {
+                echo 'Utilisateur non renseigné';
+                $user = "";
+            } else {
+                $user = $_POST['user'];
+            }
+
+            if (!isset($_POST['mdp'])) {
+                echo 'Mot de Passe non renseigné';
+                $mdp = "";
+            } else {
+                $mdp = $_POST['mdp'];
+            }
+
+            $data = file_decod('Data\login-mdp.json');
+            $ok = false;
+
+            foreach ($data as $u) {
+                if ($u['user'] == $user && password_verify($mdp, $u['mdp']) == true) {
+                    $ok = true;
+                    break;
+                }
+            }
+
+            if ($ok) {
+                $_SESSION["user"] = $user;
+                header("Location: Accueil-Intranet.php");
+            }
+        }
+
+            ?>
