@@ -29,7 +29,8 @@ intranet_navbar();
                     <input class="form-control" type="password" placeholder="Confirmation" rows="1" id="confirmation" name="confirmation"></input>
                 </div>
                 <div class="col">
-                    <select multiple class="form-select form-select-sm" placeholder="Groupe" id="groupe" name="groupe">
+                    <select class="form-select form-select" placeholder="Groupe" id="groupe" name="groupe">
+                        <option></option>
                         <option>Direction</option>
                         <option>Commerciaux</option>
                         <option>IT</option>
@@ -62,5 +63,20 @@ intranet_navbar();
 
     </div>
 </div>
+
+<br><br>
+
+<div class="container mt-2">
+    <div class="mt-2 p-4 bg-dark text-white rounded">
+        <p class="display-6 "><b>Vos utilisateurs :</b></p>
+    </div>
+    <div class="mt-2 p-4 bg-light text-dark rounded">
+        <?php
+        gestionUtilisateurs();
+        ?>
+    </div>
+</div>
+<br>
+<br>
 </div>
 </div>
