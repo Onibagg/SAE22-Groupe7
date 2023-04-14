@@ -36,7 +36,7 @@ function page_header()
                     <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal">
                         Connexion
                     </button>
-                    <div class="modal" id="myModal">
+                    <div class="modal fade" id="myModal">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
