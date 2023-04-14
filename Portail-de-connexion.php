@@ -29,7 +29,8 @@ intranet_navbar();
                     <input class="form-control" type="password" placeholder="Confirmation" rows="1" id="confirmation" name="confirmation"></input>
                 </div>
                 <div class="col">
-                    <select multiple class="form-select form-select-sm" placeholder="Groupe" id="groupe" name="groupe">
+                    <select class="form-select form-select" placeholder="Groupe" id="groupe" name="groupe">
+                        <option></option>
                         <option>Direction</option>
                         <option>Commerciaux</option>
                         <option>IT</option>

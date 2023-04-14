@@ -178,10 +178,12 @@ function afficherUtilisateurs($utilisateurs)
     echo '<form method="post">';
     echo '<div class="table-responsive">';
     echo '<table class="table table-hover">';
-    echo '<tr><th>Utilisateur</th><th>Nouveau Mot de passe</th><th>Rôle</th><th></th><th></th></tr>';
+    echo "<tr><th>Prénom</th><th>Nom</th><th>Nom d'utilisateur</th><th>Nouveau MDP</th><th>Groupe</th><th></th><th></th></tr>";
     foreach ($utilisateurs as $nom => $infos) {
         echo '<tr>';
-        echo '<td>' . $infos['user'] . '</td>';
+        echo '<td><input type="text" name="prenom[' . $nom . ']" value="' . $infos['prenom'] . '" class="form-control"></td>';
+        echo '<td><input type="text" name="nom[' . $nom . ']" value="' . $infos['nom'] . '" class="form-control"></td>';
+        echo '<td><input type="text" name="user[' . $nom . ']" value="' . $infos['user'] . '" class="form-control"></td>';
         echo '<td><input type="password" name="mdp[' . $nom . ']" value="" class="form-control"></td>';
         echo '<td><input type="text" name="groupe[' . $nom . ']" value="' . $infos['groupe'] . '" class="form-control"></td>';
         echo '<td class="text-center"><input type="submit" name="modifier[' . $nom . ']" value="Modifier" class="btn btn-outline-dark"></td>';
@@ -200,11 +202,17 @@ function gestionUtilisateurs()
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (isset($_POST['modifier'])) {
+            $prenom = $_POST['prenom'];
+            $nomm = $_POST['nom'];
+            $user = $_POST['user'];
             $mdp = $_POST['mdp'];
-            $role = $_POST['role'];
+            $groupe = $_POST['groupe'];
             foreach ($_POST['modifier'] as $nom => $valeur) {
+                $users[$nom]['prenom'] = $prenom[$nom];
+                $users[$nom]['nom'] = $nomm[$nom];
+                $users[$nom]['user'] = $user[$nom];
                 $users[$nom]['mdp'] = password_hash($mdp[$nom], PASSWORD_DEFAULT);
-                $users[$nom]['role'] = $role[$nom];
+                $users[$nom]['groupe'] = $groupe[$nom];
             }
             file_put_contents($path, json_encode($users));
         } elseif (isset($_POST['supprimer'])) {
