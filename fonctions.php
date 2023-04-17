@@ -98,19 +98,19 @@ function intranet_navbar()
                         <div class="collapse navbar-collapse" id="collapsibleNavbar">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="Portail-de-connexion.php">Portail de Connexion</a>
+                                    <a class="nav-link" href="Portail-de-connexion.php"><img src="Images\Icons\key.png"></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="gest-fichiers.php">Gestionnaire de Fichiers</a>
+                                    <a class="nav-link" href="gest-fichiers.php"><img src="Images\Icons\folder.png"></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="annuaire.php">Annuaire</a>
+                                    <a class="nav-link" href="annuaire.php"><img src="Images\Icons\phone.png"></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="gest-partenaires.php">Gestion des Partenaires</a>
+                                    <a class="nav-link" href="gest-partenaires.php"><img src="Images\Icons\person.png"></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="wiki.php">Wiki</a>
+                                    <a class="nav-link" href="wiki.php"><img src="Images\Icons\book.png"></a>
                                 </li>
                             </ul>
                         </div>
