@@ -12,11 +12,46 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
 
     echo "<p class='text-center mt-5 display-4' >Bienvenue " . $prenom . " " . $nom . "</p>";
 } else {
-    echo "<h1>Erreur : utilisateur non connecté</h1>";
+    echo "<h1>Erreur : utilisateur non reconnu</h1>";
 }
 
 ?>
+
+<head>
+    <style>
+        /* Style pour le conteneur de l'heure */
+        .heure-container {
+            font-size: 48px;
+            text-align: center;
+            margin-top: 100px;
+            font-family: "Helvetica", sans-serif;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+    <script>
+        function actualiserHeure() {
+            var date = new Date();
+            var heures = String(date.getHours()).padStart(2, '0');
+            var minutes = String(date.getMinutes()).padStart(2, '0');
+            var secondes = String(date.getSeconds()).padStart(2, '0');
+
+            document.getElementById("heure").innerText = heures + " : " + minutes + " : " + secondes;
+
+            setTimeout(actualiserHeure, 1000);
+        }
+
+        window.onload = function() {
+            actualiserHeure();
+        };
+    </script>
+</head>
+
+<body>
+    <div class="heure-container">
+        <span id="heure"></span>
+    </div>
+</body>
+
 </div>
 </div>
-
-

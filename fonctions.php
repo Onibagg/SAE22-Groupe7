@@ -96,7 +96,7 @@ function intranet_navbar()
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
                             <span class="navbar-toggler-icon"></span>
                         </button>
-                        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                        <div class="collapse navbar-collapse show" id="collapsibleNavbar">
                             <ul class="navbar-nav">
                                 <br>
                                 <br>
