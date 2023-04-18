@@ -15,8 +15,8 @@ function setup()
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <link href="Style\style.css" type="text/css" rel="stylesheet">
         <link href="Style\intranet-navbar.css" type="text/css" rel="stylesheet">
-        <link rel="icon" type="image/x-icon" href="Images\#">
-        <title>#</title>
+        <link rel="icon" type="image/x-icon" href="Images\PrivateVPN_logo.png">
+        <title>Private VPN | Le meilleur des VPN</title>
     </head>
 
     <body>
@@ -26,15 +26,15 @@ function setup()
 function page_header()
 {
     ?>
-        <div class="mt-0 p-4 bg-primary">
+        <div class="mt-0 p-4 bg-primary bg-opacity-50">
             <div class="row">
                 <div class="col-sm-4">
-                    <h1>Nom de l'entreprise</h1>
+                    <img src="Images\PrivateVPN_text.png" height="50px">
                 </div>
                 <div class="col-sm-4">
                 </div>
                 <div class="col-sm-4 text-center">
-                    <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal">
+                    <button type="button" class="btn btn-outline-dark mt-1" data-bs-toggle="modal" data-bs-target="#myModal">
                         Connexion
                     </button>
                     <div class="modal fade" id="myModal">
@@ -89,169 +89,162 @@ function page_header()
 function intranet_navbar()
 {
     ?>
-        <div class="row container-fluid" style="min-height: 100vh">
-            <div class="col-sm-1 bg-dark text-center">
-                <nav class="navbar bg-dark navbar-dark sticky-top">
-                    <div class="container-fluid">
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse show" id="collapsibleNavbar">
-                            <ul class="navbar-nav">
-                                <br>
-                                <br>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="Portail-de-connexion.php"><img src="Images\Icons\key.png" draggable="false" class="image-navbar"></a>
-                                </li>
-                                <br>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="gest-fichiers.php"><img src="Images\Icons\folder.png" draggable="false" class="image-navbar"></a>
-                                </li>
-                                <br>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="annuaire.php"><img src="Images\Icons\phone.png" draggable="false" class="image-navbar"></a>
-                                </li>
-                                <br>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="gest-partenaires.php"><img src="Images\Icons\person.png" draggable="false" class="image-navbar"></a>
-                                </li>
-                                <br>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="wiki.php"><img src="Images\Icons\book.png" draggable="false" class="image-navbar"></a>
-                                </li>
-                                <br>
-                                <br>
-                                <br>
-                                <br>
-                                <br>
-                                <br>
-                                <form id="deconnexion" method="POST">
-                                    <button type="submit" class="btn btn-outline-dark"><img src="Images\Icons\log_out.png" class="image-navbar"></button>
-                                </form>
-                                <?php
-                                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                                    deconnexion();
-                                } else {
-                                }
-                                ?>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-            </div>
-            <div class="col-sm-11 bg-dark bg-opacity-25">
-            <?php
-        }
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top justify-content-center">
+            <ul class="navbar-nav">
+                <li class="nav-item me-4 ms-4">
+                    <a class="navbar-brand" href="Accueil-Intranet.php">
+                        <img src="Images\PrivateVPN_logo.png" alt="Avatar Logo" style="width:45px;" class="rounded-pill">
+                    </a>
+                </li>
+                <li class="nav-item me-4 ms-4">
+                    <a class="nav-link" href="Portail-de-connexion.php"><img src="..\Images\Icons\key.png" draggable="false" height="25px"></a>
+                </li>
+                <li class="nav-item me-4 ms-4">
+                    <a class="nav-link" href="gest-fichiers.php"><img src="Images\Icons\folder.png" draggable="false" height="25px"></a>
+                </li>
 
-        function file_decod($file)
-        {
-            return json_decode(file_get_contents($file), true);
-        }
+                <li class="nav-item me-4 ms-4">
+                    <a class="nav-link" href="annuaire.php"><img src="..\Images\Icons\phone.png" draggable="false" height="25px"></a>
+                </li>
 
-        function connexion_traitement()
-        {
-            if (!isset($_POST['user'])) {
-                echo 'Utilisateur non renseigné';
-                $user = "";
-            } else {
-                $user = $_POST['user'];
+                <li class="nav-item me-4 ms-4">
+                    <a class="nav-link" href="gest-partenaires.php"><img src="..\Images\Icons\person.png" draggable="false" height="32px"></a>
+                </li>
+
+                <li class="nav-item me-4 ms-4">
+                    <a class="nav-link" href="wiki.php"><img src="..\Images\Icons\book.png" draggable="false" height="32px"></a>
+                </li>
+                <li class="nav-item dropdown me-4 ms-4">
+                    <a class="nav-link dropdown-toggle" href="monprofil.php" role="button" data-bs-toggle="dropdown"><img src="..\Images\Employés\blank-profile-picture.jpg" alt="Avatar Logo" style="width:32px;" class="rounded-pill"></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="monprofil.php">Mon Profil</a></li>
+                        <li>
+                            <form id="deconnexion" method="POST">
+                                <button type="submit" class="btn ms-1"><img src="Images\Icons\log_out.png" class="image-navbar"></button>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <?php
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            deconnexion();
+        } else {
+        }
+        ?>
+    <?php
+}
+
+function file_decod($file)
+{
+    return json_decode(file_get_contents($file), true);
+}
+
+function connexion_traitement()
+{
+    if (!isset($_POST['user'])) {
+        echo 'Utilisateur non renseigné';
+        $user = "";
+    } else {
+        $user = $_POST['user'];
+    }
+
+    if (!isset($_POST['mdp'])) {
+        echo 'Mot de Passe non renseigné';
+        $mdp = "";
+    } else {
+        $mdp = $_POST['mdp'];
+    }
+
+    $data = file_decod('Data\login-mdp.json');
+    $ok = false;
+
+    foreach ($data as $u) {
+        if ($u['user'] == $user && password_verify($mdp, $u['mdp']) == true) {
+            $ok = true;
+            break;
+        }
+    }
+
+    if ($ok) {
+        $_SESSION["user"] = $user;
+        header("Location: Accueil-Intranet.php");
+    }
+}
+
+function addUser($prenom, $nom, $usr, $mdp, $grp)
+{
+    $users = file_decod('Data\login-mdp.json');
+
+    $users[$usr] = [
+        'prenom' => $prenom,
+        'nom' => $nom,
+        'user' => $usr,
+        'mdp' => password_hash($mdp, PASSWORD_DEFAULT),
+        'groupe' => $grp
+    ];
+
+    file_put_contents('Data\login-mdp.json', json_encode($users));
+}
+
+function afficherUtilisateurs($utilisateurs)
+{
+    echo '<form method="post">';
+    echo '<div class="table-responsive">';
+    echo '<table class="table table-hover">';
+    echo "<tr><th>Prénom</th><th>Nom</th><th>Nom d'utilisateur</th><th>Nouveau MDP</th><th>Groupe</th><th></th><th></th></tr>";
+    foreach ($utilisateurs as $nom => $infos) {
+        echo '<tr>';
+        echo '<td><input type="text" name="prenom[' . $nom . ']" value="' . $infos['prenom'] . '" class="form-control"></td>';
+        echo '<td><input type="text" name="nom[' . $nom . ']" value="' . $infos['nom'] . '" class="form-control"></td>';
+        echo '<td><input type="text" name="user[' . $nom . ']" value="' . $infos['user'] . '" class="form-control"></td>';
+        echo '<td><input type="password" name="mdp[' . $nom . ']" value="" class="form-control"></td>';
+        echo '<td><input type="text" name="groupe[' . $nom . ']" value="' . $infos['groupe'] . '" class="form-control"></td>';
+        echo '<td class="text-center"><input type="submit" name="modifier[' . $nom . ']" value="Modifier" class="btn btn-outline-dark"></td>';
+        echo '<td class="text-center"><input type="submit" name="supprimer[' . $nom . ']" value="Supprimer" class="btn btn-danger"></td>';
+        echo '</tr>';
+    }
+    echo '</table>';
+    echo '</div>';
+    echo '</form>';
+}
+
+function gestionUtilisateurs()
+{
+    $path = 'Data\login-mdp.json';
+    $users = file_decod($path);
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (isset($_POST['modifier'])) {
+            $prenom = $_POST['prenom'];
+            $nomm = $_POST['nom'];
+            $user = $_POST['user'];
+            $mdp = $_POST['mdp'];
+            $groupe = $_POST['groupe'];
+            foreach ($_POST['modifier'] as $nom => $valeur) {
+                $users[$nom]['prenom'] = $prenom[$nom];
+                $users[$nom]['nom'] = $nomm[$nom];
+                $users[$nom]['user'] = $user[$nom];
+                $users[$nom]['mdp'] = password_hash($mdp[$nom], PASSWORD_DEFAULT);
+                $users[$nom]['groupe'] = $groupe[$nom];
             }
-
-            if (!isset($_POST['mdp'])) {
-                echo 'Mot de Passe non renseigné';
-                $mdp = "";
-            } else {
-                $mdp = $_POST['mdp'];
+            file_put_contents($path, json_encode($users));
+        } elseif (isset($_POST['supprimer'])) {
+            foreach ($_POST['supprimer'] as $nom => $valeur) {
+                unset($users[$nom]);
             }
-
-            $data = file_decod('Data\login-mdp.json');
-            $ok = false;
-
-            foreach ($data as $u) {
-                if ($u['user'] == $user && password_verify($mdp, $u['mdp']) == true) {
-                    $ok = true;
-                    break;
-                }
-            }
-
-            if ($ok) {
-                $_SESSION["user"] = $user;
-                header("Location: Accueil-Intranet.php");
-            }
+            file_put_contents($path, json_encode($users));
         }
+    }
 
-        function addUser($prenom, $nom, $usr, $mdp, $grp)
-        {
-            $users = file_decod('Data\login-mdp.json');
+    afficherUtilisateurs($users);
+}
 
-            $users[$usr] = [
-                'prenom' => $prenom,
-                'nom' => $nom,
-                'user' => $usr,
-                'mdp' => password_hash($mdp, PASSWORD_DEFAULT),
-                'groupe' => $grp
-            ];
-
-            file_put_contents('Data\login-mdp.json', json_encode($users));
-        }
-
-        function afficherUtilisateurs($utilisateurs)
-        {
-            echo '<form method="post">';
-            echo '<div class="table-responsive">';
-            echo '<table class="table table-hover">';
-            echo "<tr><th>Prénom</th><th>Nom</th><th>Nom d'utilisateur</th><th>Nouveau MDP</th><th>Groupe</th><th></th><th></th></tr>";
-            foreach ($utilisateurs as $nom => $infos) {
-                echo '<tr>';
-                echo '<td><input type="text" name="prenom[' . $nom . ']" value="' . $infos['prenom'] . '" class="form-control"></td>';
-                echo '<td><input type="text" name="nom[' . $nom . ']" value="' . $infos['nom'] . '" class="form-control"></td>';
-                echo '<td><input type="text" name="user[' . $nom . ']" value="' . $infos['user'] . '" class="form-control"></td>';
-                echo '<td><input type="password" name="mdp[' . $nom . ']" value="" class="form-control"></td>';
-                echo '<td><input type="text" name="groupe[' . $nom . ']" value="' . $infos['groupe'] . '" class="form-control"></td>';
-                echo '<td class="text-center"><input type="submit" name="modifier[' . $nom . ']" value="Modifier" class="btn btn-outline-dark"></td>';
-                echo '<td class="text-center"><input type="submit" name="supprimer[' . $nom . ']" value="Supprimer" class="btn btn-danger"></td>';
-                echo '</tr>';
-            }
-            echo '</table>';
-            echo '</div>';
-            echo '</form>';
-        }
-
-        function gestionUtilisateurs()
-        {
-            $path = 'Data\login-mdp.json';
-            $users = file_decod($path);
-
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                if (isset($_POST['modifier'])) {
-                    $prenom = $_POST['prenom'];
-                    $nomm = $_POST['nom'];
-                    $user = $_POST['user'];
-                    $mdp = $_POST['mdp'];
-                    $groupe = $_POST['groupe'];
-                    foreach ($_POST['modifier'] as $nom => $valeur) {
-                        $users[$nom]['prenom'] = $prenom[$nom];
-                        $users[$nom]['nom'] = $nomm[$nom];
-                        $users[$nom]['user'] = $user[$nom];
-                        $users[$nom]['mdp'] = password_hash($mdp[$nom], PASSWORD_DEFAULT);
-                        $users[$nom]['groupe'] = $groupe[$nom];
-                    }
-                    file_put_contents($path, json_encode($users));
-                } elseif (isset($_POST['supprimer'])) {
-                    foreach ($_POST['supprimer'] as $nom => $valeur) {
-                        unset($users[$nom]);
-                    }
-                    file_put_contents($path, json_encode($users));
-                }
-            }
-
-            afficherUtilisateurs($users);
-        }
-
-        function deconnexion()
-        {
-            session_unset();
-            header("Location: page-accueil.php");
-            exit;
-        }
-            ?>
+function deconnexion()
+{
+    session_unset();
+    header("Location: page-accueil.php");
+    exit;
+}
+    ?>
