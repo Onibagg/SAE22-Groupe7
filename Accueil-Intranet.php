@@ -48,9 +48,23 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
 </head>
 
 <body>
-    <div class="heure-container">
+    <br>
+    <br>
+    <br>
+    <div class="mt-5 text-center display-5">
         <span id="heure"></span>
     </div>
+    <?php
+    $jour = date('d');
+    $mois = date('F');
+    $annee = date('Y');
+    ?>
+    <div class="text-center display-6">
+        <?php
+        echo $jour . ' ' . $mois . ' ' .  $annee;
+        ?>
+    </div>
+
 </body>
 
 </div>
