@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 
@@ -22,19 +23,58 @@ function setup()
     <?php
 }
 
-function page_header()
-{
+
+
+function page_header(){
+
+    
     ?>
-        <div class="mt-0 p-4 bg-primary">
+       <div class="mt-0 p-4 bg-light">
             <div class="row">
-                <div class="col-sm-4">
-                    <h1>Nom de l'entreprise</h1>
+                <div class="col-sm-1 text-center">
+                <img src="/Images/PrivateVPN.png" width="200" height="110" class="rounded" alt="?"></br></br>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-5"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col-sm-1 text-center">
+                <button type="button" class="btn btn-outline-primary text-black"  style="width: 150px; height: 130px;"
+                    onmouseover="document.getElementById('texte1').style.fontWeight='bold';"
+                    onmouseout="document.getElementById('texte1').style.fontWeight='normal';">
+                    <img src="/Images/point-dinterrogation.png" width="40" height="40" class="rounded" alt="?"></br></br>
+                    <p id="texte1">Qui sommes-nous ?</p>
+                </button>
                 </div>
-                <div class="col-sm-4 text-center">
-                    <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal">
-                        Connexion
+                <div class="col-sm-1 text-center">
+                <button type="button" class="btn btn-outline-primary text-black"  style="width: 150px; height: 130px;"
+                    onmouseover="document.getElementById('texte2').style.fontWeight='bold';"
+                    onmouseout="document.getElementById('texte2').style.fontWeight='normal';">
+                    <img src="/Images/histoire.png" width="40" height="40" class="rounded" alt="Histoire"></br></br>
+                    <p id="texte2">Histoire</p>
+                </button>
+                </div>
+                <div class="col-sm-1 text-center">
+                <button type="button" class="btn btn-outline-primary text-black"  style="width: 150px; height: 130px;"
+                    onmouseover="document.getElementById('texte3').style.fontWeight='bold';"
+                    onmouseout="document.getElementById('texte3').style.fontWeight='normal';">
+                    <img src="/Images/activites.png" width="40" height="40" class="rounded" alt="Activités"></br></br>
+                    <p id="texte3" >Activités</p>
+                </button>
+                </div>
+                <div class="col-sm-1 text-center">
+                <button type="button" class="btn btn-outline-primary text-black"  style="width: 150px; height: 130px;"
+                    onmouseover="document.getElementById('texte4').style.fontWeight='bold';"
+                    onmouseout="document.getElementById('texte4').style.fontWeight='normal';">
+                    <img src="/Images/les-partenaires.png" width="40" height="40" class="rounded" alt="Partenaires"></br></br>
+                    <p id="texte4" >Partenaires</p>
+                </button>
+                </div>
+                <div class="col">
+                <button type="button" class="btn btn-outline-primary text-black" data-bs-toggle="modal" data-bs-target="#myModal" style="width: 150px; height: 130px;"
+                onmouseover="document.getElementById('texte5').style.fontWeight='bold';"
+                    onmouseout="document.getElementById('texte5').style.fontWeight='normal';">
+                    <img src="/Images/login.png" width="40" height="40" class="rounded" alt="Connexion"></br></br>
+                    <p id="texte5" >Connexion</p>
                     </button>
                     <div class="modal" id="myModal">
                         <div class="modal-dialog">
@@ -76,14 +116,18 @@ function page_header()
                                 ?>
                             </div>
                         </div>
-                    </div>
+                    </div>    
+
                 </div>
+                
             </div>
-            <div class="col">
-            </div>
-        </div>
+        <div>
+
     <?php
 }
+
+
+
 
 function intranet_navbar()
 {
