@@ -3,6 +3,4 @@ include("fonctions.php");
 setup();
 intranet_navbar();
 ?>
-<h1>Bienvenue dans le Wiki</h1>
-</div>
-</div>
+<p class="display-4 text-center">Wiki</p>

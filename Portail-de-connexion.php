@@ -78,5 +78,3 @@ intranet_navbar();
 </div>
 <br>
 <br>
-</div>
-</div>

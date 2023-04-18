@@ -3,6 +3,4 @@ include("fonctions.php");
 setup();
 intranet_navbar();
 ?>
-<h1>Bienvenue dans la Gestion des partenaires</h1>
-</div>
-</div>
+<p class="display-4 text-center">Gestion des partenaires</p>

@@ -64,8 +64,4 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
         echo $jour . ' ' . $mois . ' ' .  $annee;
         ?>
     </div>
-
 </body>
-
-</div>
-</div>
