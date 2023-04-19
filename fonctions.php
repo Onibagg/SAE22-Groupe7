@@ -24,21 +24,19 @@ function setup()
     <?php
 }
 
-
-
 function page_header(){
 
     
     ?>
        <div class="mt-0 p-4 bg-light">
             <div class="row">
-                <div class="col-sm-1 text-center">
+                <div class="col text-center">
                 <img src="/Images/PrivateVPN.png" width="200" height="110" class="rounded" alt="?"></br></br>
                 </div>
-                <div class="col-sm-5"></div>
                 <div class="col"></div>
-                <div class="col"></div>
-                <div class="col-sm-1 text-center">
+                
+                
+                <div class="col text-center">
                 <button type="button" class="btn btn-outline-primary text-black"  style="width: 150px; height: 130px;"
                     onmouseover="document.getElementById('texte1').style.fontWeight='bold';"
                     onmouseout="document.getElementById('texte1').style.fontWeight='normal';">
@@ -46,7 +44,7 @@ function page_header(){
                     <p id="texte1">Qui sommes-nous ?</p>
                 </button>
                 </div>
-                <div class="col-sm-1 text-center">
+                <div class="col text-center">
                 <button type="button" class="btn btn-outline-primary text-black"  style="width: 150px; height: 130px;"
                     onmouseover="document.getElementById('texte2').style.fontWeight='bold';"
                     onmouseout="document.getElementById('texte2').style.fontWeight='normal';">
@@ -54,7 +52,7 @@ function page_header(){
                     <p id="texte2">Histoire</p>
                 </button>
                 </div>
-                <div class="col-sm-1 text-center">
+                <div class="col text-center">
                 <button type="button" class="btn btn-outline-primary text-black"  style="width: 150px; height: 130px;"
                     onmouseover="document.getElementById('texte3').style.fontWeight='bold';"
                     onmouseout="document.getElementById('texte3').style.fontWeight='normal';">
@@ -62,7 +60,7 @@ function page_header(){
                     <p id="texte3" >Activités</p>
                 </button>
                 </div>
-                <div class="col-sm-1 text-center">
+                <div class="col text-center">
                 <button type="button" class="btn btn-outline-primary text-black"  style="width: 150px; height: 130px;"
                     onmouseover="document.getElementById('texte4').style.fontWeight='bold';"
                     onmouseout="document.getElementById('texte4').style.fontWeight='normal';">
@@ -126,6 +124,8 @@ function page_header(){
 
     <?php
 }
+
+
 
 
 
@@ -213,7 +213,8 @@ function connexion_traitement()
 
     if ($ok) {
         $_SESSION["user"] = $user;
-        header("Location: Accueil-Intranet.php");
+        echo '<meta http-equiv="refresh" content="0; url=Accueil-Intranet.php">' ;
+
     }
 }
 
