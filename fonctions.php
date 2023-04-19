@@ -156,12 +156,12 @@ function intranet_navbar()
                     <a class="nav-link" href="wiki.php"><img src="..\Images\Icons\book.png" draggable="false" height="32px"></a>
                 </li>
                 <li class="nav-item dropdown me-4 ms-4">
-                    <a class="nav-link dropdown-toggle" href="monprofil.php" role="button" data-bs-toggle="dropdown"><img src="..\Images\Employés\blank-profile-picture.jpg" alt="Avatar Logo" style="width:32px;" class="rounded-pill"></a>
+                    <a class="nav-link dropdown-toggle" href="monprofil.php" role="button" data-bs-toggle="dropdown"><img src="..\Images\Employés\<?php echo $_SESSION['user']; ?>.jpg" alt="Avatar Logo" style="width:32px;" class="rounded-pill"></a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="monprofil.php">Mon Profil</a></li>
                         <li>
                             <form id="deconnexion" method="POST">
-                                <button type="submit" class="btn ms-1"><img src="Images\Icons\log_out.png" class="image-navbar"></button>
+                                <button type="submit" name="deconnexion" class="btn ms-1"><img src="Images\Icons\log_out.png" class="image-navbar"></button>
                             </form>
                         </li>
                     </ul>
@@ -169,10 +169,9 @@ function intranet_navbar()
             </ul>
         </nav>
         <?php
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (isset($_POST['deconnexion'])) {
             deconnexion();
-        } else {
-        }
+          }
         ?>
     <?php
 }
@@ -226,6 +225,10 @@ function addUser($prenom, $nom, $usr, $mdp, $grp)
         'groupe' => $grp
     ];
 
+    $src = "Images\Employés\blank-profile-picture.jpg";
+    $dst = "Images\Employés\\" . $usr . ".jpg";
+    copy($src, $dst);
+
     file_put_contents('Data\login-mdp.json', json_encode($users));
 }
 
@@ -274,6 +277,10 @@ function gestionUtilisateurs()
         } elseif (isset($_POST['supprimer'])) {
             foreach ($_POST['supprimer'] as $nom => $valeur) {
                 unset($users[$nom]);
+                $photo_path = "Images\Employés\\" . $nom . ".jpg";
+                if (file_exists($photo_path)) {
+                    unlink($photo_path);
+                }
             }
             file_put_contents($path, json_encode($users));
         }
