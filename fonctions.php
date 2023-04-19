@@ -23,8 +23,6 @@ function setup()
     <?php
 }
 
-
-
 function page_header()
 {
 
@@ -32,43 +30,47 @@ function page_header()
     ?>
         <div class="mt-0 p-4 bg-light">
             <div class="row">
-                <div class="col-sm-1 text-center">
-                    <a href="page-accueil.php">
-                        <img src="/Images/PrivateVPN.png" width="200" height="110" class="rounded" alt="?"></br></br>
-                    </a>
+                <div class="col text-center">
+                <img src="/Images/PrivateVPN.png" width="210" height="110" class="rounded" alt="?"></br></br>
                 </div>
-                <div class="col-sm-5"></div>
-                <div class="col-sm-1 me-4 text-center">
-                    <a href="page-pres.php">
-                        <button type="button" class="btn btn-outline-primary text-black" style="width: 150px; height: 130px;" onmouseover="document.getElementById('texte1').style.fontWeight='bold';" onmouseout="document.getElementById('texte1').style.fontWeight='normal';">
-                            <img src="/Images/point-dinterrogation.png" width="40" height="40" class="rounded" alt="?"></br></br>
-                            <p id="texte1">Qui sommes-nous ?</p>
-                        </button>
-                    </a>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+   
+
+                
+                
+                <div class="col text-center">
+                <button type="button" class="btn btn-outline-primary text-black"  style="width: 150px; height: 130px;"
+                    onmouseover="document.getElementById('texte1').style.fontWeight='bold';"
+                    onmouseout="document.getElementById('texte1').style.fontWeight='normal';">
+                    <img src="/Images/point-dinterrogation.png" width="40" height="40" class="rounded" alt="?"></br></br>
+                    <p id="texte1">Qui sommes-nous ?</p>
+                </button>
                 </div>
-                <div class="col-sm-1 me-4 text-center">
-                    <a href="page-histoire.php">
-                        <button type="button" class="btn btn-outline-primary text-black" style="width: 150px; height: 130px;" onmouseover="document.getElementById('texte2').style.fontWeight='bold';" onmouseout="document.getElementById('texte2').style.fontWeight='normal';">
-                            <img src="/Images/histoire.png" width="40" height="40" class="rounded" alt="Histoire"></br></br>
-                            <p id="texte2">Histoire</p>
-                        </button>
-                    </a>
+                <div class="col text-center">
+                <button type="button" class="btn btn-outline-primary text-black"  style="width: 150px; height: 130px;"
+                    onmouseover="document.getElementById('texte2').style.fontWeight='bold';"
+                    onmouseout="document.getElementById('texte2').style.fontWeight='normal';">
+                    <img src="/Images/histoire.png" width="40" height="40" class="rounded" alt="Histoire"></br></br>
+                    <p id="texte2">Histoire</p>
+                </button>
                 </div>
-                <div class="col-sm-1 me-4 text-center">
-                    <a href="page-activites.php">
-                        <button type="button" class="btn btn-outline-primary text-black" style="width: 150px; height: 130px;" onmouseover="document.getElementById('texte3').style.fontWeight='bold';" onmouseout="document.getElementById('texte3').style.fontWeight='normal';">
-                            <img src="/Images/activites.png" width="40" height="40" class="rounded" alt="Activités"></br></br>
-                            <p id="texte3">Activités</p>
-                        </button>
-                    </a>
+                <div class="col text-center">
+                <button type="button" class="btn btn-outline-primary text-black"  style="width: 150px; height: 130px;"
+                    onmouseover="document.getElementById('texte3').style.fontWeight='bold';"
+                    onmouseout="document.getElementById('texte3').style.fontWeight='normal';">
+                    <img src="/Images/activites.png" width="40" height="40" class="rounded" alt="Activités"></br></br>
+                    <p id="texte3" >Activités</p>
+                </button>
                 </div>
-                <div class="col-sm-1 me-4 text-center">
-                    <a href="page-partenaires.php">
-                        <button type="button" class="btn btn-outline-primary text-black" style="width: 150px; height: 130px;" onmouseover="document.getElementById('texte4').style.fontWeight='bold';" onmouseout="document.getElementById('texte4').style.fontWeight='normal';">
-                            <img src="/Images/les-partenaires.png" width="40" height="40" class="rounded" alt="Partenaires"></br></br>
-                            <p id="texte4">Partenaires</p>
-                        </button>
-                    </a>
+                <div class="col text-center">
+                <button type="button" class="btn btn-outline-primary text-black"  style="width: 150px; height: 130px;"
+                    onmouseover="document.getElementById('texte4').style.fontWeight='bold';"
+                    onmouseout="document.getElementById('texte4').style.fontWeight='normal';">
+                    <img src="/Images/les-partenaires.png" width="40" height="40" class="rounded" alt="Partenaires"></br></br>
+                    <p id="texte4" >Partenaires</p>
+                </button>
                 </div>
                 <div class="col-sm-1 me-4 text-center">
                     <button type="button" class="btn btn-outline-primary text-black" data-bs-toggle="modal" data-bs-target="#myModal" style="width: 150px; height: 130px;" onmouseover="document.getElementById('texte5').style.fontWeight='bold';" onmouseout="document.getElementById('texte5').style.fontWeight='normal';">
@@ -123,6 +125,8 @@ function page_header()
 
     <?php
 }
+
+
 
 
 
