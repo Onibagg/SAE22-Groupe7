@@ -38,9 +38,7 @@ function page_header()
                     </a>
                 </div>
                 <div class="col-sm-5"></div>
-                <div class="col"></div>
-                <div class="col"></div>
-                <div class="col-sm-1 text-center">
+                <div class="col-sm-1 me-4 text-center">
                     <a href="page-pres.php">
                         <button type="button" class="btn btn-outline-primary text-black" style="width: 150px; height: 130px;" onmouseover="document.getElementById('texte1').style.fontWeight='bold';" onmouseout="document.getElementById('texte1').style.fontWeight='normal';">
                             <img src="/Images/point-dinterrogation.png" width="40" height="40" class="rounded" alt="?"></br></br>
@@ -48,7 +46,7 @@ function page_header()
                         </button>
                     </a>
                 </div>
-                <div class="col-sm-1 text-center">
+                <div class="col-sm-1 me-4 text-center">
                     <a href="page-histoire.php">
                         <button type="button" class="btn btn-outline-primary text-black" style="width: 150px; height: 130px;" onmouseover="document.getElementById('texte2').style.fontWeight='bold';" onmouseout="document.getElementById('texte2').style.fontWeight='normal';">
                             <img src="/Images/histoire.png" width="40" height="40" class="rounded" alt="Histoire"></br></br>
@@ -56,7 +54,7 @@ function page_header()
                         </button>
                     </a>
                 </div>
-                <div class="col-sm-1 text-center">
+                <div class="col-sm-1 me-4 text-center">
                     <a href="page-activites.php">
                         <button type="button" class="btn btn-outline-primary text-black" style="width: 150px; height: 130px;" onmouseover="document.getElementById('texte3').style.fontWeight='bold';" onmouseout="document.getElementById('texte3').style.fontWeight='normal';">
                             <img src="/Images/activites.png" width="40" height="40" class="rounded" alt="Activités"></br></br>
@@ -64,7 +62,7 @@ function page_header()
                         </button>
                     </a>
                 </div>
-                <div class="col-sm-1 text-center">
+                <div class="col-sm-1 me-4 text-center">
                     <a href="page-partenaires.php">
                         <button type="button" class="btn btn-outline-primary text-black" style="width: 150px; height: 130px;" onmouseover="document.getElementById('texte4').style.fontWeight='bold';" onmouseout="document.getElementById('texte4').style.fontWeight='normal';">
                             <img src="/Images/les-partenaires.png" width="40" height="40" class="rounded" alt="Partenaires"></br></br>
@@ -72,7 +70,7 @@ function page_header()
                         </button>
                     </a>
                 </div>
-                <div class="col">
+                <div class="col-sm-1 me-4 text-center">
                     <button type="button" class="btn btn-outline-primary text-black" data-bs-toggle="modal" data-bs-target="#myModal" style="width: 150px; height: 130px;" onmouseover="document.getElementById('texte5').style.fontWeight='bold';" onmouseout="document.getElementById('texte5').style.fontWeight='normal';">
                         <img src="/Images/login.png" width="40" height="40" class="rounded" alt="Connexion"></br></br>
                         <p id="texte5">Connexion</p>
