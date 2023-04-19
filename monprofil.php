@@ -3,8 +3,8 @@ include("fonctions.php");
 setup();
 intranet_navbar();
 ?>
-<p class="display-4 text-center">Personnaliser mon Profil :</p>
-<img src="..\Images\Employés\<?php echo $_SESSION['user']; ?>.jpg" style="width:500px;">
+<p class="display-4 mt-5 text-center">Mes Informations :</p>
+<img src="..\Images\Employés\<?php echo $_SESSION['user']; ?>.jpg" style="width:400px;">
 <form id="new-pdp" action="monprofil.php" method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label for="photo">Changer de photo de profil :</label>

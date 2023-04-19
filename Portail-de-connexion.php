@@ -53,7 +53,9 @@ intranet_navbar();
                 $confirmation = $_POST['confirmation'];
                 $grp = $_POST['groupe'];
 
-                if ($mdp !== $confirmation) {
+                if (empty($prenom) || empty($nom) || empty($usr) || empty($mdp) || empty($confirmation) || empty($grp)) {
+                    echo "<br><b>Tous</b> les champs sont obligatoires.";
+                } elseif ($mdp !== $confirmation) {
                     echo "<br>Les mots de passe ne correspondent pas.";
                 } else {
                     addUser($prenom, $nom, $usr, $mdp, $grp);
