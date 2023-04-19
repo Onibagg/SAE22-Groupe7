@@ -144,9 +144,35 @@ function page_header()
 <?php
 
 function page_foot(){
+?>
+<p></p>
+<p></p>
+<div class="container-fluid p-5 custom mt-3 text-center my-2">
+    <div class="row">
+        
+            
+        <div class="col-sm-3  text-black text-center">
+            <p>AIDE & INFORMATIONS</p>
+            <a class="text-dark" href="">Mentions légales</a></br>
+            <a class="text-dark" href="">Conditions générales de ventes</a>
 
-
-
+        </div>
+        <div class="col-sm-3 text-black">
+        <p>CONFIDENTIALITE</p>
+            <a class="text-dark" href="">Politique de confidentialité</a></br>
+            <a class="text-dark" href="">Mes données personnelles</a>
+        </div>
+        <div class="col-sm-6 text-black">
+        <img src="/Images/PrivateVPN_text.png" width="400" height="70" >     
+        </div>
+        
+        
+</div>
+</br>
+</br>
+<p>© <?php echo(" Année : ");echo date("Y"); ?> - PrivateVPN.fr </p>
+    </div>
+<?php
 
 }
 

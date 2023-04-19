@@ -183,3 +183,7 @@ img {
   </div>
 </div>
 
+<?php
+page_foot();
+?>
+</html>
