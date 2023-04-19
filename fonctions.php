@@ -25,8 +25,6 @@ function setup()
 
 function page_header()
 {
-
-
     ?>
         <div class="mt-0 p-4 bg-light">
             <div class="row">
