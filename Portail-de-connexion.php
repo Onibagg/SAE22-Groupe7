@@ -11,7 +11,7 @@ intranet_navbar();
         <p class="display-6 "><b>Ajouter un utilisateur :</b></p>
     </div>
     <div class="mt-2 p-4 bg-light text-dark rounded">
-        <form action="Portail-de-connexion.php" method="POST">
+        <form action="Portail-de-connexion.php" id="new-user" method="POST">
             <div class="row">
                 <div class="col">
                     <input class="form-control" placeholder="Prénom" rows="1" id="prenom" name="prenom"></input>
@@ -39,25 +39,28 @@ intranet_navbar();
                     </select>
                 </div>
                 <div class="col">
-                    <button type="submit" class="btn btn-outline-dark">Ajouter</button>
+                    <button type="submit" name="new-user" class="btn btn-outline-dark">Ajouter</button>
                 </div>
             </div>
         </form>
         <?php
-        if (isset($_POST['prenom']) && isset($_POST['nom']) && isset($_POST['pseudo']) && isset($_POST['mdp']) && isset($_POST['confirmation']) && isset($_POST['groupe'])) {
-            $prenom = $_POST['prenom'];
-            $nom = $_POST['nom'];
-            $usr = $_POST['pseudo'];
-            $mdp = $_POST['mdp'];
-            $confirmation = $_POST['confirmation'];
-            $grp = $_POST['groupe'];
+        if (isset($_POST['new-user'])) {
+            if (isset($_POST['prenom']) && isset($_POST['nom']) && isset($_POST['pseudo']) && isset($_POST['mdp']) && isset($_POST['confirmation']) && isset($_POST['groupe'])) {
+                $prenom = $_POST['prenom'];
+                $nom = $_POST['nom'];
+                $usr = $_POST['pseudo'];
+                $mdp = $_POST['mdp'];
+                $confirmation = $_POST['confirmation'];
+                $grp = $_POST['groupe'];
 
-            if ($mdp !== $confirmation) {
-                echo "<br>Les mots de passe ne correspondent pas.";
-            } else {
-                addUser($prenom, $nom, $usr, $mdp, $grp);
-                echo "<br><b>$prenom</b> <b>$nom</b> a été ajouté à l'équipe !";
+                if ($mdp !== $confirmation) {
+                    echo "<br>Les mots de passe ne correspondent pas.";
+                } else {
+                    addUser($prenom, $nom, $usr, $mdp, $grp);
+                    echo "<br><b>$prenom</b> <b>$nom</b> a été ajouté à l'équipe !";
+                }
             }
+        } else {
         }
         ?>
 

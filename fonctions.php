@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 
@@ -24,11 +23,12 @@ function setup()
     <?php
 }
 
-function page_header(){
+function page_header()
+{
 
-    
+
     ?>
-       <div class="mt-0 p-4 bg-light">
+        <div class="mt-0 p-4 bg-light">
             <div class="row">
                 <div class="col text-center">
                 <img src="/Images/PrivateVPN.png" width="210" height="110" class="rounded" alt="?"></br></br>
@@ -72,12 +72,10 @@ function page_header(){
                     <p id="texte4" >Partenaires</p>
                 </button>
                 </div>
-                <div class="col">
-                <button type="button" class="btn btn-outline-primary text-black" data-bs-toggle="modal" data-bs-target="#myModal" style="width: 150px; height: 130px;"
-                onmouseover="document.getElementById('texte5').style.fontWeight='bold';"
-                    onmouseout="document.getElementById('texte5').style.fontWeight='normal';">
-                    <img src="/Images/login.png" width="40" height="40" class="rounded" alt="Connexion"></br></br>
-                    <p id="texte5" >Connexion</p>
+                <div class="col-sm-1 me-4 text-center">
+                    <button type="button" class="btn btn-outline-primary text-black" data-bs-toggle="modal" data-bs-target="#myModal" style="width: 150px; height: 130px;" onmouseover="document.getElementById('texte5').style.fontWeight='bold';" onmouseout="document.getElementById('texte5').style.fontWeight='normal';">
+                        <img src="/Images/login.png" width="40" height="40" class="rounded" alt="Connexion"></br></br>
+                        <p id="texte5">Connexion</p>
                     </button>
                     <div class="modal fade" id="myModal">
                         <div class="modal-dialog">
@@ -119,12 +117,11 @@ function page_header(){
                                 ?>
                             </div>
                         </div>
-                    </div>    
+                    </div>
 
                 </div>
-                
             </div>
-        <div>
+        </div>
 
     <?php
 }
@@ -163,12 +160,12 @@ function intranet_navbar()
                     <a class="nav-link" href="wiki.php"><img src="..\Images\Icons\book.png" draggable="false" height="32px"></a>
                 </li>
                 <li class="nav-item dropdown me-4 ms-4">
-                    <a class="nav-link dropdown-toggle" href="monprofil.php" role="button" data-bs-toggle="dropdown"><img src="..\Images\Employés\blank-profile-picture.jpg" alt="Avatar Logo" style="width:32px;" class="rounded-pill"></a>
+                    <a class="nav-link dropdown-toggle" href="monprofil.php" role="button" data-bs-toggle="dropdown"><img src="..\Images\Employés\<?php echo $_SESSION['user']; ?>.jpg" alt="Avatar Logo" style="width:32px;" class="rounded-pill"></a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="monprofil.php">Mon Profil</a></li>
                         <li>
                             <form id="deconnexion" method="POST">
-                                <button type="submit" class="btn ms-1"><img src="Images\Icons\log_out.png" class="image-navbar"></button>
+                                <button type="submit" name="deconnexion" class="btn ms-1"><img src="Images\Icons\log_out.png" class="image-navbar"></button>
                             </form>
                         </li>
                     </ul>
@@ -176,10 +173,9 @@ function intranet_navbar()
             </ul>
         </nav>
         <?php
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (isset($_POST['deconnexion'])) {
             deconnexion();
-        } else {
-        }
+          }
         ?>
     <?php
 }
@@ -217,8 +213,7 @@ function connexion_traitement()
 
     if ($ok) {
         $_SESSION["user"] = $user;
-        echo '<meta http-equiv="refresh" content="0; url=Accueil-Intranet.php">' ;
-
+        echo '<meta http-equiv="refresh" content="0; url=Accueil-Intranet.php">';
     }
 }
 
@@ -233,6 +228,10 @@ function addUser($prenom, $nom, $usr, $mdp, $grp)
         'mdp' => password_hash($mdp, PASSWORD_DEFAULT),
         'groupe' => $grp
     ];
+
+    $src = "Images\Employés\blank-profile-picture.jpg";
+    $dst = "Images\Employés\\" . $usr . ".jpg";
+    copy($src, $dst);
 
     file_put_contents('Data\login-mdp.json', json_encode($users));
 }
@@ -282,6 +281,10 @@ function gestionUtilisateurs()
         } elseif (isset($_POST['supprimer'])) {
             foreach ($_POST['supprimer'] as $nom => $valeur) {
                 unset($users[$nom]);
+                $photo_path = "Images\Employés\\" . $nom . ".jpg";
+                if (file_exists($photo_path)) {
+                    unlink($photo_path);
+                }
             }
             file_put_contents($path, json_encode($users));
         }
