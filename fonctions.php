@@ -23,8 +23,6 @@ function setup()
     <?php
 }
 
-
-
 function page_header()
 {
 
@@ -34,7 +32,7 @@ function page_header()
             <div class="row">
                 <div class="col text-center">
                     <a href="page-accueil.php">
-                        <img src="/Images/PrivateVPN.png" width="200" height="110" class="rounded" alt="?"></br></br>
+                        <img src="/Images/PrivateVPN.png" width="210" height="110" class="rounded" alt="?"></br></br>
                     </a>
                 </div>
                 <div class="col"></div>
@@ -125,6 +123,8 @@ function page_header()
 
     <?php
 }
+
+
 
 
 
