@@ -31,9 +31,13 @@ function page_header(){
        <div class="mt-0 p-4 bg-light">
             <div class="row">
                 <div class="col text-center">
-                <img src="/Images/PrivateVPN.png" width="200" height="110" class="rounded" alt="?"></br></br>
+                <img src="/Images/PrivateVPN.png" width="210" height="110" class="rounded" alt="?"></br></br>
                 </div>
                 <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+   
+
                 
                 
                 <div class="col text-center">
