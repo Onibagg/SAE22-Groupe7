@@ -269,9 +269,16 @@ function gestionUtilisateurs()
             foreach ($_POST['modifier'] as $nom => $valeur) {
                 $users[$nom]['prenom'] = $prenom[$nom];
                 $users[$nom]['nom'] = $nomm[$nom];
-                $users[$nom]['user'] = $user[$nom];
                 $users[$nom]['mdp'] = password_hash($mdp[$nom], PASSWORD_DEFAULT);
                 $users[$nom]['groupe'] = $groupe[$nom];
+                if ($users[$nom]['user'] !== $user[$nom]) {
+                    $old_photo_path = "Images\Employés\\" . $users[$nom]['user'] . ".jpg";
+                    $new_photo_path = "Images\Employés\\" . $user[$nom] . ".jpg";
+                    if (file_exists($old_photo_path)) {
+                        rename($old_photo_path, $new_photo_path);
+                    }
+                }
+                $users[$nom]['user'] = $user[$nom];
             }
             file_put_contents($path, json_encode($users));
         } elseif (isset($_POST['supprimer'])) {
@@ -288,6 +295,7 @@ function gestionUtilisateurs()
 
     afficherUtilisateurs($users);
 }
+
 
 function deconnexion()
 {
