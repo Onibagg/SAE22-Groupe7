@@ -184,7 +184,7 @@ function page_header()
     function intranet_navbar()
     {
     ?>
-        <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top justify-content-center">
+        <nav class="navbar navbar-expand-sm bg-primary bg-opacity-25 navbar-info sticky-top justify-content-center">
             <ul class="navbar-nav">
                 <li class="nav-item me-4 ms-4">
                     <a class="navbar-brand" href="Accueil-Intranet.php">
@@ -357,4 +357,14 @@ function page_header()
         header("Location: page-accueil.php");
         exit;
     }
+
+    function countdown($countdown_date) {
+        $countdown_seconds = strtotime($countdown_date) - time();
+        $countdown_days = floor($countdown_seconds / (60 * 60 * 24));
+        $countdown_hours = floor(($countdown_seconds - ($countdown_days * 60 * 60 * 24)) / (60 * 60));
+        $countdown_minutes = floor(($countdown_seconds - ($countdown_days * 60 * 60 * 24) - ($countdown_hours * 60 * 60)) / 60);
+      
+        return $countdown_days . " J " . $countdown_hours . " H " . $countdown_minutes . " M ";
+      }
+      
     ?>
