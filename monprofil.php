@@ -4,7 +4,7 @@ setup();
 intranet_navbar();
 ?>
 <p class="display-4 mt-5 text-center">Mes Informations :</p>
-<img src="..\Images\Employés\<?php echo $_SESSION['user']; ?>.jpg" style="width:400px;">
+<img src="..\Images\Employés\<?php echo $_SESSION['user']; ?>.jpg" style="width:250px;" class="rounded">
 <form id="new-pdp" action="monprofil.php" method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label for="photo">Changer de photo de profil :</label>

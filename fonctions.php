@@ -27,12 +27,12 @@ function page_header()
 {
     ?>
         <div class="mt-0 p-4 custom">
-        <style>
-        .custom {
-        background-color: #DCF3FF;
+            <style>
+                .custom {
+                    background-color: #DCF3FF;
 
-        }
-        </style>
+                }
+            </style>
             <div class="row">
                 <div class="col text-center">
                     <a href="page-accueil.php">
@@ -80,26 +80,26 @@ function page_header()
                         <p id="texte5">Connexion</p>
                     </button>
                     <style>
-                    .btn:hover {
-                    background-color: #9DDEFF;
-                    color: #9DDEFF;
-                    }
-                    .btn {
-                    border-color: #9FBDCC;
-                    }
+                        .btn:hover {
+                            background-color: #9DDEFF;
+                            color: #9DDEFF;
+                        }
 
-                    
+                        .btn {
+                            border-color: #9FBDCC;
+                        }
                     </style>
                     <div class="modal fade" id="myModal">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                <div class="modal-header">
-                                    <p class="modal-title display-5">Connexion</p>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="login-form">
-                                        <form id="connexion" action="page-accueil.php" method="POST" class="was-validated">
+                                <div class="login-form">
+                                    <form id="connexion" action="page-accueil.php" method="POST" class="was-validated">
+                                        <div class="modal-header">
+                                            <p class="modal-title display-5">Connexion</p>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <div class="modal-body">
+
                                             <br>
                                             <div class="form-group">
                                                 <label for="uname" class="form-label">Utilisateur:</label>
@@ -116,14 +116,17 @@ function page_header()
                                                 <div class="invalid-feedback">Veuillez compléter ce champ</div>
                                             </div>
                                             <br>
-                                    </div>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <div class="form-group">
+                                                <button type="submit" name="connexion" class="btn btn-outline-dark">Se connecter</button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-outline-dark">Se connecter</button>
-                                </div>
-                                </form>
                                 <?php
-                                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                                if (isset($_POST['connexion'])) {
                                     connexion_traitement();
                                 } else {
                                 }
@@ -138,46 +141,48 @@ function page_header()
 
     <?php
 }
-?>
+    ?>
 
 
-<?php
+    <?php
 
-function page_foot(){
-?>
-<p></p>
-<p></p>
-<div class="container-fluid p-5 custom mt-3 text-center my-2">
-    <div class="row">
-        
-            
-        <div class="col-sm-3  text-black text-center">
-            <p>AIDE & INFORMATIONS</p>
-            <a class="text-dark" href="">Mentions légales</a></br>
-            <a class="text-dark" href="">Conditions générales de ventes</a>
+    function page_foot()
+    {
+    ?>
+        <p></p>
+        <p></p>
+        <div class="container-fluid p-5 custom mt-3 text-center">
+            <div class="row">
 
+
+                <div class="col-sm-3  text-black text-center">
+                    <p>AIDE & INFORMATIONS</p>
+                    <a class="text-dark" href="#">Mentions légales</a></br>
+                    <a class="text-dark" href="#">Conditions générales de ventes</a>
+
+                </div>
+                <div class="col-sm-3 text-black">
+                    <p>CONFIDENTIALITE</p>
+                    <a class="text-dark" href="#">Politique de confidentialité</a></br>
+                    <a class="text-dark" href="#">Mes données personnelles</a>
+                </div>
+                <div class="col-sm-6 text-black">
+                    <img src="/Images/PrivateVPN_text.png" width="400" height="70">
+                </div>
+
+
+            </div>
+            </br>
+            </br>
+            <p>© <?php echo (" Année : ");
+                    echo date("Y"); ?> - PrivateVPN.fr </p>
         </div>
-        <div class="col-sm-3 text-black">
-        <p>CONFIDENTIALITE</p>
-            <a class="text-dark" href="">Politique de confidentialité</a></br>
-            <a class="text-dark" href="">Mes données personnelles</a>
-        </div>
-        <div class="col-sm-6 text-black">
-        <img src="/Images/PrivateVPN_text.png" width="400" height="70" >     
-        </div>
-        
-        
-</div>
-</br>
-</br>
-<p>© <?php echo(" Année : ");echo date("Y"); ?> - PrivateVPN.fr </p>
-    </div>
-<?php
+    <?php
 
-}
+    }
 
-function intranet_navbar()
-{
+    function intranet_navbar()
+    {
     ?>
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top justify-content-center">
             <ul class="navbar-nav">
@@ -220,136 +225,136 @@ function intranet_navbar()
         <?php
         if (isset($_POST['deconnexion'])) {
             deconnexion();
-          }
+        }
         ?>
     <?php
-}
-
-function file_decod($file)
-{
-    return json_decode(file_get_contents($file), true);
-}
-
-function connexion_traitement()
-{
-    if (!isset($_POST['user'])) {
-        echo 'Utilisateur non renseigné';
-        $user = "";
-    } else {
-        $user = $_POST['user'];
     }
 
-    if (!isset($_POST['mdp'])) {
-        echo 'Mot de Passe non renseigné';
-        $mdp = "";
-    } else {
-        $mdp = $_POST['mdp'];
+    function file_decod($file)
+    {
+        return json_decode(file_get_contents($file), true);
     }
 
-    $data = file_decod('Data\login-mdp.json');
-    $ok = false;
+    function connexion_traitement()
+    {
+        if (!isset($_POST['user'])) {
+            echo 'Utilisateur non renseigné';
+            $user = "";
+        } else {
+            $user = $_POST['user'];
+        }
 
-    foreach ($data as $u) {
-        if ($u['user'] == $user && password_verify($mdp, $u['mdp']) == true) {
-            $ok = true;
-            break;
+        if (!isset($_POST['mdp'])) {
+            echo 'Mot de Passe non renseigné';
+            $mdp = "";
+        } else {
+            $mdp = $_POST['mdp'];
+        }
+
+        $data = file_decod('Data\login-mdp.json');
+        $ok = false;
+
+        foreach ($data as $u) {
+            if ($u['user'] == $user && password_verify($mdp, $u['mdp']) == true) {
+                $ok = true;
+                break;
+            }
+        }
+
+        if ($ok) {
+            $_SESSION["user"] = $user;
+            echo '<meta http-equiv="refresh" content="0; url=Accueil-Intranet.php">';
         }
     }
 
-    if ($ok) {
-        $_SESSION["user"] = $user;
-        echo '<meta http-equiv="refresh" content="0; url=Accueil-Intranet.php">';
+    function addUser($prenom, $nom, $usr, $mdp, $grp)
+    {
+        $users = file_decod('Data\login-mdp.json');
+
+        $users[$usr] = [
+            'prenom' => $prenom,
+            'nom' => $nom,
+            'user' => $usr,
+            'mdp' => password_hash($mdp, PASSWORD_DEFAULT),
+            'groupe' => $grp
+        ];
+
+        $src = "Images\Employés\blank-profile-picture.jpg";
+        $dst = "Images\Employés\\" . $usr . ".jpg";
+        copy($src, $dst);
+
+        file_put_contents('Data\login-mdp.json', json_encode($users));
     }
-}
 
-function addUser($prenom, $nom, $usr, $mdp, $grp)
-{
-    $users = file_decod('Data\login-mdp.json');
-
-    $users[$usr] = [
-        'prenom' => $prenom,
-        'nom' => $nom,
-        'user' => $usr,
-        'mdp' => password_hash($mdp, PASSWORD_DEFAULT),
-        'groupe' => $grp
-    ];
-
-    $src = "Images\Employés\blank-profile-picture.jpg";
-    $dst = "Images\Employés\\" . $usr . ".jpg";
-    copy($src, $dst);
-
-    file_put_contents('Data\login-mdp.json', json_encode($users));
-}
-
-function afficherUtilisateurs($utilisateurs)
-{
-    echo '<form method="post">';
-    echo '<div class="table-responsive">';
-    echo '<table class="table table-hover">';
-    echo "<tr><th>Prénom</th><th>Nom</th><th>Nom d'utilisateur</th><th>Nouveau MDP</th><th>Groupe</th><th></th><th></th></tr>";
-    foreach ($utilisateurs as $nom => $infos) {
-        echo '<tr>';
-        echo '<td><input type="text" name="prenom[' . $nom . ']" value="' . $infos['prenom'] . '" class="form-control"></td>';
-        echo '<td><input type="text" name="nom[' . $nom . ']" value="' . $infos['nom'] . '" class="form-control"></td>';
-        echo '<td><input type="text" name="user[' . $nom . ']" value="' . $infos['user'] . '" class="form-control"></td>';
-        echo '<td><input type="password" name="mdp[' . $nom . ']" value="" class="form-control"></td>';
-        echo '<td><input type="text" name="groupe[' . $nom . ']" value="' . $infos['groupe'] . '" class="form-control"></td>';
-        echo '<td class="text-center"><input type="submit" name="modifier[' . $nom . ']" value="Modifier" class="btn btn-outline-dark"></td>';
-        echo '<td class="text-center"><input type="submit" name="supprimer[' . $nom . ']" value="Supprimer" class="btn btn-danger"></td>';
-        echo '</tr>';
+    function afficherUtilisateurs($utilisateurs)
+    {
+        echo '<form method="post">';
+        echo '<div class="table-responsive">';
+        echo '<table class="table table-hover">';
+        echo "<tr><th>Prénom</th><th>Nom</th><th>Nom d'utilisateur</th><th>Nouveau MDP</th><th>Groupe</th><th></th><th></th></tr>";
+        foreach ($utilisateurs as $nom => $infos) {
+            echo '<tr>';
+            echo '<td><input type="text" name="prenom[' . $nom . ']" value="' . $infos['prenom'] . '" class="form-control"></td>';
+            echo '<td><input type="text" name="nom[' . $nom . ']" value="' . $infos['nom'] . '" class="form-control"></td>';
+            echo '<td><input type="text" name="user[' . $nom . ']" value="' . $infos['user'] . '" class="form-control"></td>';
+            echo '<td><input type="password" name="mdp[' . $nom . ']" value="" class="form-control"></td>';
+            echo '<td><input type="text" name="groupe[' . $nom . ']" value="' . $infos['groupe'] . '" class="form-control"></td>';
+            echo '<td class="text-center"><input type="submit" name="modifier[' . $nom . ']" value="Modifier" class="btn btn-outline-dark"></td>';
+            echo '<td class="text-center"><input type="submit" name="supprimer[' . $nom . ']" value="Supprimer" class="btn btn-danger"></td>';
+            echo '</tr>';
+        }
+        echo '</table>';
+        echo '</div>';
+        echo '</form>';
     }
-    echo '</table>';
-    echo '</div>';
-    echo '</form>';
-}
 
-function gestionUtilisateurs()
-{
-    $path = 'Data\login-mdp.json';
-    $users = file_decod($path);
+    function gestionUtilisateurs()
+    {
+        $path = 'Data\login-mdp.json';
+        $users = file_decod($path);
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        if (isset($_POST['modifier'])) {
-            $prenom = $_POST['prenom'];
-            $nomm = $_POST['nom'];
-            $user = $_POST['user'];
-            $mdp = $_POST['mdp'];
-            $groupe = $_POST['groupe'];
-            foreach ($_POST['modifier'] as $nom => $valeur) {
-                $users[$nom]['prenom'] = $prenom[$nom];
-                $users[$nom]['nom'] = $nomm[$nom];
-                $users[$nom]['mdp'] = password_hash($mdp[$nom], PASSWORD_DEFAULT);
-                $users[$nom]['groupe'] = $groupe[$nom];
-                if ($users[$nom]['user'] !== $user[$nom]) {
-                    $old_photo_path = "Images\Employés\\" . $users[$nom]['user'] . ".jpg";
-                    $new_photo_path = "Images\Employés\\" . $user[$nom] . ".jpg";
-                    if (file_exists($old_photo_path)) {
-                        rename($old_photo_path, $new_photo_path);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (isset($_POST['modifier'])) {
+                $prenom = $_POST['prenom'];
+                $nomm = $_POST['nom'];
+                $user = $_POST['user'];
+                $mdp = $_POST['mdp'];
+                $groupe = $_POST['groupe'];
+                foreach ($_POST['modifier'] as $nom => $valeur) {
+                    $users[$nom]['prenom'] = $prenom[$nom];
+                    $users[$nom]['nom'] = $nomm[$nom];
+                    $users[$nom]['mdp'] = password_hash($mdp[$nom], PASSWORD_DEFAULT);
+                    $users[$nom]['groupe'] = $groupe[$nom];
+                    if ($users[$nom]['user'] !== $user[$nom]) {
+                        $old_photo_path = "Images\Employés\\" . $users[$nom]['user'] . ".jpg";
+                        $new_photo_path = "Images\Employés\\" . $user[$nom] . ".jpg";
+                        if (file_exists($old_photo_path)) {
+                            rename($old_photo_path, $new_photo_path);
+                        }
+                    }
+                    $users[$nom]['user'] = $user[$nom];
+                }
+                file_put_contents($path, json_encode($users));
+            } elseif (isset($_POST['supprimer'])) {
+                foreach ($_POST['supprimer'] as $nom => $valeur) {
+                    unset($users[$nom]);
+                    $photo_path = "Images\Employés\\" . $nom . ".jpg";
+                    if (file_exists($photo_path)) {
+                        unlink($photo_path);
                     }
                 }
-                $users[$nom]['user'] = $user[$nom];
+                file_put_contents($path, json_encode($users));
             }
-            file_put_contents($path, json_encode($users));
-        } elseif (isset($_POST['supprimer'])) {
-            foreach ($_POST['supprimer'] as $nom => $valeur) {
-                unset($users[$nom]);
-                $photo_path = "Images\Employés\\" . $nom . ".jpg";
-                if (file_exists($photo_path)) {
-                    unlink($photo_path);
-                }
-            }
-            file_put_contents($path, json_encode($users));
         }
+
+        afficherUtilisateurs($users);
     }
 
-    afficherUtilisateurs($users);
-}
 
-
-function deconnexion()
-{
-    session_unset();
-    header("Location: page-accueil.php");
-    exit;
-}
+    function deconnexion()
+    {
+        session_unset();
+        header("Location: page-accueil.php");
+        exit;
+    }
     ?>
