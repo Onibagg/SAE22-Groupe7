@@ -20,10 +20,10 @@ page_header();
                 
                 // Réaliser l'effet de fondu
                 img.style.opacity = 0; // Commencer avec une opacité de 0
-                img.style.transition = "opacity 5s"; // Ajouter une transition pour l'effet de fondu
+                img.style.transition = "opacity 2s"; // Ajouter une transition pour l'effet de fondu
                 setTimeout(function() {
                     img.style.opacity = 1; // Augmenter progressivement l'opacité jusqu'à 1
-                }, 5000);
+                }, 100);
                 
                 // Supprimer la classe "lazy" pour ne pas recharger l'image à chaque scroll
                 console.log(img.classList)
@@ -116,7 +116,7 @@ img {
         <div class="row align-items-center">
             <div class="col-sm-1  text-black"></div>
             <div class="col-sm-4 text-black">
-                <img name="/Images/Accueil/Key_image.png" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D"
+                <img name="/Images/Accueil/Key_image.png" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" style="opacity: 0"
  width="250" height="250" class="d-block lazy">
                 
             </div>
@@ -136,7 +136,7 @@ img {
             </div>
             <div class="col-sm-1 text-black"></div>
             <div class="col-sm-3 text-black">
-                <img name="/Images/Accueil/WWW_image.png" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D"
+                <img name="/Images/Accueil/WWW_image.png" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" style="opacity: 0"
  width="250" height="250" class="d-block lazy">
 
             </div>
@@ -148,7 +148,7 @@ img {
         <div class="row align-items-center">
             <div class="col-sm-1 bg-dark text-black"></div>
             <div class="col-sm-4 text-black">
-                <img  name="/Images/Accueil/PC_image.png"  width="250" height="250" class="d-block lazy">
+                <img  name="/Images/Accueil/PC_image.png"  src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" style="opacity: 0" width="250" height="250" class="d-block lazy">
             </div>
             <div class="col-sm-6 text-black">
 
