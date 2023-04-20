@@ -60,7 +60,7 @@ https: //antoine-herault.developpez.com/tutoriels/php/gestionnaire/
           echo '<table class="table table-striped table-bordered table-responsive">';
           echo '<thead>';
           echo '<tr>';
-          echo '<th>Nom de fichier</th>';
+          echo '<th>Nom du fichier</th>';
           echo '<th>Taille</th>';
           echo '<th>Date de modification</th>';
           echo '<th>Télécharger</th>';
@@ -77,7 +77,7 @@ https: //antoine-herault.developpez.com/tutoriels/php/gestionnaire/
                          echo "<td>$entry</td>";
                          echo "<td>" . format_size($filesize) . "</td>";
                          echo "<td>$filemtime</td>";
-                         echo "<td><a href='$dir$entry' download class='btn btn-sm btn-primary'>Télécharger</a></td>";
+                         echo "<td><a href='$dir$entry' download class='btn btn-sm btn-primary'>Télécharger</a><a href='' class='btn btn-sm btn-danger'>Supprimer</a></td>";
                          echo "</tr>";
                     }
                }

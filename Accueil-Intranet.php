@@ -10,7 +10,7 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
     $prenom = $userData['prenom'];
     $nom = $userData['nom'];
 
-    echo "<p class='text-center mt-5 display-4' >Bienvenue " . $prenom . " " . $nom . "</p>";
+    echo "<p class='text-center mt-3 display-4' >Bienvenue " . $prenom . " " . $nom . "</p>";
 } else {
     echo "<h1>Erreur : utilisateur non reconnu</h1>";
 }
@@ -21,13 +21,16 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
     <script src="JS\heure.js"></script>
 </head>
 
+
 <body>
+    </script>
     <div class="row">
         <div class="col">
-            <p class="display-6">À venir:</p><hr class="me-3">
+            <p class="display-6">À venir:</p>
+            <hr class="me-3">
             <div class="row">
                 <div class="col text-center">
-                <button type="button" class="mt-1 btn btn-outline-dark">
+                    <button type="button" class="mt-1 btn btn-outline-dark">
                         <p class="mb-0">Team Building :</p>
                         <span class="spinner-grow spinner-grow-sm"></span>
                         <br>
@@ -48,7 +51,7 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
 
                 </div>
                 <div class="col">
-                <button type="button" class="mt-3 btn btn-outline-dark">
+                    <button type="button" class="mt-3 btn btn-outline-dark">
                         <p class="mb-0">SKO :</p>
                         <span class="spinner-grow spinner-grow-sm"></span>
                         <br>
