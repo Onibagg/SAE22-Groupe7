@@ -141,10 +141,6 @@ function page_header()
 
     <?php
 }
-    ?>
-
-
-    <?php
 
     function page_foot()
     {

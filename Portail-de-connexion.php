@@ -35,7 +35,10 @@ intranet_navbar();
                         <option>Commerciaux</option>
                         <option>IT</option>
                         <option>R&D</option>
-                        .....
+                        <option>RH</option>
+                        <option>Finance</option>
+                        <option>Production</option>
+
                     </select>
                 </div>
                 <div class="col">
