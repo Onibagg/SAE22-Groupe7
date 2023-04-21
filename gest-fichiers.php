@@ -29,8 +29,8 @@ https: //antoine-herault.developpez.com/tutoriels/php/gestionnaire/
                        </div>
                    </div>
                </div>";
-           }
-           
+          }
+
           if ($handle = opendir($dir)) {
                while (false !== ($entry = readdir($handle))) {
                     if ($entry != "." && $entry != "..") {
@@ -48,55 +48,159 @@ https: //antoine-herault.developpez.com/tutoriels/php/gestionnaire/
                }
                closedir($handle);
           }
-
-          echo '</div>';
-          echo '</div>';
-
-          echo '<br>';
-
-          echo '<div class="container">';
-          echo '<div class="row">';
-          echo '<div class="col-12">';
-          echo '<table class="table table-striped table-bordered table-responsive">';
-          echo '<thead>';
-          echo '<tr>';
-          echo '<th>Nom du fichier</th>';
-          echo '<th>Taille</th>';
-          echo '<th>Date de modification</th>';
-          echo '<th>Télécharger</th>';
-          echo '</tr>';
-          echo '</thead>';
-          echo '<tbody>';
-
-          if ($handle = opendir($dir)) {
-               while (false !== ($entry = readdir($handle))) {
-                    if (!is_dir($dir . $entry)) {
-                         $filesize = filesize($dir . $entry);
-                         $filemtime = date("d/m/Y H:i:s", filemtime($dir . $entry));
-                         echo "<tr>";
-                         echo "<td>$entry</td>";
-                         echo "<td>" . format_size($filesize) . "</td>";
-                         echo "<td>$filemtime</td>";
-                         echo "<td><a href='$dir$entry' download class='btn btn-sm btn-primary'>Télécharger</a><a href='' class='btn btn-sm btn-danger'>Supprimer</a></td>";
-                         echo "</tr>";
-                    }
-               }
-               closedir($handle);
-          }
-
-          function format_size($size)
-          {
-               $units = array('o', 'Ko', 'Mo', 'Go', 'To');
-               $i = 0;
-               while ($size >= 1024) {
-                    $size /= 1024;
-                    $i++;
-               }
-               return round($size, 2) . ' ' . $units[$i];
-          }
-          echo '</tbody>';
-          echo '</table>';
-          echo '</div>';
-          echo '</div>';
-          echo '</div>';
           ?>
+
+     </div>
+</div>
+
+
+<br>
+
+
+<div class="container">
+     <div class="row">
+          <div class="col-12">
+               <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
+                    <div class="input-group mb-3">
+                         <input type="file" class="form-control" name="fileToUpload" id="fileToUpload">
+                         <button type="submit" class="btn btn-primary" name="uploadBtn">Upload</button>
+                    </div>
+               </form>
+          </div>
+     </div>
+</div>
+<?php
+if (isset($_POST["uploadBtn"])) {
+     $target_dir = $dir;
+     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+     $uploadOk = 1;
+     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+     if (file_exists($target_file)) {
+          echo "<div class='alert alert-danger'>Désolé, ce fichier existe déjà.</div>";
+          $uploadOk = 0;
+     }
+
+     if ($_FILES["fileToUpload"]["size"] > 5000000000) {
+          echo "<div class='alert alert-danger'>Désolé, votre fichier est trop volumineux. (Max 5 Go)</div>";
+          $uploadOk = 0;
+     }
+
+     if ($imageFileType != "jpg" && $imageFileType != "jpeg" && $imageFileType != "png" && $imageFileType != "gif" && $imageFileType != "pdf" && $imageFileType != "doc" && $imageFileType != "docx" && $imageFileType != "xls" && $imageFileType != "xlsx" && $imageFileType != "html" && $imageFileType != "css" && $imageFileType != "ppt" && $imageFileType != "pptx" && $imageFileType != "mp3" && $imageFileType != "mp4" && $imageFileType != "zip" && $imageFileType != "txt") {
+          echo "<div class='alert alert-danger'>Désolé, seuls les fichiers de type JPG, JPEG, PNG, GIF, PDF, DOC, DOCX, XLS, XLSX, HTML, CSS, PPT, PPTX, MP3, MP4, ZIP et TXT sont autorisés.</div>";
+          $uploadOk = 0;
+     }
+
+     if ($uploadOk == 0) {
+          echo "<div class='alert alert-danger'>Désolé, votre fichier n'a pas été téléchargé.</div>";
+     } else {
+          if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+               echo "<div class='alert alert-success'>Le fichier " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " a été téléchargé avec succès.</div>";
+          } else {
+               echo "<div class='alert alert-danger'>Désolé, une erreur s'est produite lors du téléchargement de votre fichier.</div>";
+          }
+     }
+}
+?>
+<br>
+
+<div class="container">
+     <div class="row">
+          <div class="col-12">
+               <table class="table table-hover table-responsive">
+                    <thead class="table-primary">
+                         <tr>
+                              <th>Nom du fichier</th>
+                              <th>Taille</th>
+                              <th>Date de modification</th>
+                              <th>Actions</th>
+                         </tr>
+                    </thead>
+                    <tbody>
+                         <?php
+                         if ($handle = opendir($dir)) {
+                              while (false !== ($entry = readdir($handle))) {
+                                   if (!is_dir($dir . $entry)) {
+                                        $filesize = filesize($dir . $entry);
+                                        $filemtime = date("d/m/Y H:i:s", filemtime($dir . $entry));
+                                        $ext = pathinfo($entry, PATHINFO_EXTENSION);
+                                        switch ($ext) {
+                                             case "pdf":
+                                                  $img_src = "Images\Icons\\file\pdf.png";
+                                                  break;
+                                             case "doc":
+                                             case "docx":
+                                                  $img_src = "Images\Icons\\file\docx.png";
+                                                  break;
+                                             case "xls":
+                                             case "xlsx":
+                                                  $img_src = "Images\Icons\\file\xlsx.png";
+                                                  break;
+                                             case "html":
+                                                  $img_src = "Images\Icons\\file\html.png";
+                                                  break;
+                                             case "css":
+                                                  $img_src = "Images\Icons\\file\css.png";
+                                                  break;
+                                             case "ppt":
+                                             case "pptx":
+                                                  $img_src = "Images\Icons\\file\pptx.png";
+                                                  break;
+                                             case "mp3":
+                                                  $img_src = "Images\Icons\\file\mp3.png";
+                                                  break;
+                                             case "mp4":
+                                                  $img_src = "Images\Icons\\file\mp4.png";
+                                                  break;
+                                             case "jpg":
+                                             case "jpeg":
+                                             case "gif":
+                                             case "png":
+                                                  $img_src = "Images\Icons\\file\png.png";
+                                                  break;
+                                             case "zip":
+                                                  $img_src = "Images\Icons\\file\zip.png";
+                                                  break;
+                                             default:
+                                                  $img_src = "Images\Icons\\file\default.png";
+                                        }
+                                        echo "<tr>";
+                                        echo "<td><img src='$img_src' height='25px'> $entry</td>";
+                                        echo "<td>" . format_size($filesize) . "</td>";
+                                        echo "<td>$filemtime</td>";
+                         ?>
+                                        <td>
+                                             <a href='<?php echo "$dir$entry" ?>' download class='btn me-2 btn-sm btn-outline-success'>
+                                                  <img src='Images\Icons\download.png' height='25px'>
+                                             </a>
+
+                                             <a href="<?php echo $dir.$entry ?>" class="btn btn-sm btn-outline-danger" onmouseover="this.getElementsByTagName('img')[0].src='Images\\Icons\\delete-open.png';" onmouseout="this.getElementsByTagName('img')[0].src='Images\\Icons\\delete.png';">
+                                                  <img src="Images\Icons\delete.png" height="25px">
+                                             </a>
+
+                                        </td>
+
+                                        </tr>
+                         <?php
+                                   }
+                              }
+                              closedir($handle);
+                         }
+
+                         function format_size($size)
+                         {
+                              $units = array('o', 'Ko', 'Mo', 'Go', 'To');
+                              $i = 0;
+                              while ($size >= 1024) {
+                                   $size /= 1024;
+                                   $i++;
+                              }
+                              return round($size, 2) . ' ' . $units[$i];
+                         }
+                         ?>
+
+                    </tbody>
+               </table>
+          </div>
+     </div>
+</div>
