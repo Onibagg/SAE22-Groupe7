@@ -40,7 +40,7 @@ page_header();
 
     .center-img {
         display: block;
-        margin: 0 auto;
+        margin: auto;
     }
 </style>
 </br>
