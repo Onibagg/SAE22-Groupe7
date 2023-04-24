@@ -1,3 +1,5 @@
 # SAE23-Groupe7
 
-##Test de Pull depuis VS Code
+## Idées :
+- Mettre en place un système de réinitialisation de Mot de Passe par @mail
+- 
