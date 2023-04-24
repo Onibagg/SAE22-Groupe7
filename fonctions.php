@@ -142,8 +142,8 @@ function page_header()
     <?php
 }
 
-    function page_foot()
-    {
+function page_foot()
+{
     ?>
         <p></p>
         <p></p>
@@ -175,10 +175,10 @@ function page_header()
         </div>
     <?php
 
-    }
+}
 
-    function intranet_navbar()
-    {
+function intranet_navbar()
+{
     ?>
         <nav class="navbar navbar-expand-sm bg-primary bg-opacity-25 navbar-info sticky-top justify-content-center">
             <ul class="navbar-nav">
@@ -224,143 +224,209 @@ function page_header()
         }
         ?>
     <?php
+}
+
+function file_decod($file)
+{
+    return json_decode(file_get_contents($file), true);
+}
+
+function connexion_traitement()
+{
+    if (!isset($_POST['user'])) {
+        echo 'Utilisateur non renseigné';
+        $user = "";
+    } else {
+        $user = $_POST['user'];
     }
 
-    function file_decod($file)
-    {
-        return json_decode(file_get_contents($file), true);
+    if (!isset($_POST['mdp'])) {
+        echo 'Mot de Passe non renseigné';
+        $mdp = "";
+    } else {
+        $mdp = $_POST['mdp'];
     }
 
-    function connexion_traitement()
-    {
-        if (!isset($_POST['user'])) {
-            echo 'Utilisateur non renseigné';
-            $user = "";
-        } else {
-            $user = $_POST['user'];
+    $data = file_decod('Data\login-mdp.json');
+    $ok = false;
+
+    foreach ($data as $u) {
+        if ($u['user'] == $user && password_verify($mdp, $u['mdp']) == true) {
+            $ok = true;
+            break;
         }
+    }
 
-        if (!isset($_POST['mdp'])) {
-            echo 'Mot de Passe non renseigné';
-            $mdp = "";
-        } else {
+    if ($ok) {
+        $_SESSION["user"] = $user;
+        echo '<meta http-equiv="refresh" content="0; url=Accueil-Intranet.php">';
+    }
+}
+function ajout_utilisateur_format()
+{
+    ?>
+        <form action="Portail-de-connexion.php" id="new-user" method="POST">
+            <div class="row">
+                <div class="col">
+                    <input class="form-control" placeholder="Prénom" rows="1" id="prenom" name="prenom"></input>
+                </div>
+                <div class="col">
+                    <input class="form-control" placeholder="Nom" rows="1" id="nom" name="nom"></input>
+                </div>
+                <div class="col">
+                    <input class="form-control" placeholder="User" rows="1" id="pseudo" name="pseudo"></input>
+                </div>
+                <div class="col">
+                    <input class="form-control" type="password" placeholder="Mot de Passe" rows="1" id="mdp" name="mdp"></input>
+                </div>
+                <div class="col">
+                    <input class="form-control" type="password" placeholder="Confirmation" rows="1" id="confirmation" name="confirmation"></input>
+                </div>
+                <div class="col">
+                    <input class="form-control" placeholder="E-Mail" rows="1" id="email" name="email"></input>
+                </div>
+                <div class="col">
+                    <select class="form-select form-select" placeholder="Groupe" id="groupe" name="groupe">
+                        <option></option>
+                        <option>Direction</option>
+                        <option>Commerciaux</option>
+                        <option>IT</option>
+                        <option>RH</option>
+                        <option>Finance</option>
+                        <option>Production</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <button type="submit" name="new-user" class="btn btn-outline-dark">Ajouter</button>
+                </div>
+            </div>
+        </form>
+    <?php
+    if (isset($_POST['new-user'])) {
+        if (isset($_POST['prenom']) && isset($_POST['nom']) && isset($_POST['pseudo']) && isset($_POST['mdp']) && isset($_POST['confirmation']) && isset($_POST['email']) && isset($_POST['groupe'])) {
+            $prenom = $_POST['prenom'];
+            $nom = $_POST['nom'];
+            $usr = $_POST['pseudo'];
             $mdp = $_POST['mdp'];
-        }
+            $confirmation = $_POST['confirmation'];
+            $email = $_POST['email'];
+            $grp = $_POST['groupe'];
 
-        $data = file_decod('Data\login-mdp.json');
-        $ok = false;
-
-        foreach ($data as $u) {
-            if ($u['user'] == $user && password_verify($mdp, $u['mdp']) == true) {
-                $ok = true;
-                break;
+            if ($mdp !== $confirmation) {
+                echo "<br><div class='alert alert-danger'>Les <b>mots de passe</b> ne correspondent pas.</div>";
+            } elseif (empty($prenom) || empty($nom) || empty($usr) || empty($mdp) || empty($confirmation) || empty($email) || empty($grp)) {
+                echo "<br><div class='alert alert-warning'><b>Tous</b> les champs sont obligatoires.</div>";
+            } else {
+                addUser($prenom, $nom, $usr, $mdp, $email, $grp);
+                echo "<br><div class='alert alert-success'><b>$prenom</b> <b>$nom</b> a été ajouté à l'équipe !</div>";
             }
         }
-
-        if ($ok) {
-            $_SESSION["user"] = $user;
-            echo '<meta http-equiv="refresh" content="0; url=Accueil-Intranet.php">';
-        }
+    } else {
     }
+}
+function addUser($prenom, $nom, $usr, $mdp, $email, $grp)
+{
+    $users = file_decod('Data\login-mdp.json');
 
-    function addUser($prenom, $nom, $usr, $mdp, $grp)
-    {
-        $users = file_decod('Data\login-mdp.json');
+    $users[$usr] = [
+        'prenom' => $prenom,
+        'nom' => $nom,
+        'user' => $usr,
+        'mdp' => password_hash($mdp, PASSWORD_DEFAULT),
+        'email' => $email,
+        'groupe' => $grp
+    ];
 
-        $users[$usr] = [
-            'prenom' => $prenom,
-            'nom' => $nom,
-            'user' => $usr,
-            'mdp' => password_hash($mdp, PASSWORD_DEFAULT),
-            'groupe' => $grp
-        ];
+    $src = "Images\Employés\blank-profile-picture.jpg";
+    $dst = "Images\Employés\\" . $usr . ".jpg";
+    copy($src, $dst);
 
-        $src = "Images\Employés\blank-profile-picture.jpg";
-        $dst = "Images\Employés\\" . $usr . ".jpg";
-        copy($src, $dst);
+    file_put_contents('Data\login-mdp.json', json_encode($users));
+}
 
-        file_put_contents('Data\login-mdp.json', json_encode($users));
+function afficherUtilisateurs($utilisateurs)
+{
+    echo '<form method="post">';
+    echo '<div class="table-responsive">';
+    echo '<table class="table table-hover">';
+    echo "<tr><th>Prénom</th><th>Nom</th><th>Nom d'utilisateur</th><th>Nouveau MDP</th><th>E-Mail</th><th>Groupe</th><th></th><th></th></tr>";
+    foreach ($utilisateurs as $nom => $infos) {
+        echo '<tr>';
+        echo '<td><input type="text" name="prenom[' . $nom . ']" value="' . $infos['prenom'] . '" class="form-control"></td>';
+        echo '<td><input type="text" name="nom[' . $nom . ']" value="' . $infos['nom'] . '" class="form-control"></td>';
+        echo '<td><input type="text" name="user[' . $nom . ']" value="' . $infos['user'] . '" class="form-control"></td>';
+        echo '<td><input type="text" name="mdp[' . $nom . ']" value="" class="form-control"></td>';
+        echo '<td><input type="text" name="email[' . $nom . ']" value="' . $infos['email'] . '" class="form-control"></td>';
+        echo '<td><input type="text" name="groupe[' . $nom . ']" value="' . $infos['groupe'] . '" class="form-control"></td>';
+        echo '<td class="text-center"><input type="submit" name="modifier[' . $nom . ']" value="Modifier" class="btn btn-outline-dark"></td>';
+        echo '<td class="text-center"><input type="submit" name="supprimer[' . $nom . ']" value="Supprimer" class="btn btn-danger"></td>';
+        echo '</tr>';
     }
+    echo '</table>';
+    echo '</div>';
+    echo '</form>';
+}
 
-    function afficherUtilisateurs($utilisateurs)
-    {
-        echo '<form method="post">';
-        echo '<div class="table-responsive">';
-        echo '<table class="table table-hover">';
-        echo "<tr><th>Prénom</th><th>Nom</th><th>Nom d'utilisateur</th><th>Nouveau MDP</th><th>Groupe</th><th></th><th></th></tr>";
-        foreach ($utilisateurs as $nom => $infos) {
-            echo '<tr>';
-            echo '<td><input type="text" name="prenom[' . $nom . ']" value="' . $infos['prenom'] . '" class="form-control"></td>';
-            echo '<td><input type="text" name="nom[' . $nom . ']" value="' . $infos['nom'] . '" class="form-control"></td>';
-            echo '<td><input type="text" name="user[' . $nom . ']" value="' . $infos['user'] . '" class="form-control"></td>';
-            echo '<td><input type="password" name="mdp[' . $nom . ']" value="" class="form-control"></td>';
-            echo '<td><input type="text" name="groupe[' . $nom . ']" value="' . $infos['groupe'] . '" class="form-control"></td>';
-            echo '<td class="text-center"><input type="submit" name="modifier[' . $nom . ']" value="Modifier" class="btn btn-outline-dark"></td>';
-            echo '<td class="text-center"><input type="submit" name="supprimer[' . $nom . ']" value="Supprimer" class="btn btn-danger"></td>';
-            echo '</tr>';
-        }
-        echo '</table>';
-        echo '</div>';
-        echo '</form>';
-    }
+function gestionUtilisateurs()
+{
+    $path = 'Data\login-mdp.json';
+    $users = file_decod($path);
 
-    function gestionUtilisateurs()
-    {
-        $path = 'Data\login-mdp.json';
-        $users = file_decod($path);
-
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (isset($_POST['modifier'])) {
-                $prenom = $_POST['prenom'];
-                $nomm = $_POST['nom'];
-                $user = $_POST['user'];
-                $mdp = $_POST['mdp'];
-                $groupe = $_POST['groupe'];
-                foreach ($_POST['modifier'] as $nom => $valeur) {
-                    $users[$nom]['prenom'] = $prenom[$nom];
-                    $users[$nom]['nom'] = $nomm[$nom];
-                    $users[$nom]['mdp'] = password_hash($mdp[$nom], PASSWORD_DEFAULT);
-                    $users[$nom]['groupe'] = $groupe[$nom];
-                    if ($users[$nom]['user'] !== $user[$nom]) {
-                        $old_photo_path = "Images\Employés\\" . $users[$nom]['user'] . ".jpg";
-                        $new_photo_path = "Images\Employés\\" . $user[$nom] . ".jpg";
-                        if (file_exists($old_photo_path)) {
-                            rename($old_photo_path, $new_photo_path);
-                        }
-                    }
-                    $users[$nom]['user'] = $user[$nom];
-                }
-                file_put_contents($path, json_encode($users));
-            } elseif (isset($_POST['supprimer'])) {
-                foreach ($_POST['supprimer'] as $nom => $valeur) {
-                    unset($users[$nom]);
-                    $photo_path = "Images\Employés\\" . $nom . ".jpg";
-                    if (file_exists($photo_path)) {
-                        unlink($photo_path);
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (isset($_POST['modifier'])) {
+            $prenom = $_POST['prenom'];
+            $nomm = $_POST['nom'];
+            $user = $_POST['user'];
+            $mdp = $_POST['mdp'];
+            $email = $_POST['email'];
+            $groupe = $_POST['groupe'];
+            foreach ($_POST['modifier'] as $nom => $valeur) {
+                $users[$nom]['prenom'] = $prenom[$nom];
+                $users[$nom]['nom'] = $nomm[$nom];
+                $users[$nom]['mdp'] = password_hash($mdp[$nom], PASSWORD_DEFAULT);
+                $users[$nom]['email'] = $email[$nom];
+                $users[$nom]['groupe'] = $groupe[$nom];
+                if ($users[$nom]['user'] !== $user[$nom]) {
+                    $old_photo_path = "Images\Employés\\" . $users[$nom]['user'] . ".jpg";
+                    $new_photo_path = "Images\Employés\\" . $user[$nom] . ".jpg";
+                    if (file_exists($old_photo_path)) {
+                        rename($old_photo_path, $new_photo_path);
                     }
                 }
-                file_put_contents($path, json_encode($users));
+                $users[$nom]['user'] = $user[$nom];
             }
+            file_put_contents($path, json_encode($users));
+        } elseif (isset($_POST['supprimer'])) {
+            foreach ($_POST['supprimer'] as $nom => $valeur) {
+                unset($users[$nom]);
+                $photo_path = "Images\Employés\\" . $nom . ".jpg";
+                if (file_exists($photo_path)) {
+                    unlink($photo_path);
+                }
+            }
+            file_put_contents($path, json_encode($users));
         }
-
-        afficherUtilisateurs($users);
     }
 
+    afficherUtilisateurs($users);
+}
 
-    function deconnexion()
-    {
-        session_unset();
-        header("Location: page-accueil.php");
-        exit;
-    }
 
-    function countdown($countdown_date) {
-        $countdown_seconds = strtotime($countdown_date) - time();
-        $countdown_days = floor($countdown_seconds / (60 * 60 * 24));
-        $countdown_hours = floor(($countdown_seconds - ($countdown_days * 60 * 60 * 24)) / (60 * 60));
-        $countdown_minutes = floor(($countdown_seconds - ($countdown_days * 60 * 60 * 24) - ($countdown_hours * 60 * 60)) / 60);
-      
-        return $countdown_days . " J " . $countdown_hours . " H " . $countdown_minutes . " M ";
-      }
-      
+function deconnexion()
+{
+    session_unset();
+    header("Location: page-accueil.php");
+    exit;
+}
+
+function countdown($countdown_date)
+{
+    $countdown_seconds = strtotime($countdown_date) - time();
+    $countdown_days = floor($countdown_seconds / (60 * 60 * 24));
+    $countdown_hours = floor(($countdown_seconds - ($countdown_days * 60 * 60 * 24)) / (60 * 60));
+    $countdown_minutes = floor(($countdown_seconds - ($countdown_days * 60 * 60 * 24) - ($countdown_hours * 60 * 60)) / 60);
+
+    return $countdown_days . " J " . $countdown_hours . " H " . $countdown_minutes . " M ";
+}
+
     ?>
