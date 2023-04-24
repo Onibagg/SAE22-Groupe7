@@ -2,8 +2,6 @@
 include("fonctions.php");
 setup();
 intranet_navbar();
-https: //antoine-herault.developpez.com/tutoriels/php/gestionnaire/
-
 ?>
 <p class="display-4 text-center">Gestionnaire de Fichier</p>
 
