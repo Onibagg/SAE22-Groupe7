@@ -36,18 +36,18 @@ intranet_navbar();
                while (false !== ($entry = readdir($handle))) {
                     if ($entry != "." && $entry != "..") {
                          if (is_dir($dir . $entry)) {
-                              ?>
+               ?>
                               <div class='col'>
                                    <a href='?dir=<?php echo $entry; ?>' class='text-dark' style='text-decoration: none;'>
                                         <div class='card shadow-sm'>
                                              <div class='card-body'>
-                                                  <h5 class='card-title'><img src='Images\Icons\\folder.png' height='25px'><?php echo $entry; ?></h5>
+                                                  <h5 class='card-title'><img src='Images\Icons\\folder.png' height='25px'>   <?php echo $entry; ?></h5>
                                              </div>
                                         </div>
                                    </a>
 
                               </div>
-                         <?php
+          <?php
                          } else {
                          }
                     }
@@ -197,7 +197,7 @@ if (isset($_POST["uploadBtn"])) {
                                                   <img src='Images\Icons\download.png' height='25px'>
                                              </a>
 
-                                             <a href="<?php echo $dir . $entry ?>" class="btn btn-sm btn-outline-danger" onmouseover="this.getElementsByTagName('img')[0].src='Images\\Icons\\delete-open.png';" onmouseout="this.getElementsByTagName('img')[0].src='Images\\Icons\\delete.png';">
+                                             <a href="" class="btn btn-sm btn-outline-danger">
                                                   <img src="Images\Icons\delete.png" height="25px">
                                              </a>
 
