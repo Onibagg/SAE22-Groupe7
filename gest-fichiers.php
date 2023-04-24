@@ -18,30 +18,38 @@ https: //antoine-herault.developpez.com/tutoriels/php/gestionnaire/
           }
           if ($dir !== "Data\Gestionnaire-de-fichier\\") {
                $parent_dir = dirname($dir);
-               echo "<div class='col'>
-                   <div class='card shadow-sm'>
-                       <div class='card-body'>
-                           <p class='card-title'>
-                               <a href='gest-fichiers.php' class='text-dark' style='text-decoration: none;'>
-                                   <img src='Images\Icons\\return.png' height='25px'>
-                               </a>
-                           </p>
-                       </div>
-                   </div>
-               </div>";
+          ?>
+               <div class='col'>
+                    <a href='gest-fichiers.php' class='text-dark' style='text-decoration: none;'>
+                         <div class='card shadow-sm'>
+                              <div class='card-body'>
+                                   <p class='card-title'>
+                                        <img src='Images\Icons\\return.png' height='25px'>
+                                   </p>
+                              </div>
+                         </div>
+                    </a>
+
+               </div>
+               <?php
           }
 
           if ($handle = opendir($dir)) {
                while (false !== ($entry = readdir($handle))) {
                     if ($entry != "." && $entry != "..") {
                          if (is_dir($dir . $entry)) {
-                              echo "<div class='col'>
-								<div class='card shadow-sm'>
-									<div class='card-body'>
-										<h5 class='card-title'><img src='Images\Icons\\folder.png' height='25px'><a href='?dir=$entry' class='text-dark' style='text-decoration: none;'>$entry</a></h5>
-									</div>
-								</div>
-							</div>";
+                              ?>
+                              <div class='col'>
+                                   <a href='?dir=<?php echo $entry; ?>' class='text-dark' style='text-decoration: none;'>
+                                        <div class='card shadow-sm'>
+                                             <div class='card-body'>
+                                                  <h5 class='card-title'><img src='Images\Icons\\folder.png' height='25px'><?php echo $entry; ?></h5>
+                                             </div>
+                                        </div>
+                                   </a>
+
+                              </div>
+                         <?php
                          } else {
                          }
                     }
@@ -170,11 +178,28 @@ if (isset($_POST["uploadBtn"])) {
                                         echo "<td>$filemtime</td>";
                          ?>
                                         <td>
-                                             <a href='<?php echo "$dir$entry" ?>' download class='btn me-2 btn-sm btn-outline-success'>
+                                             <?php
+                                             $allowed_types = array('pdf', 'mp3', 'mp4', 'png', 'txt', 'jpg', 'jpeg');
+                                             if (in_array($ext, $allowed_types)) {
+                                             ?>
+                                                  <a href="<?php echo $dir . $entry ?>" target="_blank" class="btn btn-sm btn-outline-primary">
+                                                       <img src="Images\Icons\eye.png" height="25px">
+                                                  </a>
+                                             <?php
+                                             } else {
+                                             ?>
+                                                  <a href="<?php echo $dir . $entry ?>" target="_blank" class="btn btn-sm btn-outline-secondary disabled">
+                                                       <img src="Images\Icons\eye-cross.png" height="25px">
+                                                  </a>
+                                             <?php
+
+                                             }
+                                             ?>
+                                             <a href='<?php echo "$dir$entry" ?>' download class='btn btn-sm btn-outline-success'>
                                                   <img src='Images\Icons\download.png' height='25px'>
                                              </a>
 
-                                             <a href="<?php echo $dir.$entry ?>" class="btn btn-sm btn-outline-danger" onmouseover="this.getElementsByTagName('img')[0].src='Images\\Icons\\delete-open.png';" onmouseout="this.getElementsByTagName('img')[0].src='Images\\Icons\\delete.png';">
+                                             <a href="<?php echo $dir . $entry ?>" class="btn btn-sm btn-outline-danger" onmouseover="this.getElementsByTagName('img')[0].src='Images\\Icons\\delete-open.png';" onmouseout="this.getElementsByTagName('img')[0].src='Images\\Icons\\delete.png';">
                                                   <img src="Images\Icons\delete.png" height="25px">
                                              </a>
 
@@ -197,6 +222,7 @@ if (isset($_POST["uploadBtn"])) {
                               }
                               return round($size, 2) . ' ' . $units[$i];
                          }
+
                          ?>
 
                     </tbody>
