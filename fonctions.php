@@ -163,7 +163,7 @@ function page_header()
                 </div>
                 <div class="col-sm-3 text-black">
                     <p>CONFIDENTIALITE</p>
-                    <a class="text-dark" href="#">Politique de confidentialité</a></br>
+                    <a class="text-dark" href="Politique_de_confidentialité.php">Politique de confidentialité</a></br>
                     <a class="text-dark" href="#">Mes données personnelles</a>
                 </div>
                 <div class="col-sm-6 text-black">
