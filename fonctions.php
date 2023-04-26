@@ -153,14 +153,14 @@ function page_foot()
 
                 <div class="col-sm-3  text-black text-center">
                     <p>AIDE & INFORMATIONS</p>
-                    <a class="text-dark" href="#">Mentions légales</a></br>
-                    <a class="text-dark" href="#">Conditions générales de ventes</a>
+                    <a class="text-dark" href="Mentions_légales.php">Mentions légales</a></br>
+                    <a class="text-dark" href="Conditions_de_vente.php">Conditions générales de ventes</a>
 
                 </div>
                 <div class="col-sm-3 text-black">
                     <p>CONFIDENTIALITE</p>
                     <a class="text-dark" href="Politique_de_confidentialité.php">Politique de confidentialité</a></br>
-                    <a class="text-dark" href="#">Mes données personnelles</a>
+                    <a class="text-dark" href="Mes_donnees_personnelles.php">Mes données personnelles</a>
                 </div>
                 <div class="col-sm-6 text-black">
                     <img src="/Images/PrivateVPN_text.png" width="400" height="70">
