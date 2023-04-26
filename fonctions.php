@@ -93,7 +93,7 @@ function page_header()
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="login-form">
-                                    <form id="connexion" action="page-accueil.php" method="POST" class="was-validated">
+                                    <form id="connexion" action="page-accueil.php" method="POST" class="needs-validation">
                                         <div class="modal-header">
                                             <p class="modal-title display-5">Connexion</p>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
@@ -115,7 +115,15 @@ function page_header()
                                                 <div class="valid-feedback"></div>
                                                 <div class="invalid-feedback">Veuillez compléter ce champ</div>
                                             </div>
+                                            
+                                            <div class="form-group">
+                                                <a href="reset-password.php">Mot de passe oublié ?</a>
+                                            </div>
                                             <br>
+                                            <div class="form-group">
+                                                Pas de compte? <a href="new-account.php">Faire une demande</a>
+                                            </div>
+                                            
                                         </div>
 
                                         <div class="modal-footer">
