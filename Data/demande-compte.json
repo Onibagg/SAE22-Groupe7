@@ -1,16 +1,1 @@
-{
-    "vdeme": {
-        "prenom": "Vincent",
-        "nom": "Dem\u00e9",
-        "user": "vdeme",
-        "mdp": "$2y$10$7HPqqNPZYKf8aucUZ6LYNuE274P3cXO0ND17pGZlQ9XGw7022gZZ6",
-        "email": "vincent.deme@wanadoo.fr"
-    },
-    "ldeme": {
-        "prenom": "Lison",
-        "nom": "Dem\u00e9",
-        "user": "ldeme",
-        "mdp": "$2y$10$m3uEcPi4t2DA6BKG6rQJ1OsbVLaCZAABcBNVtibOL5v0pUM\/2aKWK",
-        "email": "ldeme@gmail.com"
-    }
-}
+{"vdeme":{"prenom":"Vincent","nom":"Dem\u00e9","user":"vdeme","mdp":"$2y$10$7HPqqNPZYKf8aucUZ6LYNuE274P3cXO0ND17pGZlQ9XGw7022gZZ6","email":"vincent.deme@wanadoo.fr"},"ldeme":{"prenom":"Lison","nom":"Dem\u00e9","user":"ldeme","mdp":"$2y$10$m3uEcPi4t2DA6BKG6rQJ1OsbVLaCZAABcBNVtibOL5v0pUM\/2aKWK","email":"ldeme@gmail.com"},"odumas":{"prenom":"Olivier","nom":"Dumas","user":"odumas","mdp":"$2y$10$kjmqeDrt3le1Uys0SkAMr.ucDRzWusdGPrSUveqy0ATml4aEFy.fm","email":"odumas@gmail.com"}}

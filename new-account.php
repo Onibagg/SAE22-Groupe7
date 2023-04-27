@@ -80,66 +80,8 @@ setup();
         </div>
     </div>
 
-    <script>
-        const logo = document.getElementById("logo");
-        const text = document.getElementById("text");
-        const accueil = document.getElementById("accueil");
-
-        logo.style.position = "relative";
-        logo.style.left = "-100%";
-        logo.style.opacity = 0;
-        text.style.position = "relative";
-        text.style.left = "-100%";
-        text.style.opacity = 0;
-        accueil.style.position = "relative";
-        accueil.style.left = "-100%";
-        accueil.style.opacity = 0;
-
-        function slideIn() {
-            let pos = -100;
-            const id = setInterval(frame, 8);
-
-            function frame() {
-                if (pos == 0) {
-                    clearInterval(id);
-                } else {
-                    pos++;
-                    logo.style.left = pos + "%";
-                    logo.style.opacity = (100 + pos) / 100;
-                    text.style.left = pos + "%";
-                    text.style.opacity = (100 + pos) / 100;
-                    accueil.style.left = pos + "%";
-                    accueil.style.opacity = (100 + pos) / 100;
-                }
-            }
-        }
-
-        slideIn();
-    </script>
-    <script>
-        const card = document.getElementById("card");
-        card.style.position = "relative";
-        card.style.right = "-100%";
-        card.style.opacity = 0;
-
-        function slideIn() {
-            let pos = -100;
-            const id = setInterval(frame, 8);
-
-            function frame() {
-                if (pos == 0) {
-                    clearInterval(id);
-                } else {
-                    pos++;
-                    card.style.right = pos + "%";
-                    card.style.opacity = (100 + pos) / 100;
-                }
-            }
-        }
-
-        slideIn();
-    </script>
-
+    <script src="JS\L-Sliiddeeeee.js"></script>
+    <script src="JS\R-Sliiddeeeee.js"></script>
 
     <?php
     if (isset($_POST['demande'])) {
