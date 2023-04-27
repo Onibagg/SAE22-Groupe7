@@ -19,13 +19,19 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
 
 <head>
     <script src="JS\heure.js"></script>
+    <style>
+        html,
+        body {
+            overflow-x: hidden;
+        }
+    </style>
 </head>
 
 
 <body>
     </script>
     <div class="row">
-        <div class="col">
+        <div class="col-sm-4">
             <p class="display-6">À venir:</p>
             <hr class="me-3">
             <div class="row">
@@ -64,7 +70,7 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
             </div>
         </div>
 
-        <div class="col-4">
+        <div class="col-sm-4">
             <div class="mt-5 text-center display-5">
                 <span id="heure"></span>
             </div>
@@ -80,7 +86,62 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
             </div>
         </div>
 
-        <div class="col"></div>
+        <div class="col-sm-4">
+            <div class="card mt-5 me-4">
+                <div class="card-body">
+                    <?php
+                    function afficher($utilisateurs)
+                    {
+                        echo '<form method="post">';
+                        echo '<div class="table-responsive">';
+                        echo '<table class="table table-hover">';
+                        echo "<tr><th>Prénom</th><th>Nom</th><th></th></tr>";
+                        foreach ($utilisateurs as $nom => $infos) {
+                            echo '<tr>';
+                            echo '<td><input type="text" name="prenom[' . $nom . ']" value="' . $infos['prenom'] . '" class="form-control"></td>';
+                            echo '<td><input type="text" name="nom[' . $nom . ']" value="' . $infos['nom'] . '" class="form-control"></td>';
+                            echo '<td class="text-center"><input type="submit" name="modifier[' . $nom . ']" value="Modifier" class="btn btn-outline-dark"></td>';
+                            echo '<td class="text-center"><input type="submit" name="supprimer[' . $nom . ']" value="Supprimer" class="btn btn-danger"></td>';
+                            echo '</tr>';
+                        }
+                        echo '</table>';
+                        echo '</div>';
+                        echo '</form>';
+                    }
+
+                    function gestion()
+                    {
+                        $path = 'Data\demande-compte.json';
+                        $users = file_decod($path);
+
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                            if (isset($_POST['modifier'])) {
+                                $prenom = $_POST['prenom'];
+                                $nomm = $_POST['nom'];
+                                foreach ($_POST['modifier'] as $nom => $valeur) {
+                                    $users[$nom]['prenom'] = $prenom[$nom];
+                                    $users[$nom]['nom'] = $nomm[$nom];
+                                }
+                                file_put_contents($path, json_encode($users));
+                            } elseif (isset($_POST['supprimer'])) {
+                                foreach ($_POST['supprimer'] as $nom => $valeur) {
+                                    unset($users[$nom]);
+                                    $photo_path = "Images\Employés\\" . $nom . ".jpg";
+                                    if (file_exists($photo_path)) {
+                                        unlink($photo_path);
+                                    }
+                                }
+                                file_put_contents($path, json_encode($users));
+                            }
+                        }
+
+                        afficher($users);
+                    }
+                    echo gestion();
+                    ?>
+                </div>
+            </div>
+        </div>
 
     </div>
     <br>
