@@ -17,6 +17,12 @@ function setup()
         <link href="Style\intranet-navbar.css" type="text/css" rel="stylesheet">
         <link rel="icon" type="image/x-icon" href="Images\PrivateVPN_logo.png">
         <title>Private VPN | Le meilleur des VPN</title>
+        <style>
+            .custom {
+                background-color: #DCF3FF;
+
+            }
+        </style>
     </head>
 
     <body>
@@ -27,12 +33,6 @@ function page_header()
 {
     ?>
         <div class="mt-0 p-4 custom">
-            <style>
-                .custom {
-                    background-color: #DCF3FF;
-
-                }
-            </style>
             <div class="row">
                 <div class="col text-center">
                     <a href="page-accueil.php">
@@ -115,7 +115,7 @@ function page_header()
                                                 <div class="valid-feedback"></div>
                                                 <div class="invalid-feedback">Veuillez compléter ce champ</div>
                                             </div>
-                                            
+
                                             <div class="form-group">
                                                 <a href="reset-password.php">Mot de passe oublié ?</a>
                                             </div>
@@ -123,7 +123,7 @@ function page_header()
                                             <div class="form-group">
                                                 Pas de compte? <a href="new-account.php">Faire une demande</a>
                                             </div>
-                                            
+
                                         </div>
 
                                         <div class="modal-footer">
