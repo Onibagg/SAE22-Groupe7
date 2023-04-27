@@ -89,6 +89,7 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
         <div class="col-sm-4">
             <div class="card mt-5 me-4">
                 <div class="card-body">
+                <p class="display-6">Nouveau Utilisateurs:</p>
                     <?php
                     function afficher($utilisateurs)
                     {
@@ -100,8 +101,8 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                             echo '<tr>';
                             echo '<td><input type="text" name="prenom[' . $nom . ']" value="' . $infos['prenom'] . '" class="form-control"></td>';
                             echo '<td><input type="text" name="nom[' . $nom . ']" value="' . $infos['nom'] . '" class="form-control"></td>';
-                            echo '<td class="text-center"><input type="submit" name="modifier[' . $nom . ']" value="Modifier" class="btn btn-outline-dark"></td>';
-                            echo '<td class="text-center"><input type="submit" name="supprimer[' . $nom . ']" value="Supprimer" class="btn btn-danger"></td>';
+                            echo '<td class="text-center"><input type="submit" name="modifier[' . $nom . ']" value="Accpeter" class="btn btn-success"></td>';
+                            echo '<td class="text-center"><input type="submit" name="supprimer[' . $nom . ']" value="Refuser" class="btn btn-danger"></td>';
                             echo '</tr>';
                         }
                         echo '</table>';
