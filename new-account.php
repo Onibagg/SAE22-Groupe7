@@ -123,5 +123,4 @@ setup();
     } else {
     }
     ?>
-    <br><br><br><br><br><br>
-</body>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
