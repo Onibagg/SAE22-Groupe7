@@ -2,28 +2,49 @@
 include("fonctions.php");
 setup();
 ?>
-<style>
-    body {
-        background: rgb(0, 212, 255);
-        background: linear-gradient(123deg, rgba(0, 212, 255, 1) 0%, rgba(9, 9, 121, 1) 78%, rgba(2, 0, 36, 1) 100%);
-    }
-</style>
 
-<body>
+<head>
+    <style type="text/css">
+        body {
+            background: rgb(0, 212, 255);
+            background: linear-gradient(123deg, rgba(0, 212, 255, 1) 0%, rgba(9, 9, 121, 1) 78%, rgba(2, 0, 36, 1) 100%);
+        }
+
+        .anim {
+            position: relative;
+            left: -100%;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            overflow-y: hidden;
+        }
+    </style>
+
+</head>
+
+<body class="">
     <br>
     <br>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-1 px-0">
+                <a href="page-accueil.php" class="ms-5">
+                    <img id="accueil" src="Images\accueil.png" class="anim" style="width: 30%;"></img>
+                </a>
             </div>
             <div class="col-md-4 px-0 text-center">
-                <img src="Images\PrivateVPN_logo.png" style="width: 60%;">
-                <img src="Images\PrivateVPN_text.png" class="mt-0">
+                <br><br><br>
+                <img id="logo" src="Images\PrivateVPN_logo.png" class="anim" style="width: 60%;">
+                <img id="text" src="Images\PrivateVPN_text.png" class="mt-0 anim">
             </div>
             <div class="col-md-1 px-0">
             </div>
             <div class="col-md-4">
-                <div class="card shadow">
+                <div class="card shadow" id="card">
                     <div class="card-body">
                         <p class="display-4">Créer un compte</p>
                         <hr class="mt-3 mb-5 me-5">
@@ -37,12 +58,12 @@ setup();
                                 <input type="text" class="form-control" id="prenom" name="prenom">
                             </div>
                             <div class="form-group">
-                                <label for="email">Adresse email :</label>
-                                <input type="email" class="form-control" id="email" name="email">
-                            </div>
-                            <div class="form-group">
                                 <label for="user">Nom d'utilisateur :</label>
                                 <input type="text" class="form-control" id="user" name="user">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Adresse email :</label>
+                                <input type="email" class="form-control" id="email" name="email">
                             </div>
                             <div class="form-group">
                                 <label for="mdp">Mot de passe :</label>
@@ -52,30 +73,98 @@ setup();
                         </form>
                     </div>
                 </div>
+                <br>
             </div>
             <div class="col-md-2 px-0">
             </div>
         </div>
     </div>
+
+    <script>
+        const logo = document.getElementById("logo");
+        const text = document.getElementById("text");
+        const accueil = document.getElementById("accueil");
+
+        logo.style.position = "relative";
+        logo.style.left = "-100%";
+        logo.style.opacity = 0;
+        text.style.position = "relative";
+        text.style.left = "-100%";
+        text.style.opacity = 0;
+        accueil.style.position = "relative";
+        accueil.style.left = "-100%";
+        accueil.style.opacity = 0;
+
+        function slideIn() {
+            let pos = -100;
+            const id = setInterval(frame, 8);
+
+            function frame() {
+                if (pos == 0) {
+                    clearInterval(id);
+                } else {
+                    pos++;
+                    logo.style.left = pos + "%";
+                    logo.style.opacity = (100 + pos) / 100;
+                    text.style.left = pos + "%";
+                    text.style.opacity = (100 + pos) / 100;
+                    accueil.style.left = pos + "%";
+                    accueil.style.opacity = (100 + pos) / 100;
+                }
+            }
+        }
+
+        slideIn();
+    </script>
+    <script>
+        const card = document.getElementById("card");
+        card.style.position = "relative";
+        card.style.right = "-100%";
+        card.style.opacity = 0;
+
+        function slideIn() {
+            let pos = -100;
+            const id = setInterval(frame, 8);
+
+            function frame() {
+                if (pos == 0) {
+                    clearInterval(id);
+                } else {
+                    pos++;
+                    card.style.right = pos + "%";
+                    card.style.opacity = (100 + pos) / 100;
+                }
+            }
+        }
+
+        slideIn();
+    </script>
+
+
     <?php
     if (isset($_POST['demande'])) {
-        if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['email']) && !empty($_POST['mdp']) && !empty($_POST['user'])) {
+        if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['user'])) {
             $nom = $_POST['nom'];
             $prenom = $_POST['prenom'];
+            $user = $_POST['user'];
             $email = $_POST['email'];
             $mdp = $_POST['mdp'];
 
-            $demande = array(
-                'nom' => $nom,
+            $users = file_decod('Data\demande-compte.json');
+
+            $users[$user] = [
                 'prenom' => $prenom,
+                'nom' => $nom,
+                'user' => $user,
+                'mdp' => password_hash($mdp, PASSWORD_DEFAULT),
                 'email' => $email,
-                'mdp' => $mdp
-            );
+            ];
 
-            $json_demande = json_encode($demande);
+            $src = "Images\Employés\blank-profile-picture.jpg";
+            $dst = "Images\Employés\\" . $user . ".jpg";
+            copy($src, $dst);
 
-            $file = 'Data\demande-compte.json';
-            file_put_contents($file, $json_demande . "\n", FILE_APPEND | LOCK_EX);
+            file_put_contents('Data\demande-compte.json', json_encode($users));
     ?>
 
             <div class="alert alert-success" role="alert">
@@ -92,4 +181,5 @@ setup();
     } else {
     }
     ?>
+    <br><br><br><br><br><br>
 </body>
