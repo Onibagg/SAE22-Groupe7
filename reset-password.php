@@ -36,15 +36,15 @@ setup();
                             }
                         }
                         if ($foundUser) {
-                            $newPassword = generateRandomString();
-                            $foundUser['mdp'] = password_hash($newPassword, PASSWORD_DEFAULT);
+                            $newMDP = securrreeeeee();
+                            $foundUser['mdp'] = password_hash($newMDP, PASSWORD_DEFAULT);
                             $users[$foundUser['user']] = $foundUser;
-                            file_put_contents('users.json', json_encode($users, JSON_PRETTY_PRINT));
+                            file_put_contents('Data\login-mdp.json', json_encode($users, JSON_PRETTY_PRINT));
                             echo '<div class="alert alert-success mt-3">Un nouveau mot de passe a été envoyé à votre adresse e-mail.</div>';
                             $to = $email;
                             $subject = 'Réinitialisation de votre mot de passe';
                             $message = 'Bonjour ' . $user . ',' . "\r\n\r\n";
-                            $message .= 'Votre mot de passe a été réinitialisé. Voici votre nouveau mot de passe : ' . $newPassword . "\r\n\r\n";
+                            $message .= 'Votre mot de passe a été réinitialisé. Voici votre nouveau mot de passe : ' . $newMDP . "\r\n\r\n";
                             $message .= 'Veuillez le modifier dès que possible depuis votre profil.' . "\r\n\r\n";
                             $headers = 'From: noreply.privatevpn@gmail.com' . "\r\n" .
                                 'Reply-To: noreply.privatevpn@gmail.com' . "\r\n" .
@@ -55,15 +55,15 @@ setup();
                         }
                     }
 
-                    function generateRandomString($length = 8)
+                    function securrreeeeee($length = 16)
                     {
-                        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-                        $charactersLength = strlen($characters);
-                        $randomString = '';
-                        for ($i = 0; $i < $length; $i++) {
-                            $randomString .= $characters[rand(0, $charactersLength - 1)];
+                        $char = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                        $charLong = strlen($char);     // Trouver la longueur de la chaîne de caractères $char
+                        $randomStr = '';
+                        for ($i = 0; $i < $length; $i++) {     // Boucle qui exécute $length fois, où à chaque itération, un caractère aléatoire de la chaîne de caractères $char
+                            $randomStr .= $char[rand(0, $charLong - 1)]; // est choisi et ajouté à la chaîne $randomStr à l'aide de l'opérateur .=
                         }
-                        return $randomString;
+                        return $randomStr;
                     }
                     ?>
                     <br>
