@@ -442,13 +442,14 @@ function afficher($utilisateurs)
     echo '<form method="post">';
     echo '<div class="table-responsive">';
     echo '<table class="table table-hover">';
-    echo "<tr><th>Prénom</th><th>Nom</th><th></th></tr>";
+    echo "<tr><th></th><th>Prénom</th><th>Nom</th><th></th></tr>";
     foreach ($utilisateurs as $nom => $infos) {
         echo '<tr>';
+        echo '<td class="text-center"><input type="image" src="Images\Icons\eye.png" width="50" name="voir[' . $nom . ']" value="Voir" class="btn btn-outline-primary" disabled></td>';
         echo '<td><input type="text" name="prenom[' . $nom . ']" value="' . $infos['prenom'] . '" class="form-control"></td>';
         echo '<td><input type="text" name="nom[' . $nom . ']" value="' . $infos['nom'] . '" class="form-control"></td>';
-        echo '<td class="text-center"><input type="submit" name="accepter[' . $nom . ']" value="Accepter" class="btn btn-success"></td>';
-        echo '<td class="text-center"><input type="submit" name="refuser[' . $nom . ']" value="Refuser" class="btn btn-danger"></td>';
+        echo '<td class="text-center"><input type="image" src="Images\Icons\correct.png" width="50" name="accepter[' . $nom . ']" value="Accepter" class="btn btn-success"></td>';
+        echo '<td class="text-center"><input type="image" src="Images\Icons\cross.png" width="50" name="refuser[' . $nom . ']" value="Refuser" class="btn btn-danger"></td>';
         echo '</tr>';
     }
     echo '</table>';

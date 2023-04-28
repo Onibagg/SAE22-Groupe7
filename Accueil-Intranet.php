@@ -32,41 +32,45 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
     </script>
     <div class="row">
         <div class="col-sm-4">
-            <p class="display-6">À venir:</p>
-            <hr class="me-3">
-            <div class="row">
-                <div class="col text-center">
-                    <button type="button" class="mt-1 btn btn-outline-dark">
-                        <p class="mb-0">Team Building :</p>
-                        <span class="spinner-grow spinner-grow-sm"></span>
-                        <br>
-                        <?php
-                        echo countdown("2023-06-29 12:15:00");
-                        ?>
-                    </button>
-                </div>
-                <div class="col text-center">
-                    <button type="button" class="mt-5 btn btn-outline-dark">
-                        <p class="mb-0">Nouvelle Offre :</p>
-                        <span class="spinner-grow spinner-grow-sm"></span>
-                        <br>
-                        <?php
-                        echo countdown("2023-05-11 00:00:00");
-                        ?>
-                    </button>
+            <div class="card mt-5 me-4">
+                <div class="card-body">
+                    <p class="display-6">À venir:</p>
+                    <hr class="me-3">
+                    <div class="row">
+                        <div class="col text-center">
+                            <button type="button" class="mt-1 btn btn-outline-dark">
+                                <p class="mb-0">Team Building</p>
+                                <span class="spinner-grow spinner-grow-sm"></span>
+                                <br>
+                                <?php
+                                echo countdown("2023-06-29 12:15:00");
+                                ?>
+                            </button>
+                        </div>
+                        <div class="col text-center">
+                            <button type="button" class="mt-5 btn btn-outline-dark">
+                                <p class="mb-0">Nouvelle Offre</p>
+                                <span class="spinner-grow spinner-grow-sm"></span>
+                                <br>
+                                <?php
+                                echo countdown("2023-05-11 00:00:00");
+                                ?>
+                            </button>
 
-                </div>
-                <div class="col">
-                    <button type="button" class="mt-3 btn btn-outline-dark">
-                        <p class="mb-0">SKO :</p>
-                        <span class="spinner-grow spinner-grow-sm"></span>
-                        <br>
-                        <?php
-                        echo countdown("2023-04-29 18:33:00");
-                        ?>
-                    </button>
-                </div>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="mt-3 btn btn-outline-dark">
+                                <p class="mb-0">SKO</p>
+                                <span class="spinner-grow spinner-grow-sm"></span>
+                                <br>
+                                <?php
+                                echo countdown("2023-04-29 18:33:00");
+                                ?>
+                            </button>
+                        </div>
 
+                    </div>
+                </div>
             </div>
         </div>
 
