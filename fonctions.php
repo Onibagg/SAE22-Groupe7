@@ -170,8 +170,8 @@ function page_foot()
                     <a class="text-dark" href="Politique_de_confidentialité.php">Politique de confidentialité</a></br>
                     <a class="text-dark" href="Mes_donnees_personnelles.php">Mes données personnelles</a>
                 </div>
-                <div class="col-sm-6 text-black">
-                    <img src="/Images/PrivateVPN_text.png" width="400" height="70">
+                <div class="col-sm-6">
+                    <img src="Images\Screen_475-removebg.png" width="400" height="60">
                 </div>
 
 

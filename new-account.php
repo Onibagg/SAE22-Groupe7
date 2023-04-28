@@ -39,7 +39,7 @@ setup();
             <div class="col-md-4 px-0 text-center">
                 <br><br><br>
                 <img id="logo" src="Images\PrivateVPN_logo.png" class="anim" style="width: 60%;">
-                <img id="text" src="Images\PrivateVPN_text.png" class="mt-0 anim">
+                <img id="text" src="Images\Screen_475-removebg.png" class="mt-1 anim" style="width: 85%;">
             </div>
             <div class="col-md-1 px-0">
             </div>
@@ -123,5 +123,4 @@ setup();
     } else {
     }
     ?>
-    <br><br><br><br><br><br>
-</body>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
