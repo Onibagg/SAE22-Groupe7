@@ -5,7 +5,7 @@
         "user": "nriou",
         "mdp": "$2y$10$Rx\/OzVE.zwzoo87k72qb8OV5t2MJfLtplWCbz2HdWqQvmZhBfaLDS",
         "email": "riounicolas.perso@gmail.com",
-        "groupe": "R&D"
+        "groupe": ""
     },
     "emeric": {
         "prenom": "Emeric",
@@ -13,7 +13,7 @@
         "user": "emarchand",
         "mdp": "$2y$10$a6X9FPLfXtEf5WoDk97FYOkBZ.BBhEVwfQl\/CilsTheikjCKj2BqK",
         "email": "emeric5612@gmail.com",
-        "groupe": "IT"
+        "groupe": ""
     },
     "gdeme": {
         "prenom": "Gabin",
@@ -21,7 +21,7 @@
         "user": "gdeme",
         "mdp": "$2y$10$wUwmRj5YKDhgMYSZ71hM3uOqfc5mY9zgCNO2va9mPtPermkYnWMtW",
         "email": "gabindeme@gmail.com",
-        "groupe": "Direction"
+        "groupe": ""
     },
     "echapin": {
         "prenom": "Emmanuel",
@@ -29,6 +29,6 @@
         "user": "echapin",
         "mdp": "$2y$10$6vryznKAbQXr8CqENhDUm.v7uhzatP2GF.C9ogYbQDQjP4Po0PT2e",
         "email": "studio.manu00@gmail.com",
-        "groupe": "Commerciaux"
+        "groupe": ""
     }
 }
