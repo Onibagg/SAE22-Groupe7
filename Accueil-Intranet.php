@@ -14,6 +14,7 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
 } else {
     echo "<h1>Erreur : utilisateur non reconnu</h1>";
 }
+//var_dump($_SESSION);
 
 ?>
 
