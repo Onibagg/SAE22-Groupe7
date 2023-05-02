@@ -187,6 +187,61 @@ function page_foot()
 
 function intranet_navbar()
 {
+<<<<<<< Updated upstream
+=======
+    $user = $_SESSION['user'];
+    $data = file_get_contents('Data\groupes.json');
+    $groupes = json_decode($data, true);
+
+    $isIT = false;
+    $isDirection = false;
+    $isCommerciaux = false;
+    $isFinances = false;
+    $isProduction = false;
+    $isRH = false;
+
+    foreach ($groupes['IT']['membres'] as $membre) {
+        if ($membre['user'] === $user) {
+            $isIT = true;
+            break;
+        }
+    }
+
+    foreach ($groupes['Direction']['membres'] as $membre) {
+        if ($membre['user'] === $user) {
+            $isDirection = true;
+            break;
+        }
+    }
+
+    foreach ($groupes['Commerciaux']['membres'] as $membre) {
+        if ($membre['user'] === $user) {
+            $isCommerciaux = true;
+            break;
+        }
+    }
+
+    foreach ($groupes['Finances']['membres'] as $membre) {
+        if ($membre['user'] === $user) {
+            $isFinances = true;
+            break;
+        }
+    }
+
+    foreach ($groupes['Production']['membres'] as $membre) {
+        if ($membre['user'] === $user) {
+            $isProduction = true;
+            break;
+        }
+    }
+
+    foreach ($groupes['RH']['membres'] as $membre) {
+        if ($membre['user'] === $user) {
+            $isRH = true;
+            break;
+        }
+    }
+>>>>>>> Stashed changes
     ?>
         <nav class="navbar navbar-expand-sm bg-primary bg-opacity-25 navbar-info sticky-top justify-content-center">
             <ul class="navbar-nav">
