@@ -72,27 +72,6 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
 
                     </div>
                 </div>
-                <div class="col text-center">
-                    <button type="button" class="mt-5 btn btn-outline-dark">
-                        <p class="mb-0">Nouvelle Offre :</p>
-                        <span class="spinner-grow spinner-grow-sm"></span>
-                        <br>
-                        <?php
-                        echo countdown("2023-05-11 00:00:00");
-                        ?>
-                    </button>
-
-                </div>
-                <div class="col">
-                    <button type="button" class="mt-3 btn btn-outline-dark">
-                        <p class="mb-0">SKO :</p>
-                        <span class="spinner-grow spinner-grow-sm"></span>
-                        <br>
-                        <?php
-                        echo countdown("2023-04-29 18:33:00");
-                        ?>
-                    </button>
-                </div>
             </div>
         </div>
 
@@ -117,7 +96,6 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                 <div class="card-body">
                     <p class="display-6">Nouveau Utilisateurs:</p>
                     <?php
-                    echo gestion_new_users();
                     $user = $_SESSION['user'];
                     $data = file_get_contents('Data\groupes.json');
                     $groupes = json_decode($data, true);
@@ -174,10 +152,10 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                         echo gestion_new_users();
                     } else {
                     ?>
-                    <div class="text-center">
-                        <p class="alert alert-danger" role="alert">/!\ Vous n'avez pas les droits necessaires pour effectuer cette action!</p>
-                        <a class="btn btn-outline-primary" href="mailto:need-help@privatevpn.com?subject=Problème lors de l'affichage des nouveaux utilisateurs.&body=Cher Support-Technique, ">Demander de l'aide</a>
-                    </div> 
+                        <div class="text-center">
+                            <p class="alert alert-danger" role="alert">/!\ Vous n'avez pas les droits necessaires pour effectuer cette action!</p>
+                            <a class="btn btn-outline-primary" href="mailto:need-help@privatevpn.com?subject=Problème lors de l'affichage des nouveaux utilisateurs.&body=Cher Support-Technique, ">Demander de l'aide</a>
+                        </div>
                     <?php
                     }
                     ?>
