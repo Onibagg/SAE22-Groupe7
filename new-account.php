@@ -49,25 +49,25 @@ setup();
                         <p class="display-4">Créer un compte</p>
                         <hr class="mt-3 mb-5 me-5">
                         <form id="demande" action="new-account.php" method="POST">
-                            <div class="form-group">
-                                <label for="nom">Nom :</label>
-                                <input type="text" class="form-control" id="nom" name="nom">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="text" class="form-control" id="nom" placeholder="Nom" name="nom">
+                                <label for="nom">Nom</label>
                             </div>
-                            <div class="form-group">
-                                <label for="prenom">Prénom :</label>
-                                <input type="text" class="form-control" id="prenom" name="prenom">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="text" class="form-control" id="prenom" placeholder="Prénom" name="prenom">
+                                <label for="prenom">Prénom</label>
                             </div>
-                            <div class="form-group">
-                                <label for="user">Nom d'utilisateur :</label>
-                                <input type="text" class="form-control" id="user" name="user">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="text" class="form-control" id="user" placeholder="Nom d'utilisateur" name="user">
+                                <label for="user">Nom d'utilisateur</label>
                             </div>
-                            <div class="form-group">
-                                <label for="email">Adresse email :</label>
-                                <input type="email" class="form-control" id="email" name="email">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="text" class="form-control" id="email" placeholder="Email" name="email">
+                                <label for="email">Email</label>
                             </div>
-                            <div class="form-group">
-                                <label for="mdp">Mot de passe :</label>
-                                <input type="password" class="form-control" id="mdp" name="mdp">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="password" class="form-control" id="mdp" placeholder="Mot de passe" name="mdp">
+                                <label for="mdp">Mot de passe</label>
                             </div>
                             <button name="demande" type="submit" class="mt-5 btn btn-outline-dark">Créer le compte</button>
                         </form>

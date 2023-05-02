@@ -185,14 +185,24 @@ function page_foot()
 
 }
 
+function danslegroup($nomdugroup)
+{
+    if (isset($_SESSION['user_groups']) && is_array($_SESSION['user_groups'])) {
+        return in_array($nomdugroup, $_SESSION['user_groups']);
+    }
+    return false;
+}
+
+
 function intranet_navbar()
 {
-<<<<<<< Updated upstream
-=======
     $user = $_SESSION['user'];
+
+    // Charger les données des groupes à partir du fichier JSON
     $data = file_get_contents('Data\groupes.json');
     $groupes = json_decode($data, true);
 
+    // Vérifier si l'utilisateur fait partie du groupe IT ou Direction
     $isIT = false;
     $isDirection = false;
     $isCommerciaux = false;
@@ -241,7 +251,6 @@ function intranet_navbar()
             break;
         }
     }
->>>>>>> Stashed changes
     ?>
         <nav class="navbar navbar-expand-sm bg-primary bg-opacity-25 navbar-info sticky-top justify-content-center">
             <ul class="navbar-nav">
@@ -250,9 +259,19 @@ function intranet_navbar()
                         <img src="Images\PrivateVPN_logo.png" alt="Avatar Logo" style="width:45px;" class="rounded-pill">
                     </a>
                 </li>
+
+                <?php if ($isIT || $isDirection) { ?>
+                    <li class="nav-item me-4 ms-4">
+                        <a class="nav-link" href="Portail-de-connexion.php"><img src="..\Images\Icons\key.png" draggable="false" height="25px"></a>
+                    </li>
+                <?php } ?>
+
+                <?php if ($isRH || $isDirection) { ?>
                 <li class="nav-item me-4 ms-4">
-                    <a class="nav-link" href="Portail-de-connexion.php"><img src="..\Images\Icons\key.png" draggable="false" height="25px"></a>
+                    <a class="nav-link" href="Gestion-des-groupes.php"><img src="..\Images\Icons\groups.png" draggable="false" height="25px"></a>
                 </li>
+                <?php } ?>
+
                 <li class="nav-item me-4 ms-4">
                     <a class="nav-link" href="gest-fichiers.php"><img src="Images\Icons\folder.png" draggable="false" height="25px"></a>
                 </li>
@@ -261,9 +280,11 @@ function intranet_navbar()
                     <a class="nav-link" href="annuaire.php"><img src="..\Images\Icons\phone.png" draggable="false" height="25px"></a>
                 </li>
 
+                <?php if ($isFinances || $isDirection || $isCommerciaux) { ?>
                 <li class="nav-item me-4 ms-4">
                     <a class="nav-link" href="gest-partenaires.php"><img src="..\Images\Icons\person.png" draggable="false" height="32px"></a>
                 </li>
+                <?php } ?>
 
                 <li class="nav-item me-4 ms-4">
                     <a class="nav-link" href="wiki.php"><img src="..\Images\Icons\book.png" draggable="false" height="32px"></a>
@@ -490,6 +511,91 @@ function countdown($countdown_date)
     $countdown_minutes = floor(($countdown_seconds - ($countdown_days * 60 * 60 * 24) - ($countdown_hours * 60 * 60)) / 60);
 
     return $countdown_days . " J " . $countdown_hours . " H " . $countdown_minutes . " M ";
+}
+
+function afficher($utilisateurs)
+{
+    echo '<form method="post">';
+    echo '<div class="table-responsive">';
+    echo '<table class="table table-hover">';
+    echo "<tr><th></th><th>Prénom</th><th>Nom</th><th></th></tr>";
+    foreach ($utilisateurs as $nom => $infos) {
+        echo '<tr>';
+        echo '<td class="text-center"><input type="image" src="Images\Icons\eye.png" width="50" name="voir[' . $nom . ']" value="Voir" class="btn btn-outline-primary" disabled></td>';
+        echo '<td><input type="text" name="prenom[' . $nom . ']" value="' . $infos['prenom'] . '" class="form-control"></td>';
+        echo '<td><input type="text" name="nom[' . $nom . ']" value="' . $infos['nom'] . '" class="form-control"></td>';
+        echo '<td class="text-center"><input type="image" src="Images\Icons\correct.png" width="50" name="accepter[' . $nom . ']" value="Accepter" class="btn btn-success"></td>';
+        echo '<td class="text-center"><input type="image" src="Images\Icons\cross.png" width="50" name="refuser[' . $nom . ']" value="Refuser" class="btn btn-danger"></td>';
+        echo '</tr>';
+    }
+    echo '</table>';
+    echo '</div>';
+    echo '</form>';
+}
+
+function gestion_new_users()
+{
+    $demande_compte = 'Data\demande-compte.json';
+    $login_mdp = 'Data\login-mdp.json';
+
+    $users = file_get_contents($demande_compte);
+    $users = json_decode($users, true);
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (isset($_POST['accepter'])) {
+            foreach ($_POST['accepter'] as $nom => $valeur) {
+                $user_accepte = $users[$nom]; //récuparation des infos
+                $nouvel_utilisateur = array( //création d'un array avec les infos 
+                    'prenom' => $user_accepte['prenom'],
+                    'nom' => $user_accepte['nom'],
+                    'user' => $user_accepte['user'],
+                    'mdp' => $user_accepte['mdp'],
+                    'email' => $user_accepte['email'],
+                    'groupe' => '',
+                );
+                $login_mdp_contenu = file_get_contents($login_mdp); //récupère le fichier des vrai users
+                $login_mdp_contenu = json_decode($login_mdp_contenu, true); //converti en tableau
+                $login_mdp_contenu[$user_accepte['user']] = $nouvel_utilisateur; //ajout du new
+                file_put_contents($login_mdp, json_encode($login_mdp_contenu)); //màj du fichier des vrai users
+                unset($users[$nom]); //suppréssion du new du fichier des demandes
+            }
+            file_put_contents($demande_compte, json_encode($users));
+        } elseif (isset($_POST['refuser'])) {
+            foreach ($_POST['refuser'] as $nom => $valeur) {
+                unset($users[$nom]); //vire le new des demande
+                $photo_path = "Images\Employés\\" . $nom . ".jpg";
+                if (file_exists($photo_path)) {
+                    unlink($photo_path); //suppr la photo si il en a une
+                }
+            }
+            file_put_contents($demande_compte, json_encode($users)); //màj du fichier des demandes
+        }
+    }
+
+    afficher($users);
+}
+
+function supprimerMembre($nom_groupe, $user)
+{
+    $groupes_json = file_get_contents('Data\groupes.json');  // Recuperation des groupes
+    $groupes = json_decode($groupes_json, true);
+
+    $yessir = null;                                          // Suppression du membre
+    foreach ($groupes[$nom_groupe]['membres'] as $i => $membre) {
+        if ($membre['user'] === $user) {
+            $yessir = $i;
+            break;
+        }
+    }
+    if ($yessir !== null) {
+        array_splice($groupes[$nom_groupe]['membres'], $yessir, 1);
+    }
+
+    file_put_contents('Data\groupes.json', json_encode($groupes));    // Enregistrement des modifs
+    header("Location: Gestion-des-groupes.php");
+
+
+    exit;
 }
 
     ?>
