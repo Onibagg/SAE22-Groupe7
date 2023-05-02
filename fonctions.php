@@ -195,9 +195,15 @@ function intranet_navbar()
                         <img src="Images\PrivateVPN_logo.png" alt="Avatar Logo" style="width:45px;" class="rounded-pill">
                     </a>
                 </li>
+
                 <li class="nav-item me-4 ms-4">
                     <a class="nav-link" href="Portail-de-connexion.php"><img src="..\Images\Icons\key.png" draggable="false" height="25px"></a>
                 </li>
+
+                <li class="nav-item me-4 ms-4">
+                    <a class="nav-link" href="Gestion-des-groupes.php"><img src="..\Images\Icons\groups.png" draggable="false" height="25px"></a>
+                </li>
+
                 <li class="nav-item me-4 ms-4">
                     <a class="nav-link" href="gest-fichiers.php"><img src="Images\Icons\folder.png" draggable="false" height="25px"></a>
                 </li>
@@ -497,6 +503,29 @@ function gestion_new_users()
     }
 
     afficher($users);
+}
+
+function supprimerMembre($nom_groupe, $user)
+{
+    $groupes_json = file_get_contents('Data\groupes.json');  // Recuperation des groupes
+    $groupes = json_decode($groupes_json, true);
+
+    $yessir = null;                                          // Suppression du membre
+    foreach ($groupes[$nom_groupe]['membres'] as $i => $membre) {
+        if ($membre['user'] === $user) {
+            $yessir = $i;
+            break;
+        }
+    }
+    if ($yessir !== null) {
+        array_splice($groupes[$nom_groupe]['membres'], $yessir, 1);
+    }
+
+    file_put_contents('Data\groupes.json', json_encode($groupes));    // Enregistrement des modifs
+    header("Location: Gestion-des-groupes.php");
+
+
+    exit;
 }
 
     ?>
