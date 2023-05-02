@@ -267,9 +267,9 @@ function intranet_navbar()
                 <?php } ?>
 
                 <?php if ($isRH || $isDirection) { ?>
-                <li class="nav-item me-4 ms-4">
-                    <a class="nav-link" href="Gestion-des-groupes.php"><img src="..\Images\Icons\groups.png" draggable="false" height="25px"></a>
-                </li>
+                    <li class="nav-item me-4 ms-4">
+                        <a class="nav-link" href="Gestion-des-groupes.php"><img src="..\Images\Icons\groups.png" draggable="false" height="25px"></a>
+                    </li>
                 <?php } ?>
 
                 <li class="nav-item me-4 ms-4">
@@ -281,9 +281,9 @@ function intranet_navbar()
                 </li>
 
                 <?php if ($isFinances || $isDirection || $isCommerciaux) { ?>
-                <li class="nav-item me-4 ms-4">
-                    <a class="nav-link" href="gest-partenaires.php"><img src="..\Images\Icons\person.png" draggable="false" height="32px"></a>
-                </li>
+                    <li class="nav-item me-4 ms-4">
+                        <a class="nav-link" href="gest-partenaires.php"><img src="..\Images\Icons\person.png" draggable="false" height="32px"></a>
+                    </li>
                 <?php } ?>
 
                 <li class="nav-item me-4 ms-4">
@@ -385,217 +385,440 @@ function ajout_utilisateur_format()
                 </div>
             </div>
         </form>
-    <?php
-    if (isset($_POST['new-user'])) {
-        if (isset($_POST['prenom']) && isset($_POST['nom']) && isset($_POST['pseudo']) && isset($_POST['mdp']) && isset($_POST['confirmation']) && isset($_POST['email']) && isset($_POST['groupe'])) {
-            $prenom = $_POST['prenom'];
-            $nom = $_POST['nom'];
-            $usr = $_POST['pseudo'];
-            $mdp = $_POST['mdp'];
-            $confirmation = $_POST['confirmation'];
-            $email = $_POST['email'];
-            $grp = $_POST['groupe'];
+        <?php
+        if (isset($_POST['new-user'])) {
+            if (isset($_POST['prenom']) && isset($_POST['nom']) && isset($_POST['pseudo']) && isset($_POST['mdp']) && isset($_POST['confirmation']) && isset($_POST['email']) && isset($_POST['groupe'])) {
+                $prenom = $_POST['prenom'];
+                $nom = $_POST['nom'];
+                $usr = $_POST['pseudo'];
+                $mdp = $_POST['mdp'];
+                $confirmation = $_POST['confirmation'];
+                $email = $_POST['email'];
+                $grp = $_POST['groupe'];
 
-            if ($mdp !== $confirmation) {
-                echo "<br><div class='alert alert-danger'>Les <b>mots de passe</b> ne correspondent pas.</div>";
-            } elseif (empty($prenom) || empty($nom) || empty($usr) || empty($mdp) || empty($confirmation) || empty($email) || empty($grp)) {
-                echo "<br><div class='alert alert-warning'><b>Tous</b> les champs sont obligatoires.</div>";
-            } else {
-                addUser($prenom, $nom, $usr, $mdp, $email, $grp);
-                echo "<br><div class='alert alert-success'><b>$prenom</b> <b>$nom</b> a été ajouté à l'équipe !</div>";
+                if ($mdp !== $confirmation) {
+                    echo "<br><div class='alert alert-danger'>Les <b>mots de passe</b> ne correspondent pas.</div>";
+                } elseif (empty($prenom) || empty($nom) || empty($usr) || empty($mdp) || empty($confirmation) || empty($email) || empty($grp)) {
+                    echo "<br><div class='alert alert-warning'><b>Tous</b> les champs sont obligatoires.</div>";
+                } else {
+                    addUser($prenom, $nom, $usr, $mdp, $email, $grp);
+                    echo "<br><div class='alert alert-success'><b>$prenom</b> <b>$nom</b> a été ajouté à l'équipe !</div>";
+                }
             }
+        } else {
         }
-    } else {
     }
-}
-function addUser($prenom, $nom, $usr, $mdp, $email, $grp)
-{
-    $users = file_decod('Data\login-mdp.json');
+    function addUser($prenom, $nom, $usr, $mdp, $email, $grp)
+    {
+        $users = file_decod('Data\login-mdp.json');
 
-    $users[$usr] = [
-        'prenom' => $prenom,
-        'nom' => $nom,
-        'user' => $usr,
-        'mdp' => password_hash($mdp, PASSWORD_DEFAULT),
-        'email' => $email,
-        'groupe' => $grp
-    ];
+        $users[$usr] = [
+            'prenom' => $prenom,
+            'nom' => $nom,
+            'user' => $usr,
+            'mdp' => password_hash($mdp, PASSWORD_DEFAULT),
+            'email' => $email,
+            'groupe' => $grp
+        ];
 
-    $src = "Images\Employés\blank-profile-picture.jpg";
-    $dst = "Images\Employés\\" . $usr . ".jpg";
-    copy($src, $dst);
+        $src = "Images\Employés\blank-profile-picture.jpg";
+        $dst = "Images\Employés\\" . $usr . ".jpg";
+        copy($src, $dst);
 
-    file_put_contents('Data\login-mdp.json', json_encode($users));
-}
-
-function afficherUtilisateurs($utilisateurs)
-{
-    echo '<form method="post">';
-    echo '<div class="table-responsive">';
-    echo '<table class="table table-hover">';
-    echo "<tr><th>Prénom</th><th>Nom</th><th>Nom d'utilisateur</th><th>Nouveau MDP</th><th>E-Mail</th><th>Groupe</th><th></th><th></th></tr>";
-    foreach ($utilisateurs as $nom => $infos) {
-        echo '<tr>';
-        echo '<td><input type="text" name="prenom[' . $nom . ']" value="' . $infos['prenom'] . '" class="form-control"></td>';
-        echo '<td><input type="text" name="nom[' . $nom . ']" value="' . $infos['nom'] . '" class="form-control"></td>';
-        echo '<td><input type="text" name="user[' . $nom . ']" value="' . $infos['user'] . '" class="form-control"></td>';
-        echo '<td><input type="text" name="mdp[' . $nom . ']" value="" class="form-control"></td>';
-        echo '<td><input type="text" name="email[' . $nom . ']" value="' . $infos['email'] . '" class="form-control"></td>';
-        echo '<td><input type="text" name="groupe[' . $nom . ']" value="' . $infos['groupe'] . '" class="form-control"></td>';
-        echo '<td class="text-center"><input type="submit" name="modifier[' . $nom . ']" value="Modifier" class="btn btn-outline-dark"></td>';
-        echo '<td class="text-center"><input type="submit" name="supprimer[' . $nom . ']" value="Supprimer" class="btn btn-danger"></td>';
-        echo '</tr>';
+        file_put_contents('Data\login-mdp.json', json_encode($users));
     }
-    echo '</table>';
-    echo '</div>';
-    echo '</form>';
-}
 
-function gestionUtilisateurs()
-{
-    $path = 'Data\login-mdp.json';
-    $users = file_decod($path);
+    function afficherUtilisateurs($utilisateurs)
+    {
+        echo '<form method="post">';
+        echo '<div class="table-responsive">';
+        echo '<table class="table table-hover">';
+        echo "<tr><th>Prénom</th><th>Nom</th><th>Nom d'utilisateur</th><th>Nouveau MDP</th><th>E-Mail</th><th>Groupe</th><th></th><th></th></tr>";
+        foreach ($utilisateurs as $nom => $infos) {
+            echo '<tr>';
+            echo '<td><input type="text" name="prenom[' . $nom . ']" value="' . $infos['prenom'] . '" class="form-control"></td>';
+            echo '<td><input type="text" name="nom[' . $nom . ']" value="' . $infos['nom'] . '" class="form-control"></td>';
+            echo '<td><input type="text" name="user[' . $nom . ']" value="' . $infos['user'] . '" class="form-control"></td>';
+            echo '<td><input type="text" name="mdp[' . $nom . ']" value="" class="form-control"></td>';
+            echo '<td><input type="text" name="email[' . $nom . ']" value="' . $infos['email'] . '" class="form-control"></td>';
+            echo '<td><input type="text" name="groupe[' . $nom . ']" value="' . $infos['groupe'] . '" class="form-control"></td>';
+            echo '<td class="text-center"><input type="submit" name="modifier[' . $nom . ']" value="Modifier" class="btn btn-outline-dark"></td>';
+            echo '<td class="text-center"><input type="submit" name="supprimer[' . $nom . ']" value="Supprimer" class="btn btn-danger"></td>';
+            echo '</tr>';
+        }
+        echo '</table>';
+        echo '</div>';
+        echo '</form>';
+    }
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        if (isset($_POST['modifier'])) {
-            $prenom = $_POST['prenom'];
-            $nomm = $_POST['nom'];
-            $user = $_POST['user'];
-            $mdp = $_POST['mdp'];
-            $email = $_POST['email'];
-            $groupe = $_POST['groupe'];
-            foreach ($_POST['modifier'] as $nom => $valeur) {
-                $users[$nom]['prenom'] = $prenom[$nom];
-                $users[$nom]['nom'] = $nomm[$nom];
-                $users[$nom]['mdp'] = password_hash($mdp[$nom], PASSWORD_DEFAULT);
-                $users[$nom]['email'] = $email[$nom];
-                $users[$nom]['groupe'] = $groupe[$nom];
-                if ($users[$nom]['user'] !== $user[$nom]) {
-                    $old_photo_path = "Images\Employés\\" . $users[$nom]['user'] . ".jpg";
-                    $new_photo_path = "Images\Employés\\" . $user[$nom] . ".jpg";
-                    if (file_exists($old_photo_path)) {
-                        rename($old_photo_path, $new_photo_path);
+    function gestionUtilisateurs()
+    {
+        $path = 'Data\login-mdp.json';
+        $users = file_decod($path);
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (isset($_POST['modifier'])) {
+                $prenom = $_POST['prenom'];
+                $nomm = $_POST['nom'];
+                $user = $_POST['user'];
+                $mdp = $_POST['mdp'];
+                $email = $_POST['email'];
+                $groupe = $_POST['groupe'];
+                foreach ($_POST['modifier'] as $nom => $valeur) {
+                    $users[$nom]['prenom'] = $prenom[$nom];
+                    $users[$nom]['nom'] = $nomm[$nom];
+                    $users[$nom]['mdp'] = password_hash($mdp[$nom], PASSWORD_DEFAULT);
+                    $users[$nom]['email'] = $email[$nom];
+                    $users[$nom]['groupe'] = $groupe[$nom];
+                    if ($users[$nom]['user'] !== $user[$nom]) {
+                        $old_photo_path = "Images\Employés\\" . $users[$nom]['user'] . ".jpg";
+                        $new_photo_path = "Images\Employés\\" . $user[$nom] . ".jpg";
+                        if (file_exists($old_photo_path)) {
+                            rename($old_photo_path, $new_photo_path);
+                        }
+                    }
+                    $users[$nom]['user'] = $user[$nom];
+                }
+                file_put_contents($path, json_encode($users));
+            } elseif (isset($_POST['supprimer'])) {
+                foreach ($_POST['supprimer'] as $nom => $valeur) {
+                    unset($users[$nom]);
+                    $photo_path = "Images\Employés\\" . $nom . ".jpg";
+                    if (file_exists($photo_path)) {
+                        unlink($photo_path);
                     }
                 }
-                $users[$nom]['user'] = $user[$nom];
+                file_put_contents($path, json_encode($users));
             }
-            file_put_contents($path, json_encode($users));
-        } elseif (isset($_POST['supprimer'])) {
-            foreach ($_POST['supprimer'] as $nom => $valeur) {
-                unset($users[$nom]);
-                $photo_path = "Images\Employés\\" . $nom . ".jpg";
-                if (file_exists($photo_path)) {
-                    unlink($photo_path);
+        }
+
+        afficherUtilisateurs($users);
+    }
+
+
+    function deconnexion()
+    {
+        session_unset();
+        header("Location: page-accueil.php");
+        exit;
+    }
+
+    function countdown($countdown_date)
+    {
+        $countdown_seconds = strtotime($countdown_date) - time();
+        $countdown_days = floor($countdown_seconds / (60 * 60 * 24));
+        $countdown_hours = floor(($countdown_seconds - ($countdown_days * 60 * 60 * 24)) / (60 * 60));
+        $countdown_minutes = floor(($countdown_seconds - ($countdown_days * 60 * 60 * 24) - ($countdown_hours * 60 * 60)) / 60);
+
+        return $countdown_days . " J " . $countdown_hours . " H " . $countdown_minutes . " M ";
+    }
+
+    function afficher($utilisateurs)
+    {
+        echo '<form method="post">';
+        echo '<div class="table-responsive">';
+        echo '<table class="table table-hover">';
+        echo "<tr><th></th><th>Prénom</th><th>Nom</th><th></th></tr>";
+        foreach ($utilisateurs as $nom => $infos) {
+            echo '<tr>';
+            echo '<td class="text-center"><input type="image" src="Images\Icons\eye.png" width="50" name="voir[' . $nom . ']" value="Voir" class="btn btn-outline-primary" disabled></td>';
+            echo '<td><input type="text" name="prenom[' . $nom . ']" value="' . $infos['prenom'] . '" class="form-control"></td>';
+            echo '<td><input type="text" name="nom[' . $nom . ']" value="' . $infos['nom'] . '" class="form-control"></td>';
+            echo '<td class="text-center"><input type="image" src="Images\Icons\correct.png" width="50" name="accepter[' . $nom . ']" value="Accepter" class="btn btn-success"></td>';
+            echo '<td class="text-center"><input type="image" src="Images\Icons\cross.png" width="50" name="refuser[' . $nom . ']" value="Refuser" class="btn btn-danger"></td>';
+            echo '</tr>';
+        }
+        echo '</table>';
+        echo '</div>';
+        echo '</form>';
+    }
+
+    function gestion_new_users()
+    {
+        $demande_compte = 'Data\demande-compte.json';
+        $login_mdp = 'Data\login-mdp.json';
+
+        $users = file_get_contents($demande_compte);
+        $users = json_decode($users, true);
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (isset($_POST['accepter'])) {
+                foreach ($_POST['accepter'] as $nom => $valeur) {
+                    $user_accepte = $users[$nom]; //récuparation des infos
+                    $nouvel_utilisateur = array( //création d'un array avec les infos 
+                        'prenom' => $user_accepte['prenom'],
+                        'nom' => $user_accepte['nom'],
+                        'user' => $user_accepte['user'],
+                        'mdp' => $user_accepte['mdp'],
+                        'email' => $user_accepte['email'],
+                        'groupe' => '',
+                    );
+                    $login_mdp_contenu = file_get_contents($login_mdp); //récupère le fichier des vrai users
+                    $login_mdp_contenu = json_decode($login_mdp_contenu, true); //converti en tableau
+                    $login_mdp_contenu[$user_accepte['user']] = $nouvel_utilisateur; //ajout du new
+                    file_put_contents($login_mdp, json_encode($login_mdp_contenu)); //màj du fichier des vrai users
+                    unset($users[$nom]); //suppréssion du new du fichier des demandes
+                }
+                file_put_contents($demande_compte, json_encode($users));
+            } elseif (isset($_POST['refuser'])) {
+                foreach ($_POST['refuser'] as $nom => $valeur) {
+                    unset($users[$nom]); //vire le new des demande
+                    $photo_path = "Images\Employés\\" . $nom . ".jpg";
+                    if (file_exists($photo_path)) {
+                        unlink($photo_path); //suppr la photo si il en a une
+                    }
+                }
+                file_put_contents($demande_compte, json_encode($users)); //màj du fichier des demandes
+            }
+        }
+
+        afficher($users);
+    }
+
+    function supprimerMembre($nom_groupe, $user)
+    {
+        $groupes_json = file_get_contents('Data\groupes.json');  // Recuperation des groupes
+        $groupes = json_decode($groupes_json, true);
+
+        $yessir = null;                                          // Suppression du membre
+        foreach ($groupes[$nom_groupe]['membres'] as $i => $membre) {
+            if ($membre['user'] === $user) {
+                $yessir = $i;
+                break;
+            }
+        }
+        if ($yessir !== null) {
+            array_splice($groupes[$nom_groupe]['membres'], $yessir, 1);
+        }
+
+        file_put_contents('Data\groupes.json', json_encode($groupes));    // Enregistrement des modifs
+        header("Location: Gestion-des-groupes.php");
+
+
+        exit;
+    }
+
+    function afficherdir()
+    {
+        $dir = "Data\Gestionnaire-de-fichier\\";
+        if (isset($_GET['dir'])) {
+            $dir .= $_GET['dir'] . '\\';
+        }
+        if ($dir !== "Data\Gestionnaire-de-fichier\\") {
+            $parent_dir = dirname($dir);
+        ?>
+            <div class='col'>
+                <a href='gest-fichiers.php' class='text-dark' style='text-decoration: none;'>
+                    <div class='card shadow-sm'>
+                        <div class='card-body'>
+                            <p class='card-title'>
+                                <img src='Images\Icons\\return.png' height='25px'>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+            <?php
+        }
+
+        if ($handle = opendir($dir)) {
+            while (false !== ($entry = readdir($handle))) {
+                if ($entry != "." && $entry != "..") {
+                    if (is_dir($dir . $entry)) {
+            ?>
+                        <div class='col'>
+                            <a href='?dir=<?php echo $entry; ?>' class='text-dark' style='text-decoration: none;'>
+                                <div class='card shadow-sm'>
+                                    <div class='card-body'>
+                                        <h5 class='card-title'><img src='Images\Icons\\folder.png' height='25px'> <?php echo $entry; ?></h5>
+                                    </div>
+                                </div>
+                            </a>
+
+                        </div>
+        <?php
+                    } else {
+                    }
                 }
             }
-            file_put_contents($path, json_encode($users));
+            closedir($handle);
         }
     }
 
-    afficherUtilisateurs($users);
-}
+    function upload()
+    {
+        $dir = "Data\Gestionnaire-de-fichier\\";
+        ?>
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
+                        <div class="input-group mb-3">
+                            <input type="file" class="form-control" name="fileToUpload" id="fileToUpload">
+                            <button type="submit" class="btn btn-primary" name="uploadBtn">Upload</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <br>
+        <?php
+        if (isset($_POST["uploadBtn"])) {
+            $target_dir = $dir;
+            $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+            $uploadOk = 1;
+            $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-
-function deconnexion()
-{
-    session_unset();
-    header("Location: page-accueil.php");
-    exit;
-}
-
-function countdown($countdown_date)
-{
-    $countdown_seconds = strtotime($countdown_date) - time();
-    $countdown_days = floor($countdown_seconds / (60 * 60 * 24));
-    $countdown_hours = floor(($countdown_seconds - ($countdown_days * 60 * 60 * 24)) / (60 * 60));
-    $countdown_minutes = floor(($countdown_seconds - ($countdown_days * 60 * 60 * 24) - ($countdown_hours * 60 * 60)) / 60);
-
-    return $countdown_days . " J " . $countdown_hours . " H " . $countdown_minutes . " M ";
-}
-
-function afficher($utilisateurs)
-{
-    echo '<form method="post">';
-    echo '<div class="table-responsive">';
-    echo '<table class="table table-hover">';
-    echo "<tr><th></th><th>Prénom</th><th>Nom</th><th></th></tr>";
-    foreach ($utilisateurs as $nom => $infos) {
-        echo '<tr>';
-        echo '<td class="text-center"><input type="image" src="Images\Icons\eye.png" width="50" name="voir[' . $nom . ']" value="Voir" class="btn btn-outline-primary" disabled></td>';
-        echo '<td><input type="text" name="prenom[' . $nom . ']" value="' . $infos['prenom'] . '" class="form-control"></td>';
-        echo '<td><input type="text" name="nom[' . $nom . ']" value="' . $infos['nom'] . '" class="form-control"></td>';
-        echo '<td class="text-center"><input type="image" src="Images\Icons\correct.png" width="50" name="accepter[' . $nom . ']" value="Accepter" class="btn btn-success"></td>';
-        echo '<td class="text-center"><input type="image" src="Images\Icons\cross.png" width="50" name="refuser[' . $nom . ']" value="Refuser" class="btn btn-danger"></td>';
-        echo '</tr>';
-    }
-    echo '</table>';
-    echo '</div>';
-    echo '</form>';
-}
-
-function gestion_new_users()
-{
-    $demande_compte = 'Data\demande-compte.json';
-    $login_mdp = 'Data\login-mdp.json';
-
-    $users = file_get_contents($demande_compte);
-    $users = json_decode($users, true);
-
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        if (isset($_POST['accepter'])) {
-            foreach ($_POST['accepter'] as $nom => $valeur) {
-                $user_accepte = $users[$nom]; //récuparation des infos
-                $nouvel_utilisateur = array( //création d'un array avec les infos 
-                    'prenom' => $user_accepte['prenom'],
-                    'nom' => $user_accepte['nom'],
-                    'user' => $user_accepte['user'],
-                    'mdp' => $user_accepte['mdp'],
-                    'email' => $user_accepte['email'],
-                    'groupe' => '',
-                );
-                $login_mdp_contenu = file_get_contents($login_mdp); //récupère le fichier des vrai users
-                $login_mdp_contenu = json_decode($login_mdp_contenu, true); //converti en tableau
-                $login_mdp_contenu[$user_accepte['user']] = $nouvel_utilisateur; //ajout du new
-                file_put_contents($login_mdp, json_encode($login_mdp_contenu)); //màj du fichier des vrai users
-                unset($users[$nom]); //suppréssion du new du fichier des demandes
+            if (file_exists($target_file)) {
+                echo "<div class='alert alert-danger'>Désolé, ce fichier existe déjà.</div>";
+                $uploadOk = 0;
             }
-            file_put_contents($demande_compte, json_encode($users));
-        } elseif (isset($_POST['refuser'])) {
-            foreach ($_POST['refuser'] as $nom => $valeur) {
-                unset($users[$nom]); //vire le new des demande
-                $photo_path = "Images\Employés\\" . $nom . ".jpg";
-                if (file_exists($photo_path)) {
-                    unlink($photo_path); //suppr la photo si il en a une
+
+            if ($_FILES["fileToUpload"]["size"] > 5000000000) {
+                echo "<div class='alert alert-danger'>Désolé, votre fichier est trop volumineux. (Max 5 Go)</div>";
+                $uploadOk = 0;
+            }
+
+            if ($imageFileType != "jpg" && $imageFileType != "jpeg" && $imageFileType != "png" && $imageFileType != "gif" && $imageFileType != "pdf" && $imageFileType != "doc" && $imageFileType != "docx" && $imageFileType != "xls" && $imageFileType != "xlsx" && $imageFileType != "html" && $imageFileType != "css" && $imageFileType != "ppt" && $imageFileType != "pptx" && $imageFileType != "mp3" && $imageFileType != "mp4" && $imageFileType != "zip" && $imageFileType != "txt") {
+                echo "<div class='alert alert-danger'>Désolé, seuls les fichiers de type JPG, JPEG, PNG, GIF, PDF, DOC, DOCX, XLS, XLSX, HTML, CSS, PPT, PPTX, MP3, MP4, ZIP et TXT sont autorisés.</div>";
+                $uploadOk = 0;
+            }
+
+            if ($uploadOk == 0) {
+                echo "<div class='alert alert-danger'>Désolé, votre fichier n'a pas été téléchargé.</div>";
+            } else {
+                if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+                    echo "<div class='alert alert-success'>Le fichier " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " a été téléchargé avec succès.</div>";
+                } else {
+                    echo "<div class='alert alert-danger'>Désolé, une erreur s'est produite lors du téléchargement de votre fichier.</div>";
                 }
             }
-            file_put_contents($demande_compte, json_encode($users)); //màj du fichier des demandes
         }
     }
 
-    afficher($users);
-}
-
-function supprimerMembre($nom_groupe, $user)
-{
-    $groupes_json = file_get_contents('Data\groupes.json');  // Recuperation des groupes
-    $groupes = json_decode($groupes_json, true);
-
-    $yessir = null;                                          // Suppression du membre
-    foreach ($groupes[$nom_groupe]['membres'] as $i => $membre) {
-        if ($membre['user'] === $user) {
-            $yessir = $i;
-            break;
+    function format_size($size)
+    {
+        $units = array('o', 'Ko', 'Mo', 'Go', 'To');
+        $i = 0;
+        while ($size >= 1024) {
+            $size /= 1024;
+            $i++;
         }
+        return round($size, 2) . ' ' . $units[$i];
     }
-    if ($yessir !== null) {
-        array_splice($groupes[$nom_groupe]['membres'], $yessir, 1);
+    function fichiers()
+    {
+        $dir = "Data\Gestionnaire-de-fichier\\";
+        ?>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <table class="table table-hover table-responsive">
+                        <thead class="table-primary">
+                            <tr>
+                                <th>Nom du fichier</th>
+                                <th>Taille</th>
+                                <th>Date de modification</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            if ($handle = opendir($dir)) {
+                                while (false !== ($entry = readdir($handle))) {
+                                    if (!is_dir($dir . $entry)) {
+                                        $filesize = filesize($dir . $entry);
+                                        $filemtime = date("d/m/Y H:i:s", filemtime($dir . $entry));
+                                        $ext = pathinfo($entry, PATHINFO_EXTENSION);
+                                        switch ($ext) {
+                                            case "pdf":
+                                                $img_src = "Images\Icons\\file\pdf.png";
+                                                break;
+                                            case "doc":
+                                            case "docx":
+                                                $img_src = "Images\Icons\\file\docx.png";
+                                                break;
+                                            case "xls":
+                                            case "xlsx":
+                                                $img_src = "Images\Icons\\file\xlsx.png";
+                                                break;
+                                            case "html":
+                                                $img_src = "Images\Icons\\file\html.png";
+                                                break;
+                                            case "css":
+                                                $img_src = "Images\Icons\\file\css.png";
+                                                break;
+                                            case "ppt":
+                                            case "pptx":
+                                                $img_src = "Images\Icons\\file\pptx.png";
+                                                break;
+                                            case "mp3":
+                                                $img_src = "Images\Icons\\file\mp3.png";
+                                                break;
+                                            case "mp4":
+                                                $img_src = "Images\Icons\\file\mp4.png";
+                                                break;
+                                            case "jpg":
+                                            case "jpeg":
+                                            case "gif":
+                                            case "png":
+                                                $img_src = "Images\Icons\\file\png.png";
+                                                break;
+                                            case "zip":
+                                                $img_src = "Images\Icons\\file\zip.png";
+                                                break;
+                                            default:
+                                                $img_src = "Images\Icons\\file\default.png";
+                                        }
+                                        echo "<tr>";
+                                        echo "<td><img src='$img_src' height='25px'> $entry</td>";
+                                        echo "<td>" . format_size($filesize) . "</td>";
+                                        echo "<td>$filemtime</td>";
+                            ?>
+                                        <td>
+                                            <?php
+                                            $allowed_types = array('pdf', 'mp3', 'mp4', 'png', 'txt', 'jpg', 'jpeg');
+                                            if (in_array($ext, $allowed_types)) {
+                                            ?>
+                                                <a href="<?php echo $dir . $entry ?>" target="_blank" class="btn btn-sm btn-outline-primary">
+                                                    <img src="Images\Icons\eye.png" height="25px">
+                                                </a>
+                                            <?php
+                                            } else {
+                                            ?>
+                                                <a href="<?php echo $dir . $entry ?>" target="_blank" class="btn btn-sm btn-outline-secondary disabled">
+                                                    <img src="Images\Icons\eye-cross.png" height="25px">
+                                                </a>
+                                            <?php
+
+                                            }
+                                            ?>
+                                            <a href='<?php echo "$dir$entry" ?>' download class='btn btn-sm btn-outline-success'>
+                                                <img src='Images\Icons\download.png' height='25px'>
+                                            </a>
+
+                                            <a href="" class="btn btn-sm btn-outline-danger">
+                                                <img src="Images\Icons\delete.png" height="25px">
+                                            </a>
+
+                                        </td>
+
+                                        </tr>
+                            <?php
+                                    }
+                                }
+                                closedir($handle);
+                            }
+                            ?>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    <?php
     }
-
-    file_put_contents('Data\groupes.json', json_encode($groupes));    // Enregistrement des modifs
-    header("Location: Gestion-des-groupes.php");
-
-
-    exit;
-}
 
     ?>
