@@ -185,8 +185,72 @@ function page_foot()
 
 }
 
+function danslegroup($nomdugroup)
+{
+    if (isset($_SESSION['user_groups']) && is_array($_SESSION['user_groups'])) {
+        return in_array($nomdugroup, $_SESSION['user_groups']);
+    }
+    return false;
+}
+
+
 function intranet_navbar()
 {
+    $user = $_SESSION['user'];
+
+    // Charger les données des groupes à partir du fichier JSON
+    $data = file_get_contents('Data\groupes.json');
+    $groupes = json_decode($data, true);
+
+    // Vérifier si l'utilisateur fait partie du groupe IT ou Direction
+    $isIT = false;
+    $isDirection = false;
+    $isCommerciaux = false;
+    $isFinances = false;
+    $isProduction = false;
+    $isRH = false;
+
+    foreach ($groupes['IT']['membres'] as $membre) {
+        if ($membre['user'] === $user) {
+            $isIT = true;
+            break;
+        }
+    }
+
+    foreach ($groupes['Direction']['membres'] as $membre) {
+        if ($membre['user'] === $user) {
+            $isDirection = true;
+            break;
+        }
+    }
+
+    foreach ($groupes['Commerciaux']['membres'] as $membre) {
+        if ($membre['user'] === $user) {
+            $isCommerciaux = true;
+            break;
+        }
+    }
+
+    foreach ($groupes['Finances']['membres'] as $membre) {
+        if ($membre['user'] === $user) {
+            $isFinances = true;
+            break;
+        }
+    }
+
+    foreach ($groupes['Production']['membres'] as $membre) {
+        if ($membre['user'] === $user) {
+            $isProduction = true;
+            break;
+        }
+    }
+
+    foreach ($groupes['RH']['membres'] as $membre) {
+        if ($membre['user'] === $user) {
+            $isRH = true;
+            break;
+        }
+    }
     ?>
         <nav class="navbar navbar-expand-sm bg-primary bg-opacity-25 navbar-info sticky-top justify-content-center">
             <ul class="navbar-nav">
@@ -196,13 +260,17 @@ function intranet_navbar()
                     </a>
                 </li>
 
-                <li class="nav-item me-4 ms-4">
-                    <a class="nav-link" href="Portail-de-connexion.php"><img src="..\Images\Icons\key.png" draggable="false" height="25px"></a>
-                </li>
+                <?php if ($isIT || $isDirection) { ?>
+                    <li class="nav-item me-4 ms-4">
+                        <a class="nav-link" href="Portail-de-connexion.php"><img src="..\Images\Icons\key.png" draggable="false" height="25px"></a>
+                    </li>
+                <?php } ?>
 
+                <?php if ($isRH || $isDirection) { ?>
                 <li class="nav-item me-4 ms-4">
                     <a class="nav-link" href="Gestion-des-groupes.php"><img src="..\Images\Icons\groups.png" draggable="false" height="25px"></a>
                 </li>
+                <?php } ?>
 
                 <li class="nav-item me-4 ms-4">
                     <a class="nav-link" href="gest-fichiers.php"><img src="Images\Icons\folder.png" draggable="false" height="25px"></a>
@@ -212,9 +280,11 @@ function intranet_navbar()
                     <a class="nav-link" href="annuaire.php"><img src="..\Images\Icons\phone.png" draggable="false" height="25px"></a>
                 </li>
 
+                <?php if ($isFinances || $isDirection || $isCommerciaux) { ?>
                 <li class="nav-item me-4 ms-4">
                     <a class="nav-link" href="gest-partenaires.php"><img src="..\Images\Icons\person.png" draggable="false" height="32px"></a>
                 </li>
+                <?php } ?>
 
                 <li class="nav-item me-4 ms-4">
                     <a class="nav-link" href="wiki.php"><img src="..\Images\Icons\book.png" draggable="false" height="32px"></a>
