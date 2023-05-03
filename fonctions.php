@@ -593,8 +593,6 @@ function ajout_utilisateur_format()
         }
 
         file_put_contents('Data\groupes.json', json_encode($groupes));    // Enregistrement des modifs
-        header("Location: Gestion-des-groupes.php");
-
 
         exit;
     }

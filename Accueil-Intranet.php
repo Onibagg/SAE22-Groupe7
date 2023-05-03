@@ -101,14 +101,6 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                     </div>
                 </div>
             </div>
-            <div class="toast show">
-                <div class="toast-header">
-                    Bienvenue !
-                    <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
-                </div>
-                <div class="toast-body">
-                    Bienvenue sur l'intranet! Nous espérons que vous y trouverez toutes les informations et ressources dont vous avez besoin pour exceller dans votre travail. N'hésitez pas à explorer et à découvrir tout ce que notre intranet a à offrir. Merci d'être des nôtres ! </div>
-            </div>
         </div>
 
         <div class="col-sm-4">

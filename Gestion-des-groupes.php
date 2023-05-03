@@ -12,7 +12,71 @@ intranet_navbar();
     </style>
 </head>
 <p class="display-4 text-center">Gestion des Groupes</p>
+<div class="row">
+    <div class="col-4"></div>
+    <div class="col-4">
+        <form method="POST">
+            <div class="input-group mt-5 mb-1">
+                <input type="text" name="name-newgrp" class="form-control" placeholder="Nouveau groupe">
+                <button class="btn btn-outline-success" name="newgrp" type="submit">Créer le groupe</button>
+            </div>
+        </form>
+        <form method="POST">
+            <div class="input-group mb-3">
+                <select name="selected-group" class="form-select" aria-label="Groupes existants" disabled>
+                    <option selected>Choisir un groupe à supprimer</option>
+                </select>
+                <button class="btn btn-outline-danger" name="deletegrp" type="submit" disabled>Supprimer le groupe</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-4"></div>
+</div>
+
 <?php
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {        // Traitement du form
+    if (isset($_POST['ajouter'])) {
+        $groupe = $_POST['groupe'];
+        $nouveau_membre = $_POST['nouveau_membre'];
+
+        // Ajout du nouveau membre
+        $groupes[$groupe]['membres'][] = ['user' => $nouveau_membre];
+
+        // Enregistrement des modifs
+        $nouveau_groupe_json = json_encode($groupes);
+        file_put_contents('Data\groupes.json', $nouveau_groupe_json);
+
+        exit;
+    } elseif (isset($_POST['supprimer'])) {
+        $nom_groupe = $_POST['nom_groupe'];
+        $user = $_POST['user'];
+        supprimerMembre($nom_groupe, $user);
+    } elseif (isset($_POST['newgrp'])) {
+        $newgrp = $_POST['name-newgrp'];
+        if (!array_key_exists($newgrp, $groupes)) {
+            $groupes[$newgrp] = array('membres' => array());
+            file_put_contents('Data\groupes.json', json_encode($groupes));
+        } else {
+        }
+    } elseif (isset($_POST['deletegrp'])) {
+        if ($_POST['selected-group'] != 'Choisir un groupe à supprimer') {
+            $groupToDelete = $_POST['selected-group'];
+?>
+            <div class="alert alert-success" role="alert">
+                Le groupe<?php echo '$groupToDelete'; ?> a été supprimé avec succès.
+            </div>
+        <?php
+        } else {
+        ?>
+            <div class="alert alert-warning" role="alert">
+                Veuillez sélectionner un groupe à supprimer.
+            </div>
+
+<?php
+        }
+    }
+}
 
 $groupes_json = file_get_contents('Data\groupes.json'); // Recuperation des groupes
 $groupes = json_decode($groupes_json, true);
@@ -63,30 +127,4 @@ foreach ($groupes as $nom_groupe => $groupe) {
 echo "</div>";
 
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {        // Traitement du form
-    if (isset($_POST['ajouter'])) {
-        $groupe = $_POST['groupe'];
-        $nouveau_membre = $_POST['nouveau_membre'];
-
-        // Verification que le groupe existe
-        if (!array_key_exists($groupe, $groupes)) {
-            echo "<p>Le groupe $groupe n'existe pas.</p>";
-            exit;
-        }
-
-        // Ajout du nouveau membre
-        $groupes[$groupe]['membres'][] = ['user' => $nouveau_membre];
-
-        // Enregistrement des modifs
-        $nouveau_groupe_json = json_encode($groupes);
-        file_put_contents('Data\groupes.json', $nouveau_groupe_json);
-
-        exit;
-    } elseif (isset($_POST['supprimer'])) {
-        $nom_groupe = $_POST['nom_groupe'];
-        $user = $_POST['user'];
-        supprimerMembre($nom_groupe, $user);
-        
-    }
-}
 ?>
