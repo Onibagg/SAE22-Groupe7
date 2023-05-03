@@ -20,12 +20,6 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
 
 <head>
     <script src="JS\heure.js"></script>
-    <style>
-        html,
-        body {
-            overflow-x: hidden;
-        }
-    </style>
 </head>
 
 
@@ -33,10 +27,44 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
     </script>
     <div class="row">
         <div class="col-sm-4">
-            <div class="card mt-5 me-4">
+            <div class="card mt-5">
                 <div class="card-body">
                     <p class="display-6">À venir:</p>
                     <hr class="me-3">
+                    <div class="row">
+                        <div class="col text-center">
+                            <button type="button" class="mt-1 btn btn-outline-dark">
+                                <p class="mb-0">Team Building</p>
+                                <span class="spinner-grow spinner-grow-sm"></span>
+                                <br>
+                                <?php
+                                echo countdown("2023-06-29 12:15:00");
+                                ?>
+                            </button>
+                        </div>
+                        <div class="col text-center">
+                            <button type="button" class="mt-5 btn btn-outline-dark">
+                                <p class="mb-0">Nouvelle Offre</p>
+                                <span class="spinner-grow spinner-grow-sm"></span>
+                                <br>
+                                <?php
+                                echo countdown("2023-05-11 00:00:00");
+                                ?>
+                            </button>
+
+                        </div>
+                        <div class="col">
+                            <button type="button" class="mt-3 btn btn-outline-dark">
+                                <p class="mb-0">SKO</p>
+                                <span class="spinner-grow text-muted spinner-grow-sm"></span>
+                                <br>
+                                <?php
+                                echo countdown("2023-07-27 18:33:00");
+                                ?>
+                            </button>
+                        </div>
+
+                    </div>
                     <div class="row">
                         <div class="col text-center">
                             <button type="button" class="mt-1 btn btn-outline-dark">
@@ -73,6 +101,14 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                     </div>
                 </div>
             </div>
+            <div class="toast show">
+                <div class="toast-header">
+                    Bienvenue !
+                    <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+                </div>
+                <div class="toast-body">
+                    Bienvenue sur l'intranet! Nous espérons que vous y trouverez toutes les informations et ressources dont vous avez besoin pour exceller dans votre travail. N'hésitez pas à explorer et à découvrir tout ce que notre intranet a à offrir. Merci d'être des nôtres ! </div>
+            </div>
         </div>
 
         <div class="col-sm-4">
@@ -88,11 +124,46 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                 <?php
                 echo $jour . ' ' . $mois . ' ' .  $annee;
                 ?>
+
             </div>
+
+            <!-- Carousel -->
+            <div id="accueil" class="carousel slide mt-5" data-bs-ride="carousel">
+
+                <!-- Indicators/dots -->
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#accueil" data-bs-slide-to="0" class="active"></button>
+                    <button type="button" data-bs-target="#accueil" data-bs-slide-to="1"></button>
+                    <button type="button" data-bs-target="#accueil" data-bs-slide-to="2"></button>
+                </div>
+
+                <!-- The slideshow/carousel -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="Images\Pictures\montagne1.jpg" alt="Los Angeles" class="rounded d-block w-100">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="Images\Pictures\earth.jpg" alt="Chicago" class="rounded d-block w-100">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="Images\Pictures\montagne3.jpeg" alt="New York" class="rounded d-block w-100">
+                    </div>
+                </div>
+
+                <!-- Left and right controls/icons -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#accueil" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#accueil" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+            </div>
+
+
         </div>
 
         <div class="col-sm-4">
-            <div class="card mt-5 me-4">
+            <div class="card mt-5 me-1">
                 <div class="card-body">
                     <p class="display-6">Nouveau Utilisateurs:</p>
                     <?php
@@ -154,7 +225,7 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                     ?>
                         <div class="text-center">
                             <p class="alert alert-danger" role="alert">/!\ Vous n'avez pas les droits necessaires pour effectuer cette action!</p>
-                            <a class="btn btn-outline-primary" href="mailto:need-help@privatevpn.com?subject=Problème lors de l'affichage des nouveaux utilisateurs.&body=Cher Support-Technique, ">Demander de l'aide</a>
+                            <a class="btn btn-outline-primary" href="mailto:need-help@privatevpn.com?subject=Problème lors de l'affichage des nouveaux utilisateurs.&body=Cher Support-Technique,">Demander de l'aide</a>
                         </div>
                     <?php
                     }
@@ -162,7 +233,6 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                 </div>
             </div>
         </div>
-
     </div>
     <br>
     <br>

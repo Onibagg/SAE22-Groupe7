@@ -11,8 +11,8 @@ intranet_navbar();
         <p class="display-6 "><b>Ajouter un utilisateur :</b></p>
     </div>
     <div class="mt-2 p-4 bg-light text-dark rounded">
-        <?php 
-            ajout_utilisateur_format();
+        <?php
+        ajout_utilisateur_format();
         ?>
     </div>
 </div>

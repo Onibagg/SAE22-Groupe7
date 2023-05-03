@@ -20,7 +20,11 @@ function setup()
         <style>
             .custom {
                 background-color: #DCF3FF;
+            }
 
+            html,
+            body {
+                overflow-x: hidden;
             }
         </style>
     </head>
@@ -433,7 +437,7 @@ function ajout_utilisateur_format()
         echo '<form method="post">';
         echo '<div class="table-responsive">';
         echo '<table class="table table-hover">';
-        echo "<tr><th>Prénom</th><th>Nom</th><th>Nom d'utilisateur</th><th>Nouveau MDP</th><th>E-Mail</th><th>Groupe</th><th></th><th></th></tr>";
+        echo "<tr><th>Prénom</th><th>Nom</th><th>Nom d'utilisateur</th><th>Nouveau MDP</th><th>E-Mail</th><th></th><th></th></tr>";
         foreach ($utilisateurs as $nom => $infos) {
             echo '<tr>';
             echo '<td><input type="text" name="prenom[' . $nom . ']" value="' . $infos['prenom'] . '" class="form-control"></td>';
@@ -441,7 +445,6 @@ function ajout_utilisateur_format()
             echo '<td><input type="text" name="user[' . $nom . ']" value="' . $infos['user'] . '" class="form-control"></td>';
             echo '<td><input type="text" name="mdp[' . $nom . ']" value="" class="form-control"></td>';
             echo '<td><input type="text" name="email[' . $nom . ']" value="' . $infos['email'] . '" class="form-control"></td>';
-            echo '<td><input type="text" name="groupe[' . $nom . ']" value="' . $infos['groupe'] . '" class="form-control"></td>';
             echo '<td class="text-center"><input type="submit" name="modifier[' . $nom . ']" value="Modifier" class="btn btn-outline-dark"></td>';
             echo '<td class="text-center"><input type="submit" name="supprimer[' . $nom . ']" value="Supprimer" class="btn btn-danger"></td>';
             echo '</tr>';
@@ -463,13 +466,11 @@ function ajout_utilisateur_format()
                 $user = $_POST['user'];
                 $mdp = $_POST['mdp'];
                 $email = $_POST['email'];
-                $groupe = $_POST['groupe'];
                 foreach ($_POST['modifier'] as $nom => $valeur) {
                     $users[$nom]['prenom'] = $prenom[$nom];
                     $users[$nom]['nom'] = $nomm[$nom];
                     $users[$nom]['mdp'] = password_hash($mdp[$nom], PASSWORD_DEFAULT);
                     $users[$nom]['email'] = $email[$nom];
-                    $users[$nom]['groupe'] = $groupe[$nom];
                     if ($users[$nom]['user'] !== $user[$nom]) {
                         $old_photo_path = "Images\Employés\\" . $users[$nom]['user'] . ".jpg";
                         $new_photo_path = "Images\Employés\\" . $user[$nom] . ".jpg";
