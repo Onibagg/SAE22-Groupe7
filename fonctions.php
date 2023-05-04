@@ -266,7 +266,7 @@ function intranet_navbar()
 
                 <?php if ($isIT || $isDirection) { ?>
                     <li class="nav-item me-4 ms-4">
-                        <a class="nav-link" href="Portail-de-connexion.php"><img src="..\Images\Icons\key.png" draggable="false" height="25px"></a>
+                        <a class="nav-link" href="Portail-de-connexion.php"><img src="..\Images\Icons\key.png" draggable="false" height="28px"></a>
                     </li>
                 <?php } ?>
 

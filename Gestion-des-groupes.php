@@ -94,37 +94,48 @@ if (isset($_POST['nouveau_membre']) && isset($_POST['groupe'])) { // Traitement 
     header("Location: Gestion-des-groupes.php");
     exit();
 }
-
-echo '<div class="row">';                       // Affichage
-foreach ($groupes as $nom_groupe => $groupe) {
-    echo '<div class="col-sm-4">';
-    echo '<div class="card mt-5 me-4">';
-    echo '<div class="card-body">';
-    echo "<p class='display-6'>$nom_groupe</p>";
-    echo "<p>Membres actuels :</p>";
-    echo "<ul>";
-    foreach ($groupe['membres'] as $membre) {
-        echo "<hr><li>" . $membre['user'] . " <form method='post'><input type='hidden' name='nom_groupe' value='$nom_groupe'><input type='hidden' name='user' value='" . $membre['user'] . "'><button class='btn btn-outline-danger btn-sm' name='supprimer'>Supprimer</button></form></li>";
-    }
-    echo "</ul><hr class='ms-4'>";
-
-    echo "<form method='post'>";        // Form pour ajouter un membre
-    echo "<label for='nouveau_membre'>Ajouter un membre :</label>";
-    echo "<select name='nouveau_membre'>";
-    echo '<option value="">-- Sélectionnez un nouveau membre --</option>';
-    foreach ($utilisateurs as $utilisateur) {
-        echo "<option value='" . $utilisateur['user'] . "'>" . $utilisateur['prenom'] . " " . $utilisateur['nom'] . "</option>";
-    }
-    echo "</select>";
-    echo "<input type='hidden' name='groupe' value='$nom_groupe'>";
-    echo "<input type='submit' name='ajouter' value='Ajouter'>";
-    echo "</form>";
-
-    echo "</div>";
-    echo "</div>";
-    echo "</div>";
-}
-echo "</div>";
-
-
 ?>
+<div class="row">
+    <?php                    // Affichage
+    foreach ($groupes as $nom_groupe => $groupe) {
+    ?>
+        <div class="col-sm-4">
+            <div class="card mt-5 me-4">
+                <div class="card-body">
+                    <?php
+                    echo "<p class='display-6'>$nom_groupe</p>";
+                    echo "<p>Membres actuels :</p>";
+                    echo "<ul>";
+                    foreach ($groupe['membres'] as $membre) {
+                        echo "<hr><li>" . $membre['user'] . " <form method='post'><input type='hidden' name='nom_groupe' value='$nom_groupe'><input type='hidden' name='user' value='" . $membre['user'] . "'><button class='btn btn-outline-danger btn-sm' name='supprimer'>Supprimer</button></form></li>";
+                    }
+                    ?>
+                    </ul>
+                    <hr class='ms-4'>
+
+                    <form method='post'>
+                        <div class="input-group mb-3">
+                            <select class='form-select' name='nouveau_membre'>
+                                <option value="">--- Sélectionnez un nouveau membre ---</option>
+                                <?php
+                                foreach ($utilisateurs as $utilisateur) {
+                                    echo "<option value='" . $utilisateur['user'] . "'>" . $utilisateur['prenom'] . " " . $utilisateur['nom'] . "</option>";
+                                }
+                                ?>
+                            </select>
+                            <?php
+                            echo "<input type='hidden' name='groupe' value='$nom_groupe'>";
+                            ?>
+                            <button class='btn btn-outline-success' type='submit' name='ajouter' value='Ajouter'>Ajouter</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    <?php
+    }
+    echo "</div>";
+
+
+    ?>
