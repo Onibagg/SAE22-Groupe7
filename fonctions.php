@@ -272,21 +272,21 @@ function intranet_navbar()
 
                 <?php if ($isRH || $isDirection) { ?>
                     <li class="nav-item me-4 ms-4">
-                        <a class="nav-link" href="Gestion-des-groupes.php"><img src="..\Images\Icons\groups.png" draggable="false" height="25px"></a>
+                        <a class="nav-link" href="Gestion-des-groupes.php"><img src="..\Images\Icons\groups.png" draggable="false" height="32px"></a>
                     </li>
                 <?php } ?>
 
                 <li class="nav-item me-4 ms-4">
-                    <a class="nav-link" href="gest-fichiers.php"><img src="Images\Icons\folder.png" draggable="false" height="25px"></a>
+                    <a class="nav-link" href="gest-fichiers.php"><img src="Images\Icons\folder.png" draggable="false" height="32px"></a>
                 </li>
 
                 <li class="nav-item me-4 ms-4">
-                    <a class="nav-link" href="annuaire.php"><img src="..\Images\Icons\phone.png" draggable="false" height="25px"></a>
+                    <a class="nav-link" href="annuaire.php"><img src="..\Images\Icons\phone.png" draggable="false" height="32px"></a>
                 </li>
 
                 <?php if ($isFinances || $isDirection || $isCommerciaux) { ?>
                     <li class="nav-item me-4 ms-4">
-                        <a class="nav-link" href="gest-partenaires.php"><img src="..\Images\Icons\person.png" draggable="false" height="32px"></a>
+                        <a class="nav-link" href="gest-partenaires.php"><img src="..\Images\Icons\person.png" draggable="false" height="35px"></a>
                     </li>
                 <?php } ?>
 
