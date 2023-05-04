@@ -445,7 +445,7 @@ function ajout_utilisateur_format()
             echo '<td><input type="text" name="user[' . $nom . ']" value="' . $infos['user'] . '" class="form-control"></td>';
             echo '<td><input type="text" name="mdp[' . $nom . ']" value="" class="form-control"></td>';
             echo '<td><input type="text" name="email[' . $nom . ']" value="' . $infos['email'] . '" class="form-control"></td>';
-            echo '<td class="text-center"><input type="submit" name="modifier[' . $nom . ']" value="Modifier" class="btn btn-outline-dark"></td>';
+            echo '<td class="text-center"><input type="submit" name="modifier[' . $nom . ']" value="Enregistrer" class="btn btn-outline-success"></td>';
             echo '<td class="text-center"><input type="submit" name="supprimer[' . $nom . ']" value="Supprimer" class="btn btn-danger"></td>';
             echo '</tr>';
         }
@@ -495,7 +495,6 @@ function ajout_utilisateur_format()
 
         afficherUtilisateurs($users);
     }
-
 
     function deconnexion()
     {
@@ -619,7 +618,9 @@ function ajout_utilisateur_format()
 
             </div>
             <?php
+
         }
+
 
         if ($handle = opendir($dir)) {
             while (false !== ($entry = readdir($handle))) {
@@ -627,13 +628,22 @@ function ajout_utilisateur_format()
                     if (is_dir($dir . $entry)) {
             ?>
                         <div class='col'>
-                            <a href='?dir=<?php echo $entry; ?>' class='text-dark' style='text-decoration: none;'>
-                                <div class='card shadow-sm'>
-                                    <div class='card-body'>
-                                        <h5 class='card-title'><img src='Images\Icons\\folder.png' height='25px'> <?php echo $entry; ?></h5>
+                            <form action='gest-fichiers.php' method='post' name='folder_name'>
+                                <a href='?dir=<?php echo $entry; ?>' class='text-dark' style='text-decoration: none;'>
+                                    <div class='card shadow-sm'>
+                                        <div class='card-body'>
+                                            <h5>
+                                                <img src='Images\Icons\\folder.png' height='25px'> <?php echo $entry; ?>
+                                                <button type='submit' name='delete_folder' class='float-end btn btn-danger btn-sm'>
+                                                    <img src='Images\Icons\\delete.png' height='25px'>
+                                                    <input type='hidden' name='folder_name_to_delete' value="<?php echo $entry; ?>">
+                                                </button>
+                                            </h5>
+                                        </div>
+
                                     </div>
-                                </div>
-                            </a>
+                                </a>
+                            </form>
 
                         </div>
         <?php
@@ -642,6 +652,45 @@ function ajout_utilisateur_format()
                 }
             }
             closedir($handle);
+        }
+        ?>
+        </div>
+        <div class='row mt-5'>
+            <div class="col">
+            </div>
+            <div class="col text-center">
+                <div class='card shadow-sm'>
+                    <div class='card-body'>
+                        <h5 class='card-title'>Nouveau dossier</h5>
+                        <form action='' method='post'>
+                            <div class='form-group'>
+                                <input type='text' class='form-control' name='new_folder_name' placeholder='Nom du dossier'>
+                            </div>
+                            <button type='submit' class=' mt-2 btn btn-outline-dark'>Ajouter</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col"></div>
+        </div>
+        <?php
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (isset($_POST['new_folder_name'])) {
+                $new_folder_name = $_POST['new_folder_name'];
+                $new_folder_path = $dir . $new_folder_name;
+                if (!file_exists($new_folder_path)) {
+                    mkdir($new_folder_path, 0777);
+                    echo '<meta http-equiv="refresh" content="0">';
+                } else {
+                    echo "<div class='alert alert-danger mt-3 ms-5 me-5'>Le dossier <strong>$new_folder_name</strong> existe déjà.</div>";
+                }
+            }
+            if (isset($_POST['delete_folder'])) {
+                $folder_name = $_POST['folder_name_to_delete'];
+                $dir = "Data\Gestionnaire-de-fichier\\" . $folder_name;
+                rmdir($dir);
+                echo '<meta http-equiv="refresh" content="0">';
+            }
         }
     }
 
@@ -656,7 +705,7 @@ function ajout_utilisateur_format()
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
                         <div class="input-group mb-3">
                             <input type="file" class="form-control" name="fileToUpload" id="fileToUpload">
-                            <button type="submit" class="btn btn-primary" name="uploadBtn">Upload</button>
+                            <button type="submit" class="btn btn-outline-primary" name="uploadBtn">Upload</button>
                         </div>
                     </form>
                 </div>
@@ -707,9 +756,8 @@ function ajout_utilisateur_format()
         }
         return round($size, 2) . ' ' . $units[$i];
     }
-    function fichiers()
+    function fichiers($dir)
     {
-        $dir = "Data\Gestionnaire-de-fichier\\";
         ?>
         <div class="container">
             <div class="row">
@@ -778,34 +826,46 @@ function ajout_utilisateur_format()
                             ?>
                                         <td>
                                             <?php
-                                            $allowed_types = array('pdf', 'mp3', 'mp4', 'png', 'txt', 'jpg', 'jpeg');
-                                            if (in_array($ext, $allowed_types)) {
+                                            $type_ok = array('pdf', 'mp3', 'mp4', 'png', 'txt', 'jpg', 'jpeg');
+                                            if (in_array($ext, $type_ok)) {
                                             ?>
-                                                <a href="<?php echo $dir . $entry ?>" target="_blank" class="btn btn-sm btn-outline-primary">
-                                                    <img src="Images\Icons\eye.png" height="25px">
-                                                </a>
-                                            <?php
+                                                <form method="post">
+                                                    <a href="<?php echo $dir . $entry ?>" target="_blank" class="btn btn-sm btn-outline-primary">
+                                                        <img src="Images\Icons\eye.png" height="25px">
+                                                    </a>
+                                                <?php
                                             } else {
-                                            ?>
-                                                <a href="<?php echo $dir . $entry ?>" target="_blank" class="btn btn-sm btn-outline-secondary disabled">
-                                                    <img src="Images\Icons\eye-cross.png" height="25px">
-                                                </a>
-                                            <?php
-
+                                                ?>
+                                                    <a href="<?php echo $dir . $entry ?>" target="_blank" class="btn btn-sm btn-outline-secondary disabled">
+                                                        <img src="Images\Icons\eye-cross.png" height="25px">
+                                                    </a>
+                                                <?php
                                             }
-                                            ?>
-                                            <a href='<?php echo "$dir$entry" ?>' download class='btn btn-sm btn-outline-success'>
-                                                <img src='Images\Icons\download.png' height='25px'>
-                                            </a>
+                                                ?>
+                                                <a href='<?php echo "$dir$entry" ?>' download class='btn btn-sm btn-outline-success me-0'>
+                                                    <img src='Images\Icons\download.png' height='25px'>
+                                                </a>
 
-                                            <a href="" class="btn btn-sm btn-outline-danger">
-                                                <img src="Images\Icons\delete.png" height="25px">
-                                            </a>
+                                                <input type="hidden" name="file_name" value="<?php echo $entry ?>">
+                                                <button type="submit" class="ms-0 btn btn-sm btn-outline-danger" name="delete_file">
+                                                    <img src="Images\Icons\delete.png" height="25px">
+                                                </button>
+                                                </form>
+
 
                                         </td>
 
                                         </tr>
                             <?php
+                                        if (isset($_POST['delete_file'])) {
+                                            $file_name = $_POST['file_name'];
+                                            $file_path = $dir . $file_name;
+                                            if (file_exists($file_path) && !is_dir($file_path)) {
+                                                unlink($file_path);
+                                                echo '<meta http-equiv="refresh" content="0">';
+                                                exit();
+                                            }
+                                        }
                                     }
                                 }
                                 closedir($handle);

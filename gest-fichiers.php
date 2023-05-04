@@ -17,5 +17,5 @@ intranet_navbar();
 
 <?php
 echo upload();
-echo fichiers();
+echo fichiers($dir);
 ?>

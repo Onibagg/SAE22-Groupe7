@@ -12,7 +12,7 @@ intranet_navbar();
             <div class="card">
                 <a data-bs-toggle="collapse" href="#collapse1" style="text-decoration: none;" class="text-dark">
                     <div class="card-header">
-                        Évènements à venir :
+                        Évènements à venir
                     </div>
                 </a>
 
@@ -32,26 +32,20 @@ intranet_navbar();
             <div class="card">
                 <a data-bs-toggle="collapse" href="#collapse2" style="text-decoration: none;" class="text-dark">
                     <div class="card-header">
-                        Collapsible Group Item #2
+                        Ajout de nouveaux utilisateurs
                     </div>
                 </a>
 
                 <div id="collapse2" class="collapse" data-bs-parent="#accordion">
                     <div class="card-body">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <a data-bs-toggle="collapse" href="#collapse3" style="text-decoration: none;" class="text-dark">
-                    <div class="card-header">
-                        Collapsible Group Item #3
-                    </div>
-                </a>
-
-                <div id="collapse3" class="collapse" data-bs-parent="#accordion">
-                    <div class="card-body">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        <div class="row">
+                            <div class="mt-5 col text-center">
+                                Grâce à la card de droite vous pouvez voir les nouveaux utilisateurs qui souhaite rejoindre l'intranet. Vous pouvez visualiser la demande d'ajout complète en cliquant sur l'oeil bleu. Ou bien accepter ou refuser la demande grace au deux boutons sur la droite.<br>(Visible uniquement si vous faites partie des <b>RH</b> ou de la  <b>Direction </b>)
+                            </div>
+                            <div class="col">
+                                <img src="Images\Screen\newusers.png" width="350px">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
