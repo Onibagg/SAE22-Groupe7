@@ -596,9 +596,8 @@ function ajout_utilisateur_format()
         exit;
     }
 
-    function afficherdir()
+    function afficherdir($dir)
     {
-        $dir = "Data\Gestionnaire-de-fichier\\";
         if (isset($_GET['dir'])) {
             $dir .= $_GET['dir'] . '\\';
         }
@@ -615,15 +614,14 @@ function ajout_utilisateur_format()
                         </div>
                     </div>
                 </a>
-
             </div>
             <?php
 
         }
 
 
-        if ($handle = opendir($dir)) {
-            while (false !== ($entry = readdir($handle))) {
+        if ($fichier = opendir($dir)) {
+            while (false !== ($entry = readdir($fichier))) {
                 if ($entry != "." && $entry != "..") {
                     if (is_dir($dir . $entry)) {
             ?>
@@ -640,18 +638,16 @@ function ajout_utilisateur_format()
                                                 </button>
                                             </h5>
                                         </div>
-
                                     </div>
                                 </a>
                             </form>
-
                         </div>
         <?php
                     } else {
                     }
                 }
             }
-            closedir($handle);
+            closedir($fichier);
         }
         ?>
         </div>
@@ -687,16 +683,17 @@ function ajout_utilisateur_format()
             }
             if (isset($_POST['delete_folder'])) {
                 $folder_name = $_POST['folder_name_to_delete'];
-                $dir = "Data\Gestionnaire-de-fichier\\" . $folder_name;
-                rmdir($dir);
+                $dire = $dir . $folder_name;
+                rmdir($dire);
                 echo '<meta http-equiv="refresh" content="0">';
             }
         }
+        echo upload($dir);
+        echo fichiers($dir);
     }
 
-    function upload()
+    function upload($dir)
     {
-        $dir = "Data\Gestionnaire-de-fichier\\";
         ?>
         <br>
         <div class="container">
@@ -722,19 +719,13 @@ function ajout_utilisateur_format()
             if (file_exists($target_file)) {
                 echo "<div class='alert alert-danger'>Désolé, ce fichier existe déjà.</div>";
                 $uploadOk = 0;
-            }
-
-            if ($_FILES["fileToUpload"]["size"] > 5000000000) {
-                echo "<div class='alert alert-danger'>Désolé, votre fichier est trop volumineux. (Max 5 Go)</div>";
+            } elseif ($_FILES["fileToUpload"]["size"] > 500000000) {
+                echo "<div class='alert alert-danger'>Désolé, votre fichier est trop volumineux. (Max 500 Mo)</div>";
                 $uploadOk = 0;
-            }
-
-            if ($imageFileType != "jpg" && $imageFileType != "jpeg" && $imageFileType != "png" && $imageFileType != "gif" && $imageFileType != "pdf" && $imageFileType != "doc" && $imageFileType != "docx" && $imageFileType != "xls" && $imageFileType != "xlsx" && $imageFileType != "html" && $imageFileType != "css" && $imageFileType != "ppt" && $imageFileType != "pptx" && $imageFileType != "mp3" && $imageFileType != "mp4" && $imageFileType != "zip" && $imageFileType != "txt") {
+            } elseif ($imageFileType != "jpg" && $imageFileType != "jpeg" && $imageFileType != "png" && $imageFileType != "gif" && $imageFileType != "pdf" && $imageFileType != "doc" && $imageFileType != "docx" && $imageFileType != "xls" && $imageFileType != "xlsx" && $imageFileType != "html" && $imageFileType != "css" && $imageFileType != "ppt" && $imageFileType != "pptx" && $imageFileType != "mp3" && $imageFileType != "mp4" && $imageFileType != "zip" && $imageFileType != "txt") {
                 echo "<div class='alert alert-danger'>Désolé, seuls les fichiers de type JPG, JPEG, PNG, GIF, PDF, DOC, DOCX, XLS, XLSX, HTML, CSS, PPT, PPTX, MP3, MP4, ZIP et TXT sont autorisés.</div>";
                 $uploadOk = 0;
-            }
-
-            if ($uploadOk == 0) {
+            } elseif ($uploadOk == 0) {
                 echo "<div class='alert alert-danger'>Désolé, votre fichier n'a pas été téléchargé.</div>";
             } else {
                 if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
@@ -773,8 +764,8 @@ function ajout_utilisateur_format()
                         </thead>
                         <tbody>
                             <?php
-                            if ($handle = opendir($dir)) {
-                                while (false !== ($entry = readdir($handle))) {
+                            if ($fichier = opendir($dir)) {
+                                while (false !== ($entry = readdir($fichier))) {
                                     if (!is_dir($dir . $entry)) {
                                         $filesize = filesize($dir . $entry);
                                         $filemtime = date("d/m/Y H:i:s", filemtime($dir . $entry));
@@ -868,7 +859,7 @@ function ajout_utilisateur_format()
                                         }
                                     }
                                 }
-                                closedir($handle);
+                                closedir($fichier);
                             }
                             ?>
 

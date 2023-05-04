@@ -9,13 +9,7 @@ intranet_navbar();
 <div class="container">
      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
           <?php
-          $dir = "Data\Gestionnaire-de-fichier\\";
-          echo afficherdir();
+          echo afficherdir("Data\Gestionnaire-de-fichier\\");
           ?>
      </div>
 </div>
-
-<?php
-echo upload();
-echo fichiers($dir);
-?>
