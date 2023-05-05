@@ -66,16 +66,21 @@ setup();
                                 <label for="email">Email</label>
                             </div>
                             <div class="form-floating mb-3 mt-3">
+                                <input type="text" class="form-control" id="poste" placeholder="Poste" name="poste">
+                                <label for="poste">Poste</label>
+                            </div>
+                            <div class="form-floating mb-3 mt-3">
                                 <input type="password" class="form-control" id="mdp" placeholder="Mot de passe" name="mdp">
                                 <label for="mdp">Mot de passe</label>
                             </div>
                             <?php
                             if (isset($_POST['demande'])) {
-                                if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['user'])) {
+                                if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['user']) && !empty($_POST['email']) && !empty($_POST['poste']) && !empty($_POST['mdp'])) {
                                     $nom = $_POST['nom'];
                                     $prenom = $_POST['prenom'];
                                     $user = $_POST['user'];
                                     $email = $_POST['email'];
+                                    $poste = $_POST['poste'];
                                     $mdp = $_POST['mdp'];
 
                                     $users = file_decod('Data\demande-compte.json');
@@ -86,6 +91,7 @@ setup();
                                         'user' => $user,
                                         'mdp' => password_hash($mdp, PASSWORD_DEFAULT),
                                         'email' => $email,
+                                        'poste' => $poste
                                     ];
 
                                     $src = "Images\Employés\blank-profile-picture.jpg";
