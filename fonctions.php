@@ -374,45 +374,36 @@ function ajout_utilisateur_format()
                     <input class="form-control" placeholder="E-Mail" rows="1" id="email" name="email"></input>
                 </div>
                 <div class="col">
-                    <select class="form-select form-select" placeholder="Groupe" id="groupe" name="groupe">
-                        <option></option>
-                        <option>Direction</option>
-                        <option>Commerciaux</option>
-                        <option>IT</option>
-                        <option>RH</option>
-                        <option>Finance</option>
-                        <option>Production</option>
-                    </select>
-                </div>
-                <div class="col">
                     <button type="submit" name="new-user" class="btn btn-outline-dark">Ajouter</button>
                 </div>
             </div>
         </form>
         <?php
         if (isset($_POST['new-user'])) {
-            if (isset($_POST['prenom']) && isset($_POST['nom']) && isset($_POST['pseudo']) && isset($_POST['mdp']) && isset($_POST['confirmation']) && isset($_POST['email']) && isset($_POST['groupe'])) {
+            if (isset($_POST['prenom']) && isset($_POST['nom']) && isset($_POST['pseudo']) && isset($_POST['mdp']) && isset($_POST['confirmation']) && isset($_POST['email'])) {
                 $prenom = $_POST['prenom'];
                 $nom = $_POST['nom'];
                 $usr = $_POST['pseudo'];
                 $mdp = $_POST['mdp'];
                 $confirmation = $_POST['confirmation'];
                 $email = $_POST['email'];
-                $grp = $_POST['groupe'];
 
                 if ($mdp !== $confirmation) {
                     echo "<br><div class='alert alert-danger'>Les <b>mots de passe</b> ne correspondent pas.</div>";
-                } elseif (empty($prenom) || empty($nom) || empty($usr) || empty($mdp) || empty($confirmation) || empty($email) || empty($grp)) {
+                } elseif (empty($prenom) || empty($nom) || empty($usr) || empty($mdp) || empty($confirmation) || empty($email)) {
                     echo "<br><div class='alert alert-warning'><b>Tous</b> les champs sont obligatoires.</div>";
                 } else {
-                    addUser($prenom, $nom, $usr, $mdp, $email, $grp);
+                    addUser($prenom, $nom, $usr, $mdp, $email);
                     echo "<br><div class='alert alert-success'><b>$prenom</b> <b>$nom</b> a été ajouté à l'équipe !</div>";
                 }
             }
         } else {
         }
+        ?>
+        <?php
     }
-    function addUser($prenom, $nom, $usr, $mdp, $email, $grp)
+
+    function addUser($prenom, $nom, $usr, $mdp, $email)
     {
         $users = file_decod('Data\login-mdp.json');
 
@@ -421,8 +412,7 @@ function ajout_utilisateur_format()
             'nom' => $nom,
             'user' => $usr,
             'mdp' => password_hash($mdp, PASSWORD_DEFAULT),
-            'email' => $email,
-            'groupe' => $grp
+            'email' => $email
         ];
 
         $src = "Images\Employés\blank-profile-picture.jpg";
@@ -437,7 +427,7 @@ function ajout_utilisateur_format()
         echo '<form method="post">';
         echo '<div class="table-responsive">';
         echo '<table class="table table-hover">';
-        echo "<tr><th>Prénom</th><th>Nom</th><th>Nom d'utilisateur</th><th>Nouveau MDP</th><th>E-Mail</th><th></th><th></th></tr>";
+        echo "<tr><th>Prénom</th><th>Nom</th><th>Nom d'utilisateur</th><th>Nouveau MDP</th><th>E-Mail</th><th>Poste</th><th></th></tr>";
         foreach ($utilisateurs as $nom => $infos) {
             echo '<tr>';
             echo '<td><input type="text" name="prenom[' . $nom . ']" value="' . $infos['prenom'] . '" class="form-control"></td>';
@@ -445,8 +435,8 @@ function ajout_utilisateur_format()
             echo '<td><input type="text" name="user[' . $nom . ']" value="' . $infos['user'] . '" class="form-control"></td>';
             echo '<td><input type="text" name="mdp[' . $nom . ']" value="" class="form-control"></td>';
             echo '<td><input type="text" name="email[' . $nom . ']" value="' . $infos['email'] . '" class="form-control"></td>';
-            echo '<td class="text-center"><input type="submit" name="modifier[' . $nom . ']" value="Enregistrer" class="btn btn-outline-success"></td>';
-            echo '<td class="text-center"><input type="submit" name="supprimer[' . $nom . ']" value="Supprimer" class="btn btn-danger"></td>';
+            echo '<td class="text-center"><input type="submit" name="modifier[' . $nom . ']" value="Enregistrer" class="btn me-3 btn-outline-success">';
+            echo '<input type="submit" name="supprimer[' . $nom . ']" value="Supprimer" class="btn btn-danger"></td>';
             echo '</tr>';
         }
         echo '</table>';
@@ -551,7 +541,7 @@ function ajout_utilisateur_format()
                         'user' => $user_accepte['user'],
                         'mdp' => $user_accepte['mdp'],
                         'email' => $user_accepte['email'],
-                        'groupe' => '',
+                        'poste' => $user_accepte['poste'],
                     );
                     $login_mdp_contenu = file_get_contents($login_mdp); //récupère le fichier des vrai users
                     $login_mdp_contenu = json_decode($login_mdp_contenu, true); //converti en tableau
@@ -870,5 +860,3 @@ function ajout_utilisateur_format()
         </div>
     <?php
     }
-
-    ?>
