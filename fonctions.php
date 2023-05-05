@@ -870,5 +870,95 @@ function ajout_utilisateur_format()
         </div>
     <?php
     }
+    function affiche_annuaire_tablelo() {
+        if (isset($_POST['supprimer'])) {
+            $parsstp = explode(',', $_POST['supprimer']);
+            degage_gens_from_annuaire($parsstp[0], $parsstp[1]);
+            $annuaire = json_decode(file_get_contents("Data/annuaire.json"), true);
+            echo '<form method="post">';
+            echo '<table class="table table-striped">';
+            echo '<thead><tr><th>Nom</th><th>Prénom</th><th>Poste</th><th>Action</th></tr></thead>';
+            echo '<tbody>';
+            foreach ($annuaire as $personne) {
+              echo '<tr><td>' . $personne['nom'] . '</td><td>' . $personne['prenom'] . '</td><td>' . $personne['poste'] . '</td><td class="text-center"><button type="submit" name="supprimer" value="' . $personne['nom'] . ',' . $personne['prenom'] . '" class="btn btn-danger">Supprimer</button></td></tr>';
+            }
+            echo '</tbody></table>';
+            echo '</form>';
+          }
+        else{         
+        $annuaire = json_decode(file_get_contents("Data/annuaire.json"), true);
+        echo '<form method="post">';
+        echo '<table class="table table-striped">';
+        echo '<thead><tr><th>Nom</th><th>Prénom</th><th>Poste</th><th>Action</th></tr></thead>';
+        echo '<tbody>';
+        foreach ($annuaire as $personne) {
+          echo '<tr><td>' . $personne['nom'] . '</td><td>' . $personne['prenom'] . '</td><td>' . $personne['poste'] . '</td><td class="text-center"><button type="submit" name="supprimer" value="' . $personne['nom'] . ',' . $personne['prenom'] . '" class="btn btn-danger">Supprimer</button></td></tr>';
+        }
+        echo '</tbody></table>';
+        echo '</form>';
+      }
+    }
+      
+      
+    function ajout_collab_format()
+{
+    ?>
+        <form action="annuaire.php" id="new-collab" method="POST">
+            <div class="row">
+                <div class="col">
+                    <input class="form-control" placeholder="Prénom" rows="1" id="prenom" name="prenom"></input>
+                </div>
+                <div class="col">
+                    <input class="form-control" placeholder="Nom" rows="1" id="nom" name="nom"></input>
+                </div>
+                <div class="col">
+                    <input class="form-control" placeholder="Poste" rows="1" id="poste" name="poste"></input>
+                </div>
+                <div class="col">
+                    <button type="submit" name="new-collab" class="btn btn-outline-dark">Ajouter</button>
+                </div>
+            </div>
+        </form>
+        <?php
+        if (isset($_POST['new-collab'])) {
+            if (isset($_POST['prenom']) && isset($_POST['nom']) && isset($_POST['poste'])) {
+                $prenom = $_POST['prenom'];
+                $nom = $_POST['nom'];
+                $poste = $_POST['poste'];
+                if (empty($prenom) || empty($nom) || empty($poste)) {
+                    echo "<br><div class='alert alert-warning'><b>Tous</b> les champs sont obligatoires.</div>";
+                } else {
+                    addCollab($prenom, $nom, $poste);
+                    echo "<br><div class='alert alert-success'><b>$prenom</b> <b>$nom</b> a été ajouté à l'équipe !</div>";
+                }
+            }
+        } else {
+        }
+    }
+    function addCollab($nom, $prenom, $poste) {
+        $annuaire = json_decode(file_get_contents("Data/annuaire.json"), true);
+        $nouv_collab = array(
+          "nom" => $nom,
+          "prenom" => $prenom,
+          "poste" => $poste
+        );
+        array_push($annuaire, $nouv_collab);
+        file_put_contents("Data/annuaire.json", json_encode($annuaire));
+      }
+      function degage_gens_from_annuaire($nom, $prenom) {
+        $annuaire = json_decode(file_get_contents("Data/annuaire.json"), true);
+        $yessir = null;
+        foreach ($annuaire as $i => $person) {
+          if ($person['nom'] === $nom && $person['prenom'] === $prenom) {
+            $yessir = $i;
+            break;
+          }
+        }
 
+        if ($yessir !== null) {
+          array_splice($annuaire, $yessir, 1);
+        }
+        file_put_contents('Data\annuaire.json', json_encode($annuaire));
+      }
+      
     ?>
