@@ -11,6 +11,7 @@
 - Ajouter des choses à la page d'acceuil de l'Intranet : 
 - - Nouveaux évenements
 - - Nouveaux nouveau utilisateurs
-- - 
+
+- il manque plus qu'a faire en sorte que l'on puisse modifier son nom d'utilisateur et que ca nous deconnecte
 
 
