@@ -99,28 +99,24 @@ if (isset($_POST['new-profile'])) {
 
     $prenom = $_POST['prenom'];
     $nom = $_POST['nom'];
-    $user = $_POST['user'];
+    $user = $_SESSION['user'];
     $email = $_POST['email'];
     $nouveauMdp = $_POST['nouveauMdp'];
     $confirmationMdp = $_POST['confirmationMdp'];
 
-    // Valider et mettre à jour les informations de l'utilisateur
     $data = json_decode(file_get_contents('Data/login-mdp.json'), true);
     if (isset($data[$user])) {
         $data[$user]['prenom'] = $prenom;
         $data[$user]['nom'] = $nom;
         $data[$user]['email'] = $email;
 
-        // Vérifier si un nouveau mot de passe a été saisi et le mettre à jour
         if (!empty($nouveauMdp)) {
             $data[$user]['mdp'] = $nouveauMdp;
         }
 
-        // Sauvegarder les modifications dans le fichier JSON
         file_put_contents('Data/login-mdp.json', json_encode($data));
 
-        // Rediriger vers une page de confirmation ou effectuer d'autres actions
-        header("Location: confirmation.php");
+        header("Location: monprofil.php");
         exit();
     }
 }
