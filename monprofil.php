@@ -75,6 +75,26 @@ intranet_navbar();
                 <button name="new-profile" type="submit" class="btn btn-outline-success">Enregistrer les modifications</button>
                 </form>
             </div>
+            <script>
+                // Récupérer les éléments de formulaire
+                var prenomInput = document.getElementById('prenom');
+                var nomInput = document.getElementById('nom');
+                var emailInput = document.getElementById('email');
+
+                // Ajouter des écouteurs d'événements pour chaque champ
+                prenomInput.addEventListener('click', function() {
+                    prenomInput.value = "<?php echo $prenom; ?>";
+                });
+
+                nomInput.addEventListener('click', function() {
+                    nomInput.value = "<?php echo $nom; ?>";
+                });
+
+                emailInput.addEventListener('click', function() {
+                    emailInput.value = "<?php echo $email; ?>";
+                });
+            </script>
+
         <?php
         }
         ?>
@@ -120,7 +140,5 @@ if (isset($_POST['new-profile'])) {
         exit();
     }
 }
-
-
 
 ?>
