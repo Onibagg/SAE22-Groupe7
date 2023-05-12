@@ -119,37 +119,7 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
 
             </div>
 
-            <!-- Carousel -->
-            <div id="accueil" class="carousel slide mt-5" data-bs-ride="carousel">
-
-                <!-- Indicators/dots -->
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#accueil" data-bs-slide-to="0" class="active"></button>
-                    <button type="button" data-bs-target="#accueil" data-bs-slide-to="1"></button>
-                    <button type="button" data-bs-target="#accueil" data-bs-slide-to="2"></button>
-                </div>
-
-                <!-- The slideshow/carousel -->
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="Images\Pictures\montagne1.jpg" alt="Los Angeles" class="rounded d-block w-100">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="Images\Pictures\earth.jpg" alt="Chicago" class="rounded d-block w-100">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="Images\Pictures\montagne3.jpeg" alt="New York" class="rounded d-block w-100">
-                    </div>
-                </div>
-
-                <!-- Left and right controls/icons -->
-                <button class="carousel-control-prev" type="button" data-bs-target="#accueil" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon"></span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#accueil" data-bs-slide="next">
-                    <span class="carousel-control-next-icon"></span>
-                </button>
-            </div>
+            <div class="mt-5" id="map"></div>
 
 
         </div>
@@ -231,3 +201,113 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
     <br>
 
 </body>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <script>
+        function initMap() {
+            // Coordonnées de Londres
+            var positions = [{
+                    lat: 48.8566,
+                    lng: 2.3522,
+                    title: 'Paris',
+                    info: 'Headquarters'
+                },
+                {
+                    lat: 43.7102,
+                    lng: 7.2620,
+                    title: 'Nice',
+                    info: 'SKO'
+                },
+                {
+                    lat: 43.6047,
+                    lng: 1.4442,
+                    title: 'Toulouse',
+                    info: ''
+                },
+                {
+                    lat: 48.5734,
+                    lng: 7.7521,
+                    title: 'Strasbourg',
+                    info: 'Salon du Numérique'
+                },
+                {
+                    lat: 47.2184,
+                    lng: -1.5536,
+                    title: 'Nantes',
+                    info: 'Nouvelle Équipe'
+                }, {
+                    lat: 48.1173,
+                    lng: -1.6778,
+                    title: 'Rennes',
+                    info: ''
+                },
+                {
+                    lat: 48.6493,
+                    lng: -2.0260,
+                    title: 'Saint-Malo',
+                    info: 'Team Building'
+                },
+                {
+                    lat: 47.6582,
+                    lng: -2.7608,
+                    title: 'Vannes',
+                    info: ''
+                },
+                {
+                    lat: 46.8065,
+                    lng: 1.6917,
+                    title: 'Châteauroux',
+                    info: ''
+                }
+            ];
+
+
+            // Créer une carte centrée sur Londres
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 5,
+                center: {
+                    lat: 46.603354,
+                    lng: 1.888334
+                }
+
+            });
+
+            positions.forEach(function(position) {
+                var marker = new google.maps.Marker({
+                    position: {
+                        lat: position.lat,
+                        lng: position.lng
+                    },
+                    map: map,
+                    label: position.label
+                });
+
+                // Créer une infobulle avec le libellé et le texte supplémentaire
+                var infowindow = new google.maps.InfoWindow({
+                    content: '<strong>' + position.title + '</strong><br>' + position.info
+                });
+
+                // Ajouter un événement de clic pour afficher l'infobulle
+                marker.addListener('click', function() {
+                    infowindow.open(map, marker);
+                });
+            });
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5HZ6FM1R-MdRzTZnQT1k_pU_zee7HieM&callback=initMap" async defer></script>
+</body>
+
+</html>
