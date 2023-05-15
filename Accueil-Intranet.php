@@ -261,9 +261,9 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                     info: 'Team Building'
                 },
                 {
-                    lat: 47.6582,
-                    lng: -2.7608,
-                    title: 'Vannes',
+                    lat: 37.334537,
+                    lng: -122.008981,
+                    title: 'San José', 
                     info: ''
                 },
                 {
@@ -277,10 +277,10 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
 
             // Créer une carte centrée sur Londres
             var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 5,
+                zoom: 2,
                 center: {
-                    lat: 46.603354,
-                    lng: 1.888334
+                    lat: 35.603354,
+                    lng: -30.888334
                 }
 
             });
