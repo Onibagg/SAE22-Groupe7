@@ -15,3 +15,7 @@
 - il manque plus qu'a faire en sorte que l'on puisse modifier son nom d'utilisateur et que ca nous deconnecte
 
 
+
+
+
+- Envoyer un mail votre demande a été prise en compte et aussi si elle a été acceptée ou refusée
