@@ -35,14 +35,14 @@ intranet_navbar();
                 <div class="input-group mb-3 mt-3">
                     <span class="input-group-text">Prénom</span>
                     <div class="form-floating">
-                        <input type="text" class="form-control" id="prenom" placeholder="<?php echo $prenom; ?>" name="prenom">
+                        <input type="text" class="form-control" id="prenom" placeholder="<?php echo $prenom; ?>" name="prenom" required>
                         <label for="prenom"><?php echo $prenom; ?></label>
                     </div>
                 </div>
                 <div class="input-group mb-3 mt-3">
                     <span class="input-group-text">Prénom</span>
                     <div class="form-floating">
-                        <input type="text" class="form-control" id="nom" placeholder="<?php echo $nom; ?>" name="nom">
+                        <input type="text" class="form-control" id="nom" placeholder="<?php echo $nom; ?>" name="nom" required>
                         <label for="nom"><?php echo $nom; ?></label>
                     </div>
                 </div>
@@ -56,16 +56,16 @@ intranet_navbar();
                 <div class="input-group mb-3 mt-3">
                     <span class="input-group-text">E-mail</span>
                     <div class="form-floating">
-                        <input type="text" class="form-control" id="email" placeholder="<?php echo $email; ?>" name="email">
+                        <input type="text" class="form-control" id="email" placeholder="<?php echo $email; ?>" name="email" required>
                         <label for="email"><?php echo $email; ?></label>
                     </div>
                 </div>
                 <div class="form-floating mb-2 mt-5">
-                    <input type="password" class="form-control" id="nouveauMdp" placeholder="Mot de passe" name="nouveauMdp">
+                    <input type="password" class="form-control" id="nouveauMdp" placeholder="Mot de passe" name="nouveauMdp" required>
                     <label for="nouveauMdp">Nouveau Mot de passe</label>
                 </div>
                 <div class="form-floating mb-3 mt-2">
-                    <input type="password" class="form-control" id="confirmationMdp" placeholder="Mot de passe" name="confirmationMdp">
+                    <input type="password" class="form-control" id="confirmationMdp" placeholder="Mot de passe" name="confirmationMdp" required>
                     <label for="confirmationMdp">Confirmation</label>
                 </div>
             </div>

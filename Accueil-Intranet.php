@@ -67,8 +67,8 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                     </div>
                     <div class="row">
                         <div class="col text-center">
-                            <button type="button" class="mt-1 btn btn-outline-dark">
-                                <p class="mb-0">Team Building</p>
+                            <button type="button" class="mt-0 btn btn-outline-dark">
+                                <p class="mb-0">Evenement</p>
                                 <span class="spinner-grow spinner-grow-sm"></span>
                                 <br>
                                 <?php
@@ -77,8 +77,8 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                             </button>
                         </div>
                         <div class="col text-center">
-                            <button type="button" class="mt-5 btn btn-outline-dark">
-                                <p class="mb-0">Nouvelle Offre</p>
+                            <button type="button" class="mt-2 btn btn-outline-dark">
+                                <p class="mb-0">Evenement</p>
                                 <span class="spinner-grow spinner-grow-sm"></span>
                                 <br>
                                 <?php
@@ -89,7 +89,41 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                         </div>
                         <div class="col">
                             <button type="button" class="mt-3 btn btn-outline-dark">
-                                <p class="mb-0">SKO</p>
+                                <p class="mb-0">Evenement</p>
+                                <span class="spinner-grow spinner-grow-sm"></span>
+                                <br>
+                                <?php
+                                echo countdown("2023-07-27 18:33:00");
+                                ?>
+                            </button>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col text-center">
+                            <button type="button" class="mt-1 btn btn-outline-dark">
+                                <p class="mb-0">Evenement</p>
+                                <span class="spinner-grow spinner-grow-sm"></span>
+                                <br>
+                                <?php
+                                echo countdown("2023-06-29 12:15:00");
+                                ?>
+                            </button>
+                        </div>
+                        <div class="col text-center">
+                            <button type="button" class="mt-0 btn btn-outline-dark">
+                                <p class="mb-0">Evenement</p>
+                                <span class="spinner-grow spinner-grow-sm"></span>
+                                <br>
+                                <?php
+                                echo countdown("2023-05-11 00:00:00");
+                                ?>
+                            </button>
+
+                        </div>
+                        <div class="col">
+                            <button type="button" class="mt-3 btn btn-outline-dark">
+                                <p class="mb-0">Evenement</p>
                                 <span class="spinner-grow spinner-grow-sm"></span>
                                 <br>
                                 <?php
@@ -263,7 +297,7 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                 {
                     lat: 37.334537,
                     lng: -122.008981,
-                    title: 'San José', 
+                    title: 'San José',
                     info: ''
                 },
                 {
