@@ -14,6 +14,9 @@ function setup()
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <link href="Style\style.css" type="text/css" rel="stylesheet">
+        <link href="style.css" type="text/css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.5/dist/sweetalert2.min.css">
+
         <link href="Style\intranet-navbar.css" type="text/css" rel="stylesheet">
         <link rel="icon" type="image/x-icon" href="Images\PrivateVPN_logo.png">
         <title>Private VPN | Le meilleur des VPN</title>
@@ -175,13 +178,91 @@ function page_foot()
                     <a class="text-dark" href="Mes_donnees_personnelles.php">Mes données personnelles</a>
                 </div>
                 <div class="col-sm-6">
-                    <img src="Images\Screen_475-removebg.png" width="400" height="60">
+                    <img src="Images\Screen_475-removebg.png" width="400" height="60"></br></br>
+                    
+                    <!----------------MODALE--------------------->
+                    
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal1">
+                    Nous contacter
+                </button>
+
+                <div class="modal fade" id="myModal1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">NOUS CONTACTER</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <form method="POST" action="">
+                                    <div class="mb-3">
+                                        <label for="inputNom" class="form-label">Nom</label>
+                                        <input type="text" class="form-control" id="inputNomprenom" name="nomprenom" placeholder="Votre nom et prénom">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="inputPrenom" class="form-label">Mail</label>
+                                        <input type="mail" class="form-control" id="inpuptmail" name="mail" placeholder="Votre adresse mail">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="inputRaison" class="form-label">Raison du contact</label>
+                                        <textarea class="form-control" id="inputRaison" name="raison" rows="3" placeholder="Indiquez la raison de votre contact"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-danger" name="envoyer">Envoyer</button>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <?php
+                if (isset($_POST['envoyer'])) {
+                    
+                    $contact = file_decod('Data/contacts.json');
+                    $nomprenom = $_POST['nomprenom'];
+                    $mail = $_POST['mail'];
+                    $raison = $_POST['raison'];
+
+                    $contact[$mail] =  [
+                        'nom_prenom' => $nomprenom,
+                        'mail' => $mail,
+                        'raison' => $raison
+                    ];
+
+
+                    $jsonContact = json_encode($contact);
+
+                    // Chemin vers le fichier JSON
+                    $cheminFichier = 'Data/contacts.json';
+
+                    // Écriture des données dans le fichier JSON
+                    file_put_contents($cheminFichier, $jsonContact);
+
+                    echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.5/dist/sweetalert2.all.min.js"></script>';
+                    echo '<script>
+                            Swal.fire({
+                                icon: "success",
+                                title: "Succès",
+                                text: "Les informations ont été enregistrées avec succès.",
+                                toast: true,
+                                position: "top-end",
+                                showConfirmButton: false,
+                                timer: 3000
+                            });
+                        </script>';
+                }
+                ?>
+
+
                 </div>
 
 
             </div>
-            </br>
-            </br>
+            
             <p>© <?php echo (" Année : ");
                     echo date("Y"); ?> - PrivateVPN.fr </p>
         </div>
