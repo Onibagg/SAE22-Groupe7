@@ -67,8 +67,8 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                     </div>
                     <div class="row">
                         <div class="col text-center">
-                            <button type="button" class="mt-1 btn btn-outline-dark">
-                                <p class="mb-0">Team Building</p>
+                            <button type="button" class="mt-0 btn btn-outline-dark">
+                                <p class="mb-0">Evenement</p>
                                 <span class="spinner-grow spinner-grow-sm"></span>
                                 <br>
                                 <?php
@@ -77,8 +77,8 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                             </button>
                         </div>
                         <div class="col text-center">
-                            <button type="button" class="mt-5 btn btn-outline-dark">
-                                <p class="mb-0">Nouvelle Offre</p>
+                            <button type="button" class="mt-2 btn btn-outline-dark">
+                                <p class="mb-0">Evenement</p>
                                 <span class="spinner-grow spinner-grow-sm"></span>
                                 <br>
                                 <?php
@@ -89,7 +89,41 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                         </div>
                         <div class="col">
                             <button type="button" class="mt-3 btn btn-outline-dark">
-                                <p class="mb-0">SKO</p>
+                                <p class="mb-0">Evenement</p>
+                                <span class="spinner-grow spinner-grow-sm"></span>
+                                <br>
+                                <?php
+                                echo countdown("2023-07-27 18:33:00");
+                                ?>
+                            </button>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col text-center">
+                            <button type="button" class="mt-1 btn btn-outline-dark">
+                                <p class="mb-0">Evenement</p>
+                                <span class="spinner-grow spinner-grow-sm"></span>
+                                <br>
+                                <?php
+                                echo countdown("2023-06-29 12:15:00");
+                                ?>
+                            </button>
+                        </div>
+                        <div class="col text-center">
+                            <button type="button" class="mt-0 btn btn-outline-dark">
+                                <p class="mb-0">Evenement</p>
+                                <span class="spinner-grow spinner-grow-sm"></span>
+                                <br>
+                                <?php
+                                echo countdown("2023-05-11 00:00:00");
+                                ?>
+                            </button>
+
+                        </div>
+                        <div class="col">
+                            <button type="button" class="mt-3 btn btn-outline-dark">
+                                <p class="mb-0">Evenement</p>
                                 <span class="spinner-grow spinner-grow-sm"></span>
                                 <br>
                                 <?php
@@ -226,15 +260,15 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                     info: 'Headquarters'
                 },
                 {
-                    lat: 43.7102,
-                    lng: 7.2620,
-                    title: 'Nice',
-                    info: 'SKO'
+                    lat: 28.630731,
+                    lng: 77.214347,
+                    title: 'New Dehli',
+                    info: ''
                 },
                 {
-                    lat: 43.6047,
-                    lng: 1.4442,
-                    title: 'Toulouse',
+                    lat: 40.711801,
+                    lng: -74.013120,
+                    title: 'NYC',
                     info: ''
                 },
                 {
@@ -249,9 +283,9 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                     title: 'Nantes',
                     info: 'Nouvelle Équipe'
                 }, {
-                    lat: 48.1173,
-                    lng: -1.6778,
-                    title: 'Rennes',
+                    lat: 9.044541,
+                    lng: 7.458680,
+                    title: 'Abuja',
                     info: ''
                 },
                 {
@@ -261,15 +295,15 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                     info: 'Team Building'
                 },
                 {
-                    lat: 47.6582,
-                    lng: -2.7608,
-                    title: 'Vannes',
+                    lat: 37.334537,
+                    lng: -122.008981,
+                    title: 'San José',
                     info: ''
                 },
                 {
-                    lat: 46.8065,
-                    lng: 1.6917,
-                    title: 'Châteauroux',
+                    lat: -22.952030,
+                    lng: -43.210760,
+                    title: 'Rio de Janeiro',
                     info: ''
                 }
             ];
@@ -277,10 +311,10 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
 
             // Créer une carte centrée sur Londres
             var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 5,
+                zoom: 2,
                 center: {
-                    lat: 46.603354,
-                    lng: 1.888334
+                    lat: 25,
+                    lng: -30.888334
                 }
 
             });
