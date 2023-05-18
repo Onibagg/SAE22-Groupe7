@@ -43,7 +43,7 @@ page_header();
                     <div class="row">
                         <div class="col-sm-1 text-dark"></div>
                         <div class="col-sm-10 text-dark">
-                            <p>Chez Private VPN, nous sommes fiers de proposer une protection anti-malware avancée pour garantir la sécurité de nos clients en ligne. Nous sommes conscients des risques que représentent les malwares tels que les virus, les logiciels malveillants, les ransomwares et autres menaces en ligne, c'est pourquoi nous avons conçu notre solution de sécurité en ligne pour offrir une protection maximale contre ces menaces.</p></br></br>
+                            <p>Chez Private VPN, nous sommes fiers de proposer une protection anti-malware avancée pour garantir la sécurité de nos clients en ligne. Nous sommes conscients des risques que représentent les malwares tels que les virus, les logiciels malveillants, les ransomwares et autres menaces en ligne, c'est pourquoi nous avons conçu notre solution de sécurité en ligne pour offrir une protection maximale contre ces menaces.</p></br>
                         </div>
                         <div class="col-sm-1 text-dark"></div>
                     </div>
