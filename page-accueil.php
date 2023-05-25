@@ -43,31 +43,7 @@ page_header();
         <div class="col-sm-1 p-3  text-white"></div>
     </div>
 </div>
-<style>
-    .custom-carousel {
-        max-width: 120%;
-        /* ou toute autre valeur de votre choix */
-    }
 
-    /*.col-sm-7 {
-  border: 1px solid blue;
-  border-radius: 10px;
-}*/
-</style>
-
-<style>
-    .container-fluid.custom {
-        background-color: #DCF3FF;
-        /* couleur de fond */
-        border-radius: 20px;
-        /* bordures arrondies */
-
-    }
-
-    img {
-        outline: none;
-    }
-</style>
 </br>
 </br>
 
