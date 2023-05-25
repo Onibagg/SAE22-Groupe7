@@ -203,8 +203,7 @@ function intranet_navbar()
     $user = $_SESSION['user'];
 
     // Charger les données des groupes à partir du fichier JSON
-    $data = file_get_contents('Data\groupes.json');
-    $groupes = json_decode($data, true);
+    $groupes = file_decod('Data\groupes.json');
 
     // Vérifier si l'utilisateur fait partie du groupe IT ou Direction
     $isIT = false;
@@ -319,6 +318,11 @@ function file_decod($file)
     return json_decode(file_get_contents($file), true);
 }
 
+function file_encod($file)
+{
+    return file_put_contents(json_encode(file_decod($file)), $file);
+}
+
 function connexion_traitement()
 {
     if (!isset($_POST['user'])) {
@@ -419,7 +423,7 @@ function ajout_utilisateur_format()
         $dst = "Images\Employés\\" . $usr . ".jpg";
         copy($src, $dst);
 
-        file_put_contents('Data\login-mdp.json', json_encode($users));
+        file_encod('Data\login-mdp.json');
     }
 
     function afficherUtilisateurs($utilisateurs)
@@ -470,7 +474,7 @@ function ajout_utilisateur_format()
                     }
                     $users[$nom]['user'] = $user[$nom];
                 }
-                file_put_contents($path, json_encode($users));
+                file_encod($path);
             } elseif (isset($_POST['supprimer'])) {
                 foreach ($_POST['supprimer'] as $nom => $valeur) {
                     unset($users[$nom]);
@@ -479,7 +483,7 @@ function ajout_utilisateur_format()
                         unlink($photo_path);
                     }
                 }
-                file_put_contents($path, json_encode($users));
+                file_encod($path);
             }
         }
 
@@ -528,8 +532,7 @@ function ajout_utilisateur_format()
         $demande_compte = 'Data\demande-compte.json';
         $login_mdp = 'Data\login-mdp.json';
 
-        $users = file_get_contents($demande_compte);
-        $users = json_decode($users, true);
+        $users = file_decod($demande_compte);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['accepter'])) {
@@ -543,13 +546,12 @@ function ajout_utilisateur_format()
                         'email' => $user_accepte['email'],
                         'poste' => $user_accepte['poste'],
                     );
-                    $login_mdp_contenu = file_get_contents($login_mdp); //récupère le fichier des vrai users
-                    $login_mdp_contenu = json_decode($login_mdp_contenu, true); //converti en tableau
+                    $login_mdp_contenu = file_decod($login_mdp); //récupère le fichier des vrai users
                     $login_mdp_contenu[$user_accepte['user']] = $nouvel_utilisateur; //ajout du new
-                    file_put_contents($login_mdp, json_encode($login_mdp_contenu)); //màj du fichier des vrai users
+                    file_encod($login_mdp); //màj du fichier des vrai users
                     unset($users[$nom]); //suppréssion du new du fichier des demandes
                 }
-                file_put_contents($demande_compte, json_encode($users));
+                file_encod($demande_compte);
             } elseif (isset($_POST['refuser'])) {
                 foreach ($_POST['refuser'] as $nom => $valeur) {
                     unset($users[$nom]); //vire le new des demande
@@ -558,7 +560,7 @@ function ajout_utilisateur_format()
                         unlink($photo_path); //suppr la photo si il en a une
                     }
                 }
-                file_put_contents($demande_compte, json_encode($users)); //màj du fichier des demandes
+                file_encod($demande_compte); //màj du fichier des demandes
             }
         }
 
@@ -567,8 +569,7 @@ function ajout_utilisateur_format()
 
     function supprimerMembre($nom_groupe, $user)
     {
-        $groupes_json = file_get_contents('Data\groupes.json');  // Recuperation des groupes
-        $groupes = json_decode($groupes_json, true);
+        $groupes = file_decod('Data\groupes.json');  // Recuperation des groupes
 
         $yessir = null;                                          // Suppression du membre
         foreach ($groupes[$nom_groupe]['membres'] as $i => $membre) {
@@ -581,7 +582,7 @@ function ajout_utilisateur_format()
             array_splice($groupes[$nom_groupe]['membres'], $yessir, 1);
         }
 
-        file_put_contents('Data\groupes.json', json_encode($groupes));    // Enregistrement des modifs
+        file_encod('Data\groupes.json');   // Enregistrement des modifs
 
         exit;
     }
@@ -678,6 +679,8 @@ function ajout_utilisateur_format()
                 echo '<meta http-equiv="refresh" content="0">';
             }
         }
+        //$folder_name = $_POST['folder_name_to_delete'];
+        //$dire = $dir . $folder_name;
         echo upload($dir);
         echo fichiers($dir);
     }

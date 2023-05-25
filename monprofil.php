@@ -124,7 +124,7 @@ if (isset($_POST['new-profile'])) {
     $nouveauMdp = $_POST['nouveauMdp'];
     $confirmationMdp = $_POST['confirmationMdp'];
 
-    $data = json_decode(file_get_contents('Data/login-mdp.json'), true);
+    $data = file_decod('Data/login-mdp.json');
     if (isset($data[$user])) {
         $data[$user]['prenom'] = $prenom;
         $data[$user]['nom'] = $nom;
@@ -136,7 +136,7 @@ if (isset($_POST['new-profile'])) {
 
         file_put_contents('Data/login-mdp.json', json_encode($data));
 
-        header("Location: monprofil.php");
+        echo '<meta http-equiv="refresh" content="0">';
         exit();
     }
 }
