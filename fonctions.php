@@ -3,7 +3,7 @@ session_start();
 
 function setup()
 {
-?>
+    ?>
     <!DOCTYPE html>
     <html lang="fr">
 
@@ -33,7 +33,7 @@ function setup()
     </head>
 
     <body>
-    <?php
+        <?php
 }
 
 function page_header()
@@ -51,15 +51,22 @@ function page_header()
                 <div class="col"></div>
                 <div class="col text-center">
                     <a href="page-pres.php">
-                        <button type="button" class="btn btn-outline-dark text-black custom-btn" style="width: 150px; height: 130px;" onmouseover="document.getElementById('texte1').style.fontWeight='bold';" onmouseout="document.getElementById('texte1').style.fontWeight='normal';">
-                            <img src="/Images/point-dinterrogation.png" width="40" height="40" class="rounded" alt="?"></br></br>
+                        <button type="button" class="btn btn-outline-dark text-black custom-btn"
+                            style="width: 150px; height: 130px;"
+                            onmouseover="document.getElementById('texte1').style.fontWeight='bold';"
+                            onmouseout="document.getElementById('texte1').style.fontWeight='normal';">
+                            <img src="/Images/point-dinterrogation.png" width="40" height="40" class="rounded"
+                                alt="?"></br></br>
                             <p id="texte1">Qui sommes-nous ?</p>
                         </button>
                     </a>
                 </div>
                 <div class="col text-center">
                     <a href="page-histoire.php">
-                        <button type="button" class="btn btn-outline-dark text-black custom-btn" style="width: 150px; height: 130px;" onmouseover="document.getElementById('texte2').style.fontWeight='bold';" onmouseout="document.getElementById('texte2').style.fontWeight='normal';">
+                        <button type="button" class="btn btn-outline-dark text-black custom-btn"
+                            style="width: 150px; height: 130px;"
+                            onmouseover="document.getElementById('texte2').style.fontWeight='bold';"
+                            onmouseout="document.getElementById('texte2').style.fontWeight='normal';">
                             <img src="/Images/histoire.png" width="40" height="40" class="rounded" alt="Histoire"></br></br>
                             <p id="texte2">Histoire</p>
                         </button>
@@ -67,22 +74,33 @@ function page_header()
                 </div>
                 <div class="col text-center">
                     <a href="page-activites.php">
-                        <button type="button" class="btn btn-outline-dark text-black custom-btn" style="width: 150px; height: 130px;" onmouseover="document.getElementById('texte3').style.fontWeight='bold';" onmouseout="document.getElementById('texte3').style.fontWeight='normal';">
-                            <img src="/Images/activites.png" width="40" height="40" class="rounded" alt="Activités"></br></br>
+                        <button type="button" class="btn btn-outline-dark text-black custom-btn"
+                            style="width: 150px; height: 130px;"
+                            onmouseover="document.getElementById('texte3').style.fontWeight='bold';"
+                            onmouseout="document.getElementById('texte3').style.fontWeight='normal';">
+                            <img src="/Images/activites.png" width="40" height="40" class="rounded"
+                                alt="Activités"></br></br>
                             <p id="texte3">Activités</p>
                         </button>
                     </a>
                 </div>
                 <div class="col text-center">
                     <a href="page-partenaires.php">
-                        <button type="button" class="btn btn-outline-dark text-black custom-btn" style="width: 150px; height: 130px;" onmouseover="document.getElementById('texte4').style.fontWeight='bold';" onmouseout="document.getElementById('texte4').style.fontWeight='normal';">
-                            <img src="/Images/les-partenaires.png" width="40" height="40" class="rounded" alt="Partenaires"></br></br>
+                        <button type="button" class="btn btn-outline-dark text-black custom-btn"
+                            style="width: 150px; height: 130px;"
+                            onmouseover="document.getElementById('texte4').style.fontWeight='bold';"
+                            onmouseout="document.getElementById('texte4').style.fontWeight='normal';">
+                            <img src="/Images/les-partenaires.png" width="40" height="40" class="rounded"
+                                alt="Partenaires"></br></br>
                             <p id="texte4">Partenaires</p>
                         </button>
                     </a>
                 </div>
                 <div class="col text-center">
-                    <button type="button" class="btn btn-outline-dark text-black custom-btn" data-bs-toggle="modal" data-bs-target="#myModal" style="width: 150px; height: 130px;" onmouseover="document.getElementById('texte5').style.fontWeight='bold';" onmouseout="document.getElementById('texte5').style.fontWeight='normal';">
+                    <button type="button" class="btn btn-outline-dark text-black custom-btn" data-bs-toggle="modal"
+                        data-bs-target="#myModal" style="width: 150px; height: 130px;"
+                        onmouseover="document.getElementById('texte5').style.fontWeight='bold';"
+                        onmouseout="document.getElementById('texte5').style.fontWeight='normal';">
                         <img src="/Images/login.png" width="40" height="40" class="rounded" alt="Connexion"></br></br>
                         <p id="texte5">Connexion</p>
                     </button>
@@ -110,7 +128,8 @@ function page_header()
                                             <br>
                                             <div class="form-group">
                                                 <label for="uname" class="form-label">Utilisateur:</label>
-                                                <input type="text" class="form-control" id="user" name="user" placeholder="Utilisateur" required>
+                                                <input type="text" class="form-control" id="user" name="user"
+                                                    placeholder="Utilisateur" required>
                                                 <div class="valid-feedback"></div>
                                                 <div class="invalid-feedback">Veuillez compléter ce champ</div>
                                             </div>
@@ -118,7 +137,8 @@ function page_header()
 
                                             <div class="form-group">
                                                 <label>Mot de passe</label>
-                                                <input type="password" class="form-control" id="mdp" name="mdp" placeholder="Mot de passe" required>
+                                                <input type="password" class="form-control" id="mdp" name="mdp"
+                                                    placeholder="Mot de passe" required>
                                                 <div class="valid-feedback"></div>
                                                 <div class="invalid-feedback">Veuillez compléter ce champ</div>
                                             </div>
@@ -135,7 +155,8 @@ function page_header()
 
                                         <div class="modal-footer">
                                             <div class="form-group">
-                                                <button type="submit" name="connexion" class="btn btn-outline-dark">Se connecter</button>
+                                                <button type="submit" name="connexion" class="btn btn-outline-dark">Se
+                                                    connecter</button>
                                             </div>
                                         </div>
                                     </form>
@@ -154,7 +175,7 @@ function page_header()
             </div>
         </div>
 
-    <?php
+        <?php
 }
 
 function page_foot()
@@ -182,15 +203,15 @@ function page_foot()
 
                     <!----------------MODALE--------------------->
 
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal1">
-                        Nous contacter
-                    </button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal1">
+                    Nous contacter
+                </button>
 
-                    <div class="modal fade" id="myModal1">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
+                <div class="modal fade" id="myModal1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
 
-                                <!-- Modal Header -->
+                            <!-- Modal Header -->
                                 <div class="modal-header">
                                     <h4 class="modal-title">NOUS CONTACTER</h4>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
@@ -202,15 +223,18 @@ function page_foot()
 
                                         <div class="mb-3">
                                             <label for="inputPrenom" class="form-label">Mail</label>
-                                            <input type="mail" class="form-control" id="inpuptmail" name="mail" placeholder="Votre adresse mail">
+                                            <input type="mail" class="form-control" id="inpuptmail" name="mail"
+                                                placeholder="Votre adresse mail">
                                         </div>
                                         <div class="mb-3">
                                             <label for="inputRaison" class="form-label">Raison du contact</label>
-                                            <textarea class="form-control" id="inputRaison" name="raison" rows="3" placeholder="Indiquez la raison de votre contact"></textarea>
+                                            <input type="text" class="form-control" id="inputRaison" name="raison" rows="3"
+                                                placeholder="Indiquez la raison de votre contact"></input>
                                         </div>
                                         <div class="mb-3">
                                             <label for="inputContenu" class="form-label">Contenu</label>
-                                            <input type="text" class="form-control" id="inputContenu" name="contenu" placeholder="Votre explication">
+                                            <textarea class="form-control" id="inputContenu" name="contenu"
+                                                placeholder="Votre explication"></textarea>
                                         </div>
                                         <button type="submit" class="btn btn-danger" name="envoyer">Envoyer</button>
                                     </form>
@@ -229,7 +253,7 @@ function page_foot()
                         $raison = $_POST['raison'];
                         $contenu = $_POST['contenu'];
 
-                        $contact[$mail] =  [
+                        $contact[$mail] = [
                             'mail' => $mail,
                             'raison' => $raison,
                             'contenu' => $contenu
@@ -265,10 +289,12 @@ function page_foot()
 
             </div>
 
-            <p>© <?php echo (" Année : ");
-                    echo date("Y"); ?> - PrivateVPN.fr </p>
+            <p>©
+                <?php echo (" Année : ");
+                echo date("Y"); ?> - PrivateVPN.fr
+            </p>
         </div>
-    <?php
+        <?php
 
 }
 
@@ -349,40 +375,49 @@ function intranet_navbar()
 
                 <?php if ($isIT || $isDirection) { ?>
                     <li class="nav-item me-4 ms-4">
-                        <a class="nav-link" href="Portail-de-connexion.php"><img src="..\Images\Icons\key.png" draggable="false" height="28px"></a>
+                        <a class="nav-link" href="Portail-de-connexion.php"><img src="..\Images\Icons\key.png" draggable="false"
+                                height="28px"></a>
                     </li>
                 <?php } ?>
 
                 <?php if ($isRH || $isDirection) { ?>
                     <li class="nav-item me-4 ms-4">
-                        <a class="nav-link" href="Gestion-des-groupes.php"><img src="..\Images\Icons\groups.png" draggable="false" height="32px"></a>
+                        <a class="nav-link" href="Gestion-des-groupes.php"><img src="..\Images\Icons\groups.png"
+                                draggable="false" height="32px"></a>
                     </li>
                 <?php } ?>
 
                 <li class="nav-item me-4 ms-4">
-                    <a class="nav-link" href="gest-fichiers.php"><img src="Images\Icons\folder.png" draggable="false" height="32px"></a>
+                    <a class="nav-link" href="gest-fichiers.php"><img src="Images\Icons\folder.png" draggable="false"
+                            height="32px"></a>
                 </li>
 
                 <li class="nav-item me-4 ms-4">
-                    <a class="nav-link" href="annuaire.php"><img src="..\Images\Icons\phone.png" draggable="false" height="32px"></a>
+                    <a class="nav-link" href="annuaire.php"><img src="..\Images\Icons\phone.png" draggable="false"
+                            height="32px"></a>
                 </li>
 
                 <?php if ($isFinances || $isDirection || $isCommerciaux) { ?>
                     <li class="nav-item me-4 ms-4">
-                        <a class="nav-link" href="gest-partenaires.php"><img src="..\Images\Icons\person.png" draggable="false" height="35px"></a>
+                        <a class="nav-link" href="gest-partenaires.php"><img src="..\Images\Icons\person.png" draggable="false"
+                                height="35px"></a>
                     </li>
                 <?php } ?>
 
                 <li class="nav-item me-4 ms-4">
-                    <a class="nav-link" href="wiki.php"><img src="..\Images\Icons\book.png" draggable="false" height="32px"></a>
+                    <a class="nav-link" href="wiki.php"><img src="..\Images\Icons\book.png" draggable="false"
+                            height="32px"></a>
                 </li>
                 <li class="nav-item dropdown me-4 ms-4">
-                    <a class="nav-link dropdown-toggle" href="monprofil.php" role="button" data-bs-toggle="dropdown"><img src="..\Images\Employés\<?php echo $_SESSION['user']; ?>.jpg" alt="Avatar Logo" style="width:32px;" class="rounded-pill"></a>
+                    <a class="nav-link dropdown-toggle" href="monprofil.php" role="button" data-bs-toggle="dropdown"><img
+                            src="..\Images\Employés\<?php echo $_SESSION['user']; ?>.jpg" alt="Avatar Logo"
+                            style="width:32px;" class="rounded-pill"></a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="monprofil.php">Mon Profil</a></li>
                         <li>
                             <form id="deconnexion" method="POST">
-                                <button type="submit" name="deconnexion" class="btn ms-1"><img src="Images\Icons\log_out.png" class="image-navbar"></button>
+                                <button type="submit" name="deconnexion" class="btn ms-1"><img
+                                        src="Images\Icons\log_out.png" class="image-navbar"></button>
                             </form>
                         </li>
                     </ul>
@@ -394,7 +429,7 @@ function intranet_navbar()
             deconnexion();
         }
         ?>
-    <?php
+        <?php
 }
 
 function file_decod($file)
@@ -434,7 +469,7 @@ function connexion_traitement()
     }
 }
 function ajout_utilisateur_format()
-{    ?>
+{ ?>
         <form action="Portail-de-connexion.php" id="new-user" method="POST">
             <div class="row">
                 <div class="col">
@@ -447,10 +482,12 @@ function ajout_utilisateur_format()
                     <input class="form-control" placeholder="User" rows="1" id="pseudo" name="pseudo"></input>
                 </div>
                 <div class="col">
-                    <input class="form-control" type="password" placeholder="Mot de Passe" rows="1" id="mdp" name="mdp"></input>
+                    <input class="form-control" type="password" placeholder="Mot de Passe" rows="1" id="mdp"
+                        name="mdp"></input>
                 </div>
                 <div class="col">
-                    <input class="form-control" type="password" placeholder="Confirmation" rows="1" id="confirmation" name="confirmation"></input>
+                    <input class="form-control" type="password" placeholder="Confirmation" rows="1" id="confirmation"
+                        name="confirmation"></input>
                 </div>
                 <div class="col">
                     <input class="form-control" placeholder="E-Mail" rows="1" id="email" name="email"></input>
@@ -482,7 +519,7 @@ function ajout_utilisateur_format()
         } else {
         }
         ?>
-    <?php
+        <?php
 }
 
 function addUser($prenom, $nom, $usr, $mdp, $email)
@@ -618,7 +655,8 @@ function gestion_new_users()
         if (isset($_POST['accepter'])) {
             foreach ($_POST['accepter'] as $nom => $valeur) {
                 $user_accepte = $users[$nom]; //récuparation des infos
-                $nouvel_utilisateur = array( //création d'un array avec les infos 
+                $nouvel_utilisateur = array(
+                    //création d'un array avec les infos 
                     'prenom' => $user_accepte['prenom'],
                     'nom' => $user_accepte['nom'],
                     'user' => $user_accepte['user'],
@@ -675,23 +713,23 @@ function afficher_comments($utilisateurs)
             </div>
         </form>
         <?php
-    }
-    function gestion_comments()
-    {
-        $demande_compte = 'Data\contacts.json';
+}
+function gestion_comments()
+{
+    $demande_compte = 'Data\contacts.json';
 
-        $users = file_decod($demande_compte);
+    $users = file_decod($demande_compte);
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (isset($_POST['ok'])) {
-                foreach ($_POST['ok'] as $mail => $valeur) {
-                    unset($users[$mail]); //suppréssion du new du fichier des demandes
-                }
-                file_put_contents($demande_compte, json_encode($users));
-            } elseif (isset($_POST['voir'])) {
-                foreach ($_POST['voir'] as $mail => $valeur) {
-                    echo '<div class="modal fade" id="myModal[' . $mail . ']">';
-        ?>
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (isset($_POST['ok'])) {
+            foreach ($_POST['ok'] as $mail => $valeur) {
+                unset($users[$mail]); //suppréssion du new du fichier des demandes
+            }
+            file_put_contents($demande_compte, json_encode($users));
+        } elseif (isset($_POST['voir'])) {
+            foreach ($_POST['voir'] as $mail => $valeur) {
+                echo '<div class="modal fade" id="myModal[' . $mail . ']">';
+                ?>
                     <div class="modal-dialog">
                         <div class="modal-content">
 
@@ -714,43 +752,43 @@ function afficher_comments($utilisateurs)
                         </div>
                     </div>
                     </div>
-            <?php
-                }
+                    <?php
             }
         }
-
-        afficher_comments($users);
     }
 
-    function supprimerMembre($nom_groupe, $user)
-    {
-        $groupes_json = file_get_contents('Data\groupes.json');  // Recuperation des groupes
-        $groupes = json_decode($groupes_json, true);
+    afficher_comments($users);
+}
 
-        $yessir = null;                                          // Suppression du membre
-        foreach ($groupes[$nom_groupe]['membres'] as $i => $membre) {
-            if ($membre['user'] === $user) {
-                $yessir = $i;
-                break;
-            }
+function supprimerMembre($nom_groupe, $user)
+{
+    $groupes_json = file_get_contents('Data\groupes.json'); // Recuperation des groupes
+    $groupes = json_decode($groupes_json, true);
+
+    $yessir = null; // Suppression du membre
+    foreach ($groupes[$nom_groupe]['membres'] as $i => $membre) {
+        if ($membre['user'] === $user) {
+            $yessir = $i;
+            break;
         }
-        if ($yessir !== null) {
-            array_splice($groupes[$nom_groupe]['membres'], $yessir, 1);
-        }
-
-        file_put_contents('Data\groupes.json', json_encode($groupes));    // Enregistrement des modifs
-
-        exit;
+    }
+    if ($yessir !== null) {
+        array_splice($groupes[$nom_groupe]['membres'], $yessir, 1);
     }
 
-    function afficherdir($dir)
-    {
-        if (isset($_GET['dir'])) {
-            $dir .= $_GET['dir'] . '\\';
-        }
-        if ($dir !== "Data\Gestionnaire-de-fichier\\") {
-            $parent_dir = dirname($dir);
-            ?>
+    file_put_contents('Data\groupes.json', json_encode($groupes)); // Enregistrement des modifs
+
+    exit;
+}
+
+function afficherdir($dir)
+{
+    if (isset($_GET['dir'])) {
+        $dir .= $_GET['dir'] . '\\';
+    }
+    if ($dir !== "Data\Gestionnaire-de-fichier\\") {
+        $parent_dir = dirname($dir);
+        ?>
             <div class='col'>
                 <a href='gest-fichiers.php' class='text-dark' style='text-decoration: none;'>
                     <div class='card shadow-sm'>
@@ -764,21 +802,22 @@ function afficher_comments($utilisateurs)
             </div>
             <?php
 
-        }
+    }
 
 
-        if ($fichier = opendir($dir)) {
-            while (false !== ($entry = readdir($fichier))) {
-                if ($entry != "." && $entry != "..") {
-                    if (is_dir($dir . $entry)) {
-            ?>
+    if ($fichier = opendir($dir)) {
+        while (false !== ($entry = readdir($fichier))) {
+            if ($entry != "." && $entry != "..") {
+                if (is_dir($dir . $entry)) {
+                    ?>
                         <div class='col'>
                             <form action='gest-fichiers.php' method='post' name='folder_name'>
                                 <a href='?dir=<?php echo $entry; ?>' class='text-dark' style='text-decoration: none;'>
                                     <div class='card shadow-sm'>
                                         <div class='card-body'>
                                             <h5>
-                                                <img src='Images\Icons\\folder.png' height='25px'> <?php echo $entry; ?>
+                                                <img src='Images\Icons\\folder.png' height='25px'>
+                                                <?php echo $entry; ?>
                                                 <button type='submit' name='delete_folder' class='float-end btn btn-danger btn-sm'>
                                                     <img src='Images\Icons\\delete.png' height='25px'>
                                                     <input type='hidden' name='folder_name_to_delete' value="<?php echo $entry; ?>">
@@ -789,14 +828,14 @@ function afficher_comments($utilisateurs)
                                 </a>
                             </form>
                         </div>
-        <?php
-                    } else {
-                    }
+                        <?php
+                } else {
                 }
             }
-            closedir($fichier);
         }
-        ?>
+        closedir($fichier);
+    }
+    ?>
         </div>
         <div class='row mt-5'>
             <div class="col">
@@ -837,16 +876,17 @@ function afficher_comments($utilisateurs)
         }
         echo upload($dir);
         echo fichiers($dir);
-    }
+}
 
-    function upload($dir)
-    {
-        ?>
+function upload($dir)
+{
+    ?>
         <br>
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"
+                        enctype="multipart/form-data">
                         <div class="input-group mb-3">
                             <input type="file" class="form-control" name="fileToUpload" id="fileToUpload">
                             <button type="submit" class="btn btn-outline-primary" name="uploadBtn">Upload</button>
@@ -882,21 +922,21 @@ function afficher_comments($utilisateurs)
                 }
             }
         }
-    }
+}
 
-    function format_size($size)
-    {
-        $units = array('o', 'Ko', 'Mo', 'Go', 'To');
-        $i = 0;
-        while ($size >= 1024) {
-            $size /= 1024;
-            $i++;
-        }
-        return round($size, 2) . ' ' . $units[$i];
+function format_size($size)
+{
+    $units = array('o', 'Ko', 'Mo', 'Go', 'To');
+    $i = 0;
+    while ($size >= 1024) {
+        $size /= 1024;
+        $i++;
     }
-    function fichiers($dir)
-    {
-        ?>
+    return round($size, 2) . ' ' . $units[$i];
+}
+function fichiers($dir)
+{
+    ?>
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -961,26 +1001,29 @@ function afficher_comments($utilisateurs)
                                         echo "<td><img src='$img_src' height='25px'> $entry</td>";
                                         echo "<td>" . format_size($filesize) . "</td>";
                                         echo "<td>$filemtime</td>";
-                            ?>
+                                        ?>
                                         <td>
                                             <?php
                                             $type_ok = array('pdf', 'mp3', 'mp4', 'png', 'txt', 'jpg', 'jpeg');
                                             if (in_array($ext, $type_ok)) {
-                                            ?>
+                                                ?>
                                                 <form method="post">
-                                                    <a href="<?php echo $dir . $entry ?>" target="_blank" class="btn btn-sm btn-outline-primary">
+                                                    <a href="<?php echo $dir . $entry ?>" target="_blank"
+                                                        class="btn btn-sm btn-outline-primary">
                                                         <img src="Images\Icons\eye.png" height="25px">
                                                     </a>
-                                                <?php
+                                                    <?php
                                             } else {
                                                 ?>
-                                                    <a href="<?php echo $dir . $entry ?>" target="_blank" class="btn btn-sm btn-outline-secondary disabled">
+                                                    <a href="<?php echo $dir . $entry ?>" target="_blank"
+                                                        class="btn btn-sm btn-outline-secondary disabled">
                                                         <img src="Images\Icons\eye-cross.png" height="25px">
                                                     </a>
-                                                <?php
+                                                    <?php
                                             }
-                                                ?>
-                                                <a href='<?php echo "$dir$entry" ?>' download class='btn btn-sm btn-outline-success me-0'>
+                                            ?>
+                                                <a href='<?php echo "$dir$entry" ?>' download
+                                                    class='btn btn-sm btn-outline-success me-0'>
                                                     <img src='Images\Icons\download.png' height='25px'>
                                                 </a>
 
@@ -988,13 +1031,13 @@ function afficher_comments($utilisateurs)
                                                 <button type="submit" class="ms-0 btn btn-sm btn-outline-danger" name="delete_file">
                                                     <img src="Images\Icons\delete.png" height="25px">
                                                 </button>
-                                                </form>
+                                            </form>
 
 
                                         </td>
 
                                         </tr>
-                            <?php
+                                        <?php
                                         if (isset($_POST['delete_file'])) {
                                             $file_name = $_POST['file_name'];
                                             $file_path = $dir . $file_name;
@@ -1015,5 +1058,5 @@ function afficher_comments($utilisateurs)
                 </div>
             </div>
         </div>
-    <?php
-    } ?>
+        <?php
+} ?>
