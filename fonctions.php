@@ -312,8 +312,7 @@ function intranet_navbar()
     $user = $_SESSION['user'];
 
     // Charger les données des groupes à partir du fichier JSON
-    $data = file_get_contents('Data\groupes.json');
-    $groupes = json_decode($data, true);
+    $groupes = file_decod('Data\groupes.json');
 
     // Vérifier si l'utilisateur fait partie du groupe IT ou Direction
     $isIT = false;
@@ -437,6 +436,11 @@ function file_decod($file)
     return json_decode(file_get_contents($file), true);
 }
 
+function file_encod($file)
+{
+    return file_put_contents(json_encode(file_decod($file)), $file);
+}
+
 function connexion_traitement()
 {
     if (!isset($_POST['user'])) {
@@ -537,9 +541,8 @@ function addUser($prenom, $nom, $usr, $mdp, $email)
     $src = "Images\Employés\blank-profile-picture.jpg";
     $dst = "Images\Employés\\" . $usr . ".jpg";
     copy($src, $dst);
-
-    file_put_contents('Data\login-mdp.json', json_encode($users));
-}
+        file_encod('Data\login-mdp.json');
+    
 
 function afficherUtilisateurs($utilisateurs)
 {
@@ -587,18 +590,17 @@ function gestionUtilisateurs()
                         rename($old_photo_path, $new_photo_path);
                     }
                 }
-                $users[$nom]['user'] = $user[$nom];
-            }
-            file_put_contents($path, json_encode($users));
-        } elseif (isset($_POST['supprimer'])) {
-            foreach ($_POST['supprimer'] as $nom => $valeur) {
-                unset($users[$nom]);
-                $photo_path = "Images\Employés\\" . $nom . ".jpg";
-                if (file_exists($photo_path)) {
-                    unlink($photo_path);
+                file_encod($path);
+            } elseif (isset($_POST['supprimer'])) {
+                foreach ($_POST['supprimer'] as $nom => $valeur) {
+                    unset($users[$nom]);
+                    $photo_path = "Images\Employés\\" . $nom . ".jpg";
+                    if (file_exists($photo_path)) {
+                        unlink($photo_path);
+                    }
                 }
+                file_encod($path);
             }
-            file_put_contents($path, json_encode($users));
         }
     }
 
@@ -686,7 +688,6 @@ function gestion_new_users()
     afficher($users);
 }
 
-
 function afficher_comments($utilisateurs)
 { ?>
         <form method="post">
@@ -743,7 +744,6 @@ function gestion_comments()
                             <div class="modal-body">
                                 Modal body..
                             </div>
-
                             <!-- Modal footer -->
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
@@ -759,6 +759,7 @@ function gestion_comments()
 
     afficher_comments($users);
 }
+
 
 function supprimerMembre($nom_groupe, $user)
 {
@@ -874,6 +875,8 @@ function afficherdir($dir)
                 echo '<meta http-equiv="refresh" content="0">';
             }
         }
+        //$folder_name = $_POST['folder_name_to_delete'];
+        //$dire = $dir . $folder_name;
         echo upload($dir);
         echo fichiers($dir);
 }
