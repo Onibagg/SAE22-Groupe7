@@ -148,15 +148,20 @@ page_header();
                 </div>
             </div>
             <div class="col-sm-1.5 text-dark"></div>
-
         </div>
-
-
-
     </div>
-    <div class="col-sm-1  text-dark"></div>
+</div>
+
+<!-- Installation de serveur, Stockage cloud, environnement, cyber protection, scanner de vulnérabilité.-->
+<style>
+.container-fluid.custom {
+  background-color: #DCF3FF; /* couleur de fond */
+  border-radius: 20px; /* bordures arrondies */
+
+}
 
 
+</style>
     <?php
     page_foot();
     ?>
