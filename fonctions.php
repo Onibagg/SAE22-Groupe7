@@ -870,42 +870,10 @@ function ajout_utilisateur_format()
         </div>
     <?php
     }
-<<<<<<< Updated upstream
-    function affiche_annuaire_tablelo() {
-        if (isset($_POST['supprimer'])) {
-            $parsstp = explode(',', $_POST['supprimer']);
-            degage_gens_from_annuaire($parsstp[0], $parsstp[1]);
-            $annuaire = json_decode(file_get_contents("Data/annuaire.json"), true);
-            echo '<form method="post">';
-            echo '<table class="table table-striped">';
-            echo '<thead><tr><th>Nom</th><th>Prénom</th><th>Poste</th><th>Action</th></tr></thead>';
-            echo '<tbody>';
-            foreach ($annuaire as $personne) {
-              echo '<tr><td>' . $personne['nom'] . '</td><td>' . $personne['prenom'] . '</td><td>' . $personne['poste'] . '</td><td class="text-center"><button type="submit" name="supprimer" value="' . $personne['nom'] . ',' . $personne['prenom'] . '" class="btn btn-danger">Supprimer</button></td></tr>';
-            }
-            echo '</tbody></table>';
-            echo '</form>';
-          }
-        else{         
-        $annuaire = json_decode(file_get_contents("Data/annuaire.json"), true);
-        echo '<form method="post">';
-        echo '<table class="table table-striped">';
-        echo '<thead><tr><th>Nom</th><th>Prénom</th><th>Poste</th><th>Action</th></tr></thead>';
-        echo '<tbody>';
-        foreach ($annuaire as $personne) {
-          echo '<tr><td>' . $personne['nom'] . '</td><td>' . $personne['prenom'] . '</td><td>' . $personne['poste'] . '</td><td class="text-center"><button type="submit" name="supprimer" value="' . $personne['nom'] . ',' . $personne['prenom'] . '" class="btn btn-danger">Supprimer</button></td></tr>';
-        }
-        echo '</tbody></table>';
-        echo '</form>';
-      }
-    }
-      
-      
-=======
     function affiche_annuaire_tablelo()
     {
-        $fichlogin = json_decode(file_get_contents("Data/login-mdp.json"), true);
-        $lannuaire = json_decode(file_get_contents("Data/annuaire.json"), true);
+        $fichlogin = file_decod("Data/login-mdp.json");
+        $lannuaire = file_decod("Data/annuaire.json");
     
         if (isset($_POST['supprimer'])) {
             $parsstp = explode(',', $_POST['supprimer']);
@@ -955,7 +923,6 @@ function ajout_utilisateur_format()
         echo '</form>';
     }
     
->>>>>>> Stashed changes
     function ajout_collab_format()
 {
     ?>
@@ -991,37 +958,9 @@ function ajout_utilisateur_format()
         } else {
         }
     }
-<<<<<<< Updated upstream
-    function addCollab($nom, $prenom, $poste) {
-        $annuaire = json_decode(file_get_contents("Data/annuaire.json"), true);
-        $nouv_collab = array(
-          "nom" => $nom,
-          "prenom" => $prenom,
-          "poste" => $poste
-        );
-        array_push($annuaire, $nouv_collab);
-        file_put_contents("Data/annuaire.json", json_encode($annuaire));
-      }
-      function degage_gens_from_annuaire($nom, $prenom) {
-        $annuaire = json_decode(file_get_contents("Data/annuaire.json"), true);
-        $yessir = null;
-        foreach ($annuaire as $i => $person) {
-          if ($person['nom'] === $nom && $person['prenom'] === $prenom) {
-            $yessir = $i;
-            break;
-          }
-        }
-
-        if ($yessir !== null) {
-          array_splice($annuaire, $yessir, 1);
-        }
-        file_put_contents('Data\annuaire.json', json_encode($annuaire));
-      }
-      
-=======
 function addCollab($prenom, $nom, $poste)
     {
-        $annuaire = json_decode(file_get_contents("Data\annuaire.json"), true);
+        $annuaire = file_decod("Data\annuaire.json");
       
         // Check if the username already exists in the array
         if (isset($annuaire[$nom])) {
@@ -1042,7 +981,7 @@ function addCollab($prenom, $nom, $poste)
     }
     function degage_gens_from_annuaire($nom, $prenom)
     {
-        $annuaire = json_decode(file_get_contents("Data\annuaire.json"), true);
+        $annuaire = file_decod("Data\annuaire.json");
       
         // Check if the username exists in the array
         if (isset($annuaire[$nom])) {
@@ -1056,5 +995,4 @@ function addCollab($prenom, $nom, $poste)
             echo "Username does not exist.";
         }
     }
->>>>>>> Stashed changes
     ?>
