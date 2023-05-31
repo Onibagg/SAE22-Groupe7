@@ -872,3 +872,127 @@ function ajout_utilisateur_format()
         </div>
     <?php
     }
+    
+function affiche_annuaire_tablelo()
+{
+    $fichlogin = file_decod("Data/login-mdp.json");
+    $lannuaire = file_decod("Data/annuaire.json");
+
+    if (isset($_POST['supprimer'])) {
+        $parsstp = explode(',', $_POST['supprimer']);
+        degage_gens_from_annuaire($parsstp[0], $parsstp[1]);
+        echo "<br><div class='alert alert-success'>La personne a bien été supprimée.</div>";
+    } elseif (isset($_POST['ajouter'])) {
+        $parsstp = explode(',', $_POST['ajouter']);
+        if (count($parsstp) >= 4) {
+            $prenom = $parsstp[0];
+            $nom = $parsstp[1];
+            $poste = $parsstp[2];
+            $user = $parsstp[3];
+            addCollab($nom, $prenom, $poste, $user);
+            echo "<br><div class='alert alert-success'>La personne a bien été ajoutée.</div>";
+        } else {
+            echo "<br><div class='alert alert-danger'>Erreur : Les informations nécessaires sont manquantes.</div>";
+        }
+    }
+
+    echo '<form method="post">';
+    echo '<table class="table table-striped table-hover">';
+    echo '<thead><tr><th>Nom</th><th>Prénom</th><th>Poste</th><th>User</th><th>Action</th></tr></thead>';
+    echo '<tbody>';
+
+    foreach ($fichlogin as $personne) {
+        $personneNom = $personne['nom'];
+        $personnePrenom = $personne['prenom'];
+        $personnePoste = $personne['poste'];
+        $personneUser = $personne['user'];
+
+        $personneExists = false;
+        foreach ($lannuaire as $annuairePersonne) {
+            if ($annuairePersonne['nom'] === $personneNom) {
+                $personneExists = true;
+                break;
+            }
+        }
+
+        if ($personneExists) {
+            echo '<tr><td>' . $personneNom . '</td><td>' . $personnePrenom . '</td><td>' . $personnePoste . '</td><td>' . $personneUser . '</td><td class="text-center"><button type="submit" name="supprimer" value="' . $personneNom . ',' . $personnePrenom . '" class="btn btn-danger">Supprimer</button></td></tr>';
+        } else {
+            echo '<tr><td>' . $personneNom . '</td><td>' . $personnePrenom . '</td><td>' . $personnePoste . '</td><td>' . $personneUser . '</td><td class="text-center"><button type="submit" name="ajouter" value="' . $personneNom . ',' . $personnePrenom . ',' . $personnePoste . ',' . $personneUser . '" class="btn btn-success">Ajouter</button></td></tr>';
+        }
+    }
+    echo '</tbody></table>';
+    echo '</form>';
+}
+
+    function addCollab($prenom, $nom, $poste, $user)
+    {
+        $annuaire = file_decod("Data\annuaire.json");
+
+        if (isset($annuaire[$nom])) {
+            echo "<div class='alert alert-alert'>Cet utilisateur est déja dans la base.</div>";
+        } else {
+            $nouv_collab = array(
+                "prenom" => $prenom,
+                "nom" => $nom,
+                "poste" => $poste,
+                "user" => $user
+            );
+            $annuaire[$nom] = $nouv_collab;
+
+            file_put_contents("Data\annuaire.json", json_encode($annuaire));
+            echo '<meta http-equiv="refresh" content="0; url=annuaire.php">';
+        }
+    }
+
+    function degage_gens_from_annuaire($nom, $prenom)
+    {
+        $annuaire = file_decod("Data\annuaire.json");
+
+        if (isset($annuaire[$nom])) {
+            unset($annuaire[$nom]);
+
+            file_put_contents("Data\annuaire.json", json_encode($annuaire));
+            echo '<meta http-equiv="refresh" content="0; url=annuaire.php">';
+        } else {
+            echo "<div class='alert alert-danger'>Un problème est survenu lors de la suppression.</div>";
+        }
+    }
+
+    function affiche_annuaire_vitrine()
+    {
+        $annuaire = file_decod('Data\annuaire.json');
+    ?>
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10">
+
+                <div class="row">
+                    <?php
+
+                    foreach ($annuaire as $nom => $infos) {
+                        $prenom = $infos['prenom'];
+                        $nom = $infos['nom'];
+                        $poste = $infos['poste'];
+                        $user = $infos['user'];
+
+                    ?>
+                        <div class="col-3">
+                            <div class="card card-sm mb-4">
+                                <div class="card-body">
+                                    <h6 class="card-title"> <?php echo $prenom . " " . $nom ?></h6>
+                                    <p class="card-text"><?php echo $poste ?><br><img src="../Images/Employés/<?php echo $user?>.jpg" class="img-fluid rounded-circle mt-3" style="max-width: 75px;"></p>
+                                </div>
+                            </div>
+                        </div>
+                    <?php
+                    }
+                    ?>
+                </div>
+            </div>
+
+            <div class="col-1"></div>
+        </div>
+    <?php
+    }
+    ?>
