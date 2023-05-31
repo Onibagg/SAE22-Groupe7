@@ -205,6 +205,7 @@ function intranet_navbar()
     // Charger les données des groupes à partir du fichier JSON
     $data = file_get_contents('Data\groupes.json');
     $groupes = json_decode($data, true);
+    //$groupes = file_decod('Data\groupes.json');
 
     // Vérifier si l'utilisateur fait partie du groupe IT ou Direction
     $isIT = false;
@@ -319,6 +320,11 @@ function file_decod($file)
     return json_decode(file_get_contents($file), true);
 }
 
+function file_encod($file)
+{
+    return file_put_contents(json_encode(file_decod($file)), $file);
+}
+
 function connexion_traitement()
 {
     if (!isset($_POST['user'])) {
@@ -374,45 +380,36 @@ function ajout_utilisateur_format()
                     <input class="form-control" placeholder="E-Mail" rows="1" id="email" name="email"></input>
                 </div>
                 <div class="col">
-                    <select class="form-select form-select" placeholder="Groupe" id="groupe" name="groupe">
-                        <option></option>
-                        <option>Direction</option>
-                        <option>Commerciaux</option>
-                        <option>IT</option>
-                        <option>RH</option>
-                        <option>Finance</option>
-                        <option>Production</option>
-                    </select>
-                </div>
-                <div class="col">
                     <button type="submit" name="new-user" class="btn btn-outline-dark">Ajouter</button>
                 </div>
             </div>
         </form>
         <?php
         if (isset($_POST['new-user'])) {
-            if (isset($_POST['prenom']) && isset($_POST['nom']) && isset($_POST['pseudo']) && isset($_POST['mdp']) && isset($_POST['confirmation']) && isset($_POST['email']) && isset($_POST['groupe'])) {
+            if (isset($_POST['prenom']) && isset($_POST['nom']) && isset($_POST['pseudo']) && isset($_POST['mdp']) && isset($_POST['confirmation']) && isset($_POST['email'])) {
                 $prenom = $_POST['prenom'];
                 $nom = $_POST['nom'];
                 $usr = $_POST['pseudo'];
                 $mdp = $_POST['mdp'];
                 $confirmation = $_POST['confirmation'];
                 $email = $_POST['email'];
-                $grp = $_POST['groupe'];
 
                 if ($mdp !== $confirmation) {
                     echo "<br><div class='alert alert-danger'>Les <b>mots de passe</b> ne correspondent pas.</div>";
-                } elseif (empty($prenom) || empty($nom) || empty($usr) || empty($mdp) || empty($confirmation) || empty($email) || empty($grp)) {
+                } elseif (empty($prenom) || empty($nom) || empty($usr) || empty($mdp) || empty($confirmation) || empty($email)) {
                     echo "<br><div class='alert alert-warning'><b>Tous</b> les champs sont obligatoires.</div>";
                 } else {
-                    addUser($prenom, $nom, $usr, $mdp, $email, $grp);
+                    addUser($prenom, $nom, $usr, $mdp, $email);
                     echo "<br><div class='alert alert-success'><b>$prenom</b> <b>$nom</b> a été ajouté à l'équipe !</div>";
                 }
             }
         } else {
         }
+        ?>
+        <?php
     }
-    function addUser($prenom, $nom, $usr, $mdp, $email, $grp)
+
+    function addUser($prenom, $nom, $usr, $mdp, $email)
     {
         $users = file_decod('Data\login-mdp.json');
 
@@ -421,14 +418,14 @@ function ajout_utilisateur_format()
             'nom' => $nom,
             'user' => $usr,
             'mdp' => password_hash($mdp, PASSWORD_DEFAULT),
-            'email' => $email,
-            'groupe' => $grp
+            'email' => $email
         ];
 
         $src = "Images\Employés\blank-profile-picture.jpg";
         $dst = "Images\Employés\\" . $usr . ".jpg";
         copy($src, $dst);
 
+        //file_encod('Data\login-mdp.json');
         file_put_contents('Data\login-mdp.json', json_encode($users));
     }
 
@@ -437,7 +434,7 @@ function ajout_utilisateur_format()
         echo '<form method="post">';
         echo '<div class="table-responsive">';
         echo '<table class="table table-hover">';
-        echo "<tr><th>Prénom</th><th>Nom</th><th>Nom d'utilisateur</th><th>Nouveau MDP</th><th>E-Mail</th><th></th><th></th></tr>";
+        echo "<tr><th>Prénom</th><th>Nom</th><th>Nom d'utilisateur</th><th>Nouveau MDP</th><th>E-Mail</th><th>Poste</th><th></th></tr>";
         foreach ($utilisateurs as $nom => $infos) {
             echo '<tr>';
             echo '<td><input type="text" name="prenom[' . $nom . ']" value="' . $infos['prenom'] . '" class="form-control"></td>';
@@ -445,8 +442,8 @@ function ajout_utilisateur_format()
             echo '<td><input type="text" name="user[' . $nom . ']" value="' . $infos['user'] . '" class="form-control"></td>';
             echo '<td><input type="text" name="mdp[' . $nom . ']" value="" class="form-control"></td>';
             echo '<td><input type="text" name="email[' . $nom . ']" value="' . $infos['email'] . '" class="form-control"></td>';
-            echo '<td class="text-center"><input type="submit" name="modifier[' . $nom . ']" value="Enregistrer" class="btn btn-outline-success"></td>';
-            echo '<td class="text-center"><input type="submit" name="supprimer[' . $nom . ']" value="Supprimer" class="btn btn-danger"></td>';
+            echo '<td class="text-center"><input type="submit" name="modifier[' . $nom . ']" value="Enregistrer" class="btn me-3 btn-outline-success">';
+            echo '<input type="submit" name="supprimer[' . $nom . ']" value="Supprimer" class="btn btn-danger"></td>';
             echo '</tr>';
         }
         echo '</table>';
@@ -481,6 +478,7 @@ function ajout_utilisateur_format()
                     $users[$nom]['user'] = $user[$nom];
                 }
                 file_put_contents($path, json_encode($users));
+                //file_encod($path);
             } elseif (isset($_POST['supprimer'])) {
                 foreach ($_POST['supprimer'] as $nom => $valeur) {
                     unset($users[$nom]);
@@ -490,6 +488,7 @@ function ajout_utilisateur_format()
                     }
                 }
                 file_put_contents($path, json_encode($users));
+                //file_encod($path);
             }
         }
 
@@ -538,8 +537,7 @@ function ajout_utilisateur_format()
         $demande_compte = 'Data\demande-compte.json';
         $login_mdp = 'Data\login-mdp.json';
 
-        $users = file_get_contents($demande_compte);
-        $users = json_decode($users, true);
+        $users = file_decod($demande_compte);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['accepter'])) {
@@ -551,15 +549,16 @@ function ajout_utilisateur_format()
                         'user' => $user_accepte['user'],
                         'mdp' => $user_accepte['mdp'],
                         'email' => $user_accepte['email'],
-                        'groupe' => '',
+                        'poste' => $user_accepte['poste'],
                     );
-                    $login_mdp_contenu = file_get_contents($login_mdp); //récupère le fichier des vrai users
-                    $login_mdp_contenu = json_decode($login_mdp_contenu, true); //converti en tableau
+                    $login_mdp_contenu = file_decod($login_mdp); //récupère le fichier des vrai users
                     $login_mdp_contenu[$user_accepte['user']] = $nouvel_utilisateur; //ajout du new
                     file_put_contents($login_mdp, json_encode($login_mdp_contenu)); //màj du fichier des vrai users
+                    //file_encod($login_mdp); //màj du fichier des vrai users
                     unset($users[$nom]); //suppréssion du new du fichier des demandes
                 }
                 file_put_contents($demande_compte, json_encode($users));
+                //file_encod($demande_compte);
             } elseif (isset($_POST['refuser'])) {
                 foreach ($_POST['refuser'] as $nom => $valeur) {
                     unset($users[$nom]); //vire le new des demande
@@ -568,7 +567,8 @@ function ajout_utilisateur_format()
                         unlink($photo_path); //suppr la photo si il en a une
                     }
                 }
-                file_put_contents($demande_compte, json_encode($users)); //màj du fichier des demandes
+                file_put_contents($demande_compte, json_encode($users));
+                //file_encod($demande_compte); //màj du fichier des demandes
             }
         }
 
@@ -577,8 +577,7 @@ function ajout_utilisateur_format()
 
     function supprimerMembre($nom_groupe, $user)
     {
-        $groupes_json = file_get_contents('Data\groupes.json');  // Recuperation des groupes
-        $groupes = json_decode($groupes_json, true);
+        $groupes = file_decod('Data\groupes.json');  // Recuperation des groupes
 
         $yessir = null;                                          // Suppression du membre
         foreach ($groupes[$nom_groupe]['membres'] as $i => $membre) {
@@ -592,6 +591,7 @@ function ajout_utilisateur_format()
         }
 
         file_put_contents('Data\groupes.json', json_encode($groupes));    // Enregistrement des modifs
+        //file_encod('Data\groupes.json');   // Enregistrement des modifs
 
         exit;
     }
@@ -688,6 +688,8 @@ function ajout_utilisateur_format()
                 echo '<meta http-equiv="refresh" content="0">';
             }
         }
+        //$folder_name = $_POST['folder_name_to_delete'];
+        //$dire = $dir . $folder_name;
         echo upload($dir);
         echo fichiers($dir);
     }
@@ -870,7 +872,6 @@ function ajout_utilisateur_format()
         </div>
     <?php
     }
-
     
 function affiche_annuaire_tablelo()
 {
