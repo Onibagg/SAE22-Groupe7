@@ -12,16 +12,14 @@ page_header();
     <h2 class="font-weight-light text-center text-muted py-3">Notre Histoire</h2>
 
 
-    <!--container-->
+  
 
     <hr class="my-5">
 
     <div class="container py-4">
 
-        <!-- timeline item 1 -->
         <div class="row no-gutters">
-            <div class="col-sm"> <!--spacer--> </div>
-            <!-- timeline item 1 center dot -->
+            <div class="col-sm"></div>
             <div class="col-sm-1 text-center flex-column d-none d-sm-flex">
                 <div class="row h-50">
                     <div class="col">&nbsp;</div>
@@ -35,7 +33,6 @@ page_header();
                     <div class="col">&nbsp;</div>
                 </div>
             </div>
-            <!-- timeline item 1 event content -->
             <div class="col-sm py-2">
                 <div class="card shadow" style="border-color: #9DDEFF;">
                     <div class="card-body">
@@ -54,8 +51,7 @@ page_header();
             </div>
         </div>
     </div>
-    <!--/row-->
-    <!-- timeline item 2 -->
+
     <div class="row no-gutters">
         <div class="col-sm py-2">
             <div class="card shadow" style="border-color: #9DDEFF;">
@@ -88,12 +84,11 @@ Avec "Connect+", PrivateVPN a réussi à se faire connaître rapidement. Les uti
                 <div class="col">&nbsp;</div>
             </div>
         </div>
-        <div class="col-sm"> <!--spacer--> </div>
+        <div class="col-sm">  </div>
     </div>
-    <!--/row-->
-    <!-- timeline item 3 -->
+
     <div class="row no-gutters">
-        <div class="col-sm"> <!--spacer--> </div>
+        <div class="col-sm">  </div>
         <div class="col-sm-1 text-center flex-column d-none d-sm-flex">
             <div class="row h-50">
                 <div class="col border-end">&nbsp;</div>
@@ -119,8 +114,7 @@ Avec "Connect+", PrivateVPN a réussi à se faire connaître rapidement. Les uti
                 </div>
             </div>
     
-    <!--/row-->
-    <!-- timeline item 4 -->
+
     <div class="row no-gutters">
         <div class="col-sm py-2">
             <div class="card shadow" style="border-color: #9DDEFF;">
@@ -144,7 +138,7 @@ Avec "Connect+", PrivateVPN a réussi à se faire connaître rapidement. Les uti
                 <div class="col">&nbsp;</div>
             </div>
         </div>
-        <div class="col-sm"> <!--spacer--> </div>
+        <div class="col-sm"></div>
     </div>
 </div>   
 
@@ -179,7 +173,7 @@ Avec "Connect+", PrivateVPN a réussi à se faire connaître rapidement. Les uti
 <style>
 .custom-carousel {
 max-width: 200%;
-/* ou toute autre valeur de votre choix */
+
 }
 </style>
 <div class="container py-4">
