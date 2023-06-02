@@ -177,76 +177,6 @@ Avec "Connect+", PrivateVPN a réussi à se faire connaître rapidement. Les uti
     </div>
 </div>
 <style>
-.custom-carousel {
-max-width: 200%;
-/* ou toute autre valeur de votre choix */
-}
-</style>
-<div class="container py-4">
-    <h2 class=" text-center py-3" style="color: #000000;">Notre Futur</h2>
-    <hr class="my-5">
-    <ul class="timeline">
-        <li>
-          <div class="timeline-badge info"><i class="glyphicon glyphicon-hand-left"></i></div>
-          <div class="timeline-panel" style="border-color: #9DDEFF;">
-            <div class="timeline-heading">
-              <h4 class="timeline-title">Jeux Olympiques Paris</h4>
-              <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i>2024</small></p>
-            </div>
-            <div class="timeline-body">
-              <p>Nous sommes fiers d'annoncer que PureVPN, notre entreprise leader dans le domaine de la sécurité en ligne, est devenu le partenaire officiel des Jeux Olympiques 2024 ! Cette association prestigieuse est une étape majeure dans notre engagement à promouvoir la sécurité et la confidentialité des utilisateurs du monde entier.</p>
-            </div>
-          </div>
-        </li>
-        <li class="timeline-inverted">
-          <div class="timeline-badge success"><i class="glyphicon glyphicon-chevron-right"></i></div>
-          <div class="timeline-panel" style="border-color: #32CD32;">
-            <div class="timeline-heading">
-              <h4 class="timeline-title">Notre nouvel objectif ambitieux : 0 carbonne</h4>
-              </i>2027</small></p>
-            </div>
-            <div class="timeline-body">
-              <p>Chez PureVPN, nous reconnaissons notre responsabilité envers l'environnement et nous nous engageons à réduire notre empreinte carbone et à contribuer à la lutte contre le changement climatique.
-
-Pour atteindre cet objectif, nous mettrons en œuvre une série de mesures concrètes. Tout d'abord, nous réévaluerons et optimiserons nos pratiques internes en matière de gestion de l'énergie et de réduction des déchets. Nous mettrons en place des stratégies d'efficacité énergétique dans nos bureaux et centres de données, et nous favoriserons l'utilisation de sources d'énergie renouvelable.</p>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="timeline-badge danger"><i class="glyphicon glyphicon-eye-open"></i></div>
-          <div class="timeline-panel" style="border-color:#FF0000 ;">
-            <div class="timeline-heading">
-              <h4 class="timeline-title">Devenir les leaders de demain</h4>
-              <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i>2030</small></p>
-            </div>
-            <div class="timeline-body">
-              <p>Chez PureVPN, nous sommes résolus à nous positionner en tête du marché et à fournir les meilleurs services et solutions à nos clients du monde entier.
-
-Pour atteindre cet objectif, nous mettrons en œuvre une stratégie globale axée sur plusieurs aspects clés. Tout d'abord, nous continuerons à investir dans la recherche et le développement pour proposer des technologies innovantes et des fonctionnalités avancées. Nous resterons à l'avant-garde de notre domaine, anticipant les besoins changeants des utilisateurs et fournissant des solutions adaptées.<br>
-
-De plus, nous nous efforcerons d'élargir notre présence sur les marchés internationaux en renforçant nos partenariats et en développant notre réseau de distribution. Nous mettrons en place des stratégies marketing et de vente ciblées pour accroître notre visibilité et attirer de nouveaux clients dans le monde entier.<br>
-
-Nous accorderons également une attention particulière à l'expérience client, en offrant un service exceptionnel et en répondant aux besoins individuels de chaque utilisateur. Nous continuerons à améliorer notre support client, en fournissant une assistance réactive et personnalisée à tous nos clients.</p>
-            </div>
-          </div>
-        </li>
-        <li class="timeline-inverted">
-          <div class="timeline-badge warning"><i class="glyphicon glyphicon-home"></i></div>
-          <div class="timeline-panel" style="border-color:#E4A11B ;">
-            <div class="timeline-heading">
-              <h4 class="timeline-title">Investir dans l'IA</h4>
-            </div>
-            <div class="timeline-body">
-              <p>Chez PureVPN, nous croyons fermement que l'IA est une technologie clé qui façonnera l'avenir de notre industrie et nous sommes déterminés à explorer ses possibilités pour améliorer nos services et offrir une expérience encore plus exceptionnelle à nos utilisateurs.<br>
-
-En investissant dans l'IA, nous nous engageons à développer des solutions innovantes et intelligentes pour répondre aux besoins changeants de nos clients. Nous prévoyons d'utiliser l'IA pour améliorer la sécurité et la confidentialité de nos utilisateurs en détectant et en prévenant les menaces potentielles en temps réel. En exploitant les capacités de l'IA en matière d'apprentissage automatique et d'analyse des données, nous pourrons offrir une protection encore plus avancée contre les attaques en ligne et les violations de la vie privée.</p>
-            </div>
-          </div>
-        </li>
-
-</div>
-<style>
-
     .timeline {
     list-style: none;
     padding: 20px 0 20px;
@@ -430,7 +360,78 @@ En investissant dans l'IA, nous nous engageons à développer des solutions inno
             right: auto;
         }
 }
+
+
+
+.custom-carousel {
+    max-width: 200%;
+    /* ou toute autre valeur de votre choix */
+    }
 </style>
+<div class="container py-4">
+    <h2 class=" text-center py-3" style="color: #000000;">Notre Futur</h2>
+    <hr class="my-5">
+    <ul class="timeline">
+        <li>
+          <div class="timeline-badge info"><i class="glyphicon glyphicon-hand-left"></i></div>
+          <div class="timeline-panel" style="border-color: #9DDEFF;">
+            <div class="timeline-heading">
+              <h4 class="timeline-title">Jeux Olympiques Paris</h4>
+              <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i>2024</small></p>
+            </div>
+            <div class="timeline-body">
+              <p>Nous sommes fiers d'annoncer que PureVPN, notre entreprise leader dans le domaine de la sécurité en ligne, est devenu le partenaire officiel des Jeux Olympiques 2024 ! Cette association prestigieuse est une étape majeure dans notre engagement à promouvoir la sécurité et la confidentialité des utilisateurs du monde entier.</p>
+            </div>
+          </div>
+        </li>
+        <li class="timeline-inverted">
+          <div class="timeline-badge success"><i class="glyphicon glyphicon-chevron-right"></i></div>
+          <div class="timeline-panel" style="border-color: #32CD32;">
+            <div class="timeline-heading">
+              <h4 class="timeline-title">Notre nouvel objectif ambitieux : 0 carbonne</h4>
+              </i>2027</small></p>
+            </div>
+            <div class="timeline-body">
+              <p>Chez PureVPN, nous reconnaissons notre responsabilité envers l'environnement et nous nous engageons à réduire notre empreinte carbone et à contribuer à la lutte contre le changement climatique.
+
+Pour atteindre cet objectif, nous mettrons en œuvre une série de mesures concrètes. Tout d'abord, nous réévaluerons et optimiserons nos pratiques internes en matière de gestion de l'énergie et de réduction des déchets. Nous mettrons en place des stratégies d'efficacité énergétique dans nos bureaux et centres de données, et nous favoriserons l'utilisation de sources d'énergie renouvelable.</p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="timeline-badge danger"><i class="glyphicon glyphicon-eye-open"></i></div>
+          <div class="timeline-panel" style="border-color:#FF0000 ;">
+            <div class="timeline-heading">
+              <h4 class="timeline-title">Devenir les leaders de demain</h4>
+              <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i>2030</small></p>
+            </div>
+            <div class="timeline-body">
+              <p>Chez PureVPN, nous sommes résolus à nous positionner en tête du marché et à fournir les meilleurs services et solutions à nos clients du monde entier.
+
+Pour atteindre cet objectif, nous mettrons en œuvre une stratégie globale axée sur plusieurs aspects clés. Tout d'abord, nous continuerons à investir dans la recherche et le développement pour proposer des technologies innovantes et des fonctionnalités avancées. Nous resterons à l'avant-garde de notre domaine, anticipant les besoins changeants des utilisateurs et fournissant des solutions adaptées.<br>
+
+De plus, nous nous efforcerons d'élargir notre présence sur les marchés internationaux en renforçant nos partenariats et en développant notre réseau de distribution. Nous mettrons en place des stratégies marketing et de vente ciblées pour accroître notre visibilité et attirer de nouveaux clients dans le monde entier.<br>
+
+Nous accorderons également une attention particulière à l'expérience client, en offrant un service exceptionnel et en répondant aux besoins individuels de chaque utilisateur. Nous continuerons à améliorer notre support client, en fournissant une assistance réactive et personnalisée à tous nos clients.</p>
+            </div>
+          </div>
+        </li>
+        <li class="timeline-inverted">
+          <div class="timeline-badge warning"><i class="glyphicon glyphicon-home"></i></div>
+          <div class="timeline-panel" style="border-color:#E4A11B ;">
+            <div class="timeline-heading">
+              <h4 class="timeline-title">Investir dans l'IA</h4>
+            </div>
+            <div class="timeline-body">
+              <p>Chez PureVPN, nous croyons fermement que l'IA est une technologie clé qui façonnera l'avenir de notre industrie et nous sommes déterminés à explorer ses possibilités pour améliorer nos services et offrir une expérience encore plus exceptionnelle à nos utilisateurs.<br>
+
+En investissant dans l'IA, nous nous engageons à développer des solutions innovantes et intelligentes pour répondre aux besoins changeants de nos clients. Nous prévoyons d'utiliser l'IA pour améliorer la sécurité et la confidentialité de nos utilisateurs en détectant et en prévenant les menaces potentielles en temps réel. En exploitant les capacités de l'IA en matière d'apprentissage automatique et d'analyse des données, nous pourrons offrir une protection encore plus avancée contre les attaques en ligne et les violations de la vie privée.</p>
+            </div>
+          </div>
+        </li>
+
+</div>
+
 
 <?php
 page_foot();
