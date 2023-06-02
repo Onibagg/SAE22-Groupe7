@@ -9,7 +9,7 @@ page_header();
   }
 </style>
 <div class="container py-4">
-    <h2 class="font-weight-light text-center text-muted py-3">Notre Histoire</h2>
+    <h2 class=" text-center py-3" style="color: #000000 ;">Notre Histoire</h2>
 
 
     <!--container-->
@@ -183,7 +183,7 @@ max-width: 200%;
 }
 </style>
 <div class="container py-4">
-    <h2 class="font-weight-light text-center text-muted py-3">Notre Futur</h2>
+    <h2 class=" text-center py-3" style="color: #000000;">Notre Futur</h2>
     <hr class="my-5">
     <ul class="timeline">
         <li>
