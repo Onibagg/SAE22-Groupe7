@@ -500,7 +500,7 @@ function ajout_utilisateur_format()
     function deconnexion()
     {
         session_unset();
-        header("Location: page-accueil.php");
+        echo '<meta http-equiv="refresh" content="0; url=page-accueil.php">';
         exit;
     }
 
@@ -968,22 +968,23 @@ function affiche_annuaire_tablelo()
         <div class="row">
             <div class="col-1"></div>
             <div class="col-10">
-
+    
                 <div class="row">
                     <?php
-
+    
                     foreach ($annuaire as $nom => $infos) {
                         $prenom = $infos['prenom'];
                         $nom = $infos['nom'];
                         $poste = $infos['poste'];
                         $user = $infos['user'];
-
+    
                     ?>
                         <div class="col-3">
                             <div class="card card-sm mb-4">
+                                <img src="../Images/Employés/<?php echo $user ?>.jpg" class="card-img-top" alt="Photo" style="height: 100%;">
                                 <div class="card-body">
                                     <h6 class="card-title"> <?php echo $prenom . " " . $nom ?></h6>
-                                    <p class="card-text"><?php echo $poste ?><br><img src="../Images/Employés/<?php echo $user?>.jpg" class="img-fluid rounded-circle mt-3" style="max-width: 75px;"></p>
+                                    <p class="card-text"><?php echo $poste ?></p>
                                 </div>
                             </div>
                         </div>
@@ -992,9 +993,10 @@ function affiche_annuaire_tablelo()
                     ?>
                 </div>
             </div>
-
+    
             <div class="col-1"></div>
         </div>
     <?php
     }
+    
     ?>
