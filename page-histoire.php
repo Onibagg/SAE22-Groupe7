@@ -7,14 +7,12 @@ page_header();
 <div class="container py-4">
     <h2 class=" text-center text-dark py-3">Notre Histoire</h2>
 
-
-
     <hr class="my-5">
 
     <div class="container py-4">
 
         <div class="row no-gutters">
-            <div class="col-sm"> </div>
+            <div class="col-sm"></div>
             <div class="col-sm-1 text-center flex-column d-none d-sm-flex">
                 <div class="row h-50">
                     <div class="col">&nbsp;</div>
@@ -149,7 +147,7 @@ page_header();
                 <div class="col">&nbsp;</div>
             </div>
         </div>
-        <div class="col-sm"> </div>
+        <div class="col-sm"></div>
     </div>
 </div>
 
@@ -191,7 +189,6 @@ page_header();
             <div class="col-sm-1 p-3  text-white"></div>
         </div>
     </div>
-
     <div class="container py-4">
         <h2 class=" text-center text-dark py-3">Notre Futur</h2>
         <hr class="my-5">

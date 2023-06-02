@@ -33,7 +33,7 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                     <hr class="me-3">
                     <div class="row">
                         <div class="col text-center">
-                            <button type="button" class="mt-1 btn btn-outline-dark">
+                            <button type="button" class="mt-1 btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal1">
                                 <p class="mb-0">Team Building</p>
                                 <span class="spinner-grow spinner-grow-sm"></span>
                                 <br>
@@ -41,9 +41,26 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                                 echo countdown("2023-06-29 12:15:00");
                                 ?>
                             </button>
+
+                            <div class="modal fade" id="myModal1">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Team Building</h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed ratione quis odio debitis laudantium labore quisquam officiis ex, tempora et eum quae, sint iusto incidunt autem molestiae! Eos, accusantium nisi.
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a type="button" href="#" class="btn btn-outline-dark">Link</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="col text-center">
-                            <button type="button" class="mt-5 btn btn-outline-dark">
+                            <button type="button" class="mt-5 btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal2">
                                 <p class="mb-0">Nouvelle Offre</p>
                                 <span class="spinner-grow spinner-grow-sm"></span>
                                 <br>
@@ -52,9 +69,25 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                                 ?>
                             </button>
 
+                            <div class="modal fade" id="myModal2">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Nouvelle Offre</h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed ratione quis odio debitis laudantium labore quisquam officiis ex, tempora et eum quae, sint iusto incidunt autem molestiae! Eos, accusantium nisi.
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a type="button" href="#" class="btn btn-outline-dark">Link</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="col">
-                            <button type="button" class="mt-3 btn btn-outline-dark">
+                            <button type="button" class="mt-3 btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal3">
                                 <p class="mb-0">SKO</p>
                                 <span class="spinner-grow text-muted spinner-grow-sm"></span>
                                 <br>
@@ -62,76 +95,197 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                                 echo countdown("2023-07-27 18:33:00");
                                 ?>
                             </button>
+
+
+                            <div class="modal fade" id="myModal3">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">SKO</h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed ratione quis odio debitis laudantium labore quisquam officiis ex, tempora et eum quae, sint iusto incidunt autem molestiae! Eos, accusantium nisi.
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a type="button" href="#" class="btn btn-outline-dark">Link</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                     </div>
                     <div class="row">
                         <div class="col text-center">
-                            <button type="button" class="mt-0 btn btn-outline-dark">
-                                <p class="mb-0">Evenement</p>
+                            <button type="button" class="mt-1 btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal4">
+                                <p class="mb-0">Événement 4</p>
                                 <span class="spinner-grow spinner-grow-sm"></span>
                                 <br>
                                 <?php
                                 echo countdown("2023-06-29 12:15:00");
                                 ?>
                             </button>
-                        </div>
-                        <div class="col text-center">
-                            <button type="button" class="mt-2 btn btn-outline-dark">
-                                <p class="mb-0">Evenement</p>
-                                <span class="spinner-grow spinner-grow-sm"></span>
-                                <br>
-                                <?php
-                                echo countdown("2023-05-11 00:00:00");
-                                ?>
-                            </button>
 
-                        </div>
-                        <div class="col">
-                            <button type="button" class="mt-3 btn btn-outline-dark">
-                                <p class="mb-0">Evenement</p>
-                                <span class="spinner-grow spinner-grow-sm"></span>
-                                <br>
-                                <?php
-                                echo countdown("2023-07-27 18:33:00");
-                                ?>
-                            </button>
+                            <div class="modal fade" id="myModal4">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Événement 4</h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed ratione quis odio debitis laudantium labore quisquam officiis ex, tempora et eum quae, sint iusto incidunt autem molestiae! Eos, accusantium nisi.
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a type="button" href="#" class="btn btn-outline-dark">Link</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
-                    </div>
-                    <div class="row">
                         <div class="col text-center">
-                            <button type="button" class="mt-1 btn btn-outline-dark">
-                                <p class="mb-0">Evenement</p>
+                            <button type="button" class="mt-1 btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal5">
+                                <p class="mb-0">Événement 5</p>
                                 <span class="spinner-grow spinner-grow-sm"></span>
                                 <br>
                                 <?php
                                 echo countdown("2023-06-29 12:15:00");
                                 ?>
                             </button>
+
+                            <div class="modal fade" id="myModal5">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Événement 5</h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed ratione quis odio debitis laudantium labore quisquam officiis ex, tempora et eum quae, sint iusto incidunt autem molestiae! Eos, accusantium nisi.
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a type="button" href="#" class="btn btn-outline-dark">Link</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col text-center">
+                            <button type="button" class="mt-1 btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal6">
+                                <p class="mb-0">Événement 6</p>
+                                <span class="spinner-grow spinner-grow-sm"></span>
+                                <br>
+                                <?php
+                                echo countdown("2023-06-29 12:15:00");
+                                ?>
+                            </button>
+
+                            <div class="modal fade" id="myModal6">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Événement 6</h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed ratione quis odio debitis laudantium labore quisquam officiis ex, tempora et eum quae, sint iusto incidunt autem molestiae! Eos, accusantium nisi.
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a type="button" href="#" class="btn btn-outline-dark">Link</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col text-center">
+                            <button type="button" class="mt-1 btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal7">
+                                <p class="mb-0">Événement 7</p>
+                                <span class="spinner-grow spinner-grow-sm"></span>
+                                <br>
+                                <?php
+                                echo countdown("2023-06-29 12:15:00");
+                                ?>
+                            </button>
+
+                            <div class="modal fade" id="myModal7">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Événement 7</h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed ratione quis odio debitis laudantium labore quisquam officiis ex, tempora et eum quae, sint iusto incidunt autem molestiae! Eos, accusantium nisi.
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a type="button" href="#" class="btn btn-outline-dark">Link</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col text-center">
+                            <button type="button" class="mt-1 btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal8">
+                                <p class="mb-0">Événement 8</p>
+                                <span class="spinner-grow spinner-grow-sm"></span>
+                                <br>
+                                <?php
+                                echo countdown("2023-06-29 12:15:00");
+                                ?>
+                            </button>
+
+                            <div class="modal fade" id="myModal8">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Événement 8</h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed ratione quis odio debitis laudantium labore quisquam officiis ex, tempora et eum quae, sint iusto incidunt autem molestiae! Eos, accusantium nisi.
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a type="button" href="#" class="btn btn-outline-dark">Link</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="col text-center">
-                            <button type="button" class="mt-0 btn btn-outline-dark">
-                                <p class="mb-0">Evenement</p>
+                            <button type="button" class="mt-1 btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal9">
+                                <p class="mb-0">Événement 9</p>
                                 <span class="spinner-grow spinner-grow-sm"></span>
                                 <br>
                                 <?php
-                                echo countdown("2023-05-11 00:00:00");
+                                echo countdown("2023-06-29 12:15:00");
                                 ?>
                             </button>
 
+                            <div class="modal fade" id="myModal9">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Événement 9</h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed ratione quis odio debitis laudantium labore quisquam officiis ex, tempora et eum quae, sint iusto incidunt autem molestiae! Eos, accusantium nisi.
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a type="button" href="#" class="btn btn-outline-dark">Link</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col">
-                            <button type="button" class="mt-3 btn btn-outline-dark">
-                                <p class="mb-0">Evenement</p>
-                                <span class="spinner-grow spinner-grow-sm"></span>
-                                <br>
-                                <?php
-                                echo countdown("2023-07-27 18:33:00");
-                                ?>
-                            </button>
-                        </div>
-
                     </div>
                 </div>
             </div>
