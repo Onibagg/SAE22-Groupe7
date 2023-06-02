@@ -1,0 +1,37 @@
+
+
+.container-fluid.custombleu {
+    background-color: #DCF3FF;
+    border-radius: 20px;
+    
+
+}
+.container-fluid.customgreen {
+    background-color: #7BD699;
+    border-radius: 20px;
+
+}
+
+.center-img {
+    display: block;
+    margin: auto;
+}
+/*
+img {
+    outline: none;
+}
+
+
+
+/*
+
+.rounded1 {
+    border-radius: 20px;
+    background-color: #6191C8;
+}
+
+img {
+    outline: none;
+}
+*/
+
