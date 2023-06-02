@@ -205,7 +205,6 @@ function intranet_navbar()
     // Charger les données des groupes à partir du fichier JSON
     $data = file_get_contents('Data\groupes.json');
     $groupes = json_decode($data, true);
-    //$groupes = file_decod('Data\groupes.json');
 
     // Vérifier si l'utilisateur fait partie du groupe IT ou Direction
     $isIT = false;
@@ -320,11 +319,6 @@ function file_decod($file)
     return json_decode(file_get_contents($file), true);
 }
 
-function file_encod($file)
-{
-    return file_put_contents(json_encode(file_decod($file)), $file);
-}
-
 function connexion_traitement()
 {
     if (!isset($_POST['user'])) {
@@ -380,36 +374,45 @@ function ajout_utilisateur_format()
                     <input class="form-control" placeholder="E-Mail" rows="1" id="email" name="email"></input>
                 </div>
                 <div class="col">
+                    <select class="form-select form-select" placeholder="Groupe" id="groupe" name="groupe">
+                        <option></option>
+                        <option>Direction</option>
+                        <option>Commerciaux</option>
+                        <option>IT</option>
+                        <option>RH</option>
+                        <option>Finance</option>
+                        <option>Production</option>
+                    </select>
+                </div>
+                <div class="col">
                     <button type="submit" name="new-user" class="btn btn-outline-dark">Ajouter</button>
                 </div>
             </div>
         </form>
         <?php
         if (isset($_POST['new-user'])) {
-            if (isset($_POST['prenom']) && isset($_POST['nom']) && isset($_POST['pseudo']) && isset($_POST['mdp']) && isset($_POST['confirmation']) && isset($_POST['email'])) {
+            if (isset($_POST['prenom']) && isset($_POST['nom']) && isset($_POST['pseudo']) && isset($_POST['mdp']) && isset($_POST['confirmation']) && isset($_POST['email']) && isset($_POST['groupe'])) {
                 $prenom = $_POST['prenom'];
                 $nom = $_POST['nom'];
                 $usr = $_POST['pseudo'];
                 $mdp = $_POST['mdp'];
                 $confirmation = $_POST['confirmation'];
                 $email = $_POST['email'];
+                $grp = $_POST['groupe'];
 
                 if ($mdp !== $confirmation) {
                     echo "<br><div class='alert alert-danger'>Les <b>mots de passe</b> ne correspondent pas.</div>";
-                } elseif (empty($prenom) || empty($nom) || empty($usr) || empty($mdp) || empty($confirmation) || empty($email)) {
+                } elseif (empty($prenom) || empty($nom) || empty($usr) || empty($mdp) || empty($confirmation) || empty($email) || empty($grp)) {
                     echo "<br><div class='alert alert-warning'><b>Tous</b> les champs sont obligatoires.</div>";
                 } else {
-                    addUser($prenom, $nom, $usr, $mdp, $email);
+                    addUser($prenom, $nom, $usr, $mdp, $email, $grp);
                     echo "<br><div class='alert alert-success'><b>$prenom</b> <b>$nom</b> a été ajouté à l'équipe !</div>";
                 }
             }
         } else {
         }
-        ?>
-        <?php
     }
-
-    function addUser($prenom, $nom, $usr, $mdp, $email)
+    function addUser($prenom, $nom, $usr, $mdp, $email, $grp)
     {
         $users = file_decod('Data\login-mdp.json');
 
@@ -418,14 +421,14 @@ function ajout_utilisateur_format()
             'nom' => $nom,
             'user' => $usr,
             'mdp' => password_hash($mdp, PASSWORD_DEFAULT),
-            'email' => $email
+            'email' => $email,
+            'groupe' => $grp
         ];
 
         $src = "Images\Employés\blank-profile-picture.jpg";
         $dst = "Images\Employés\\" . $usr . ".jpg";
         copy($src, $dst);
 
-        //file_encod('Data\login-mdp.json');
         file_put_contents('Data\login-mdp.json', json_encode($users));
     }
 
@@ -434,7 +437,7 @@ function ajout_utilisateur_format()
         echo '<form method="post">';
         echo '<div class="table-responsive">';
         echo '<table class="table table-hover">';
-        echo "<tr><th>Prénom</th><th>Nom</th><th>Nom d'utilisateur</th><th>Nouveau MDP</th><th>E-Mail</th><th>Poste</th><th></th></tr>";
+        echo "<tr><th>Prénom</th><th>Nom</th><th>Nom d'utilisateur</th><th>Nouveau MDP</th><th>E-Mail</th><th></th><th></th></tr>";
         foreach ($utilisateurs as $nom => $infos) {
             echo '<tr>';
             echo '<td><input type="text" name="prenom[' . $nom . ']" value="' . $infos['prenom'] . '" class="form-control"></td>';
@@ -442,8 +445,8 @@ function ajout_utilisateur_format()
             echo '<td><input type="text" name="user[' . $nom . ']" value="' . $infos['user'] . '" class="form-control"></td>';
             echo '<td><input type="text" name="mdp[' . $nom . ']" value="" class="form-control"></td>';
             echo '<td><input type="text" name="email[' . $nom . ']" value="' . $infos['email'] . '" class="form-control"></td>';
-            echo '<td class="text-center"><input type="submit" name="modifier[' . $nom . ']" value="Enregistrer" class="btn me-3 btn-outline-success">';
-            echo '<input type="submit" name="supprimer[' . $nom . ']" value="Supprimer" class="btn btn-danger"></td>';
+            echo '<td class="text-center"><input type="submit" name="modifier[' . $nom . ']" value="Enregistrer" class="btn btn-outline-success"></td>';
+            echo '<td class="text-center"><input type="submit" name="supprimer[' . $nom . ']" value="Supprimer" class="btn btn-danger"></td>';
             echo '</tr>';
         }
         echo '</table>';
@@ -478,7 +481,6 @@ function ajout_utilisateur_format()
                     $users[$nom]['user'] = $user[$nom];
                 }
                 file_put_contents($path, json_encode($users));
-                //file_encod($path);
             } elseif (isset($_POST['supprimer'])) {
                 foreach ($_POST['supprimer'] as $nom => $valeur) {
                     unset($users[$nom]);
@@ -488,7 +490,6 @@ function ajout_utilisateur_format()
                     }
                 }
                 file_put_contents($path, json_encode($users));
-                //file_encod($path);
             }
         }
 
@@ -537,7 +538,8 @@ function ajout_utilisateur_format()
         $demande_compte = 'Data\demande-compte.json';
         $login_mdp = 'Data\login-mdp.json';
 
-        $users = file_decod($demande_compte);
+        $users = file_get_contents($demande_compte);
+        $users = json_decode($users, true);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['accepter'])) {
@@ -549,16 +551,15 @@ function ajout_utilisateur_format()
                         'user' => $user_accepte['user'],
                         'mdp' => $user_accepte['mdp'],
                         'email' => $user_accepte['email'],
-                        'poste' => $user_accepte['poste'],
+                        'groupe' => '',
                     );
-                    $login_mdp_contenu = file_decod($login_mdp); //récupère le fichier des vrai users
+                    $login_mdp_contenu = file_get_contents($login_mdp); //récupère le fichier des vrai users
+                    $login_mdp_contenu = json_decode($login_mdp_contenu, true); //converti en tableau
                     $login_mdp_contenu[$user_accepte['user']] = $nouvel_utilisateur; //ajout du new
                     file_put_contents($login_mdp, json_encode($login_mdp_contenu)); //màj du fichier des vrai users
-                    //file_encod($login_mdp); //màj du fichier des vrai users
                     unset($users[$nom]); //suppréssion du new du fichier des demandes
                 }
                 file_put_contents($demande_compte, json_encode($users));
-                //file_encod($demande_compte);
             } elseif (isset($_POST['refuser'])) {
                 foreach ($_POST['refuser'] as $nom => $valeur) {
                     unset($users[$nom]); //vire le new des demande
@@ -567,8 +568,7 @@ function ajout_utilisateur_format()
                         unlink($photo_path); //suppr la photo si il en a une
                     }
                 }
-                file_put_contents($demande_compte, json_encode($users));
-                //file_encod($demande_compte); //màj du fichier des demandes
+                file_put_contents($demande_compte, json_encode($users)); //màj du fichier des demandes
             }
         }
 
@@ -577,7 +577,8 @@ function ajout_utilisateur_format()
 
     function supprimerMembre($nom_groupe, $user)
     {
-        $groupes = file_decod('Data\groupes.json');  // Recuperation des groupes
+        $groupes_json = file_get_contents('Data\groupes.json');  // Recuperation des groupes
+        $groupes = json_decode($groupes_json, true);
 
         $yessir = null;                                          // Suppression du membre
         foreach ($groupes[$nom_groupe]['membres'] as $i => $membre) {
@@ -591,7 +592,6 @@ function ajout_utilisateur_format()
         }
 
         file_put_contents('Data\groupes.json', json_encode($groupes));    // Enregistrement des modifs
-        //file_encod('Data\groupes.json');   // Enregistrement des modifs
 
         exit;
     }
@@ -688,8 +688,6 @@ function ajout_utilisateur_format()
                 echo '<meta http-equiv="refresh" content="0">';
             }
         }
-        //$folder_name = $_POST['folder_name_to_delete'];
-        //$dire = $dir . $folder_name;
         echo upload($dir);
         echo fichiers($dir);
     }
@@ -872,127 +870,148 @@ function ajout_utilisateur_format()
         </div>
     <?php
     }
-    
-function affiche_annuaire_tablelo()
-{
-    $fichlogin = file_decod("Data/login-mdp.json");
-    $lannuaire = file_decod("Data/annuaire.json");
-
-    if (isset($_POST['supprimer'])) {
-        $parsstp = explode(',', $_POST['supprimer']);
-        degage_gens_from_annuaire($parsstp[0], $parsstp[1]);
-        echo "<br><div class='alert alert-success'>La personne a bien été supprimée.</div>";
-    } elseif (isset($_POST['ajouter'])) {
-        $parsstp = explode(',', $_POST['ajouter']);
-        if (count($parsstp) >= 4) {
-            $prenom = $parsstp[0];
-            $nom = $parsstp[1];
-            $poste = $parsstp[2];
-            $user = $parsstp[3];
-            addCollab($nom, $prenom, $poste, $user);
-            echo "<br><div class='alert alert-success'>La personne a bien été ajoutée.</div>";
-        } else {
-            echo "<br><div class='alert alert-danger'>Erreur : Les informations nécessaires sont manquantes.</div>";
-        }
-    }
-
-    echo '<form method="post">';
-    echo '<table class="table table-striped table-hover">';
-    echo '<thead><tr><th>Nom</th><th>Prénom</th><th>Poste</th><th>User</th><th>Action</th></tr></thead>';
-    echo '<tbody>';
-
-    foreach ($fichlogin as $personne) {
-        $personneNom = $personne['nom'];
-        $personnePrenom = $personne['prenom'];
-        $personnePoste = $personne['poste'];
-        $personneUser = $personne['user'];
-
-        $personneExists = false;
-        foreach ($lannuaire as $annuairePersonne) {
-            if ($annuairePersonne['nom'] === $personneNom) {
-                $personneExists = true;
-                break;
+    function affiche_annuaire_tablelo() {
+        if (isset($_POST['supprimer'])) {
+            $parsstp = explode(',', $_POST['supprimer']);
+            degage_gens_from_annuaire($parsstp[0], $parsstp[1]);
+            $annuaire = json_decode(file_get_contents("Data/annuaire.json"), true);
+            echo '<form method="post">';
+            echo '<table class="table table-striped">';
+            echo '<thead><tr><th>Nom</th><th>Prénom</th><th>Poste</th><th>Action</th></tr></thead>';
+            echo '<tbody>';
+            foreach ($annuaire as $personne) {
+              echo '<tr><td>' . $personne['nom'] . '</td><td>' . $personne['prenom'] . '</td><td>' . $personne['poste'] . '</td><td class="text-center"><button type="submit" name="supprimer" value="' . $personne['nom'] . ',' . $personne['prenom'] . '" class="btn btn-danger">Supprimer</button></td></tr>';
             }
+            echo '</tbody></table>';
+            echo '</form>';
+          }
+        else{         
+        $annuaire = json_decode(file_get_contents("Data/annuaire.json"), true);
+        echo '<form method="post">';
+        echo '<table class="table table-striped">';
+        echo '<thead><tr><th>Nom</th><th>Prénom</th><th>Poste</th><th>Action</th></tr></thead>';
+        echo '<tbody>';
+        foreach ($annuaire as $personne) {
+          echo '<tr><td>' . $personne['nom'] . '</td><td>' . $personne['prenom'] . '</td><td>' . $personne['poste'] . '</td><td class="text-center"><button type="submit" name="supprimer" value="' . $personne['nom'] . ',' . $personne['prenom'] . '" class="btn btn-danger">Supprimer</button></td></tr>';
         }
-
-        if ($personneExists) {
-            echo '<tr><td>' . $personneNom . '</td><td>' . $personnePrenom . '</td><td>' . $personnePoste . '</td><td>' . $personneUser . '</td><td class="text-center"><button type="submit" name="supprimer" value="' . $personneNom . ',' . $personnePrenom . '" class="btn btn-danger">Supprimer</button></td></tr>';
-        } else {
-            echo '<tr><td>' . $personneNom . '</td><td>' . $personnePrenom . '</td><td>' . $personnePoste . '</td><td>' . $personneUser . '</td><td class="text-center"><button type="submit" name="ajouter" value="' . $personneNom . ',' . $personnePrenom . ',' . $personnePoste . ',' . $personneUser . '" class="btn btn-success">Ajouter</button></td></tr>';
-        }
+        echo '</tbody></table>';
+        echo '</form>';
+      }
     }
-    echo '</tbody></table>';
-    echo '</form>';
-}
-
-    function addCollab($prenom, $nom, $poste, $user)
-    {
-        $annuaire = file_decod("Data\annuaire.json");
-
-        if (isset($annuaire[$nom])) {
-            echo "<div class='alert alert-alert'>Cet utilisateur est déja dans la base.</div>";
-        } else {
-            $nouv_collab = array(
-                "prenom" => $prenom,
-                "nom" => $nom,
-                "poste" => $poste,
-                "user" => $user
-            );
-            $annuaire[$nom] = $nouv_collab;
-
-            file_put_contents("Data\annuaire.json", json_encode($annuaire));
-            echo '<meta http-equiv="refresh" content="0; url=annuaire.php">';
-        }
-    }
-
-    function degage_gens_from_annuaire($nom, $prenom)
-    {
-        $annuaire = file_decod("Data\annuaire.json");
-
-        if (isset($annuaire[$nom])) {
-            unset($annuaire[$nom]);
-
-            file_put_contents("Data\annuaire.json", json_encode($annuaire));
-            echo '<meta http-equiv="refresh" content="0; url=annuaire.php">';
-        } else {
-            echo "<div class='alert alert-danger'>Un problème est survenu lors de la suppression.</div>";
-        }
-    }
-
-    function affiche_annuaire_vitrine()
-    {
-        $annuaire = file_decod('Data\annuaire.json');
+function ajout_collab_format()
+{
     ?>
-        <div class="row">
-            <div class="col-1"></div>
-            <div class="col-10">
-
-                <div class="row">
-                    <?php
-
-                    foreach ($annuaire as $nom => $infos) {
-                        $prenom = $infos['prenom'];
-                        $nom = $infos['nom'];
-                        $poste = $infos['poste'];
-                        $user = $infos['user'];
-
-                    ?>
-                        <div class="col-3">
-                            <div class="card card-sm mb-4">
-                                <div class="card-body">
-                                    <h6 class="card-title"> <?php echo $prenom . " " . $nom ?></h6>
-                                    <p class="card-text"><?php echo $poste ?><br><img src="../Images/Employés/<?php echo $user?>.jpg" class="img-fluid rounded-circle mt-3" style="max-width: 75px;"></p>
-                                </div>
-                            </div>
-                        </div>
-                    <?php
-                    }
-                    ?>
+        <form action="annuaire.php" id="new-collab" method="POST">
+            <div class="row">
+                <div class="col">
+                    <input class="form-control" placeholder="Prénom" rows="1" id="prenom" name="prenom"></input>
+                </div>
+                <div class="col">
+                    <input class="form-control" placeholder="Nom" rows="1" id="nom" name="nom"></input>
+                </div>
+                <div class="col">
+                    <input class="form-control" placeholder="Poste" rows="1" id="poste" name="poste"></input>
+                </div>
+                <div class="col">
+                    <button type="submit" name="new-collab" class="btn btn-outline-dark">Ajouter</button>
                 </div>
             </div>
-
-            <div class="col-1"></div>
-        </div>
-    <?php
+        </form>
+        <?php
+        if (isset($_POST['new-collab'])) {
+            if (isset($_POST['prenom']) && isset($_POST['nom']) && isset($_POST['poste'])) {
+                $prenom = $_POST['prenom'];
+                $nom = $_POST['nom'];
+                $poste = $_POST['poste'];
+                if (empty($prenom) || empty($nom) || empty($poste)) {
+                    echo "<br><div class='alert alert-warning'><b>Tous</b> les champs sont obligatoires.</div>";
+                } else {
+                    addCollab($prenom, $nom, $poste);
+                    echo "<br><div class='alert alert-success'><b>$prenom</b> <b>$nom</b> a été ajouté à l'équipe !</div>";
+                }
+            }
+        } else {
+        }
     }
-    ?>
+    function addCollab($nom, $prenom, $poste) {
+        $annuaire = json_decode(file_get_contents("Data/annuaire.json"), true);
+        $nouv_collab = array(
+          "nom" => $nom,
+          "prenom" => $prenom,
+          "poste" => $poste
+        );
+        array_push($annuaire, $nouv_collab);
+        file_put_contents("Data/annuaire.json", json_encode($annuaire));
+      }
+      function degage_gens_from_annuaire($nom, $prenom) {
+        $annuaire = json_decode(file_get_contents("Data/annuaire.json"), true);
+        $yessir = null;
+        foreach ($annuaire as $i => $person) {
+          if ($person['nom'] === $nom && $person['prenom'] === $prenom) {
+            $yessir = $i;
+            break;
+          }
+        }
+
+        if ($yessir !== null) {
+          array_splice($annuaire, $yessir, 1);
+        }
+        file_put_contents('Data\annuaire.json', json_encode($annuaire));
+      }
+      function gestion_partenaires(){
+ ?>
+            </div>
+            <div class='row mt-5'>
+                <div class="col">
+                </div>
+                <div class="col text-center">
+                    <div class='card shadow-sm'>
+                        <div class='card-body'>
+                            <h5 class='card-title'>Nouveau Partenaire</h5>
+
+                            <form action='' method='post'>
+                    <div class='form-group'>
+                        <input type='text' class='form-control' name='new_partenaire_name' placeholder='Nom du partenaire'>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <button type='submit' class='mt-2 btn btn-success'>Ajouter</button>
+                        </div>
+                        <div class="col">
+                            <button type='submit' class='mt-2 btn btn-danger'>Supprimer</button>
+                        </div>
+                    </div>
+                </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col"></div>
+            </div>
+            <?php
+        //     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        //         if (isset($_POST['new_partenaire_name'])) {
+        //             $new_partenaire_name = $_POST['new_partenaire_name'];
+        //                 if (!partenaire_exists($new_partenaire_name)) {
+        //                 addPartenaire($new_partenaire_name);
+        //                 echo '<meta http-equiv="refresh" content="0">';
+        //             } else {
+        //                 echo "<div class='alert alert-danger mt-3 ms-5 me-5'>Le dossier <strong>$new_partenaire_name</strong> existe déjà.</div>";
+        //             }
+        //         }
+        //         if (isset($_POST['$partenaire_todel'])) {
+        //             $partenaire_todel = $_POST['$partenaire_todel'];
+        //             delPartenaire($partenaire_todel);
+        //             echo '<meta http-equiv="refresh" content="0">';
+        //         }
+        //     }
+        // }
+        function partenaire_exists(){
+
+        }
+        function addPartenaire(){
+            
+        }
+        function delPartenaire(){
+            
+        }
+    }
