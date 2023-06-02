@@ -960,51 +960,75 @@ function ajout_collab_format()
       }
       function gestion_partenaires(){
  ?>
-            </div>
-            <div class='row mt-5'>
-                <div class="col">
-                </div>
-                <div class="col text-center">
-                    <div class='card shadow-sm'>
-                        <div class='card-body'>
-                            <h5 class='card-title'>Nouveau Partenaire</h5>
+    </div>
+    <div class='row mt-5'>
+        <div class="col">
+        </div>
+        <div class="col text-center">
+            <div class='card shadow-sm'>
+                <div class='card-body'>
+                    <h5 class='card-title'>Nouveau Partenaire</h5>
 
-                            <form action='' method='post'>
-                    <div class='form-group'>
-                        <input type='text' class='form-control' name='new_partenaire_name' placeholder='Nom du partenaire'>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <button type='submit' class='mt-2 btn btn-success'>Ajouter</button>
+                    <form action='' method='post'>
+                        <div class='form-group'>
+                            <p>Ajouter ou supprimer un partenaire du site web</p>
                         </div>
-                        <div class="col">
-                            <button type='submit' class='mt-2 btn btn-danger'>Supprimer</button>
+                        <div class="row">
+                            <div class="col">
+                                <button type='button' class='mt-2 btn btn-success' data-bs-toggle="modal" data-bs-target="#addModal">Ajouter</button>
+                            </div>
+                            <div class="col">
+                                <button type='button' class='mt-2 btn btn-danger' data-bs-toggle="modal" data-bs-target="#deleteModal">Supprimer</button>
+                            </div>
                         </div>
-                    </div>
-                </form>
-                        </div>
-                    </div>
+                    </form>
                 </div>
-                <div class="col"></div>
             </div>
-            <?php
-        //     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        //         if (isset($_POST['new_partenaire_name'])) {
-        //             $new_partenaire_name = $_POST['new_partenaire_name'];
-        //                 if (!partenaire_exists($new_partenaire_name)) {
-        //                 addPartenaire($new_partenaire_name);
-        //                 echo '<meta http-equiv="refresh" content="0">';
-        //             } else {
-        //                 echo "<div class='alert alert-danger mt-3 ms-5 me-5'>Le dossier <strong>$new_partenaire_name</strong> existe déjà.</div>";
-        //             }
-        //         }
-        //         if (isset($_POST['$partenaire_todel'])) {
-        //             $partenaire_todel = $_POST['$partenaire_todel'];
-        //             delPartenaire($partenaire_todel);
-        //             echo '<meta http-equiv="refresh" content="0">';
-        //         }
-        //     }
-        // }
+        </div>
+        <div class="col"></div>
+    </div>
+
+    <!-- Add Modal -->
+    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addModalLabel">Ajouter un partenaire</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action='' method='post'>
+                        <div class='form-group'>
+                            <input type='text' class='form-control' name='new_partenaire_name' placeholder='Nom du partenaire'><br>
+                            <input type='text' class='form-control' name='new_partenaire_name' placeholder='Description du partenaire'>
+                        </div>
+                        <button type='submit' class='mt-2 btn btn-success'>Ajouter</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Supprimer un partenaire</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action='' method='post'>
+                        <input type='text' class='form-control' name='partenaire_todel' placeholder='Nom du partenaire'><br>
+                        <button type='submit' class='mt-2 btn btn-danger'>Supprimer</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php
+}
+
         function partenaire_exists(){
 
         }
@@ -1014,4 +1038,3 @@ function ajout_collab_format()
         function delPartenaire(){
             
         }
-    }
