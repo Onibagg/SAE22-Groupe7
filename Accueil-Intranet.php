@@ -34,11 +34,11 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                     <div class="row">
                         <div class="col text-center">
                             <button type="button" class="mt-1 btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal1">
-                                <p class="mb-0">Team Building</p>
+                                <p class="mb-0">Atelier sensibilisation à la cybersécurité</p>
                                 <span class="spinner-grow spinner-grow-sm"></span>
                                 <br>
                                 <?php
-                                echo countdown("2023-06-29 12:15:00");
+                                echo countdown("2023-06-25 12:15:00");
                                 ?>
                             </button>
 
@@ -46,14 +46,16 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h4 class="modal-title">Team Building</h4>
+                                            <h4 class="modal-title">A Paris</h4>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                         </div>
                                         <div class="modal-body">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed ratione quis odio debitis laudantium labore quisquam officiis ex, tempora et eum quae, sint iusto incidunt autem molestiae! Eos, accusantium nisi.
+                                        Dans cet atelier, nous aborderons les principes fondamentaux de la cybersécurité. Nous expliquerons les différentes menaces en ligne, telles que les virus, le phishing et les attaques DDoS.
                                         </div>
                                         <div class="modal-footer">
-                                            <a type="button" href="#" class="btn btn-outline-dark">Link</a>
+                                            <a type="button" href="https://www.cyber-management-school.com/formation-cybersecurite-et-management-paris/?gclid=CjwKCAjwpuajBhBpEiwA_ZtfhaQ2-GFcJoB-jfqWT9_UsKyMVIgeETIx6PhUwvN7z7Stm_RtiiOZWRoCrrEQAvD_BwE" class="btn btn-outline-dark">Inscription</a>
+                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -61,11 +63,11 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                         </div>
                         <div class="col text-center">
                             <button type="button" class="mt-5 btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal2">
-                                <p class="mb-0">Nouvelle Offre</p>
+                                <p class="mb-0">Lancement d'une nouvelle offre</p>
                                 <span class="spinner-grow spinner-grow-sm"></span>
                                 <br>
                                 <?php
-                                echo countdown("2023-05-11 00:00:00");
+                                echo countdown("2023-09-11 00:00:00");
                                 ?>
                             </button>
 
@@ -77,22 +79,18 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                         </div>
                                         <div class="modal-body">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed ratione quis odio debitis laudantium labore quisquam officiis ex, tempora et eum quae, sint iusto incidunt autem molestiae! Eos, accusantium nisi.
-                                        </div>
-                                        <div class="modal-footer">
-                                            <a type="button" href="#" class="btn btn-outline-dark">Link</a>
-                                        </div>
+                                        PrivateVPN est ravi de vous annoncer notre nouvelle offre 'PrivatePremium'. Avec 'PrivatePremium', bénéficiez d'une bande passante illimitée, d'une sécurité renforcée et d'une assistance prioritaire 24/7                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col">
                             <button type="button" class="mt-3 btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal3">
-                                <p class="mb-0">SKO</p>
+                                <p class="mb-0">Mise à jour site web</p>
                                 <span class="spinner-grow text-muted spinner-grow-sm"></span>
                                 <br>
                                 <?php
-                                echo countdown("2023-07-27 18:33:00");
+                                echo countdown("2023-09-01 18:33:00");
                                 ?>
                             </button>
 
@@ -101,15 +99,11 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h4 class="modal-title">SKO</h4>
+                                            <h4 class="modal-title">Mise à jour du site web</h4>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                         </div>
                                         <div class="modal-body">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed ratione quis odio debitis laudantium labore quisquam officiis ex, tempora et eum quae, sint iusto incidunt autem molestiae! Eos, accusantium nisi.
-                                        </div>
-                                        <div class="modal-footer">
-                                            <a type="button" href="#" class="btn btn-outline-dark">Link</a>
-                                        </div>
+                                        Nous avons complètement revu notre site web pour vous offrir une meilleure expérience utilisateur. Venez découvrir notre nouvelle interface, plus intuitive et plus rapide.                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -119,7 +113,7 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                     <div class="row">
                         <div class="col text-center">
                             <button type="button" class="mt-1 btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal4">
-                                <p class="mb-0">Événement 4</p>
+                                <p class="mb-0">Intégration avec Apple</p>
                                 <span class="spinner-grow spinner-grow-sm"></span>
                                 <br>
                                 <?php
@@ -131,14 +125,13 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h4 class="modal-title">Événement 4</h4>
+                                            <h4 class="modal-title">Partenariat avec Apple</h4>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                         </div>
                                         <div class="modal-body">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed ratione quis odio debitis laudantium labore quisquam officiis ex, tempora et eum quae, sint iusto incidunt autem molestiae! Eos, accusantium nisi.
-                                        </div>
+                                        Notre nouveau partenariat avec Apple permet à tous les utilisateurs de Mac et iOS d'installer facilement PrivateVPN. Sécurisez vos appareils Apple dès aujourd'hui.                                        </div>
                                         <div class="modal-footer">
-                                            <a type="button" href="#" class="btn btn-outline-dark">Link</a>
+                                            <a type="button" href="https://getsupport.apple.com/?caller=support.header&cid=gn-ols-contact-mgs_lp-get_help" class="btn btn-outline-dark">Support Apple</a>
                                         </div>
                                     </div>
                                 </div>
@@ -147,11 +140,11 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
 
                         <div class="col text-center">
                             <button type="button" class="mt-1 btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal5">
-                                <p class="mb-0">Événement 5</p>
+                                <p class="mb-0">Cyber Security Summit 2023</p>
                                 <span class="spinner-grow spinner-grow-sm"></span>
                                 <br>
                                 <?php
-                                echo countdown("2023-06-29 12:15:00");
+                                echo countdown("2023-08-15 12:15:00");
                                 ?>
                             </button>
 
@@ -159,14 +152,13 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h4 class="modal-title">Événement 5</h4>
+                                            <h4 class="modal-title">Evénement de sécurité en ligne</h4>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                         </div>
                                         <div class="modal-body">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed ratione quis odio debitis laudantium labore quisquam officiis ex, tempora et eum quae, sint iusto incidunt autem molestiae! Eos, accusantium nisi.
-                                        </div>
+                                        Rejoignez-nous pour le Cyber Security Summit 2023, où nous présenterons les dernières innovations en matière de sécurité VPN.                                        </div>
                                         <div class="modal-footer">
-                                            <a type="button" href="#" class="btn btn-outline-dark">Link</a>
+                                            <a type="button" href="https://cybersecuritysummit.com/" class="btn btn-outline-dark">Site Officiel</a>
                                         </div>
                                     </div>
                                 </div>
@@ -175,11 +167,11 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
 
                         <div class="col text-center">
                             <button type="button" class="mt-1 btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal6">
-                                <p class="mb-0">Événement 6</p>
+                                <p class="mb-0">Promotion spéciale pour les étudiants</p>
                                 <span class="spinner-grow spinner-grow-sm"></span>
                                 <br>
                                 <?php
-                                echo countdown("2023-06-29 12:15:00");
+                                echo countdown("2023-06-20 1:15:00");
                                 ?>
                             </button>
 
@@ -187,15 +179,12 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h4 class="modal-title">Événement 6</h4>
+                                            <h4 class="modal-title">Offre etudiant</h4>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                         </div>
                                         <div class="modal-body">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed ratione quis odio debitis laudantium labore quisquam officiis ex, tempora et eum quae, sint iusto incidunt autem molestiae! Eos, accusantium nisi.
-                                        </div>
-                                        <div class="modal-footer">
-                                            <a type="button" href="#" class="btn btn-outline-dark">Link</a>
-                                        </div>
+                                        Nous avons introduit une offre spéciale pour les étudiants. Profitez de 50% de réduction sur tous nos plans VPN avec une adresse email .edu valide</div>
+                        
                                     </div>
                                 </div>
                             </div>
@@ -205,11 +194,11 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                     <div class="row">
                         <div class="col text-center">
                             <button type="button" class="mt-1 btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal7">
-                                <p class="mb-0">Événement 7</p>
+                                <p class="mb-0">Expansion de nos serveurs</p>
                                 <span class="spinner-grow spinner-grow-sm"></span>
                                 <br>
                                 <?php
-                                echo countdown("2023-06-29 12:15:00");
+                                echo countdown("2023-12-29 12:15:00");
                                 ?>
                             </button>
 
@@ -217,15 +206,11 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h4 class="modal-title">Événement 7</h4>
+                                            <h4 class="modal-title">Expansion de nos serveurs</h4>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                         </div>
                                         <div class="modal-body">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed ratione quis odio debitis laudantium labore quisquam officiis ex, tempora et eum quae, sint iusto incidunt autem molestiae! Eos, accusantium nisi.
-                                        </div>
-                                        <div class="modal-footer">
-                                            <a type="button" href="#" class="btn btn-outline-dark">Link</a>
-                                        </div>
+                                        Pour mieux vous servir, nous avons ajouté 100 nouveaux serveurs à travers le monde. Vous pouvez maintenant vous connecter à PrivateVPN à partir de plus de 200 pays.                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -234,11 +219,11 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
 
                         <div class="col text-center">
                             <button type="button" class="mt-1 btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal8">
-                                <p class="mb-0">Événement 8</p>
+                                <p class="mb-0">Collaboration avec Netflix</p>
                                 <span class="spinner-grow spinner-grow-sm"></span>
                                 <br>
                                 <?php
-                                echo countdown("2023-06-29 12:15:00");
+                                echo countdown("2023-09-10 12:15:00");
                                 ?>
                             </button>
 
@@ -246,26 +231,23 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h4 class="modal-title">Événement 8</h4>
+                                            <h4 class="modal-title">Collaboration avec Netflix</h4>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                         </div>
                                         <div class="modal-body">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed ratione quis odio debitis laudantium labore quisquam officiis ex, tempora et eum quae, sint iusto incidunt autem molestiae! Eos, accusantium nisi.
-                                        </div>
-                                        <div class="modal-footer">
-                                            <a type="button" href="#" class="btn btn-outline-dark">Link</a>
-                                        </div>
+                                        Grâce à notre nouveau partenariat avec Netflix, vous pouvez désormais débloquer toutes les bibliothèques Netflix à travers le monde. Profitez de plus de contenu avec PrivateVPN                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col text-center">
                             <button type="button" class="mt-1 btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal9">
-                                <p class="mb-0">Événement 9</p>
+                                <p class="mb-0">Partenariat avec Google </p>
                                 <span class="spinner-grow spinner-grow-sm"></span>
                                 <br>
                                 <?php
-                                echo countdown("2023-06-29 12:15:00");
+                                echo countdown("2023-11-29 12:15:00");
                                 ?>
                             </button>
 
@@ -273,14 +255,13 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h4 class="modal-title">Événement 9</h4>
+                                            <h4 class="modal-title">Partenariat avec Google </h4>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                         </div>
                                         <div class="modal-body">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed ratione quis odio debitis laudantium labore quisquam officiis ex, tempora et eum quae, sint iusto incidunt autem molestiae! Eos, accusantium nisi.
-                                        </div>
+                                        PrivateVPN est fier de s'associer à Google pour vous offrir un accès sécurisé et privé à tous les services Google. Restez connecté, tout en restant en sécurité.                                        </div>
                                         <div class="modal-footer">
-                                            <a type="button" href="#" class="btn btn-outline-dark">Link</a>
+                                            <a type="button" href="https://about.google/contact-google/?hl=fr" class="btn btn-outline-dark">Support Google</a>
                                         </div>
                                     </div>
                                 </div>
