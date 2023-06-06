@@ -40,7 +40,7 @@ function page_header()
             <div class="row">
                 <div class="col text-center">
                     <a href="page-accueil.php">
-                        <img src="/Images/PrivateVPN.png" width="210" height="110" class="rounded" alt="?"></br></br>
+                        <img src="Images/Logo_complet.png" height="115" class="rounded" alt="?"></br></br>
                     </a>
                 </div>
                 <div class="col"></div>
@@ -317,8 +317,17 @@ function intranet_navbar()
 
 function file_decod($file)
 {
-    return json_decode(file_get_contents($file), true);
+    $contents = file_get_contents($file);
+    $data = json_decode($contents, true);
+
+    if ($data === null) {
+        // Gestion de l'erreur de décodage JSON
+        throw new Exception('Erreur de décodage JSON : ' . json_last_error_msg());
+    }
+
+    return $data;
 }
+
 
 function file_encod($file)
 {
@@ -430,11 +439,11 @@ function ajout_utilisateur_format()
     }
 
     function afficherUtilisateurs($utilisateurs)
-{
-    echo '<form method="post">';
-    echo '<div class="table-responsive">';
-    echo '<table class="table table-hover">';
-    echo "
+    {
+        echo '<form method="post">';
+        echo '<div class="table-responsive">';
+        echo '<table class="table table-hover">';
+        echo "
     <tr>
     <th>Prénom 
     <button type='submit' name='tri' value='prenom_asc' class='btn btn-link'><i class='fas fa-sort-up'></i><img src='Images/Icons/uparrow.png'></button>
@@ -455,55 +464,55 @@ function ajout_utilisateur_format()
     <th></th>
     </tr>
     ";
-    
-    // Vérifier si le tri est demandé
-    $tri = isset($_POST['tri']) ? $_POST['tri'] : '';
 
-    // Fonction de tri
-    $sortFunction = function ($a, $b) use ($tri) {
-        if ($tri === 'prenom_asc') {
-            return $a['prenom'] <=> $b['prenom'];
-        } elseif ($tri === 'prenom_desc') {
-            return $b['prenom'] <=> $a['prenom'];
-        } elseif ($tri === 'nom_asc') {
-            return $a['nom'] <=> $b['nom'];
-        } elseif ($tri === 'nom_desc') {
-            return $b['nom'] <=> $a['nom'];
-        } elseif ($tri === 'user_asc') {
-            return $a['user'] <=> $b['user'];
-        } elseif ($tri === 'user_desc') {
-            return $b['user'] <=> $a['user'];
-        } elseif ($tri === 'email_asc') {
-            return $a['email'] <=> $b['email'];
-        } elseif ($tri === 'email_desc') {
-            return $b['email'] <=> $a['email'];
-        } else {
-            // Pas de tri, garder l'ordre initial
-            return 0;
+        // Vérifier si le tri est demandé
+        $tri = isset($_POST['tri']) ? $_POST['tri'] : '';
+
+        // Fonction de tri
+        $sortFunction = function ($a, $b) use ($tri) {
+            if ($tri === 'prenom_asc') {
+                return $a['prenom'] <=> $b['prenom'];
+            } elseif ($tri === 'prenom_desc') {
+                return $b['prenom'] <=> $a['prenom'];
+            } elseif ($tri === 'nom_asc') {
+                return $a['nom'] <=> $b['nom'];
+            } elseif ($tri === 'nom_desc') {
+                return $b['nom'] <=> $a['nom'];
+            } elseif ($tri === 'user_asc') {
+                return $a['user'] <=> $b['user'];
+            } elseif ($tri === 'user_desc') {
+                return $b['user'] <=> $a['user'];
+            } elseif ($tri === 'email_asc') {
+                return $a['email'] <=> $b['email'];
+            } elseif ($tri === 'email_desc') {
+                return $b['email'] <=> $a['email'];
+            } else {
+                // Pas de tri, garder l'ordre initial
+                return 0;
+            }
+        };
+
+        // Appliquer le tri
+        if ($tri !== '') {
+            uasort($utilisateurs, $sortFunction);
         }
-    };
 
-    // Appliquer le tri
-    if ($tri !== '') {
-        uasort($utilisateurs, $sortFunction);
-    }
+        foreach ($utilisateurs as $nom => $infos) {
+            echo '<tr>';
+            echo '<td><input type="text" name="prenom[' . $nom . ']" value="' . $infos['prenom'] . '" class="form-control"></td>';
+            echo '<td><input type="text" name="nom[' . $nom . ']" value="' . $infos['nom'] . '" class="form-control"></td>';
+            echo '<td><input type="text" name="user[' . $nom . ']" value="' . $infos['user'] . '" class="form-control"></td>';
+            echo '<td><input type="text" name="mdp[' . $nom . ']" value="" class="form-control"></td>';
+            echo '<td><input type="text" name="email[' . $nom . ']" value="' . $infos['email'] . '" class="form-control"></td>';
+            echo '<td class="text-center"><input type="submit" name="modifier[' . $nom . ']" value="Enregistrer" class="btn me-3 btn-outline-success">';
+            echo '<input type="submit" name="supprimer[' . $nom . ']" value="Supprimer" class="btn btn-danger"></td>';
+            echo '</tr>';
+        }
 
-    foreach ($utilisateurs as $nom => $infos) {
-        echo '<tr>';
-        echo '<td><input type="text" name="prenom[' . $nom . ']" value="' . $infos['prenom'] . '" class="form-control"></td>';
-        echo '<td><input type="text" name="nom[' . $nom . ']" value="' . $infos['nom'] . '" class="form-control"></td>';
-        echo '<td><input type="text" name="user[' . $nom . ']" value="' . $infos['user'] . '" class="form-control"></td>';
-        echo '<td><input type="text" name="mdp[' . $nom . ']" value="" class="form-control"></td>';
-        echo '<td><input type="text" name="email[' . $nom . ']" value="' . $infos['email'] . '" class="form-control"></td>';
-        echo '<td class="text-center"><input type="submit" name="modifier[' . $nom . ']" value="Enregistrer" class="btn me-3 btn-outline-success">';
-        echo '<input type="submit" name="supprimer[' . $nom . ']" value="Supprimer" class="btn btn-danger"></td>';
-        echo '</tr>';
+        echo '</table>';
+        echo '</div>';
+        echo '</form>';
     }
-    
-    echo '</table>';
-    echo '</div>';
-    echo '</form>';
-}
 
 
     function gestionUtilisateurs()
@@ -927,99 +936,150 @@ function ajout_utilisateur_format()
         </div>
     <?php
     }
-    
-    function affiche_annuaire_tablelo()
-{
-    $fichlogin = file_decod("Data/login-mdp.json");
-    $lannuaire = file_decod("Data/annuaire.json");
 
-    if (isset($_POST['supprimer'])) {
-        $parsstp = explode(',', $_POST['supprimer']);
-        degage_gens_from_annuaire($parsstp[0], $parsstp[1]);
-    } elseif (isset($_POST['ajouter'])) {
-        $parsstp = explode(',', $_POST['ajouter']);
-        if (count($parsstp) >= 4) {
-            $prenom = $parsstp[0];
-            $nom = $parsstp[1];
-            $poste = $parsstp[2];
-            $user = $parsstp[3];
-            $description = $parsstp[4];
-            addCollab($nom, $prenom, $poste, $user, $description);
-        } else {
-            echo "<br><div class='alert alert-danger'>Erreur : Les informations nécessaires sont manquantes.</div>";
+    function affiche_annuaire_tablelo()
+    {
+
+        $annuaire = 'Data/annuaire.json';
+        $users_vitrine = file_decod($annuaire);
+
+        $path = 'Data\login-mdp.json';
+        $fichlogin = file_decod($path);
+        if (!is_array($users_vitrine)) {
+            // Gestion de l'erreur : $users_vitrine n'est pas un tableau valide
+            throw new Exception('Erreur : $users_vitrine n\'est pas un tableau valide.');
         }
-    } elseif (isset($_POST['modifier'])) {
-        $parsstp = explode(',', $_POST['modifier']);
-        if (count($parsstp) >= 5) {
-            $prenom = $parsstp[0];
-            $nom = $parsstp[1];
-            $poste = $parsstp[2];
-            $user = $parsstp[3];
-            $description = $_POST['description_'.$nom.'_'.$prenom]; // Nouvelle valeur de la description
-            modifierDescription($nom, $prenom, $poste, $user, $description);
-        } else {
-            echo "<br><div class='alert alert-danger'>Erreur : Les informations nécessaires sont manquantes.</div>";
+
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (isset($_POST['supprimer'])) {
+                foreach ($_POST['supprimer'] as $nom => $valeur) {
+                    unset($users_vitrine[$nom]);
+                    file_put_contents($annuaire, json_encode($users_vitrine));
+                }
+            } elseif (isset($_POST['ajouter'])) {
+                foreach ($_POST['ajouter'] as $nom => $valeur) {
+                    $user_accepte = $users_vitrine[$nom];
+                    $nouvel_utilisateur = array(
+                        'prenom' => $user_accepte['prenom'],
+                        'nom' => $user_accepte['nom'],
+                        'poste' => $user_accepte['poste'],
+                        'user' => $user_accepte['user'],
+                        'description' => $user_accepte['description'],
+                    );
+                    $users_vitrine[$user_accepte['user']] = $nouvel_utilisateur;
+                    file_put_contents($annuaire, json_encode($users_vitrine));
+                }
+                file_put_contents($annuaire, json_encode($users_vitrine));
+            } elseif (isset($_POST['save'])) {
+                $description = $_POST['description'];
+                foreach ($_POST['save'] as $nom) {
+                    $users[$nom]['description'] = $description[$nom];
+                }
+                file_put_contents($path, json_encode($fichlogin));
+            } else {
+                echo "<br><div class='alert alert-danger'>Erreur</div>";
+            }
         }
+
+    ?>
+
+        <form method="post">
+            <table class="table table-striped table-hover">
+                <thead class="text-center">
+                    <tr>
+                        <th width="6%">Nom</th>
+                        <th width="6%">Prénom</th>
+                        <th width="10%">Poste</th>
+                        <th width=6%">User</th>
+                        <th width="60%">Description</th>
+                        <th width="12%">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    
+                    foreach ($fichlogin as $personne) {
+                        $personneNom = $personne['nom'];
+                        $personnePrenom = $personne['prenom'];
+                        $personnePoste = $personne['poste'];
+                        $personneUser = $personne['user'];
+                        $personneDescription = $personne['description'];
+
+                        $personneExists = false;
+                        foreach ($users_vitrine as $annuairePersonne) {
+                            if ($annuairePersonne['nom'] === $personneNom) {
+                                $personneExists = true;
+                                break;
+                            }
+                        }
+
+                        if ($personneExists) {
+                    ?>
+                            <tr>
+                                <td><?php echo $personneNom; ?></td>
+                                <td><?php echo $personnePrenom; ?></td>
+                                <td><?php echo $personnePoste; ?></td>
+                                <td><?php echo $personneUser; ?></td>
+                                <td><?php echo $personneDescription; ?></td>
+                                <td class="text-center">
+                                    <button type="submit" name="supprimer" value="<?php echo $personneNom . ',' . $personnePrenom; ?>" class="btn btn-danger">Supprimer</button>
+                                </td>
+                            </tr>
+                        <?php
+                        } else {
+                        ?>
+                            <tr>
+                                <td><?php echo $personneNom; ?></td>
+                                <td><?php echo $personnePrenom; ?></td>
+                                <td><?php echo $personnePoste; ?></td>
+                                <td><?php echo $personneUser; ?></td>
+                                <td>
+                                    <textarea class="form-control" rows="2" id="comment" name="description_<?php echo $personneNom . '_' . $personnePrenom; ?>"><?php echo $personneDescription; ?></textarea>
+                                </td>
+                                <td class="text-center">
+                                    <div class="input-group">
+                                        <button type="submit" name="save" class="btn btn-primary">Save</button>
+                                        <button type="submit" name="ajouter" value="<?php echo $personneNom . ',' . $personnePrenom . ',' . $personnePoste . ',' . $personneUser . ',' . $personneDescription; ?>" class="btn btn-success">Ajouter</button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                    <?php
+                        }
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </form>
+    <?php
     }
 
-    echo '<form method="post">';
-    echo '<table class="table table-striped table-hover">';
-    echo '<thead><tr><th>Nom</th><th>Prénom</th><th>Poste</th><th>User</th><th>Description</th><th>Action</th></tr></thead>';
-    echo '<tbody>';
+    function modifierDescription($nom, $prenom, $poste, $user, $nouvelleDescription)
+    {
+        $annuaire = file_decod("Data/annuaire.json");
 
-    foreach ($fichlogin as $personne) {
-        $personneNom = $personne['nom'];
-        $personnePrenom = $personne['prenom'];
-        $personnePoste = $personne['poste'];
-        $personneUser = $personne['user'];
-        $personneDescription = $personne['description'];
-
-        $personneExists = false;
-        foreach ($lannuaire as $annuairePersonne) {
-            if ($annuairePersonne['nom'] === $personneNom) {
-                $personneExists = true;
+        $index = -1;
+        foreach ($annuaire as $key => $personne) {
+            if ($personne['nom'] === $nom && $personne['prenom'] === $prenom) {
+                $index = $key;
                 break;
             }
         }
 
-        if ($personneExists) {
-            echo '<tr><td>' . $personneNom . '</td><td>' . $personnePrenom . '</td><td>' . $personnePoste . '</td><td>' . $personneUser . '</td><td>' . $personneDescription . '</td><td class="text-center"><button type="submit" name="supprimer" value="' . $personneNom . ',' . $personnePrenom . '" class="btn btn-danger">Supprimer</button></td></tr>';
+        if ($index !== -1) {
+            $annuaire[$index]['description'] = $nouvelleDescription;
+
+            file_put_contents("Data/annuaire.json", json_encode($annuaire));
+
+            echo "<br><div class='alert alert-success'>La description de l'utilisateur a été modifiée avec succès.</div>";
         } else {
-            echo '<tr><td>' . $personneNom . '</td><td>' . $personnePrenom . '</td><td>' . $personnePoste . '</td><td>' . $personneUser . '</td><td><input type="text" name="description_'.$personneNom.'_'.$personnePrenom.'" value="' . $personneDescription . '"></td><td class="text-center"><button type="submit" name="ajouter" value="' . $personneNom . ',' . $personnePrenom . ',' . $personnePoste . ',' . $personneUser . ',' . $personneDescription . '" class="btn btn-success">Ajouter</button></td></tr>';
-        }
-    }
-    echo '</tbody></table>';
-    echo '</form>';
-}
-
-function modifierDescription($nom, $prenom, $poste, $user, $nouvelleDescription)
-{
-    $annuaire = file_decod("Data/annuaire.json");
-
-    // Recherche de l'utilisateur dans l'annuaire
-    $index = -1;
-    foreach ($annuaire as $key => $personne) {
-        if ($personne['nom'] === $nom && $personne['prenom'] === $prenom) {
-            $index = $key;
-            break;
+            echo "<br><div class='alert alert-danger'>Erreur : L'utilisateur n'a pas été trouvé dans l'annuaire.</div>";
         }
     }
 
-    if ($index !== -1) {
-        // Modification de la description
-        $annuaire[$index]['description'] = $nouvelleDescription;
-
-        // Sauvegarde des modifications dans le fichier
-        file_put_contents("Data/annuaire.json", json_encode($annuaire));
-
-        echo "<br><div class='alert alert-success'>La description de l'utilisateur a été modifiée avec succès.</div>";
-    } else {
-        echo "<br><div class='alert alert-danger'>Erreur : L'utilisateur n'a pas été trouvé dans l'annuaire.</div>";
-    }
-}
 
 
-    
 
     function addCollab($prenom, $nom, $poste, $user, $description)
     {
@@ -1079,7 +1139,7 @@ function modifierDescription($nom, $prenom, $poste, $user, $nouvelleDescription)
                             <div class="card card-sm mb-4">
                                 <div class="card-body">
                                     <h5 class="card-title"> <?php echo $prenom . " " . $nom ?></h5>
-                                    <p class="card-text text-center"><i><?php echo $poste ?></i><br><img src="../Images/Employés/<?php echo $user?>.jpg" class="img-fluid rounded-circle mt-3" style="max-width: 75px;"><br><?php echo $description ?></p>
+                                    <p class="card-text text-center"><i><?php echo $poste ?></i><br><img src="../Images/Employés/<?php echo $user ?>.jpg" class="img-fluid rounded-circle mt-3" style="max-width: 75px;"><br><?php echo $description ?></p>
                                 </div>
                             </div>
                         </div>
