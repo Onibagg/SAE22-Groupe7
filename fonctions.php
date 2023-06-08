@@ -379,6 +379,9 @@ function ajout_utilisateur_format()
                     <input class="form-control" type="password" placeholder="Confirmation" rows="1" id="confirmation" name="confirmation"></input>
                 </div>
                 <div class="col">
+                    <input class="form-control" placeholder="Poste" rows="1" id="poste" name="poste"></input>
+                </div>
+                <div class="col">
                     <input class="form-control" placeholder="E-Mail" rows="1" id="email" name="email"></input>
                 </div>
                 <div class="col">
@@ -394,6 +397,7 @@ function ajout_utilisateur_format()
                 $usr = $_POST['pseudo'];
                 $mdp = $_POST['mdp'];
                 $confirmation = $_POST['confirmation'];
+                $poste = $_POST['poste'];
                 $email = $_POST['email'];
 
                 if ($mdp !== $confirmation) {
@@ -401,7 +405,7 @@ function ajout_utilisateur_format()
                 } elseif (empty($prenom) || empty($nom) || empty($usr) || empty($mdp) || empty($confirmation) || empty($email)) {
                     echo "<br><div class='alert alert-warning'><b>Tous</b> les champs sont obligatoires.</div>";
                 } else {
-                    addUser($prenom, $nom, $usr, $mdp, $email);
+                    addUser($prenom, $nom, $usr, $mdp, $poste, $email);
                     echo "<br><div class='alert alert-success'><b>$prenom</b> <b>$nom</b> a été ajouté à l'équipe !</div>";
                 }
             }
@@ -411,7 +415,7 @@ function ajout_utilisateur_format()
         <?php
     }
 
-    function addUser($prenom, $nom, $usr, $mdp, $email)
+    function addUser($prenom, $nom, $usr, $mdp, $poste, $email)
     {
         $users = file_decod('Data\login-mdp.json');
 
@@ -420,6 +424,7 @@ function ajout_utilisateur_format()
             'nom' => $nom,
             'user' => $usr,
             'mdp' => password_hash($mdp, PASSWORD_DEFAULT),
+            'poste' => $poste,
             'email' => $email
         ];
 
