@@ -14,7 +14,9 @@ function setup()
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <link href="Style\style.css" type="text/css" rel="stylesheet">
+        <link href="Style\page-histoire-style.css" type="text/css" rel="stylesheet">
         <link href="Style\intranet-navbar.css" type="text/css" rel="stylesheet">
+        <link href="Style\page-activite-style.css" type="text/css" rel="stylesheet">
         <link rel="icon" type="image/x-icon" href="Images\PrivateVPN_logo.png">
         <title>Private VPN | Le meilleur des VPN</title>
         <style>
@@ -735,16 +737,26 @@ function ajout_utilisateur_format()
         </div>
         <?php
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $max_folder_name_length = 20; 
             if (isset($_POST['new_folder_name'])) {
                 $new_folder_name = $_POST['new_folder_name'];
-                $new_folder_path = $dir . $new_folder_name;
-                if (!file_exists($new_folder_path)) {
-                    mkdir($new_folder_path, 0777);
-                    echo '<meta http-equiv="refresh" content="0">';
+                if (preg_match('/^[a-zA-Z0-9\s]+$/', $new_folder_name)) {                 // Vérification des caractères autorisés
+                    if (strlen($new_folder_name) <= $max_folder_name_length) {                    // Vérification de la longueur du nom du dossier
+                        $new_folder_path = $dir . $new_folder_name;
+                        if (!file_exists($new_folder_path)) {
+                            mkdir($new_folder_path, 0777);
+                            echo '<meta http-equiv="refresh" content="0">';
+                        } else {
+                            echo "<div class='alert alert-danger mt-3 ms-5 me-5'>Le dossier <strong>$new_folder_name</strong> existe déjà.</div>";
+                        }
+                    } else {
+                        echo "<div class='alert alert-danger mt-3 ms-5 me-5'>Le nom du dossier est trop long. ($max_folder_name_length caractères max)</div>";
+                    }
                 } else {
-                    echo "<div class='alert alert-danger mt-3 ms-5 me-5'>Le dossier <strong>$new_folder_name</strong> existe déjà.</div>";
+                    echo "<div class='alert alert-danger mt-3 ms-5 me-5'>Le nom du dossier contient des caractères non autorisés.</div>";
                 }
             }
+
             if (isset($_POST['delete_folder'])) {
                 $folder_name = $_POST['folder_name_to_delete'];
                 $dire = $dir . $folder_name;
@@ -941,7 +953,6 @@ function ajout_utilisateur_format()
     {
 
         $jsonData = file_get_contents('Data/login-mdp.json');
-
         $users = json_decode($jsonData, true);
 
         $annuaireData = file_get_contents('Data/annuaire.json');
@@ -1074,4 +1085,4 @@ function ajout_utilisateur_format()
             </div>
         <?php
     }
-        ?>
+?>
