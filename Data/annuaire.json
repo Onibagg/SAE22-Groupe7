@@ -1,1 +1,38 @@
-{"Riou":{"prenom":"Nicolas","nom":"Riou","poste":"Ing\u00e9nieur","user":"nriou","description":"En tant qu'ing\u00e9nieur Nicolas Riou est reconnu pour sa capacit\u00e9 \u00e0 r\u00e9soudre des d\u00e9fis techniques complexes de mani\u00e8re efficace et efficiente. Son approche m\u00e9thodique lui permet de comprendre rapidement les probl\u00e8mes; d'identifier les solutions les plus adapt\u00e9es et de les mettre en \u0153uvre avec pr\u00e9cision."}}
+{
+    "nriou": {
+        "prenom": "Nicolas",
+        "nom": "Riou",
+        "user": "nriou",
+        "mdp": "$2y$10$faeYeDaGTwykyl0y6RpLAe426DDXgPppwoxghW4VLudT77iJplTWC",
+        "email": "riounicolas.perso@gmail.com",
+        "poste": "Ing\u00e9nieur",
+        "description": "En tant qu'ing\u00e9nieur Nicolas Riou est reconnu pour sa capacit\u00e9 \u00e0 r\u00e9soudre des d\u00e9fis techniques complexes de mani\u00e8re efficace et efficiente. Son approche m\u00e9thodique lui permet de comprendre rapidement les probl\u00e8mes; d'identifier les solutions les plus adapt\u00e9es et de les mettre en \u0153uvre avec pr\u00e9cision.\r\nIl est tres tres fort."
+    },
+    "emarchand": {
+        "prenom": "Emeric",
+        "nom": "Marchand",
+        "user": "emarchand",
+        "mdp": "$2y$10$a6X9FPLfXtEf5WoDk97FYOkBZ.BBhEVwfQl\/CilsTheikjCKj2BqK",
+        "email": "emeric5612@gmail.com",
+        "poste": "Chef de l'IT",
+        "description": "Truc"
+    },
+    "gdeme": {
+        "prenom": "Gabin",
+        "nom": "Dem\u00e9",
+        "user": "gdeme",
+        "mdp": "$2y$10$SzyCdpK7rxoKxAF3b82ks.ut2WP8.Ss0k9rfynUwKl4NwhoMviITu",
+        "email": "gabindeme@gmail.com",
+        "poste": "Directeur",
+        "description": "Bonjour"
+    },
+    "echapin": {
+        "prenom": "Emmanuel",
+        "nom": "Chapin",
+        "user": "echapin",
+        "mdp": "$2y$10$2Y8W8qbs2OolahS1LNWEletp\/30jUrHN0bgHhCUJM6iU4RuDb9Zwi",
+        "email": "studio.manu00@gmail.com",
+        "poste": "Chef de la Production",
+        "description": "zqsgsfgscbcxbxvcvbdbvcbdfbdgbdgb"
+    }
+}

@@ -2,32 +2,137 @@
 include("fonctions.php");
 setup();
 intranet_navbar();
-
-if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
-    $user = $_SESSION['user'];
-    $usersData = file_decod('Data\login-mdp.json');
-    $userData = $usersData[$user];
-    $prenom = $userData['prenom'];
-    $nom = $userData['nom'];
-
-    echo "<p class='text-center mt-3 display-4' >Bienvenue " . $prenom . " " . $nom . "</p>";
-} else {
-    echo "<h1>Erreur : utilisateur non reconnu</h1>";
-}
 //var_dump($_SESSION);
 
 ?>
 
 <head>
     <script src="JS\heure.js"></script>
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+        /* #fond {
+            background: rgb(0, 212, 255);
+            background: linear-gradient(123deg, rgba(0, 212, 255, 1) 0%, rgba(9, 9, 121, 1) 78%, rgba(2, 0, 36, 1) 100%);
+            height: 100vh;
+        } */
+    </style>
+    <script>
+        function initMap() {
+            // Coordonnées de Londres
+            var positions = [{
+                    lat: 48.8566,
+                    lng: 2.3522,
+                    title: 'Paris',
+                    info: 'Headquarters'
+                },
+                {
+                    lat: 28.630731,
+                    lng: 77.214347,
+                    title: 'New Dehli',
+                    info: ''
+                },
+                {
+                    lat: 40.711801,
+                    lng: -74.013120,
+                    title: 'NYC',
+                    info: ''
+                },
+                {
+                    lat: 48.5734,
+                    lng: 7.7521,
+                    title: 'Strasbourg',
+                    info: 'Salon du Numérique'
+                },
+                {
+                    lat: 47.2184,
+                    lng: -1.5536,
+                    title: 'Nantes',
+                    info: 'Nouvelle Équipe'
+                }, {
+                    lat: 9.044541,
+                    lng: 7.458680,
+                    title: 'Abuja',
+                    info: ''
+                },
+                {
+                    lat: 48.6493,
+                    lng: -2.0260,
+                    title: 'Saint-Malo',
+                    info: 'Team Building'
+                },
+                {
+                    lat: 37.334537,
+                    lng: -122.008981,
+                    title: 'San José',
+                    info: ''
+                },
+                {
+                    lat: -22.952030,
+                    lng: -43.210760,
+                    title: 'Rio de Janeiro',
+                    info: ''
+                }
+            ];
+
+
+            // Créer une carte centrée sur Londres
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 2,
+                center: {
+                    lat: 25,
+                    lng: -30.888334
+                }
+
+            });
+
+            positions.forEach(function(position) {
+                var marker = new google.maps.Marker({
+                    position: {
+                        lat: position.lat,
+                        lng: position.lng
+                    },
+                    map: map,
+                    label: position.label
+                });
+
+                // Créer une infobulle avec le libellé et le texte supplémentaire
+                var infowindow = new google.maps.InfoWindow({
+                    content: '<strong>' + position.title + '</strong><br>' + position.info
+                });
+
+                // Ajouter un événement de clic pour afficher l'infobulle
+                marker.addListener('click', function() {
+                    infowindow.open(map, marker);
+                });
+            });
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5HZ6FM1R-MdRzTZnQT1k_pU_zee7HieM&callback=initMap" async defer></script>
 </head>
 
 
 <body>
     </script>
-    <div class="row">
+    <div class="row" id="fond">
+        <?php
+        if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
+            $user = $_SESSION['user'];
+            $usersData = file_decod('Data\login-mdp.json');
+            $userData = $usersData[$user];
+            $prenom = $userData['prenom'];
+            $nom = $userData['nom'];
+
+            echo "<p class='text-center mt-3 display-4' >Bienvenue " . $prenom . " " . $nom . "</p>";
+        } else {
+            echo "<h1>Erreur : utilisateur non reconnu</h1>";
+        }
+        //var_dump($_SESSION);
+        ?>
         <div class="col-sm-4">
-            <div class="card mt-5">
+            <div class="card mt-2">
                 <div class="card-body">
                     <p class="display-6">À venir:</p>
                     <hr class="me-3">
@@ -292,7 +397,7 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
         </div>
 
         <div class="col-sm-4">
-            <div class="mt-5 text-center display-5">
+            <div class="mt-2 text-center display-5">
                 <span id="heure"></span>
             </div>
             <?php
@@ -313,7 +418,7 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
         </div>
 
         <div class="col-sm-4">
-            <div class="card mt-5 me-1">
+            <div class="card mt-2 me-1">
                 <div class="card-body">
                     <p class="display-6">Nouveau Utilisateurs:</p>
                     <?php
@@ -384,118 +489,4 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
             </div>
         </div>
     </div>
-    <br>
-    <br>
-    <br>
-
 </body>
-<!DOCTYPE html>
-<html>
-
-<head>
-    <style>
-        #map {
-            height: 400px;
-            width: 100%;
-        }
-    </style>
-</head>
-
-<body>
-
-
-    <script>
-        function initMap() {
-            // Coordonnées de Londres
-            var positions = [{
-                    lat: 48.8566,
-                    lng: 2.3522,
-                    title: 'Paris',
-                    info: 'Headquarters'
-                },
-                {
-                    lat: 28.630731,
-                    lng: 77.214347,
-                    title: 'New Dehli',
-                    info: ''
-                },
-                {
-                    lat: 40.711801,
-                    lng: -74.013120,
-                    title: 'NYC',
-                    info: ''
-                },
-                {
-                    lat: 48.5734,
-                    lng: 7.7521,
-                    title: 'Strasbourg',
-                    info: 'Salon du Numérique'
-                },
-                {
-                    lat: 47.2184,
-                    lng: -1.5536,
-                    title: 'Nantes',
-                    info: 'Nouvelle Équipe'
-                }, {
-                    lat: 9.044541,
-                    lng: 7.458680,
-                    title: 'Abuja',
-                    info: ''
-                },
-                {
-                    lat: 48.6493,
-                    lng: -2.0260,
-                    title: 'Saint-Malo',
-                    info: 'Team Building'
-                },
-                {
-                    lat: 37.334537,
-                    lng: -122.008981,
-                    title: 'San José',
-                    info: ''
-                },
-                {
-                    lat: -22.952030,
-                    lng: -43.210760,
-                    title: 'Rio de Janeiro',
-                    info: ''
-                }
-            ];
-
-
-            // Créer une carte centrée sur Londres
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 2,
-                center: {
-                    lat: 25,
-                    lng: -30.888334
-                }
-
-            });
-
-            positions.forEach(function(position) {
-                var marker = new google.maps.Marker({
-                    position: {
-                        lat: position.lat,
-                        lng: position.lng
-                    },
-                    map: map,
-                    label: position.label
-                });
-
-                // Créer une infobulle avec le libellé et le texte supplémentaire
-                var infowindow = new google.maps.InfoWindow({
-                    content: '<strong>' + position.title + '</strong><br>' + position.info
-                });
-
-                // Ajouter un événement de clic pour afficher l'infobulle
-                marker.addListener('click', function() {
-                    infowindow.open(map, marker);
-                });
-            });
-        }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5HZ6FM1R-MdRzTZnQT1k_pU_zee7HieM&callback=initMap" async defer></script>
-</body>
-
-</html>
