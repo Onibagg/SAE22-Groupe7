@@ -6,24 +6,32 @@ setup();
 <head>
     <style type="text/css">
         body {
-            background: #0F2027;
-            /* fallback for old browsers */
-            background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);
-            /* Chrome 10-25, Safari 5.1-6 */
-            background: linear-gradient(to right, #2C5364, #203A43, #0F2027);
-            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            background:
+                repeating-linear-gradient(45deg, #0000 calc(-650%/13) calc(50%/13), #928ebe 0 calc(100%/13),
+                    #0000 0 calc(150%/13), #928ebe 0 calc(200%/13),
+                    #0000 0 calc(250%/13), #928ebe 0 calc(300%/13)), repeating-linear-gradient(45deg, #0000 calc(-650%/13) calc(50%/13), #928ebe 0 calc(100%/13),
+                    #0000 0 calc(150%/13), #928ebe 0 calc(200%/13),
+                    #0000 0 calc(250%/13), #928ebe 0 calc(300%/13)) 29px 29px,
+                repeating-linear-gradient(-45deg, #0000 calc(-650%/13) calc(50%/13), #928ebe 0 calc(100%/13),
+                    #0000 0 calc(150%/13), #928ebe 0 calc(200%/13),
+                    #0000 0 calc(250%/13), #928ebe 0 calc(300%/13)), repeating-linear-gradient(-45deg, #0000 calc(-650%/13) calc(50%/13), #928ebe 0 calc(100%/13),
+                    #0000 0 calc(150%/13), #928ebe 0 calc(200%/13),
+                    #0000 0 calc(250%/13), #928ebe 0 calc(300%/13)) 29px 29px #0008cd;
+            background-size: 58px 58px;
+
 
         }
 
-        .card-body {
-            background: #FFEFBA;
-            /* fallback for old browsers */
-            background: -webkit-linear-gradient(to right, #FFFFFF, #FFEFBA);
-            /* Chrome 10-25, Safari 5.1-6 */
-            background: linear-gradient(to right, #FFFFFF, #FFEFBA);
-            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-            font-family: Arial, Helvetica, sans-serif;
-
+        .card {
+            opacity: 0.965;
+            position: absolute;
+            /* Assurez-vous que la carte a une position absolue */
+            top: 50%;
+            /* Placez la carte à 50% de la hauteur de la page */
+            left: 50%;
+            /* Placez la carte à 50% de la largeur de la page */
+            transform: translate(-50%, -50%);
+            border-radius: 40px; /* Définissez la valeur appropriée pour arrondir les bords */
 
         }
 
@@ -48,7 +56,9 @@ setup();
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card">
-                <div class="card-header"><p class="display-6">Mot de passe oublié</p></div>
+                <div class="card-header">
+                    <p class="display-6">Mot de passe oublié</p>
+                </div>
                 <div class="card-body text-center">
                     <form id="resetPasswordForm" method="post">
                         <div class="form-group">
