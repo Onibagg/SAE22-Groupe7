@@ -167,7 +167,7 @@ intranet_navbar();
                             </div>
                         </div>
                         <div class="col text-center">
-                            <button type="button" class="mt-5 btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal2">
+                            <button type="button" class="mt-1 btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal2">
                                 <p class="mb-0">Lancement d'une nouvelle offre</p>
                                 <span class="spinner-grow spinner-grow-sm"></span>
                                 <br>
