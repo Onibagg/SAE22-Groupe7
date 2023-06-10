@@ -956,16 +956,16 @@ function ajout_utilisateur_format()
         $annuaireData = file_get_contents('Data/annuaire.json');
         $annuaire = json_decode($annuaireData, true);
 
-        // Tri des utilisateurs par nom
-        if (isset($_GET['sort']) && $_GET['sort'] === 'asc') {
-            usort($users, function ($a, $b) {
-                return strcmp($a['nom'], $b['nom']);
-            });
-        } elseif (isset($_GET['sort']) && $_GET['sort'] === 'desc') {
-            usort($users, function ($a, $b) {
-                return strcmp($b['nom'], $a['nom']);
-            });
-        }
+        // // Tri des utilisateurs par nom
+        // if (isset($_GET['sort']) && $_GET['sort'] === 'asc') {
+        //     usort($users, function ($a, $b) {
+        //         return strcmp($a['nom'], $b['nom']);
+        //     });
+        // } elseif (isset($_GET['sort']) && $_GET['sort'] === 'desc') {
+        //     usort($users, function ($a, $b) {
+        //         return strcmp($b['nom'], $a['nom']);
+        //     });
+        // }
 
         // Affichage de la table des utilisateurs
     ?>
@@ -979,7 +979,10 @@ function ajout_utilisateur_format()
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th width="9%"><a class="sort-link" href="?sort=asc">Nom ↑</a> / <a class="sort-link" href="?sort=desc">Nom ↓</a></th>
+                        <th width="9%">
+                            Nom
+                            <!-- <a class="sort-link" href="?sort=asc">Nom ↑</a> / <a class="sort-link" href="?sort=desc">Nom ↓</a> -->
+                        </th>
                         <th width="9%">Prénom</th>
                         <th width="13%">Poste</th>
                         <th width=7%">User</th>
