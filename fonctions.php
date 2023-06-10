@@ -963,24 +963,26 @@ function ajout_collab_format()
           if (isset($_POST['ajouter'])) {
               $nom = $_POST['new_partenaire_name'];
               $description = $_POST['new_partenaire_description'];
-              $img = $_FILES['photopart']['name'];
+              $img = $nom . '_logo.jpg';
       
               if (isset($_FILES['photopart']) && $_FILES['photopart']['error'] === 0) {
                   $targetDir = 'Images/Partenaires/';
-                  $targetFile = $targetDir . $nom . '.jpg';
+                  $targetFile = $targetDir . $nom . '_logo.jpg';
       
                   if (file_exists($targetFile)) {
                       unlink($targetFile);
                   }
       
                   $tmpFile = $_FILES['photopart']['tmp_name'];
-                  $newFile = $targetDir . $nom . '.jpg';
+                  $newFile = $targetDir . $nom . '_logo.jpg';
                   move_uploaded_file($tmpFile, $newFile);
               }
       
               if (!partenaire_exists($nom)) {
                   addPartenaire($nom, $description, $img);
                   echo "<br><div class='alert alert-success'>Le partenaire a été ajouté avec succès.</div>";
+                  echo '<meta http-equiv="refresh" content="0">';
+                  exit();
               } else {
                   echo "<br><div class='alert alert-danger'>Le partenaire existe déjà.</div>";
               }
@@ -1046,27 +1048,78 @@ function ajout_collab_format()
       <?php
           }
       }
-function partenaire_exists($nom)
-{
-    $partenaires = json_decode(file_get_contents("Data/ListePartenaire.json"), true);
-    return isset($partenaires[$nom]);
-}
-
-function addPartenaire($nom, $description,$img)
-{
-    $partenaires = json_decode(file_get_contents("Data/ListePartenaire.json"), true);
-    $partenaires[$nom] = array(
-        "description" => $description,
-        "img" => $img
-    );
-    file_put_contents("Data/ListePartenaire.json", json_encode($partenaires));
-}
-
-function delPartenaire($nom)
-{
-    $partenaires = json_decode(file_get_contents("Data/ListePartenaire.json"), true);
-    if (isset($partenaires[$nom])) {
-        unset($partenaires[$nom]);
-        file_put_contents("Data/ListePartenaire.json", json_encode($partenaires));
-    }
-}
+      
+      function partenaire_exists($nom)
+      {
+          $partenaires = json_decode(file_get_contents("Data/ListePartenaire.json"), true);
+          return isset($partenaires[$nom]);
+      }
+      
+      function addPartenaire($nom, $description, $img)
+      {
+          $partenaires = json_decode(file_get_contents("Data/ListePartenaire.json"), true);
+          $partenaires[$nom] = array(
+              "description" => $description,
+              "partenaire_logo" => $img
+          );
+          file_put_contents("Data/ListePartenaire.json", json_encode($partenaires));
+      }
+      
+      function delPartenaire($nom)
+      {
+          $json_file = 'Data/ListePartenaire.json';
+          $partenaires = json_decode(file_get_contents($json_file), true);
+      
+          if (isset($partenaires[$nom])) {
+              $image = $partenaires[$nom]['partenaire_logo'];
+              $image_path = 'Images/Partenaires/' . $image;
+      
+              if (file_exists($image_path)) {
+                  unlink($image_path); // Delete the image file
+              }
+      
+              unset($partenaires[$nom]);
+              file_put_contents($json_file, json_encode($partenaires));
+              echo '<meta http-equiv="refresh" content="0">';
+              exit();
+          }
+      }
+      
+      
+      function display_partenaires()
+      {
+          $json_file = 'Data/ListePartenaire.json';
+          $partenaires = json_decode(file_get_contents($json_file), true);
+      
+          echo "<div class='row'>"; // Start row
+      
+          foreach ($partenaires as $nom => $partenaire) {
+              $description = $partenaire['description'];
+              $image = $partenaire['partenaire_logo'];
+      
+              echo "
+              <div class='col-md-4'>
+                  <div class='card mb-4'>
+                      <img src='/Images/Partenaires/$image' class='card-img-top' alt='$nom' style='height: 200px; object-fit: contain;'>
+                      <div class='card-body'>
+                          <h5 class='card-title'>$nom</h5>
+                          <p class='card-text'>$description</p>
+                          <form method='post'>
+                              <input type='hidden' name='supprimer' value='$nom'>
+                              <button type='submit' class='btn btn-danger'>Supprimer</button>
+                          </form>
+                      </div>
+                  </div>
+              </div>";
+          }
+      
+          echo "</div>"; // End row
+      
+          if (isset($_POST['supprimer'])) {
+              $nom = $_POST['supprimer'];
+              delPartenaire($nom);
+          }
+      }
+      
+      
+      
