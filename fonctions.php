@@ -870,7 +870,8 @@ function ajout_utilisateur_format()
         </div>
     <?php
     }
-    function affiche_annuaire_tablelo() {
+    function affiche_annuaire_tablelo()
+    {
         if (isset($_POST['supprimer'])) {
             $parsstp = explode(',', $_POST['supprimer']);
             degage_gens_from_annuaire($parsstp[0], $parsstp[1]);
@@ -880,26 +881,25 @@ function ajout_utilisateur_format()
             echo '<thead><tr><th>Nom</th><th>Prénom</th><th>Poste</th><th>Action</th></tr></thead>';
             echo '<tbody>';
             foreach ($annuaire as $personne) {
-              echo '<tr><td>' . $personne['nom'] . '</td><td>' . $personne['prenom'] . '</td><td>' . $personne['poste'] . '</td><td class="text-center"><button type="submit" name="supprimer" value="' . $personne['nom'] . ',' . $personne['prenom'] . '" class="btn btn-danger">Supprimer</button></td></tr>';
+                echo '<tr><td>' . $personne['nom'] . '</td><td>' . $personne['prenom'] . '</td><td>' . $personne['poste'] . '</td><td class="text-center"><button type="submit" name="supprimer" value="' . $personne['nom'] . ',' . $personne['prenom'] . '" class="btn btn-danger">Supprimer</button></td></tr>';
             }
             echo '</tbody></table>';
             echo '</form>';
-          }
-        else{         
-        $annuaire = json_decode(file_get_contents("Data/annuaire.json"), true);
-        echo '<form method="post">';
-        echo '<table class="table table-striped">';
-        echo '<thead><tr><th>Nom</th><th>Prénom</th><th>Poste</th><th>Action</th></tr></thead>';
-        echo '<tbody>';
-        foreach ($annuaire as $personne) {
-          echo '<tr><td>' . $personne['nom'] . '</td><td>' . $personne['prenom'] . '</td><td>' . $personne['poste'] . '</td><td class="text-center"><button type="submit" name="supprimer" value="' . $personne['nom'] . ',' . $personne['prenom'] . '" class="btn btn-danger">Supprimer</button></td></tr>';
+        } else {
+            $annuaire = json_decode(file_get_contents("Data/annuaire.json"), true);
+            echo '<form method="post">';
+            echo '<table class="table table-striped">';
+            echo '<thead><tr><th>Nom</th><th>Prénom</th><th>Poste</th><th>Action</th></tr></thead>';
+            echo '<tbody>';
+            foreach ($annuaire as $personne) {
+                echo '<tr><td>' . $personne['nom'] . '</td><td>' . $personne['prenom'] . '</td><td>' . $personne['poste'] . '</td><td class="text-center"><button type="submit" name="supprimer" value="' . $personne['nom'] . ',' . $personne['prenom'] . '" class="btn btn-danger">Supprimer</button></td></tr>';
+            }
+            echo '</tbody></table>';
+            echo '</form>';
         }
-        echo '</tbody></table>';
-        echo '</form>';
-      }
     }
-function ajout_collab_format()
-{
+    function ajout_collab_format()
+    {
     ?>
         <form action="annuaire.php" id="new-collab" method="POST">
             <div class="row">
@@ -933,171 +933,171 @@ function ajout_collab_format()
         } else {
         }
     }
-    function addCollab($nom, $prenom, $poste) {
+    function addCollab($nom, $prenom, $poste)
+    {
         $annuaire = json_decode(file_get_contents("Data/annuaire.json"), true);
         $nouv_collab = array(
-          "nom" => $nom,
-          "prenom" => $prenom,
-          "poste" => $poste
+            "nom" => $nom,
+            "prenom" => $prenom,
+            "poste" => $poste
         );
         array_push($annuaire, $nouv_collab);
         file_put_contents("Data/annuaire.json", json_encode($annuaire));
-      }
-      function degage_gens_from_annuaire($nom, $prenom) {
+    }
+    function degage_gens_from_annuaire($nom, $prenom)
+    {
         $annuaire = json_decode(file_get_contents("Data/annuaire.json"), true);
         $yessir = null;
         foreach ($annuaire as $i => $person) {
-          if ($person['nom'] === $nom && $person['prenom'] === $prenom) {
-            $yessir = $i;
-            break;
-          }
+            if ($person['nom'] === $nom && $person['prenom'] === $prenom) {
+                $yessir = $i;
+                break;
+            }
         }
 
         if ($yessir !== null) {
-          array_splice($annuaire, $yessir, 1);
+            array_splice($annuaire, $yessir, 1);
         }
         file_put_contents('Data\annuaire.json', json_encode($annuaire));
-      }
-      function gestion_partenaires()
-      {
-          if (isset($_POST['ajouter'])) {
-              $nom = $_POST['new_partenaire_name'];
-              $description = $_POST['new_partenaire_description'];
-              $img = $nom . '_logo.jpg';
-      
-              if (isset($_FILES['photopart']) && $_FILES['photopart']['error'] === 0) {
-                  $targetDir = 'Images/Partenaires/';
-                  $targetFile = $targetDir . $nom . '_logo.jpg';
-      
-                  if (file_exists($targetFile)) {
-                      unlink($targetFile);
-                  }
-      
-                  $tmpFile = $_FILES['photopart']['tmp_name'];
-                  $newFile = $targetDir . $nom . '_logo.jpg';
-                  move_uploaded_file($tmpFile, $newFile);
-              }
-      
-              if (!partenaire_exists($nom)) {
-                  addPartenaire($nom, $description, $img);
-                  echo "<br><div class='alert alert-success'>Le partenaire a été ajouté avec succès.</div>";
-                  echo '<meta http-equiv="refresh" content="0">';
-                  exit();
-              } else {
-                  echo "<br><div class='alert alert-danger'>Le partenaire existe déjà.</div>";
-              }
-          } elseif (isset($_POST['supprimer'])) {
-              $nom = $_POST['supprimer'];
-      
-              if (partenaire_exists($nom)) {
-                  delPartenaire($nom);
-                  echo "<br><div class='alert alert-success'>Le partenaire a été supprimé avec succès.</div>";
-              } else {
-                  echo "<br><div class='alert alert-danger'>Le partenaire n'existe pas.</div>";
-              }
-          } else {
-      ?>
-              </div>
-              <div class='row mt-5'>
-                  <div class="col">
-                  </div>
-                  <div class="col text-center">
-                      <div class='card shadow-sm'>
-                          <div class='card-body'>
-                              <h5 class='card-title'>Nouveau Partenaire</h5>
-      
-                              <form action='' method='post'>
-                                  <div class='form-group'>
-                                      <p>Ajouter ou supprimer un partenaire du site web</p>
-                                  </div>
-                                  <div class="row">
-                                      <div class="col">
-                                          <button type='button' class='mt-2 btn btn-success' data-bs-toggle="modal" data-bs-target="#addModal">Ajouter</button>
-                                      </div>
-                                  </div>
-                              </form>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="col"></div>
-              </div>
-      
-              <!-- Add Modal -->
-              <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                      <div class="modal-content">
-                          <div class="modal-header">
-                              <h5 class="modal-title" id="addModalLabel">Ajouter un partenaire</h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body">
-                              <form method='post' enctype='multipart/form-data'>
-                                  <div class='form-group'>
-                                      <input type='text' class='form-control' name='new_partenaire_name' placeholder='Nom du partenaire' required><br>
-                                      <input type='text' class='form-control' name='new_partenaire_description' placeholder='Description du partenaire' required>
-                                      <div class="form-group">
-                                          <input type="file" class="form-control-file" id="photopart" name="photopart">
-                                      </div>
-                                  </div>
-                                  <button type='submit' class='mt-2 btn btn-success' name="ajouter">Ajouter</button>
-                              </form>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-      <?php
-          }
-      }
-      
-      function partenaire_exists($nom)
-      {
-          $partenaires = json_decode(file_get_contents("Data/ListePartenaire.json"), true);
-          return isset($partenaires[$nom]);
-      }
-      
-      function addPartenaire($nom, $description, $img)
-      {
-          $partenaires = json_decode(file_get_contents("Data/ListePartenaire.json"), true);
-          $partenaires[$nom] = array(
-              "description" => $description,
-              "partenaire_logo" => $img
-          );
-          file_put_contents("Data/ListePartenaire.json", json_encode($partenaires));
-      }
-      
-      function delPartenaire($nom)
-      {
-          $json_file = 'Data/ListePartenaire.json';
-          $partenaires = json_decode(file_get_contents($json_file), true);
-      
-          if (isset($partenaires[$nom])) {
-              $image = $partenaires[$nom]['partenaire_logo'];
-              $image_path = 'Images/Partenaires/' . $image;
-      
-              if (file_exists($image_path)) {
-                  unlink($image_path); // Delete the image file
-              }
-      
-              unset($partenaires[$nom]);
-              file_put_contents($json_file, json_encode($partenaires));
-              echo '<meta http-equiv="refresh" content="0">';
-              exit();
-          }
-      }
-      
-      
-      function display_partenaires()
-      {
-          $json_file = 'Data/ListePartenaire.json';
-          $partenaires = json_decode(file_get_contents($json_file), true);
-      
-          echo "<div class='row'>"; // Start row
-      
-          foreach ($partenaires as $nom => $partenaire) {
-              $description = $partenaire['description'];
-              $image = $partenaire['partenaire_logo'];
-      
-              echo "
+    }
+    function gestion_partenaires()
+    {
+        if (isset($_POST['ajouter'])) {
+            $nom = $_POST['new_partenaire_name'];
+            $description = $_POST['new_partenaire_description'];
+            $img = $nom . '_logo.jpg';
+
+            if (isset($_FILES['photopart']) && $_FILES['photopart']['error'] === 0) {
+                $targetDir = 'Images/Partenaires/';
+                $targetFile = $targetDir . $nom . '_logo.jpg';
+
+                if (file_exists($targetFile)) {
+                    unlink($targetFile);
+                }
+
+                $tmpFile = $_FILES['photopart']['tmp_name'];
+                $newFile = $targetDir . $nom . '_logo.jpg';
+                move_uploaded_file($tmpFile, $newFile);
+            }
+
+            if (!partenaire_exists($nom)) {
+                addPartenaire($nom, $description, $img);
+                echo "<br><div class='alert alert-success'>Le partenaire a été ajouté avec succès.</div>";
+                echo '<meta http-equiv="refresh" content="0">';
+                exit();
+            } else {
+                echo "<br><div class='alert alert-danger'>Le partenaire existe déjà.</div>";
+            }
+        } elseif (isset($_POST['supprimer'])) {
+            $nom = $_POST['supprimer'];
+
+            if (partenaire_exists($nom)) {
+                delPartenaire($nom);
+                echo "<br><div class='alert alert-success'>Le partenaire a été supprimé avec succès.</div>";
+            } else {
+                echo "<br><div class='alert alert-danger'>Le partenaire n'existe pas.</div>";
+            }
+        } else {
+        ?>
+            </div>
+            <div class='row mt-5'>
+                <div class="col">
+                </div>
+                <div class="col text-center">
+                    <div class='card shadow-sm'>
+                        <div class='card-body'>
+                            <h5 class='card-title'>Nouveau Partenaire</h5>
+
+                            <form action='' method='post'>
+                                <div class='form-group'>
+                                    <p>Ajouter ou supprimer un partenaire du site web</p>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <button type='button' class='mt-2 btn btn-success' data-bs-toggle="modal" data-bs-target="#addModal">Ajouter</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col"></div>
+            </div>
+
+            <!-- Add Modal -->
+            <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="addModalLabel">Ajouter un partenaire</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form method='post' enctype='multipart/form-data'>
+                                <div class='form-group'>
+                                    <input type='text' class='form-control' name='new_partenaire_name' placeholder='Nom du partenaire' required><br>
+                                    <textarea class="form-control" rows="4" name='new_partenaire_description' placeholder='Description du partenaire' required></textarea><br>
+                                    <input type="file" class="form-control" id="photopart" name="photopart"><br>
+                                </div>
+                                <button type='submit' class='mt-2 btn btn-success' name="ajouter">Ajouter</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <?php
+        }
+    }
+
+    function partenaire_exists($nom)
+    {
+        $partenaires = json_decode(file_get_contents("Data/ListePartenaire.json"), true);
+        return isset($partenaires[$nom]);
+    }
+
+    function addPartenaire($nom, $description, $img)
+    {
+        $partenaires = json_decode(file_get_contents("Data/ListePartenaire.json"), true);
+        $partenaires[$nom] = array(
+            "description" => $description,
+            "partenaire_logo" => $img
+        );
+        file_put_contents("Data/ListePartenaire.json", json_encode($partenaires));
+    }
+
+    function delPartenaire($nom)
+    {
+        $json_file = 'Data/ListePartenaire.json';
+        $partenaires = json_decode(file_get_contents($json_file), true);
+
+        if (isset($partenaires[$nom])) {
+            $image = $partenaires[$nom]['partenaire_logo'];
+            $image_path = 'Images/Partenaires/' . $image;
+
+            if (file_exists($image_path)) {
+                unlink($image_path); // Delete the image file
+            }
+
+            unset($partenaires[$nom]);
+            file_put_contents($json_file, json_encode($partenaires));
+            echo '<meta http-equiv="refresh" content="0">';
+            exit();
+        }
+    }
+
+
+    function display_partenaires()
+    {
+        $json_file = 'Data/ListePartenaire.json';
+        $partenaires = json_decode(file_get_contents($json_file), true);
+
+        echo "<div class='row'>"; // Start row
+
+        foreach ($partenaires as $nom => $partenaire) {
+            $description = $partenaire['description'];
+            $image = $partenaire['partenaire_logo'];
+
+            echo "
               <div class='col-md-4'>
                   <div class='card mb-4'>
                       <img src='/Images/Partenaires/$image' class='card-img-top' alt='$nom' style='height: 200px; object-fit: contain;'>
@@ -1111,28 +1111,28 @@ function ajout_collab_format()
                       </div>
                   </div>
               </div>";
-          }
-      
-          echo "</div>"; // End row
-      
-          if (isset($_POST['supprimer'])) {
-              $nom = $_POST['supprimer'];
-              delPartenaire($nom);
-          }
-      }
+        }
 
-      function display_partenaires_site_vitrine()
-      {
-          $json_file = 'Data/ListePartenaire.json';
-          $partenaires = json_decode(file_get_contents($json_file), true);
-      
-          echo "<div class='row'>"; // Start row
-      
-          foreach ($partenaires as $nom => $partenaire) {
-              $description = $partenaire['description'];
-              $image = $partenaire['partenaire_logo'];
-      
-              echo "
+        echo "</div>"; // End row
+
+        if (isset($_POST['supprimer'])) {
+            $nom = $_POST['supprimer'];
+            delPartenaire($nom);
+        }
+    }
+
+    function display_partenaires_site_vitrine()
+    {
+        $json_file = 'Data/ListePartenaire.json';
+        $partenaires = json_decode(file_get_contents($json_file), true);
+
+        echo "<div class='row'>"; // Start row
+
+        foreach ($partenaires as $nom => $partenaire) {
+            $description = $partenaire['description'];
+            $image = $partenaire['partenaire_logo'];
+
+            echo "
               <div class='col-md-4'>
                   <div class='card mb-4'>
                       <img src='/Images/Partenaires/$image' class='card-img-top' alt='$nom' style='height: 200px; object-fit: contain;'>
@@ -1142,12 +1142,9 @@ function ajout_collab_format()
                       </div>
                   </div>
               </div>";
-          }
-      
-          echo "</div>"; // End row
-      
-        
-      }
-      
-      
-      
+        }
+
+        echo "</div>"; // End row
+
+
+    }

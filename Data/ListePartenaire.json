@@ -1,1 +1,10 @@
-{"Jaaj_Corp":{"description":"Jaajing atm","partenaire_logo":"Jaaj_Corp_logo.jpg"}}
+{
+  "Jaaj_Corp": {
+    "description": "Jaajing atm",
+    "partenaire_logo": "Jaaj_Corp_logo.jpg"
+  },
+  "Harmonic Inc": {
+    "description": "Harmonic Inc. est une entreprise am\u00e9ricaine sp\u00e9cialis\u00e9e dans le d\u00e9veloppement et la commercialisation de serveur d'acheminement et de stockage vid\u00e9o. Ses produits sont destin\u00e9s aux entreprises qui produisent, traitent et distribuent du contenu vid\u00e9o pour la t\u00e9l\u00e9vision et Internet. En outre, Harmonic propose des solutions de diffusion pour les \u00e9v\u00e9nements sportifs, les concerts et les \u00e9missions de t\u00e9l\u00e9vision en direct. Ses technologies permettent de diffuser du contenu en direct en haute qualit\u00e9 sur Internet, les r\u00e9seaux c\u00e2bl\u00e9s et les r\u00e9seaux satellites. ",
+    "partenaire_logo": "Harmonic Inc_logo.jpg"
+  }
+}
