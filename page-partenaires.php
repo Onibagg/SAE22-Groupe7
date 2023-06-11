@@ -15,3 +15,7 @@ page_header();
     </div>
 
 </div>
+
+<?php
+    page_foot();
+    ?>
