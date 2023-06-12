@@ -441,6 +441,100 @@ function connexion_traitement()
         echo '<meta http-equiv="refresh" content="0; url=Accueil-Intranet.php">';
     }
 }
+
+function afficher_comments($utilisateurs)
+{ ?>
+        <form method="post">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <tr>
+                        <th></th>
+                        <th>Mail</th>
+                        <th>Raison</th>
+                        <th></th>
+                    </tr>
+                    <?php
+
+                    foreach ($utilisateurs as $mail => $infos) {
+                        echo '<tr>';
+                        echo '<td class="text-center"><input type="image" src="Images\Icons\eye.png" width="50" data-bs-toggle="modal" data-bs-target="#myModal-' . $mail . '" name="voir[' . $mail . ']" value="Voir" class="btn btn-outline-primary"></td>';
+                        echo '<td><input type="text" name="prenom[' . $mail . ']" value="' . $infos['mail'] . '" class="form-control"></td>';
+                        echo '<td><input type="text" name="nom[' . $mail . ']" value="' . $infos['raison'] . '" class="form-control"></td>';
+                        echo '<td class="text-center"><input type="image" src="Images\Icons\correct.png" width="50" name="ok[' . $mail . ']" value="ok" class="btn btn-success"></td>';
+                        echo '</tr>';
+                    }
+                    ?>
+                </table>
+            </div>
+        </form>
+        <?php
+    }
+    function gestion_comments()
+    { /*
+        $demande_compte = 'Data\demande-compte.json';
+        $login_mdp = 'Data\login-mdp.json';
+    {
+        $demande_compte = 'Data\contacts.json';
+
+        $users = file_decod($demande_compte);
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (isset($_POST['ok'])) {
+                foreach ($_POST['ok'] as $nom => $valeur) {
+                    $user_accepte = $users[$nom]; //récuparation des infos
+                    $nouvel_utilisateur = array( //création d'un array avec les infos 
+                        'prenom' => $user_accepte['prenom'],
+                        'nom' => $user_accepte['nom'],
+                        'user' => $user_accepte['user'],
+                        'mdp' => $user_accepte['mdp'],
+                        'email' => $user_accepte['email'],
+                        'poste' => $user_accepte['poste'],
+                    );
+                    $login_mdp_contenu = file_get_contents($login_mdp); //récupère le fichier des vrai users
+                    $login_mdp_contenu = json_decode($login_mdp_contenu, true); //converti en tableau
+                    $login_mdp_contenu[$user_accepte['user']] = $nouvel_utilisateur; //ajout du new
+                    file_put_contents($login_mdp, json_encode($login_mdp_contenu)); //màj du fichier des vrai users
+                    unset($users[$nom]); //suppréssion du new du fichier des demandes
+                foreach ($_POST['ok'] as $mail => $valeur) {
+                    unset($users[$mail]); //suppréssion du new du fichier des demandes
+                }
+                file_put_contents($demande_compte, json_encode($users));
+            } elseif (isset($_POST['voir'])) {
+                foreach ($_POST['voir'] as $mail => $valeur) {
+                    echo '<div class="modal fade" id="myModal[' . $mail . ']">';
+        ?>
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Modal Heading</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                Modal body..
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                            </div>
+
+                        </div>
+                    </div>
+                    </div>
+            <?php
+                }
+            }
+        }
+
+        afficher_comments($users);
+        */
+    }
+
+    
 function ajout_utilisateur_format()
 {
     ?>

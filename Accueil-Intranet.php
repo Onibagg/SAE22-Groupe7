@@ -315,7 +315,7 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
         <div class="col-sm-4">
             <div class="card mt-5 me-1">
                 <div class="card-body">
-                    <p class="display-6">Nouveau Utilisateurs:</p>
+                    <p class="display-6">Nouveau Utilisateurs :</p>
                     <?php
                     $user = $_SESSION['user'];
                     $data = file_get_contents('Data\groupes.json');
@@ -382,6 +382,14 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                     ?>
                 </div>
             </div>
+            <div class="card mt-5 me-1">
+                <div class="card-body">
+                    <p class="display-6">Demandes clients : </p>
+                    <?php afficher_comments(file_decod('Data/contacts.json'))  ?>
+
+                </div>
+                </div>
+            
         </div>
     </div>
     <br>
