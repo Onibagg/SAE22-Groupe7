@@ -1282,7 +1282,7 @@ function ajout_utilisateur_format()
                                 <img src="../Images/Employés/<?php echo $user ?>.jpg" class="card-img-top" alt="Photo" style="height: 100%;">
                                 <div class="card-body">
                                     <h6 class="card-title"> <?php echo $prenom . " " . $nom ?></h6>
-                                    <p class="card-text"><?php echo $poste ?><?php echo $description ?></p>
+                                    <p class="card-text"><?php echo $poste ?><hr><?php echo $description ?></p>
                                     
                                 </div>
                             </div>
