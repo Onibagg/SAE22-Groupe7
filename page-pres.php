@@ -10,4 +10,4 @@ page_header();
 <hr>
 <?php
 affiche_annuaire_vitrine();
-?>
+?>  
