@@ -386,6 +386,9 @@ function ajout_utilisateur_format()
                     <input class="form-control" type="password" placeholder="Confirmation" rows="1" id="confirmation" name="confirmation"></input>
                 </div>
                 <div class="col">
+                    <input class="form-control" placeholder="Poste" rows="1" id="poste" name="poste"></input>
+                </div>
+                <div class="col">
                     <input class="form-control" placeholder="E-Mail" rows="1" id="email" name="email"></input>
                 </div>
                 <div class="col">
@@ -412,6 +415,7 @@ function ajout_utilisateur_format()
                 $usr = $_POST['pseudo'];
                 $mdp = $_POST['mdp'];
                 $confirmation = $_POST['confirmation'];
+                $poste = $_POST['poste'];
                 $email = $_POST['email'];
                 $grp = $_POST['groupe'];
 
@@ -420,14 +424,17 @@ function ajout_utilisateur_format()
                 } elseif (empty($prenom) || empty($nom) || empty($usr) || empty($mdp) || empty($confirmation) || empty($email) || empty($grp)) {
                     echo "<br><div class='alert alert-warning'><b>Tous</b> les champs sont obligatoires.</div>";
                 } else {
-                    addUser($prenom, $nom, $usr, $mdp, $email, $grp);
+                    addUser($prenom, $nom, $usr, $mdp, $poste, $email);
+
                     echo "<br><div class='alert alert-success'><b>$prenom</b> <b>$nom</b> a été ajouté à l'équipe !</div>";
                 }
             }
         } else {
         }
     }
-    function addUser($prenom, $nom, $usr, $mdp, $email, $grp)
+
+    function addUser($prenom, $nom, $usr, $mdp, $poste, $email)
+
     {
         $users = file_decod('Data\login-mdp.json');
 
@@ -436,8 +443,8 @@ function ajout_utilisateur_format()
             'nom' => $nom,
             'user' => $usr,
             'mdp' => password_hash($mdp, PASSWORD_DEFAULT),
-            'email' => $email,
-            'groupe' => $grp
+            'poste' => $poste,
+            'email' => $email
         ];
 
         $src = "Images\Employés\blank-profile-picture.jpg";
@@ -512,6 +519,7 @@ function ajout_utilisateur_format()
             echo '<td><input type="text" name="nom[' . $nom . ']" value="' . $infos['nom'] . '" class="form-control"></td>';
             echo '<td><input type="text" name="user[' . $nom . ']" value="' . $infos['user'] . '" class="form-control"></td>';
             echo '<td><input type="text" name="mdp[' . $nom . ']" value="" class="form-control"></td>';
+            echo '<td><input type="text" name="poste[' . $nom . ']" value="' . $infos['poste'] . '" class="form-control"></td>';
             echo '<td><input type="text" name="email[' . $nom . ']" value="' . $infos['email'] . '" class="form-control"></td>';
             echo '<td class="text-center"><input type="submit" name="modifier[' . $nom . ']" value="Enregistrer" class="btn btn-outline-success"></td>';
             echo '<td class="text-center"><input type="submit" name="supprimer[' . $nom . ']" value="Supprimer" class="btn btn-danger"></td>';
@@ -569,7 +577,7 @@ function ajout_utilisateur_format()
     function deconnexion()
     {
         session_unset();
-        header("Location: page-accueil.php");
+        echo '<meta http-equiv="refresh" content="0; url=page-accueil.php">';
         exit;
     }
 
@@ -1258,23 +1266,24 @@ function ajout_utilisateur_format()
         <div class="row">
             <div class="col-1"></div>
             <div class="col-10">
-
+    
                 <div class="row">
                     <?php
-
+    
                     foreach ($annuaire as $nom => $infos) {
                         $prenom = $infos['prenom'];
                         $nom = $infos['nom'];
                         $poste = $infos['poste'];
                         $user = $infos['user'];
                         $description = $infos['description'];
-
                     ?>
                         <div class="col-3">
                             <div class="card card-sm mb-4">
+                                <img src="../Images/Employés/<?php echo $user ?>.jpg" class="card-img-top" alt="Photo" style="height: 100%;">
                                 <div class="card-body">
-                                    <h5 class="card-title"> <?php echo $prenom . " " . $nom ?></h5>
-                                    <p class="card-text text-center"><i><?php echo $poste ?></i><br><img src="../Images/Employés/<?php echo $user ?>.jpg" class="img-fluid rounded-circle mt-3" style="max-width: 75px;"><br><?php echo $description ?></p>
+                                    <h6 class="card-title"> <?php echo $prenom . " " . $nom ?></h6>
+                                    <p class="card-text"><?php echo $poste ?><?php echo $description ?></p>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -1283,7 +1292,7 @@ function ajout_utilisateur_format()
                     ?>
                 </div>
             </div>
-
+    
             <div class="col-1"></div>
         </div>
     <?php
