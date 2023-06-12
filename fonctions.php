@@ -389,15 +389,7 @@ function ajout_utilisateur_format()
                     <input class="form-control" placeholder="E-Mail" rows="1" id="email" name="email"></input>
                 </div>
                 <div class="col">
-                    <select class="form-select form-select" placeholder="Groupe" id="groupe" name="groupe">
-                        <option></option>
-                        <option>Direction</option>
-                        <option>Commerciaux</option>
-                        <option>IT</option>
-                        <option>RH</option>
-                        <option>Finance</option>
-                        <option>Production</option>
-                    </select>
+                    <input class="form-control" placeholder="Poste" rows="1" id="poste" name="poste"></input>
                 </div>
                 <div class="col">
                     <button type="submit" name="new-user" class="btn btn-outline-dark">Ajouter</button>
@@ -406,28 +398,28 @@ function ajout_utilisateur_format()
         </form>
         <?php
         if (isset($_POST['new-user'])) {
-            if (isset($_POST['prenom']) && isset($_POST['nom']) && isset($_POST['pseudo']) && isset($_POST['mdp']) && isset($_POST['confirmation']) && isset($_POST['email']) && isset($_POST['groupe'])) {
+            if (isset($_POST['prenom']) && isset($_POST['nom']) && isset($_POST['pseudo']) && isset($_POST['mdp']) && isset($_POST['confirmation']) && isset($_POST['email']) && isset($_POST['poste'])) {
                 $prenom = $_POST['prenom'];
                 $nom = $_POST['nom'];
                 $usr = $_POST['pseudo'];
                 $mdp = $_POST['mdp'];
                 $confirmation = $_POST['confirmation'];
                 $email = $_POST['email'];
-                $grp = $_POST['groupe'];
+                $poste = $_POST['poste'];
 
                 if ($mdp !== $confirmation) {
                     echo "<br><div class='alert alert-danger'>Les <b>mots de passe</b> ne correspondent pas.</div>";
-                } elseif (empty($prenom) || empty($nom) || empty($usr) || empty($mdp) || empty($confirmation) || empty($email) || empty($grp)) {
+                } elseif (empty($prenom) || empty($nom) || empty($usr) || empty($mdp) || empty($confirmation) || empty($email) || empty($poste)) {
                     echo "<br><div class='alert alert-warning'><b>Tous</b> les champs sont obligatoires.</div>";
                 } else {
-                    addUser($prenom, $nom, $usr, $mdp, $email, $grp);
+                    addUser($prenom, $nom, $usr, $mdp, $email, $poste);
                     echo "<br><div class='alert alert-success'><b>$prenom</b> <b>$nom</b> a été ajouté à l'équipe !</div>";
                 }
             }
         } else {
         }
     }
-    function addUser($prenom, $nom, $usr, $mdp, $email, $grp)
+    function addUser($prenom, $nom, $usr, $mdp, $email, $poste)
     {
         $users = file_decod('Data\login-mdp.json');
 
@@ -437,7 +429,8 @@ function ajout_utilisateur_format()
             'user' => $usr,
             'mdp' => password_hash($mdp, PASSWORD_DEFAULT),
             'email' => $email,
-            'groupe' => $grp
+            'poste' => $poste,
+            'description' => null
         ];
 
         $src = "Images\Employés\blank-profile-picture.jpg";
@@ -453,26 +446,26 @@ function ajout_utilisateur_format()
         echo '<div class="table-responsive">';
         echo '<table class="table table-hover">';
         echo "
-    <tr>
-    <th>Prénom 
-    <button type='submit' name='tri' value='prenom_asc' class='btn btn-link'><i class='fas fa-sort-up'></i><img src='Images/Icons/uparrow.png'></button>
-    <button type='submit' name='tri' value='prenom_desc' class='btn btn-link'><i class='fas fa-sort-down'></i><img src='Images/Icons/downarrow.png'></button>
-    </th>
-    <th>Nom 
-    <button type='submit' name='tri' value='nom_asc' class='btn btn-link'><i class='fas fa-sort-up'></i><img src='Images/Icons/uparrow.png'></button>
-    <button type='submit' name='tri' value='nom_desc' class='btn btn-link'><i class='fas fa-sort-down'></i><img src='Images/Icons/downarrow.png'></button>
-    </th>
-    <th>Nom d'utilisateur 
-    <button type='submit' name='tri' value='user_asc' class='btn btn-link'><i class='fas fa-sort-up'></i><img src='Images/Icons/uparrow.png'></button>
-    <button type='submit' name='tri' value='user_desc' class='btn btn-link'><i class='fas fa-sort-down'></i><img src='Images/Icons/downarrow.png'></button>
-    </th>
-    <th>Nouveau MDP</th>
-    <th>E-Mail <button type='submit' name='tri' value='email_asc' class='btn btn-link'><i class='fas fa-sort-up'></i><img src='Images/Icons/uparrow.png'></button>
-    <button type='submit' name='tri' value='email_desc' class='btn btn-link'><i class='fas fa-sort-down'></i><img src='Images/Icons/downarrow.png'></button>
-    </th><th>Actions</th>
-    <th></th>
-    </tr>
-    ";
+        <tr>
+        <th>Prénom 
+        <button type='submit' name='tri' value='prenom_asc' class='btn btn-link'><i class='fas fa-sort-up'></i><img src='Images/Icons/uparrow.png'></button>
+        <button type='submit' name='tri' value='prenom_desc' class='btn btn-link'><i class='fas fa-sort-down'></i><img src='Images/Icons/downarrow.png'></button>
+        </th>
+        <th>Nom 
+        <button type='submit' name='tri' value='nom_asc' class='btn btn-link'><i class='fas fa-sort-up'></i><img src='Images/Icons/uparrow.png'></button>
+        <button type='submit' name='tri' value='nom_desc' class='btn btn-link'><i class='fas fa-sort-down'></i><img src='Images/Icons/downarrow.png'></button>
+        </th>
+        <th>Nom d'utilisateur 
+        <button type='submit' name='tri' value='user_asc' class='btn btn-link'><i class='fas fa-sort-up'></i><img src='Images/Icons/uparrow.png'></button>
+        <button type='submit' name='tri' value='user_desc' class='btn btn-link'><i class='fas fa-sort-down'></i><img src='Images/Icons/downarrow.png'></button>
+        </th>
+        <th>Nouveau MDP</th>
+        <th>E-Mail <button type='submit' name='tri' value='email_asc' class='btn btn-link'><i class='fas fa-sort-up'></i><img src='Images/Icons/uparrow.png'></button>
+        <button type='submit' name='tri' value='email_desc' class='btn btn-link'><i class='fas fa-sort-down'></i><img src='Images/Icons/downarrow.png'></button>
+        </th><th>Actions</th>
+        <th></th>
+        </tr>
+        ";
 
         // Vérifier si le tri est demandé
         $tri = isset($_POST['tri']) ? $_POST['tri'] : '';
