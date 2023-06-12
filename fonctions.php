@@ -1021,8 +1021,6 @@ function ajout_collab_format()
                   </div>
                   <div class="col"></div>
               </div>
-      
-              <!-- Add Modal -->
               <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
                   <div class="modal-dialog">
                       <div class="modal-content">
@@ -1075,7 +1073,7 @@ function ajout_collab_format()
               $image_path = 'Images/Partenaires/' . $image;
       
               if (file_exists($image_path)) {
-                  unlink($image_path); // Delete the image file
+                  unlink($image_path);
               }
       
               unset($partenaires[$nom]);
@@ -1085,13 +1083,41 @@ function ajout_collab_format()
           }
       }
       
+      function modifyPartenaire($nom, $description, $image)
+      {
+          $json_file = 'Data/ListePartenaire.json';
+          $partenaires = json_decode(file_get_contents($json_file), true);
+      
+          if (isset($partenaires[$nom])) {
+              $old_image = $partenaires[$nom]['partenaire_logo'];
+              $targetDir = 'Images/Partenaires/';
+      
+              $partenaires[$nom]['description'] = $description;
+
+              if (isset($image) && $image['error'] === 0) {
+                  $old_image_path = $targetDir . $old_image;
+                  if (file_exists($old_image_path)) {
+                      unlink($old_image_path);
+                  }
+                  $new_image = $nom . '_logo.jpg';
+                  $tmpFile = $image['tmp_name'];
+                  $newFile = $targetDir . $new_image;
+                  move_uploaded_file($tmpFile, $newFile);
+                  $partenaires[$nom]['partenaire_logo'] = $new_image;
+              }
+      
+              file_put_contents($json_file, json_encode($partenaires));
+              echo '<meta http-equiv="refresh" content="0">';
+              exit();
+          }
+      }
       
       function display_partenaires()
       {
           $json_file = 'Data/ListePartenaire.json';
           $partenaires = json_decode(file_get_contents($json_file), true);
       
-          echo "<div class='row'>"; // Start row
+          echo "<div class='row'>";
       
           foreach ($partenaires as $nom => $partenaire) {
               $description = $partenaire['description'];
@@ -1104,22 +1130,70 @@ function ajout_collab_format()
                       <div class='card-body'>
                           <h5 class='card-title'>$nom</h5>
                           <p class='card-text'>$description</p>
-                          <form method='post'>
-                              <input type='hidden' name='supprimer' value='$nom'>
-                              <button type='submit' class='btn btn-danger'>Supprimer</button>
-                          </form>
+                          <div class='btn-group d-flex justify-content-end'>
+                              <button type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#deleteModal$nom'>Supprimer</button>
+                              <button type='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#editModal$nom'>Modifier</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>";
+      
+              echo "
+              <div class='modal fade' id='deleteModal$nom' tabindex='-1' aria-labelledby='deleteModalLabel$nom' aria-hidden='true'>
+                  <div class='modal-dialog'>
+                      <div class='modal-content'>
+                          <div class='modal-header'>
+                              <h5 class='modal-title' id='deleteModalLabel$nom'>Supprimer le partenaire</h5>
+                              <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                          </div>
+                          <div class='modal-body'>
+                              <p>Êtes-vous sûr de vouloir supprimer ce partenaire ?</p>
+                              <form method='post'>
+                                  <input type='hidden' name='supprimer' value='$nom'>
+                                  <button type='submit' class='btn btn-danger'>Supprimer</button>
+                              </form>
+                          </div>
+                      </div>
+                  </div>
+              </div>";
+      
+              echo "
+              <div class='modal fade' id='editModal$nom' tabindex='-1' aria-labelledby='editModalLabel$nom' aria-hidden='true'>
+                  <div class='modal-dialog'>
+                      <div class='modal-content'>
+                          <div class='modal-header'>
+                              <h5 class='modal-title' id='editModalLabel$nom'>Modifier le partenaire</h5>
+                              <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                          </div>
+                          <div class='modal-body'>
+                              <form method='post' enctype='multipart/form-data'>
+                                  <div class='form-group'>
+                                      <input type='hidden' name='modify_partenaire_name' value='$nom'>
+                                      <label for='modify_partenaire_description'>Description :</label>
+                                      <input type='text' class='form-control' id='modify_partenaire_description' name='modify_partenaire_description' value='$description' required><br>
+                                      <input type='file' class='form-control-file' id='modify_photopart' name='modify_photopart'>
+                                  </div>
+                                  <button type='submit' class='btn btn-primary' name='modify_partenaire_submit'>Sauvegarder les modifications</button>
+                              </form>
+                          </div>
                       </div>
                   </div>
               </div>";
           }
       
-          echo "</div>"; // End row
+          echo "</div>";
       
           if (isset($_POST['supprimer'])) {
               $nom = $_POST['supprimer'];
               delPartenaire($nom);
           }
+      
+          if (isset($_POST['modify_partenaire_submit'])) {
+              $nom = $_POST['modify_partenaire_name'];
+              $description = $_POST['modify_partenaire_description'];
+              $image = $_FILES['modify_photopart'];
+      
+              modifyPartenaire($nom, $description, $image);
+          }
       }
-      
-      
       
