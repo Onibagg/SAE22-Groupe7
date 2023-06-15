@@ -1033,11 +1033,12 @@ function ajout_utilisateur_format()
                             <form method='post' enctype='multipart/form-data'>
                                 <div class='form-group'>
                                     <input type='text' class='form-control' name='new_partenaire_name' placeholder='Nom du partenaire' required><br>
-                                    <input type='text' class='form-control' name='new_partenaire_description' placeholder='Description du partenaire' required>
+                                    <input type='text' class='form-control' name='new_partenaire_description' placeholder='Description du partenaire' required><br>
                                     <div class="form-group">
-                                        <input type="file" class="form-control-file" id="photopart" name="photopart">
+                                        <input type="file" class="form-control" id="photopart" name="photopart">
                                     </div>
                                 </div>
+                                <br>
                                 <button type='submit' class='mt-2 btn btn-success' name="ajouter">Ajouter</button>
                             </form>
                         </div>
@@ -1172,8 +1173,9 @@ function ajout_utilisateur_format()
                                       <input type='hidden' name='modify_partenaire_name' value='$nom'>
                                       <label for='modify_partenaire_description'>Description :</label>
                                       <input type='text' class='form-control' id='modify_partenaire_description' name='modify_partenaire_description' value='$description' required><br>
-                                      <input type='file' class='form-control-file' id='modify_photopart' name='modify_photopart'>
+                                      <input type='file' class='form-control' id='modify_photopart' name='modify_photopart'>
                                   </div>
+                                  <br>
                                   <button type='submit' class='btn btn-primary' name='modify_partenaire_submit'>Sauvegarder les modifications</button>
                               </form>
                           </div>
