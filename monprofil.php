@@ -14,8 +14,8 @@ intranet_navbar();
                 <img src="../Images/Employés/<?php echo $_SESSION['user']; ?>.jpg" class="img-fluid rounded-circle mt-3" style="max-width: 250px;">
             </div>
             <form id="new-profile" action="monprofil.php" method="post" enctype="multipart/form-data">
-                <div class="form-group">
-                    <input type="file" class="form-control-file" id="photo" name="photo">
+                <div class="form-group mt-4">
+                    <input type="file" class="form-control" id="photo" name="photo">
                 </div>
         </div>
         <?php
@@ -27,7 +27,6 @@ intranet_navbar();
             $nom = $data[$user]['nom'];
             $mdp = $data[$user]['mdp'];
             $email = $data[$user]['email'];
-            $groupe = $data[$user]['groupe'];
             $poste = $data[$user]['poste'];
 
         ?>
@@ -61,11 +60,11 @@ intranet_navbar();
                     </div>
                 </div>
                 <div class="form-floating mb-2 mt-5">
-                    <input type="password" class="form-control" id="nouveauMdp" placeholder="Mot de passe" name="nouveauMdp" required>
+                    <input type="password" class="form-control" id="nouveauMdp" placeholder="Mot de passe" name="nouveauMdp">
                     <label for="nouveauMdp">Nouveau Mot de passe</label>
                 </div>
                 <div class="form-floating mb-3 mt-2">
-                    <input type="password" class="form-control" id="confirmationMdp" placeholder="Mot de passe" name="confirmationMdp" required>
+                    <input type="password" class="form-control" id="confirmationMdp" placeholder="Mot de passe" name="confirmationMdp">
                     <label for="confirmationMdp">Confirmation</label>
                 </div>
             </div>
@@ -123,6 +122,12 @@ if (isset($_POST['new-profile'])) {
     $email = $_POST['email'];
     $nouveauMdp = $_POST['nouveauMdp'];
     $confirmationMdp = $_POST['confirmationMdp'];
+
+    if ($nouveauMdp !== $confirmationMdp) {
+        echo "<div class='alert alert-danger mt-3 ms-5 me-5'>Les mots de passe ne correspondent pas.</div>";
+        $passwordError = "error";
+        exit();
+    }
 
     $data = file_decod('Data/login-mdp.json');
     if (isset($data[$user])) {

@@ -3,7 +3,11 @@ include("fonctions.php");
 setup();
 page_header();
 ?>
-<p class="display-4 text-center">Qui sommes-nous?</p>
+<div>
+</br>
+<h2 class=" text-center text-dark">Notre Equipe</h2>
+</div>
+<hr>
 <?php
 affiche_annuaire_vitrine();
-?>
+?>  

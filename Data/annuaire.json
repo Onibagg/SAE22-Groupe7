@@ -1,1 +1,62 @@
-{"Riou":{"prenom":"Nicolas","nom":"Riou","poste":"Ing\u00e9nieur","user":"nriou"},"Marchand":{"prenom":"Emeric","nom":"Marchand","poste":"Chef de l'IT","user":"emarchand"},"Dem\u00e9":{"prenom":"Gabin","nom":"Dem\u00e9","poste":"Directeur","user":"gdeme"},"Chapin":{"prenom":"Emmanuel","nom":"Chapin","poste":"Chef de la Production","user":"echapin"},"Gagnon":{"prenom":"Marie","nom":"Gagnon","poste":"Comptable","user":"mgagnon"},"Roy":{"prenom":"Alexandre","nom":"Roy","poste":"Responsable marketing","user":"aroy"},"Girard":{"prenom":"Philippe","nom":"Girard","poste":"Assistant administratif","user":"pgirard"}}
+{
+    "emarchand": {
+        "prenom": "Emeric",
+        "nom": "Marchand",
+        "user": "emarchand",
+        "mdp": "$2y$10$a6X9FPLfXtEf5WoDk97FYOkBZ.BBhEVwfQl\/CilsTheikjCKj2BqK",
+        "email": "emeric5612@gmail.com",
+        "groupe": "",
+        "poste": "Chef de l'IT",
+        "description": "igzieiyfgidfvqdfyvqydvfsqdvyvfizvfisqdpfiusqdfosfu sdifugsidufug siug f"
+    },
+    "gdeme": {
+        "prenom": "Gabin",
+        "nom": "Dem\u00e9",
+        "user": "gdeme",
+        "mdp": "$2y$10$lEeoDbzZALJm9yTBpFeQI.BmQDW.RUNbDP6cjoDTNb780oyUifh5m",
+        "email": "gabindeme@gmail.com",
+        "groupe": "",
+        "poste": "Directeur",
+        "description": null
+    },
+    "echapin": {
+        "prenom": "Emmanuel",
+        "nom": "Chapin",
+        "user": "echapin",
+        "mdp": "$2y$10$2Y8W8qbs2OolahS1LNWEletp\/30jUrHN0bgHhCUJM6iU4RuDb9Zwi",
+        "email": "studio.manu00@gmail.com",
+        "groupe": "",
+        "poste": "Chef de la Production",
+        "description": null
+    },
+    "mgagnon": {
+        "nom": "Gagnon",
+        "prenom": "Marie",
+        "user": "mgagnon",
+        "mdp": "$2y$10$NtE0K9KI\/7yup6eR9byS4uneOaXT52Y.FrOrX35UPKjvPwV..dH9.",
+        "email": "mgagnon@gmail.com",
+        "groupe": "",
+        "poste": "Comptable",
+        "description": null
+    },
+    "aroy": {
+        "nom": "Roy",
+        "prenom": "Alexandre",
+        "user": "aroy",
+        "mdp": "$2y$10$QghaOP1BiEfhca\/T.Gt5n.9U.u\/K53s0wq2LgpWjNBHt3ZPjby9lO",
+        "email": "aroy@gmail.com",
+        "groupe": "",
+        "poste": "Responsable marketing",
+        "description": null
+    },
+    "pgirard": {
+        "nom": "Girard",
+        "prenom": "Philippe",
+        "user": "pgirard",
+        "mdp": "$2y$10$OKO1kYuo7v6X9UeGvk6fueLzcbm0lEDYk0tCcInypNU2fYUzML4WW",
+        "email": "pgirard@gmail.com",
+        "groupe": "",
+        "poste": "Assistant administratif",
+        "description": null
+    }
+}
