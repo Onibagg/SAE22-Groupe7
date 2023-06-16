@@ -385,7 +385,7 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
             <div class="card mt-5 me-1">
                 <div class="card-body">
                     <p class="display-6">Demandes clients : </p>
-                    <?php afficher_comments(file_decod('Data/contacts.json'))  ?>
+                    <?php gestion_comments();  ?>
 
                 </div>
                 </div>

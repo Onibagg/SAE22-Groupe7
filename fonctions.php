@@ -179,15 +179,15 @@ function page_foot()
 
                     <!----------------MODALE--------------------->
 
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal1">
-                    Nous contacter
-                </button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal1">
+                        Nous contacter
+                    </button>
 
-                <div class="modal fade" id="myModal1">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
+                    <div class="modal fade" id="myModal1">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
 
-                            <!-- Modal Header -->
+                                <!-- Modal Header -->
                                 <div class="modal-header">
                                     <h4 class="modal-title">NOUS CONTACTER</h4>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
@@ -199,18 +199,15 @@ function page_foot()
 
                                         <div class="mb-3">
                                             <label for="inputPrenom" class="form-label">Mail</label>
-                                            <input type="mail" class="form-control" id="inpuptmail" name="mail"
-                                                placeholder="Votre adresse mail">
+                                            <input type="mail" class="form-control" id="inpuptmail" name="mail" placeholder="Votre adresse mail">
                                         </div>
                                         <div class="mb-3">
                                             <label for="inputRaison" class="form-label">Raison du contact</label>
-                                            <input type="text" class="form-control" id="inputRaison" name="raison" rows="3"
-                                                placeholder="Indiquez la raison de votre contact"></input>
+                                            <input type="text" class="form-control" id="inputRaison" name="raison" rows="3" placeholder="Indiquez la raison de votre contact"></input>
                                         </div>
                                         <div class="mb-3">
                                             <label for="inputContenu" class="form-label">Contenu</label>
-                                            <textarea class="form-control" id="inputContenu" name="contenu"
-                                                placeholder="Votre explication"></textarea>
+                                            <textarea class="form-control" id="inputContenu" name="contenu" placeholder="Votre explication"></textarea>
                                         </div>
                                         <button type="submit" class="btn btn-danger" name="envoyer">Envoyer</button>
                                     </form>
@@ -270,7 +267,7 @@ function page_foot()
                 echo date("Y"); ?> - PrivateVPN.fr
             </p>
         </div>
-        <?php
+    <?php
 
 }
 
@@ -443,7 +440,8 @@ function connexion_traitement()
 }
 
 function afficher_comments($utilisateurs)
-{ ?>
+{
+    ?>
         <form method="post">
             <div class="table-responsive">
                 <table class="table table-hover">
@@ -457,7 +455,7 @@ function afficher_comments($utilisateurs)
 
                     foreach ($utilisateurs as $mail => $infos) {
                         echo '<tr>';
-                        echo '<td class="text-center"><input type="image" src="Images\Icons\eye.png" width="50" data-bs-toggle="modal" data-bs-target="#myModal-' . $mail . '" name="voir[' . $mail . ']" value="Voir" class="btn btn-outline-primary"></td>';
+                        echo '<td class="text-center"><input type="image" src="Images\Icons\eye.png" width="50" class="btn btn-outline-primary" disabled></td>';
                         echo '<td><input type="text" name="prenom[' . $mail . ']" value="' . $infos['mail'] . '" class="form-control"></td>';
                         echo '<td><input type="text" name="nom[' . $mail . ']" value="' . $infos['raison'] . '" class="form-control"></td>';
                         echo '<td class="text-center"><input type="image" src="Images\Icons\correct.png" width="50" name="ok[' . $mail . ']" value="ok" class="btn btn-success"></td>';
@@ -467,74 +465,37 @@ function afficher_comments($utilisateurs)
                 </table>
             </div>
         </form>
-        <?php
-    }
-    function gestion_comments()
-    { /*
-        $demande_compte = 'Data\demande-compte.json';
-        $login_mdp = 'Data\login-mdp.json';
-    {
-        $demande_compte = 'Data\contacts.json';
+    <?php
+}
 
-        $users = file_decod($demande_compte);
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (isset($_POST['ok'])) {
-                foreach ($_POST['ok'] as $nom => $valeur) {
-                    $user_accepte = $users[$nom]; //récuparation des infos
-                    $nouvel_utilisateur = array( //création d'un array avec les infos 
-                        'prenom' => $user_accepte['prenom'],
-                        'nom' => $user_accepte['nom'],
-                        'user' => $user_accepte['user'],
-                        'mdp' => $user_accepte['mdp'],
-                        'email' => $user_accepte['email'],
-                        'poste' => $user_accepte['poste'],
-                    );
-                    $login_mdp_contenu = file_get_contents($login_mdp); //récupère le fichier des vrai users
-                    $login_mdp_contenu = json_decode($login_mdp_contenu, true); //converti en tableau
-                    $login_mdp_contenu[$user_accepte['user']] = $nouvel_utilisateur; //ajout du new
-                    file_put_contents($login_mdp, json_encode($login_mdp_contenu)); //màj du fichier des vrai users
-                    unset($users[$nom]); //suppréssion du new du fichier des demandes
-                foreach ($_POST['ok'] as $mail => $valeur) {
-                    unset($users[$mail]); //suppréssion du new du fichier des demandes
-                }
-                file_put_contents($demande_compte, json_encode($users));
-            } elseif (isset($_POST['voir'])) {
-                foreach ($_POST['voir'] as $mail => $valeur) {
-                    echo '<div class="modal fade" id="myModal[' . $mail . ']">';
-        ?>
-                    <div class="modal-dialog">
-                        <div class="modal-content">
+function gestion_comments()
+{
+    $contacts = 'Data/contacts.json';
+    $users = json_decode(file_get_contents($contacts), true);
 
-                            <!-- Modal Header -->
-                            <div class="modal-header">
-                                <h4 class="modal-title">Modal Heading</h4>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                            </div>
-
-                            <!-- Modal body -->
-                            <div class="modal-body">
-                                Modal body..
-                            </div>
-
-                            <!-- Modal footer -->
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                            </div>
-
-                        </div>
-                    </div>
-                    </div>
-            <?php
-                }
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (isset($_POST['ok'])) {
+            $contactASupprimer = $_POST['ok'];
+            if (isset($users[$contactASupprimer])) {
+                // Supprimer le contact
+                unset($users[$contactASupprimer]);
+                
+                // Afficher un message de confirmation
+                echo "Le contact a été supprimé avec succès.";
+                
+                // Ou rediriger vers une autre page
+                // header("Location: index.php");
+                // exit();
+            }else {
+                echo "C'est vide";
             }
         }
-
-        afficher_comments($users);
-        */
     }
+    afficher_comments($users);
+}
 
-    
+
 function ajout_utilisateur_format()
 {
     ?>
