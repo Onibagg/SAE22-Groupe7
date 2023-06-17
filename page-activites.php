@@ -3,49 +3,17 @@ include("fonctions.php");
 setup();
 page_header();
 ?>
-<style>
-    .container-fluid.custom1 {
-        background-color: #DCF3FF;
-        border-radius: 20px;
-
-    }
-
-    .container-fluid.custom5 {
-        background-color: #53788A;
-        border-radius: 20px;
-
-    }
-
-    .container-fluid.custom5 {
-        background-color: #7BD699;
-        border-radius: 20px;
-
-    }
-
-    .container-fluid.custom6 {
-        background-color: #7FA2C9;
-        border-radius: 20px;
-
-    }
-
-
-    .rounded1 {
-        border-radius: 20px;
-        background-color: #6191C8;
-    }
-
-    img {
-        outline: none;
-    }
-
-    .center-img {
-        display: block;
-        margin: auto;
-    }
-</style>
 </br>
 </br>
+
+<div class="container py-1">
+<h2 class="text-dark text-center py-1">Activité</h2>
+<hr class="my-5">
+</div>
+
 <div class="row">
+
+
 
     <div class="col-sm-1  text-dark"></div>
     <div class="col-sm-10 text-dark">
@@ -53,7 +21,7 @@ page_header();
         <div class="row">
 
             <div class="col-sm-3 text-dark">
-                <div class="container-fluid custom1 mt-3"></br>
+                <div class="container-fluid custombleu mt-3 h-100"></br>
                     <h3 class=" text-center">Protection des données</h3></br><img src="/Images/Activité/Cyber_image.png" width="200" height="200" class="center-img"></br>
                     <div class="row">
                         <div class="col-sm-1 text-dark"></div>
@@ -65,7 +33,7 @@ page_header();
                 </div>
             </div>
             <div class="col-sm-3 text-dark">
-                <div class="container-fluid custom1 mt-3"></br>
+                <div class="container-fluid custombleu mt-3 h-100"></br>
                     <h3 class=" text-center">Stockage CLOUD</h3></br><img src="/Images/Activité/Cloud_image.png" width="200" height="200" class="center-img"></br>
                     <div class="row">
                         <div class="col-sm-1 text-dark"></div>
@@ -77,7 +45,7 @@ page_header();
                 </div>
             </div>
             <div class="col-sm-3 text-dark">
-                <div class="container-fluid custom1 mt-3"></br>
+                <div class="container-fluid custombleu mt-3 h-100"></br>
                     <h3 class=" text-center">Gestion de Malware</h3></br><img src="/Images/Activité/Scann_image.png" width="200" height="200" class="center-img"></br>
                     <div class="row">
                         <div class="col-sm-1 text-dark"></div>
@@ -89,7 +57,7 @@ page_header();
                 </div>
             </div>
             <div class="col-sm-3 text-dark">
-                <div class="container-fluid custom1 mt-3"></br>
+                <div class="container-fluid custombleu mt-3 h-100"></br>
                     <h3 class=" text-center">Stockage CLOUD</h3></br><img src="/Images/Activité/Serveur_image.png" width="200" height="200" class="center-img"></br>
                     <div class="row">
                         <div class="col-sm-1 text-dark"></div>
@@ -102,7 +70,7 @@ page_header();
             </div>
         </div>
         </br>
-        <div class="container-fluid custom5 mt-3"></br>
+        <div class="container-fluid customgreen mt-3"></br>
             <div class="row">
                 <div class="col-sm-3 text-dark"></br></br><img src="/Images/Activité/Terre_image.png" width="250" height="250" class="center-img"></div>
                 <div class="col-sm-7 text-dark"></br>
@@ -112,18 +80,22 @@ page_header();
                 <div class="col-sm-1 text-dark"></div>
             </div>
         </div>
-        </br></br></br>
-        <h1 class=" text-center">Nos Tarifs</h1>
         </br></br>
+
+        <div class="container py-1">
+            <h2 class="text-dark text-center py-1">Nos Tarifs</h2>
+            <hr class="my-5">
+        </div>
 
 
 
         <div class="row justify-content-center d-flex align-items-stretch">
             <div class="col-sm-1.5 text-dark"></div>
             <div class="col-sm-3 text-dark">
-                <div class="container-fluid custom1 mt-3"></br>
-                    <h3 class="rounded1 text-center">Premium</h3></br>
-                    <h3 class="text-primary text-center">9.99€/mois</h3></br></br>
+                <div class="container-fluid custombleu mt-3 h-100"></br>
+                    <h3 class="rounded1 text-center">Premium</h3>
+                    <hr class="my-1"></br>
+                    <h3 class="text-dark text-center">9.99€/mois</h3></br></br>
                     <p class="text-center">VPN sûr et rapide</p>
                     <p class="text-center">Scanner de malwares</p>
                     <p class="text-center">Bloqueur de suivi et de publicités</p>
@@ -131,18 +103,22 @@ page_header();
                 </div>
             </div>
             <div class="col-sm-3 text-dark">
-                <div class="container-fluid custom1 mt-3"></br>
-                    <h3 class=" rounded1 text-center">Medium</h3></br>
-                    <h3 class="text-primary text-center">6.99€/mois</h3></br></br>
+                <div class="container-fluid custombleu mt-3 h-100"></br>
+                    <h3 class=" rounded1 text-center">Medium</h3>
+                    <hr class="my-1"></br>
+
+                    <h3 class="text-dark text-center">6.99€/mois</h3></br></br>
                     <p class="text-center">VPN sûr et rapide</p>
                     <p class="text-center">Bloqueur de suivi et de publicités</p>
                     <p class="text-center">512 To de Cloud</p></br></br></br>
                 </div>
             </div>
             <div class="col-sm-3 text-dark">
-                <div class="container-fluid custom1 mt-3"></br>
-                    <h3 class=" rounded1 text-center">Simple</h3></br>
-                    <h3 class="text-primary text-center">3.99€/mois</h3></br></br>
+                <div class="container-fluid custombleu mt-3 h-100"></br>
+                    <h3 class=" rounded1 text-center">Simple</h3>
+                    <hr class="my-1"></br>
+
+                    <h3 class="text-dark text-center">3.99€/mois</h3></br></br>
                     <p class="text-center">VPN sûr et rapide</p>
                     <p class="text-center">Bloqueur de suivi et de publicités</p></br></br></br></br>
                 </div>
