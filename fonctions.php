@@ -394,111 +394,136 @@ function intranet_navbar()
             deconnexion();
         }
         ?>
-    <?php
-}
-
-function file_decod($file)
-{
-    return json_decode(file_get_contents($file), true);
-}
-
-function file_encod($file)
-{
-    return file_put_contents(json_encode(file_decod($file)), $file);
-}
-
-function connexion_traitement()
-{
-    if (!isset($_POST['user'])) {
-        echo 'Utilisateur non renseigné';
-        $user = "";
-    } else {
-        $user = $_POST['user'];
+        <?php
     }
 
-    if (!isset($_POST['mdp'])) {
-        echo 'Mot de Passe non renseigné';
-        $mdp = "";
-    } else {
-        $mdp = $_POST['mdp'];
+    function file_decod($file)
+    {
+        return json_decode(file_get_contents($file), true);
     }
 
-    $data = file_decod('Data\login-mdp.json');
-    $ok = false;
+    function file_encod($file)
+    {
+        return file_put_contents(json_encode(file_decod($file)), $file);
+    }
 
-    foreach ($data as $u) {
-        if ($u['user'] == $user && password_verify($mdp, $u['mdp']) == true) {
-            $ok = true;
-            break;
+    function connexion_traitement()
+    {
+        if (!isset($_POST['user'])) {
+            echo 'Utilisateur non renseigné';
+            $user = "";
+        } else {
+            $user = $_POST['user'];
         }
-    }
 
-    if ($ok) {
-        $_SESSION["user"] = $user;
-        echo '<meta http-equiv="refresh" content="0; url=Accueil-Intranet.php">';
-    }
-}
+        if (!isset($_POST['mdp'])) {
+            echo 'Mot de Passe non renseigné';
+            $mdp = "";
+        } else {
+            $mdp = $_POST['mdp'];
+        }
 
-function afficher_comments($utilisateurs)
-{
-    ?>
-        <form method="post">
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <tr>
-                        <th></th>
-                        <th>Mail</th>
-                        <th>Raison</th>
-                        <th></th>
-                    </tr>
-                    <?php
+        $data = file_decod('Data\login-mdp.json');
+        $ok = false;
 
-                    foreach ($utilisateurs as $mail => $infos) {
-                        echo '<tr>';
-                        echo '<td class="text-center"><input type="image" src="Images\Icons\eye.png" width="50" class="btn btn-outline-primary" disabled></td>';
-                        echo '<td><input type="text" name="prenom[' . $mail . ']" value="' . $infos['mail'] . '" class="form-control"></td>';
-                        echo '<td><input type="text" name="nom[' . $mail . ']" value="' . $infos['raison'] . '" class="form-control"></td>';
-                        echo '<td class="text-center"><input type="image" src="Images\Icons\correct.png" width="50" name="ok[' . $mail . ']" value="ok" class="btn btn-success"></td>';
-                        echo '</tr>';
-                    }
-                    ?>
-                </table>
-            </div>
-        </form>
-    <?php
-}
-
-
-function gestion_comments()
-{
-    $contacts = 'Data/contacts.json';
-    $users = json_decode(file_get_contents($contacts), true);
-
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        if (isset($_POST['ok'])) {
-            $contactASupprimer = $_POST['ok'];
-            if (isset($users[$contactASupprimer])) {
-                // Supprimer le contact
-                unset($users[$contactASupprimer]);
-                
-                // Afficher un message de confirmation
-                echo "Le contact a été supprimé avec succès.";
-                
-                // Ou rediriger vers une autre page
-                // header("Location: index.php");
-                // exit();
-            }else {
-                echo "C'est vide";
+        foreach ($data as $u) {
+            if ($u['user'] == $user && password_verify($mdp, $u['mdp']) == true) {
+                $ok = true;
+                break;
             }
         }
+
+        if ($ok) {
+            $_SESSION["user"] = $user;
+            echo '<meta http-equiv="refresh" content="0; url=Accueil-Intranet.php">';
+        }
     }
-    afficher_comments($users);
-}
+
+    function afficher_comments($utilisateurs)
+    {
+        if (empty($utilisateurs)) {
+        ?>
+            <img src="Images\Icons\sleep.png" style="height: 200px;display: block; margin-left: auto; margin-right: auto">
+            <p class="text-center">Aucun contact pour le moment</p>
+        <?php
+        } else {
+        ?>
+            <form method="post">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <tr>
+                            <th></th>
+                            <th>Mail</th>
+                            <th>Raison</th>
+                            <th></th>
+                        </tr>
+                        <?php
+
+                        foreach ($utilisateurs as $mail => $infos) {
+                            echo '<tr>';
+                            echo '<td class="text-center">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal' . $mail . '">
+                            <img src="Images\Icons\eye.png" width="50">
+                            </button>
+                            </td>';
+                            echo '<td><input type="text" name="prenom[' . $mail . ']" value="' . $infos['mail'] . '" class="form-control"></td>';
+                            echo '<td><input type="text" name="nom[' . $mail . ']" value="' . $infos['raison'] . '" class="form-control"></td>';
+                            echo '<td class="text-center"><input type="image" src="Images\Icons\correct.png" width="50" name="ok[' . $mail . ']" value="ok" class="btn btn-success"></td>';
+                            echo '</tr>';
+                        }
+
+                        foreach ($utilisateurs as $mail => $infos) {
+                            echo '<div class="modal" id="myModal' . $mail . '">';
+                            echo '<div class="modal-dialog">';
+                            echo '<div class="modal-content">';
+                            echo '<div class="modal-header">';
+                            echo '<h4 class="modal-title">Modal Heading</h4>';
+                            echo '<button type="button" class="btn-close" data-bs-dismiss="modal"></button>';
+                            echo '</div>';
+                            echo '<div class="modal-body">';
+                            echo 'Modal body..';
+                            echo '</div>';
+                            echo '<div class="modal-footer">';
+                            echo '<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>';
+                            echo '</div>';
+                            echo '</div>';
+                            echo '</div>';
+                            echo '</div>';
+                        }
 
 
-function ajout_utilisateur_format()
-{
-    ?>
+                        ?>
+                    </table>
+                </div>
+            </form>
+        <?php
+        }
+    }
+
+
+    function gestion_comments()
+    {
+        $contacts = 'Data/contacts.json';
+        $users = json_decode(file_get_contents($contacts), true);
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (isset($_POST['ok'])) {
+                foreach ($_POST['ok'] as $mail => $valeur) {
+                    unset($users[$mail]); //vire le new des demande
+                }
+                file_put_contents($contacts, json_encode($users));
+                //file_encod($demande_compte); //màj du fichier des demandes
+            }
+        }
+        afficher_comments($users);
+    }
+
+
+
+
+    function ajout_utilisateur_format()
+    {
+        ?>
         <form action="Portail-de-connexion.php" id="new-user" method="POST">
             <div class="row">
                 <div class="col">
