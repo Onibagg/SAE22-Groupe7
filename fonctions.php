@@ -239,7 +239,7 @@ function page_foot()
                         $cheminFichier = 'Data/contacts.json';
 
                         // Écriture des données dans le fichier JSON
-                        file_put_contents($cheminFichier, $jsonContact);
+                        file_encod($cheminFichier, $contact);
 
                         echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.5/dist/sweetalert2.all.min.js"></script>';
                         echo '<script>
@@ -453,88 +453,47 @@ function intranet_navbar()
                         </tr>
                         <?php
                         foreach ($utilisateurs as $mail => $infos) {
-                        $mail = $infos['mail'];
-                        $raison = $infos['raison'];
-                        $contenu = $infos['contenu'];
-                        $modalId = uniqid();
+                            $mail = $infos['mail'];
+                            $raison = $infos['raison'];
+                            $contenu = $infos['contenu'];
+                            $modalId = uniqid();
 
-                        echo "<tr>";
-                        echo "<td><button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#modal-$modalId'><img src='Images/Icons/eye.png' width='25px'></button></td>";
-                        echo "<td>$raison</td>";
-                        echo '<td>
+                            echo "<tr>";
+                            echo "<td><button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#modal-$modalId'><img src='Images/Icons/eye.png' width='25px'></button></td>";
+                            echo "<td>$raison</td>";
+                            echo '<td>
                                 <input type="image" src="Images/Icons/correct.png" width="50" name="ok[' . $mail . ']" value="Accepter" class="btn btn-success">
                                 </td>';
-                        echo "</tr>";
+                            echo "</tr>";
 
-                        // Modal content
-                        echo "<div class='modal fade' id='modal-$modalId' tabindex='-1' aria-labelledby='modalLabel' aria-hidden='true'>";
-                        echo "<div class='modal-dialog'>";
-                        echo "<div class='modal-content'>";
-                        echo "<div class='modal-header'>";
-                        echo "<h5 class='modal-title' id='modalLabel'>Détails de l'utilisateur</h5>";
-                        echo "<button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>";
-                        echo "</div>";
-                        echo "<div class='modal-body'>";
-                        echo "<p><strong>Mail:</strong> <A class='text-dark' style='text-decoration:underline black;'HREF='mailto:$mail'>$mail</A></p>";
-                        echo "<p><strong>Raison:</strong> $raison</p>";
-                        echo "<p><strong>Contenu:</strong> $contenu</p>";
-                        echo "</div>";
-                        echo "<div class='modal-footer'>";
-                        echo "<button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Fermer</button>";
-                        echo "</div>";
-                        echo "</div>";
-                        echo "</div>";
-                        echo "</div>";
-                    }
-
-
-
-                        //                     echo "
-                        // <div class='modal fade' id='afficher$mail'>
-                        //     <div class='modal-dialog'>
-                        //         <div class='modal-content'>
-                        //             <div class='modal-header'>
-                        //                 <h5 class='modal-title'>Supprimer le partenaire</h5>
-                        //                 <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
-                        //             </div>
-                        //             <div class='modal-body'>
-                        //                 <p>Êtes-vous sûr de vouloir supprimer ce partenaire ?</p>
-                        //                 <form method='post'>
-                        //                     <input type='hidden' name='supprimer' value='$mail'>
-                        //                     <button type='submit' class='btn btn-danger'>Supprimer</button>
-                        //                 </form>
-                        //             </div>
-                        //         </div>
-                        //     </div>
-                        // </div>";
-                        //     <div class='col-md-4'>
-                        //         <div class='card mb-4'>
-                        //             <div class='card-body'>
-                        //                 <div class='btn-group d-flex justify-content-end'>
-                        //                     <button type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#deleteModal$nom'>Supprimer</button>
-                        //                     <button type='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#editModal$nom'>Modifier</button>
-                        //                 </div>
-                        //             </div>
-                        //         </div>
-                        //     </div>";
-
-                        //     echo "
-                        //     <div class='modal fade' id='deleteModal$nom' tabindex='-1' aria-labelledby='deleteModalLabel$nom' aria-hidden='true'>
-                        //         <div class='modal-dialog'>
-                        //             <div class='modal-content'>
-                        //             </div>
-                        //         </div>
-                        //     </div>";
-
-
+                            // Modal content
+                            echo "<div class='modal fade' id='modal-$modalId' tabindex='-1' aria-labelledby='modalLabel' aria-hidden='true'>";
+                            echo "<div class='modal-dialog'>";
+                            echo "<div class='modal-content'>";
+                            echo "<div class='modal-header'>";
+                            echo "<h5 class='modal-title' id='modalLabel'>Détails de l'utilisateur</h5>";
+                            echo "<button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>";
+                            echo "</div>";
+                            echo "<div class='modal-body'>";
+                            echo "<p><strong>Mail:</strong> <A class='text-dark' style='text-decoration:underline black;'HREF='mailto:$mail'>$mail</A></p>";
+                            echo "<p><strong>Raison:</strong> $raison</p>";
+                            echo "<p><strong>Contenu:</strong> $contenu</p>";
+                            echo "</div>";
+                            echo "<div class='modal-footer'>";
+                            echo "<button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Fermer</button>";
+                            echo "</div>";
+                            echo "</div>";
+                            echo "</div>";
+                            echo "</div>";
+                        }
                         ?>
                     </table>
                 </div>
             </form>
-        <?php 
+        <?php
         }
     }
-    
+
 
 
     function gestion_comments()
@@ -552,9 +511,6 @@ function intranet_navbar()
         }
         afficher_comments($users);
     }
-
-
-
 
     function ajout_utilisateur_format()
     {
@@ -606,7 +562,7 @@ function intranet_navbar()
         } else {
         }
         ?>
-    <?php
+        <?php
     }
 
     function addUser($prenom, $nom, $usr, $mdp, $email)
@@ -713,82 +669,25 @@ function intranet_navbar()
     }
 
 
-    // echo '<form method="post">';
-    // echo '<div class="table-responsive">';
-    // echo '<table class="table table-hover">';
-    // echo "<tr><th></th><th>Prénom</th><th>Nom</th><th></th></tr>";
-    // foreach ($utilisateurs as $nom => $infos) {
-    //     echo '<tr>';
-    //     echo '<td class="text-center"><input type="image" src="Images\Icons\eye.png" width="50" name="voir[' . $nom . ']" value="Voir" class="btn btn-outline-primary" disabled></td>';
-    //     echo '<td><input type="text" name="prenom[' . $nom . ']" value="' . $infos['prenom'] . '" class="form-control"></td>';
-    //     echo '<td><input type="text" name="nom[' . $nom . ']" value="' . $infos['nom'] . '" class="form-control"></td>';
-    //     echo '<td class="text-center"><input type="image" src="Images\Icons\correct.png" width="50" name="accepter[' . $nom . ']" value="Accepter" class="btn btn-success"></td>';
-    //     echo '<td class="text-center"><input type="image" src="Images\Icons\cross.png" width="50" name="refuser[' . $nom . ']" value="Refuser" class="btn btn-danger"></td>';
-    //     echo '</tr>';
-    // }
-    // echo '</table>';
-    // echo '</div>';
-    // echo '</form>';
 
     function afficher($utilisateurs)
     {
-    ?>
-        <div class="container mt-5">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col"></th>
-                        <th scope="col">Utilisateur</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    foreach ($utilisateurs as $nom => $user) {
-                        $prenom = $user['prenom'];
-                        $nom = $user['nom'];
-                        $modalId = uniqid();
-
-                        echo "<tr>";
-                        echo "<td><button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#modal-$modalId'><img src='Images/Icons/eye.png' width='25px'></button></td>";
-                        echo "<td>$prenom $nom</td>";
-                        echo '<td>
-                                <input type="image" src="Images/Icons/correct.png" width="50" name="accepter[' . $nom . ']" value="accepter" class="btn btn-success">
-                                <input type="image" src="Images/Icons/cross.png" width="50" name="refuser[' . $nom . ']" value="refuser" class="btn btn-danger">
-                                </td>';
-                        echo "</tr>";
-
-                        // Modal content
-                        echo "<div class='modal fade' id='modal-$modalId' tabindex='-1' aria-labelledby='modalLabel' aria-hidden='true'>";
-                        echo "<div class='modal-dialog'>";
-                        echo "<div class='modal-content'>";
-                        echo "<div class='modal-header'>";
-                        echo "<h5 class='modal-title' id='modalLabel'>Détails de l'utilisateur</h5>";
-                        echo "<button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>";
-                        echo "</div>";
-                        echo "<div class='modal-body'>";
-                        echo "<p><strong>Prénom:</strong> $prenom</p>";
-                        echo "<p><strong>Nom:</strong> $nom</p>";
-                        echo "<p><strong>Identifiant:</strong> {$user['user']}</p>";
-                        echo "<p><strong>Email:</strong> {$user['email']}</p>";
-                        echo "</div>";
-                        echo "<div class='modal-footer'>";
-                        echo "<button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Fermer</button>";
-                        echo "</div>";
-                        echo "</div>";
-                        echo "</div>";
-                        echo "</div>";
-                    }
-                    ?>
-                </tbody>
-            </table>
-        </div>
-        <?php
-    }
-
-    function file_encod($file_path, $data)
-    {
-        file_put_contents($file_path, json_encode($data, JSON_PRETTY_PRINT));
+        echo '<form method="post">';
+        echo '<div class="table-responsive">';
+        echo '<table class="table table-hover">';
+        echo "<tr><th>Prénom</th><th>Nom</th><th>Poste</th><th></th></tr>";
+        foreach ($utilisateurs as $nom => $infos) {
+            echo '<tr>';
+            echo '<td><input type="text" name="prenom[' . $nom . ']" value="' . $infos['prenom'] . '" class="form-control"></td>';
+            echo '<td><input type="text" name="nom[' . $nom . ']" value="' . $infos['nom'] . '" class="form-control"></td>';
+            echo '<td><input type="text" name="poste[' . $nom . ']" value="' . $infos['poste'] . '" class="form-control"></td>';
+            echo '<td class="text-center"><input type="image" src="Images\Icons\correct.png" width="50" name="accepter[' . $nom . ']" value="Accepter" class="btn btn-success"></td>';
+            echo '<td class="text-center"><input type="image" src="Images\Icons\cross.png" width="50" name="refuser[' . $nom . ']" value="Refuser" class="btn btn-danger"></td>';
+            echo '</tr>';
+        }
+        echo '</table>';
+        echo '</div>';
+        echo '</form>';
     }
 
     function gestion_new_users()
@@ -801,7 +700,7 @@ function intranet_navbar()
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['accepter'])) {
                 foreach ($_POST['accepter'] as $nom => $valeur) {
-                    $user_accepte = $users[$nom]; //récupération des infos
+                    $user_accepte = $users[$nom]; // récupération des infos
                     $nouvel_utilisateur = array(
                         'prenom' => $user_accepte['prenom'],
                         'nom' => $user_accepte['nom'],
@@ -810,27 +709,33 @@ function intranet_navbar()
                         'email' => $user_accepte['email'],
                         'poste' => $user_accepte['poste'],
                     );
-                    $login_mdp_contenu = json_decode(file_get_contents($login_mdp), true); //récupère le fichier des vrais utilisateurs
-                    $login_mdp_contenu[$user_accepte['user']] = $nouvel_utilisateur; //ajout du nouveau utilisateur
-                    file_encod($login_mdp, $login_mdp_contenu); //màj du fichier des vrais utilisateurs
-                    unset($users[$nom]); //suppression du nouveau utilisateur du fichier des demandes
+                    $login_mdp_contenu = json_decode(file_get_contents($login_mdp), true); // récupère le fichier des vrais utilisateurs
+                    $login_mdp_contenu[$user_accepte['user']] = $nouvel_utilisateur; // ajout du nouvel utilisateur
+                    file_encod($login_mdp, $login_mdp_contenu); // màj du fichier des vrais utilisateurs
+                    unset($users[$nom]); // suppression du nouvel utilisateur du fichier des demandes
                 }
                 file_encod($demande_compte, $users);
             } elseif (isset($_POST['refuser'])) {
                 foreach ($_POST['refuser'] as $nom => $valeur) {
-                    unset($users[$nom]); //suppression du nouveau utilisateur des demandes
+                    unset($users[$nom]); // suppression du nouvel utilisateur des demandes
                     $photo_path = "Images/Employés/" . $nom . ".jpg";
                     if (file_exists($photo_path)) {
-                        unlink($photo_path); //suppression de la photo s'il y en a une
+                        unlink($photo_path); // suppression de la photo s'il y en a une
                     }
                 }
-                file_encod($demande_compte, $users); //màj du fichier des demandes
+                file_encod($demande_compte, $users); // màj du fichier des demandes
             }
         }
 
         afficher($users);
     }
 
+    function file_encod($file_path, $data)
+    {
+        file_put_contents($file_path, json_encode($data, JSON_PRETTY_PRINT));
+    }
+
+    // Appeler la fonction gestion_new_users() à l'endroit approprié dans votre script
 
     function supprimerMembre($nom_groupe, $user)
     {
