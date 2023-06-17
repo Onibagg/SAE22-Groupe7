@@ -412,7 +412,7 @@ intranet_navbar();
         <div class="col-sm-4">
             <div class="card mt-2 me-1">
                 <div class="card-body">
-                    <p class="display-6">Nouveau Utilisateurs:</p>
+                    <p class="display-6">Nouveau Utilisateurs :</p>
                     <?php
                     $user = $_SESSION['user'];
                     $data = file_get_contents('Data\groupes.json');
@@ -479,6 +479,14 @@ intranet_navbar();
                     ?>
                 </div>
             </div>
+            <div class="card mt-5 me-1">
+                <div class="card-body">
+                    <p class="display-6">Demandes clients : </p>
+                    <?php gestion_comments();  ?>
+
+                </div>
+                </div>
+            
         </div>
     </div>
 </body>
