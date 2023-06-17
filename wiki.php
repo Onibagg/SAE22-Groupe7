@@ -30,13 +30,13 @@ intranet_navbar();
                 </div>
             </div>
             <div class="card">
-                <a data-bs-toggle="collapse" href="#collapse1.1" style="text-decoration: none;" class="text-dark">
+                <a data-bs-toggle="collapse" href="#collapse2" style="text-decoration: none;" class="text-dark">
                     <div class="card-header">
                         Carte des évènements à venir
                     </div>
                 </a>
 
-                <div id="collapse1.1" class="collapse show" data-bs-parent="#accordion">
+                <div id="collapse2" class="collapse show" data-bs-parent="#accordion">
                     <div class="card-body">
                         <div class="row">
                             <div class="mt-5 col text-center">
@@ -50,13 +50,13 @@ intranet_navbar();
                 </div>
             </div>
             <div class="card">
-                <a data-bs-toggle="collapse" href="#collapse2" style="text-decoration: none;" class="text-dark">
+                <a data-bs-toggle="collapse" href="#collapse3" style="text-decoration: none;" class="text-dark">
                     <div class="card-header">
                         Ajout de nouveaux utilisateurs
                     </div>
                 </a>
 
-                <div id="collapse2" class="collapse" data-bs-parent="#accordion">
+                <div id="collapse3" class="collapse" data-bs-parent="#accordion">
                     <div class="card-body">
                         <div class="row">
                             <div class="mt-5 col text-center">
