@@ -3,11 +3,12 @@ include("fonctions.php");
 setup();
 page_header();
 ?>
-<div>
+
 </br>
-<h2 class=" text-center text-dark">Notre Equipe</h2>
-</div>
+<div class="container py-1">
+<h2 class="text-dark text-center py-1">Notre équipe</h2>
 <hr>
+</div>
 <?php
 affiche_annuaire_vitrine();
 ?>  

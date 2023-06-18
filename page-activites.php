@@ -3,12 +3,12 @@ include("fonctions.php");
 setup();
 page_header();
 ?>
-</br>
+
 </br>
 
 <div class="container py-1">
 <h2 class="text-dark text-center py-1">Activité</h2>
-<hr class="my-5">
+<hr>
 </div>
 
 <div class="row">
