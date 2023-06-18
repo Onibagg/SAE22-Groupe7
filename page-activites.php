@@ -128,11 +128,10 @@ page_header();
     </div>
 </div>
 
-<!-- Installation de serveur, Stockage cloud, environnement, cyber protection, scanner de vulnérabilité.-->
 <style>
 .container-fluid.custom {
-  background-color: #DCF3FF; /* couleur de fond */
-  border-radius: 20px; /* bordures arrondies */
+  background-color: #DCF3FF;
+  border-radius: 20px; 
 
 }
 

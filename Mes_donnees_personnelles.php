@@ -5,9 +5,7 @@ setup();
 <style>
     .container-fluid.custom {
         background-color: #DCF3FF;
-        /* couleur de fond */
         border-radius: 20px;
-        /* bordures arrondies */
 
     }
 </style>
