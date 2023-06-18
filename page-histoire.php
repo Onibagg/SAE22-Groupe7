@@ -9,6 +9,8 @@ page_header();
 <h2 class="text-dark text-center py-1">Histoire</h2>
 <hr>
 </div>
+<div class="container py-4">
+    
     <div class="container py-4">
 
         <div class="row no-gutters">
