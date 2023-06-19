@@ -1,1 +1,30 @@
-{"Direction":{"nom":"Direction","membres":[{"user":"gdeme"},{"user":"frmenguy"},{"user":"Xx_G@t\u20acL_xX"}]},"Commerciaux":{"nom":"Commerciaux","membres":[]},"IT":{"nom":"IT","membres":[]},"Finances":{"nom":"Finances","membres":[]},"Production":{"nom":"Production","membres":[]},"RH":{"nom":"RH","membres":[]}}
+{
+    "Direction": {
+        "nom": "Direction",
+        "membres": [
+            {
+                "user": "gdeme"
+            }
+        ]
+    },
+    "Commerciaux": {
+        "nom": "Commerciaux",
+        "membres": []
+    },
+    "IT": {
+        "nom": "IT",
+        "membres": []
+    },
+    "Finances": {
+        "nom": "Finances",
+        "membres": []
+    },
+    "Production": {
+        "nom": "Production",
+        "membres": []
+    },
+    "RH": {
+        "nom": "RH",
+        "membres": []
+    }
+}

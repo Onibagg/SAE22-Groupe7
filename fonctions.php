@@ -3,7 +3,7 @@ session_start();
 
 function setup()
 {
-    ?>
+?>
     <!DOCTYPE html>
     <html lang="fr">
 
@@ -513,13 +513,8 @@ function intranet_navbar()
         afficher_comments($users);
     }
 
-    if ($ok) {
-        $_SESSION["user"] = $user;
-        echo '<meta http-equiv="refresh" content="0; url=Accueil-Intranet.php">';
-    }
-}
-function ajout_utilisateur_format()
-{
+    function ajout_utilisateur_format()
+    {
         ?>
         <form action="Portail-de-connexion.php" id="new-user" method="POST">
             <div class="row">
