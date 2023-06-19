@@ -1115,6 +1115,41 @@ function intranet_navbar()
         <?php
     }
 
+    function partenaire_exists($nom)
+    {
+        $partenaires = json_decode(file_get_contents("Data/ListePartenaire.json"), true);
+        return isset($partenaires[$nom]);
+    }
+
+    function addPartenaire($nom, $description, $img)
+    {
+        $partenaires = json_decode(file_get_contents("Data/ListePartenaire.json"), true);
+        $partenaires[$nom] = array(
+            "description" => $description,
+            "partenaire_logo" => $img
+        );
+        file_put_contents("Data/ListePartenaire.json", json_encode($partenaires));
+    }
+
+    function delPartenaire($nom)
+    {
+        $json_file = 'Data/ListePartenaire.json';
+        $partenaires = json_decode(file_get_contents($json_file), true);
+
+        if (isset($partenaires[$nom])) {
+            $image = $partenaires[$nom]['partenaire_logo'];
+            $image_path = 'Images/Partenaires/' . $image;
+
+            if (file_exists($image_path)) {
+                unlink($image_path);
+            }
+
+            unset($partenaires[$nom]);
+            file_put_contents($json_file, json_encode($partenaires));
+            echo '<meta http-equiv="refresh" content="0">';
+            exit();
+        }
+    }
     function gestion_partenaires()
     {
         if (isset($_POST['ajouter'])) {
@@ -1194,7 +1229,6 @@ function intranet_navbar()
                                         <input type="file" class="form-control" id="photopart" name="photopart">
                                     </div>
                                 </div>
-                                <br>
                                 <button type='submit' class='mt-2 btn btn-success' name="ajouter">Ajouter</button>
                             </form>
                         </div>
@@ -1205,41 +1239,6 @@ function intranet_navbar()
         }
     }
 
-    function partenaire_exists($nom)
-    {
-        $partenaires = json_decode(file_get_contents("Data/ListePartenaire.json"), true);
-        return isset($partenaires[$nom]);
-    }
-
-    function addPartenaire($nom, $description, $img)
-    {
-        $partenaires = json_decode(file_get_contents("Data/ListePartenaire.json"), true);
-        $partenaires[$nom] = array(
-            "description" => $description,
-            "partenaire_logo" => $img
-        );
-        file_put_contents("Data/ListePartenaire.json", json_encode($partenaires));
-    }
-
-    function delPartenaire($nom)
-    {
-        $json_file = 'Data/ListePartenaire.json';
-        $partenaires = json_decode(file_get_contents($json_file), true);
-
-        if (isset($partenaires[$nom])) {
-            $image = $partenaires[$nom]['partenaire_logo'];
-            $image_path = 'Images/Partenaires/' . $image;
-
-            if (file_exists($image_path)) {
-                unlink($image_path);
-            }
-
-            unset($partenaires[$nom]);
-            file_put_contents($json_file, json_encode($partenaires));
-            echo '<meta http-equiv="refresh" content="0">';
-            exit();
-        }
-    }
 
     function modifyPartenaire($nom, $description, $image)
     {
@@ -1269,6 +1268,7 @@ function intranet_navbar()
             exit();
         }
     }
+
 
     function display_partenaires()
     {
@@ -1327,9 +1327,9 @@ function intranet_navbar()
                               <form method='post' enctype='multipart/form-data'>
                                   <div class='form-group'>
                                       <input type='hidden' name='modify_partenaire_name' value='$nom'>
-                                      <label for='modify_partenaire_description'>Description :</label>
+                                      <label for='modify_partenaire_description'>Description :</label><br>
                                       <input type='text' class='form-control' id='modify_partenaire_description' name='modify_partenaire_description' value='$description' required><br>
-                                      <input type='file' class='form-control' id='modify_photopart' name='modify_photopart'>
+                                      <input type='file' class='form-control' id='modify_photopart' name='modify_photopart'><br>
                                   </div>
                                   <br>
                                   <button type='submit' class='btn btn-primary' name='modify_partenaire_submit'>Sauvegarder les modifications</button>

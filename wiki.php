@@ -248,43 +248,34 @@ intranet_navbar();
             <div class="card">
                 <a data-bs-toggle="collapse" href="#collapse1113" style="text-decoration: none;" class="text-dark">
                     <div class="card-header">
-                        Collapsible Group Item #1
+                        Ajouter un partenaire
                     </div>
                 </a>
-
                 <div id="collapse1113" class="collapse" data-bs-parent="#accordion">
                     <div class="card-body">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        <a>Sur cette page, il est possible d'ajouter un partenaire au site vitrine. Pour ce faire, cliquer sur ajouter</a><div class="col">
+                                <img src="Images\Screen\ajouter.png" width="350px">
+                            </div>
+                            <a>Cela ouvre un modal permettant d'entrer les informations et de charger sur le serveur le logo du dit partenaire</a><div class="col">
+                                <img src="Images\Screen\ajouter2.png" width="350px">
+                            </div>
                     </div>
                 </div>
             </div>
             <div class="card">
                 <a data-bs-toggle="collapse" href="#collapse2223" style="text-decoration: none;" class="text-dark">
                     <div class="card-header">
-                        Collapsible Group Item #2
+                        Modifier un partenaire
                     </div>
                 </a>
 
                 <div id="collapse2223" class="collapse" data-bs-parent="#accordion">
                     <div class="card-body">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </div>
+                    <a>Notons qu'une fois un partenaire entré, on peut modifier ses informationse ou le supprimer. En appuyant sur modifier voici les paramètres sur lesquels on peut jouer</a><div class="col">
+                                <img src="Images\Screen\modif.png" width="350px">
+                            </div>                    </div>
                 </div>
             </div>
-            <div class="card">
-                <a data-bs-toggle="collapse" href="#collapse3333" style="text-decoration: none;" class="text-dark">
-                    <div class="card-header">
-                        Collapsible Group Item #3
-                    </div>
-                </a>
-
-                <div id="collapse3333" class="collapse" data-bs-parent="#accordion">
-                    <div class="card-body">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </div>
-                </div>
-            </div>
-        </div>
-
+       </div>
     </dl>
 </div>
