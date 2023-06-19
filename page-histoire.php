@@ -203,7 +203,7 @@ page_header();
                         <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i>2024</small></p>
                     </div>
                     <div class="timeline-body">
-                        <p>Nous sommes fiers d'annoncer que PureVPN, notre entreprise leader dans le domaine de la
+                        <p>Nous sommes fiers d'annoncer que PrivateVPN, notre entreprise leader dans le domaine de la
                             sécurité en ligne, est devenu le partenaire officiel des Jeux Olympiques 2024 ! Cette
                             association prestigieuse est une étape majeure dans notre engagement à promouvoir la
                             sécurité et la confidentialité des utilisateurs du monde entier.</p>
@@ -218,7 +218,7 @@ page_header();
                         </i>2027</small></p>
                     </div>
                     <div class="timeline-body">
-                        <p>Chez PureVPN, nous reconnaissons notre responsabilité envers l'environnement et nous nous
+                        <p>Chez PrivateVPN, nous reconnaissons notre responsabilité envers l'environnement et nous nous
                             engageons à réduire notre empreinte carbone et à contribuer à la lutte contre le changement
                             climatique.
 
@@ -238,7 +238,7 @@ page_header();
                         <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i>2030</small></p>
                     </div>
                     <div class="timeline-body">
-                        <p>Chez PureVPN, nous sommes résolus à nous positionner en tête du marché et à fournir les
+                        <p>Chez PrivateVPN, nous sommes résolus à nous positionner en tête du marché et à fournir les
                             meilleurs services et solutions à nos clients du monde entier.
 
                             Pour atteindre cet objectif, nous mettrons en œuvre une stratégie globale axée sur plusieurs
@@ -266,7 +266,7 @@ page_header();
                         <h4 class="timeline-title">Investir dans l'IA</h4>
                     </div>
                     <div class="timeline-body">
-                        <p>Chez PureVPN, nous croyons fermement que l'IA est une technologie clé qui façonnera l'avenir
+                        <p>Chez PrivateVPN, nous croyons fermement que l'IA est une technologie clé qui façonnera l'avenir
                             de notre industrie et nous sommes déterminés à explorer ses possibilités pour améliorer nos
                             services et offrir une expérience encore plus exceptionnelle à nos utilisateurs.<br>
 
