@@ -23,10 +23,19 @@ intranet_navbar();
         </form>
         <form method="POST">
             <div class="input-group mb-3">
-                <select name="selected-group" class="form-select" aria-label="Groupes existants" disabled>
+                <?php
+                $groupes_json = file_get_contents('Data/groupes.json'); // Récupération des groupes
+                $groupes = json_decode($groupes_json, true);
+                ?>
+                <select name="selected-group" class="form-select" aria-label="Groupes existants">
                     <option selected>Choisir un groupe à supprimer</option>
+                    <?php
+                    foreach ($groupes as $groupe) {
+                        echo '<option value="' . $groupe["nom"] . '">' . $groupe["nom"] . '</option>';
+                    }
+                    ?>
                 </select>
-                <button class="btn btn-outline-danger" name="deletegrp" type="submit" disabled>Supprimer le groupe</button>
+                <button class="btn btn-outline-danger" name="deletegrp" type="submit">Supprimer le groupe</button>
             </div>
         </form>
     </div>
@@ -35,19 +44,47 @@ intranet_navbar();
 
 <?php
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {        // Traitement du form
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {        // Traitement du formulaire
     if (isset($_POST['ajouter'])) {
         $groupe = $_POST['groupe'];
         $nouveau_membre = $_POST['nouveau_membre'];
 
-        // Ajout du nouveau membre
-        $groupes[$groupe]['membres'][] = ['user' => $nouveau_membre];
+        // Récupération des groupes existants depuis le fichier JSON
+        $groupes_json = file_get_contents('Data/groupes.json');
+        $groupes = json_decode($groupes_json, true);
 
-        // Enregistrement des modifs
-        $nouveau_groupe_json = json_encode($groupes);
-        file_put_contents('Data\groupes.json', $nouveau_groupe_json);
+        // Vérification si le groupe existe
+        if (isset($groupes[$groupe])) {
+            $membres = $groupes[$groupe]['membres'];
+            $membres_existants = array_column($membres, 'user');
 
-        exit;
+            // Vérification si le membre n'existe pas déjà dans le groupe
+            if (!in_array($nouveau_membre, $membres_existants)) {
+                // Ajout du nouveau membre
+                $groupes[$groupe]['membres'][] = ['user' => $nouveau_membre];
+
+                // Enregistrement des modifications dans le fichier JSON
+                $nouveau_groupe_json = json_encode($groupes);
+                file_put_contents('Data/groupes.json', $nouveau_groupe_json);
+?>
+                <div class="alert alert-success" role="alert">
+                    <b><?php echo $nouveau_membre; ?></b> a été ajouté au groupe <b><?php echo $groupe; ?></b> avec succès.
+                </div>
+            <?php
+            } else {
+            ?>
+                <div class="alert alert-warning" role="alert">
+                    <b><?php echo $nouveau_membre; ?></b> est déjà dans le groupe <b><?php echo $groupe; ?></b>.
+                </div>
+            <?php
+            }
+        } else {
+            ?>
+            <div class="alert alert-danger" role="alert">
+                Le groupe <?php echo $groupe; ?> n'existe pas. Veuillez choisir un groupe existant.
+            </div>
+        <?php
+        }
     } elseif (isset($_POST['supprimer'])) {
         $nom_groupe = $_POST['nom_groupe'];
         $user = $_POST['user'];
@@ -55,24 +92,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {        // Traitement du form
     } elseif (isset($_POST['newgrp'])) {
         $newgrp = $_POST['name-newgrp'];
         if (!array_key_exists($newgrp, $groupes)) {
-            $groupes[$newgrp] = array('membres' => array());
+            $groupes[$newgrp] = array(
+                'nom' => $newgrp,
+                'membres' => array()
+            );
             file_put_contents('Data\groupes.json', json_encode($groupes));
+            echo '<meta http-equiv="refresh" content="0">';
         } else {
         }
     } elseif (isset($_POST['deletegrp'])) {
         if ($_POST['selected-group'] != 'Choisir un groupe à supprimer') {
             $groupToDelete = $_POST['selected-group'];
-?>
-            <div class="alert alert-success" role="alert">
-                Le groupe<?php echo '$groupToDelete'; ?> a été supprimé avec succès.
-            </div>
-        <?php
+            // Supprimer le groupe du fichier JSON ici
+            $groupes_json = file_get_contents('Data/groupes.json');
+            $groupes = json_decode($groupes_json, true);
+
+            // Recherche du groupe à supprimer dans le tableau des groupes
+            foreach ($groupes as $key => $groupe) {
+                if ($groupe['nom'] === $groupToDelete) {
+                    unset($groupes[$key]); // Supprimer le groupe du tableau
+                    break;
+                }
+            }
+
+            // Enregistrer les modifications dans le fichier JSON
+            $groupes_json_updated = json_encode($groupes, JSON_PRETTY_PRINT);
+            file_put_contents('Data/groupes.json', $groupes_json_updated);
+            echo '<meta http-equiv="refresh" content="0">';
         } else {
         ?>
             <div class="alert alert-warning" role="alert">
                 Veuillez sélectionner un groupe à supprimer.
             </div>
-
 <?php
         }
     }
@@ -83,17 +134,6 @@ $groupes = json_decode($groupes_json, true);
 
 $utilisateurs_json = file_get_contents('Data\login-mdp.json');  // Recuperation des utilisateurs
 $utilisateurs = json_decode($utilisateurs_json, true);
-
-
-if (isset($_POST['nouveau_membre']) && isset($_POST['groupe'])) { // Traitement pour ajouter un membre
-    $nouveau_membre = $_POST['nouveau_membre'];
-    $groupe = $_POST['groupe'];
-    $nouveau_membre_data = array('user' => $nouveau_membre);
-    array_push($groupes[$groupe]['membres'], $nouveau_membre_data);
-    file_put_contents('Data\groupes.json', json_encode($groupes));
-    header("Location: Gestion-des-groupes.php");
-    exit();
-}
 ?>
 <div class="row">
     <?php                    // Affichage
