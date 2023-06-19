@@ -20,7 +20,7 @@ intranet_navbar();
                     <div class="card-body">
                         <div class="row">
                             <div class="mt-5 col text-center">
-                                Vous pouvez retrouver sur la page d'acceuil, les évenements a venir dans l'entreprise, ils sont gérés par les RH, mais visibles par tout les colaborateurs. <br><br><br><br><b>Screen à modifier</b>
+                                Vous pouvez retrouver sur la page d'acceuil, les évenements a venir dans l'entreprise, ils sont gérés par les RH, mais visibles par tout les colaborateurs.
                             </div>
                             <div class="col">
                                 <img src="Images\Screen\a-venir.png" width="350px">
@@ -40,10 +40,10 @@ intranet_navbar();
                     <div class="card-body">
                         <div class="row">
                             <div class="mt-5 col text-center">
-                                Vous pouvez retrouver sur la page d'acceuil, les évenements a venir dans l'entreprise, ils sont gérés par les RH, mais visibles par tout les colaborateurs. <br><br><br><br><b>Screen à modifier</b>
+                                Vous pouvez retrouver sur la page d'acceuil, les évenements a venir dans l'entreprise, ils sont gérés par les RH, mais visibles par tout les colaborateurs.
                             </div>
                             <div class="col">
-                                <img src="Images\Screen\a-venir.png" width="350px">
+                                <img src="Images\Screen\acuciels.png" width="350px">
                             </div>
                         </div>
                     </div>
@@ -73,45 +73,23 @@ intranet_navbar();
 
         <dt class="display-6">Portail de Connexion</dt>
         <div id="accordion" class="ms-5 me-5 mb-5 mt-3">
-            <div class="card">
-                <a data-bs-toggle="collapse" href="#collapse11" style="text-decoration: none;" class="text-dark">
+        <div class="card">
+                <a data-bs-toggle="collapse" href="#collapse1113" style="text-decoration: none;" class="text-dark">
                     <div class="card-header">
-                        Ajout d'un nouvel utilisateur
+                        Ajouter un utilisateur
                     </div>
                 </a>
-
-                <div id="collapse11" class="collapse" data-bs-parent="#accordion">
+                <div id="collapse1113" class="collapse" data-bs-parent="#accordion">
                     <div class="card-body">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        <a>Sur cette page, il est possible d'ajouter un utilisateur au site. Pour ce faire, remplire ses données dans le formulaire</a><div class="col">
+                                <img src="Images\Screen\Portail.png" width="350px">
+                            </div>
+                            <a>On obtient donc notre nouvel utilisateur !</a><div class="col">
+                                <img src="Images\Screen\Newuser.png" width="350px">
+                            </div>
                     </div>
                 </div>
-            </div>
-            <div class="card">
-                <a data-bs-toggle="collapse" href="#collapse22" style="text-decoration: none;" class="text-dark">
-                    <div class="card-header">
-                        Modification d'un utilsateur existant
-                    </div>
-                </a>
-
-                <div id="collapse22" class="collapse" data-bs-parent="#accordion">
-                    <div class="card-body">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <a data-bs-toggle="collapse" href="#collapse33" style="text-decoration: none;" class="text-dark">
-                    <div class="card-header">
-                        Suppression d'un utilisateur
-                    </div>
-                </a>
-
-                <div id="collapse33" class="collapse" data-bs-parent="#accordion">
-                    <div class="card-body">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </div>
-                </div>
-            </div>
+        </div>
         </div>
 
         <dt class="display-6">Gestion des Groupes</dt>
@@ -123,24 +101,16 @@ intranet_navbar();
                     </div>
                 </a>
 
-                <div id="collapse111" class="collapse" data-bs-parent="#accordion">
-                    <div class="card-body">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                <div class="card-body">
+                        <div class="row">
+                            <div class="mt-5 col text-center">
+                                Vous pouvez créer et supprimer les groupes d'administration.
+                            </div>
+                            <div class="col">
+                                <img src="Images\Screen\gp.png" width="350px">
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="card">
-                <a data-bs-toggle="collapse" href="#collapse222" style="text-decoration: none;" class="text-dark">
-                    <div class="card-header">
-                        Ajouter/Supprimer un membre à un groupe
-                    </div>
-                </a>
-
-                <div id="collapse222" class="collapse" data-bs-parent="#accordion">
-                    <div class="card-body">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </div>
-                </div>
             </div>
         </div>
 
