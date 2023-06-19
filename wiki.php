@@ -32,15 +32,35 @@ intranet_navbar();
             <div class="card">
                 <a data-bs-toggle="collapse" href="#collapse2" style="text-decoration: none;" class="text-dark">
                     <div class="card-header">
+                        Carte des évènements à venir
+                    </div>
+                </a>
+
+                <div id="collapse2" class="collapse show" data-bs-parent="#accordion">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="mt-5 col text-center">
+                                Vous pouvez retrouver sur la page d'acceuil, les évenements a venir dans l'entreprise, ils sont gérés par les RH, mais visibles par tout les colaborateurs. <br><br><br><br><b>Screen à modifier</b>
+                            </div>
+                            <div class="col">
+                                <img src="Images\Screen\a-venir.png" width="350px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <a data-bs-toggle="collapse" href="#collapse3" style="text-decoration: none;" class="text-dark">
+                    <div class="card-header">
                         Ajout de nouveaux utilisateurs
                     </div>
                 </a>
 
-                <div id="collapse2" class="collapse" data-bs-parent="#accordion">
+                <div id="collapse3" class="collapse" data-bs-parent="#accordion">
                     <div class="card-body">
                         <div class="row">
                             <div class="mt-5 col text-center">
-                                Grâce à la card de droite vous pouvez voir les nouveaux utilisateurs qui souhaite rejoindre l'intranet. Vous pouvez visualiser la demande d'ajout complète en cliquant sur l'oeil bleu. Ou bien accepter ou refuser la demande grace au deux boutons sur la droite.<br>(Visible uniquement si vous faites partie des <b>RH</b> ou de la  <b>Direction </b>)
+                                Grâce à la card de droite vous pouvez voir les nouveaux utilisateurs qui souhaite rejoindre l'intranet. Vous pouvez visualiser la demande d'ajout complète en cliquant sur l'oeil bleu. Ou bien accepter ou refuser la demande grace au deux boutons sur la droite.<br>(Visible uniquement si vous faites partie des <b>RH</b> ou de la <b>Direction </b>)
                             </div>
                             <div class="col">
                                 <img src="Images\Screen\newusers.png" width="350px">
@@ -56,7 +76,7 @@ intranet_navbar();
             <div class="card">
                 <a data-bs-toggle="collapse" href="#collapse11" style="text-decoration: none;" class="text-dark">
                     <div class="card-header">
-                        Collapsible Group Item #1
+                        Ajout d'un nouvel utilisateur
                     </div>
                 </a>
 
@@ -69,7 +89,7 @@ intranet_navbar();
             <div class="card">
                 <a data-bs-toggle="collapse" href="#collapse22" style="text-decoration: none;" class="text-dark">
                     <div class="card-header">
-                        Collapsible Group Item #2
+                        Modification d'un utilsateur existant
                     </div>
                 </a>
 
@@ -82,7 +102,7 @@ intranet_navbar();
             <div class="card">
                 <a data-bs-toggle="collapse" href="#collapse33" style="text-decoration: none;" class="text-dark">
                     <div class="card-header">
-                        Collapsible Group Item #3
+                        Suppression d'un utilisateur
                     </div>
                 </a>
 
@@ -99,7 +119,7 @@ intranet_navbar();
             <div class="card">
                 <a data-bs-toggle="collapse" href="#collapse111" style="text-decoration: none;" class="text-dark">
                     <div class="card-header">
-                        Collapsible Group Item #1
+                        Créer/Supprimer un groupe
                     </div>
                 </a>
 
@@ -112,24 +132,11 @@ intranet_navbar();
             <div class="card">
                 <a data-bs-toggle="collapse" href="#collapse222" style="text-decoration: none;" class="text-dark">
                     <div class="card-header">
-                        Collapsible Group Item #2
+                        Ajouter/Supprimer un membre à un groupe
                     </div>
                 </a>
 
                 <div id="collapse222" class="collapse" data-bs-parent="#accordion">
-                    <div class="card-body">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <a data-bs-toggle="collapse" href="#collapse333" style="text-decoration: none;" class="text-dark">
-                    <div class="card-header">
-                        Collapsible Group Item #3
-                    </div>
-                </a>
-
-                <div id="collapse333" class="collapse" data-bs-parent="#accordion">
                     <div class="card-body">
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                     </div>
@@ -142,6 +149,7 @@ intranet_navbar();
             <div class="card">
                 <a data-bs-toggle="collapse" href="#collapse1111" style="text-decoration: none;" class="text-dark">
                     <div class="card-header">
+                        Créer/Supprimer un dossier
                     </div>
                 </a>
 
@@ -154,7 +162,7 @@ intranet_navbar();
             <div class="card">
                 <a data-bs-toggle="collapse" href="#collapse2221" style="text-decoration: none;" class="text-dark">
                     <div class="card-header">
-                        Collapsible Group Item #2
+                        Visualiser un fichier
                     </div>
                 </a>
 
@@ -167,11 +175,24 @@ intranet_navbar();
             <div class="card">
                 <a data-bs-toggle="collapse" href="#collapse3331" style="text-decoration: none;" class="text-dark">
                     <div class="card-header">
-                        Collapsible Group Item #3
+                        Télécharger un fichier
                     </div>
                 </a>
 
                 <div id="collapse3331" class="collapse" data-bs-parent="#accordion">
+                    <div class="card-body">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <a data-bs-toggle="collapse" href="#collapse4441" style="text-decoration: none;" class="text-dark">
+                    <div class="card-header">
+                        Supprimer un fichier
+                    </div>
+                </a>
+
+                <div id="collapse4441" class="collapse" data-bs-parent="#accordion">
                     <div class="card-body">
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                     </div>

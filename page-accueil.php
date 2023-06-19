@@ -18,12 +18,10 @@ page_header();
             <h1 style="font-family:verdana;">Notre entreprise</h1>
             <p>PrivateVPN est une entreprise offrant une solution VPN abordable pour les internautes soucieux de leur sécurité en ligne et de leur vie privée. Avec PrivateVPN, vous pouvez accéder à Internet en toute sécurité, anonymement et rapidement. Leur service VPN permet de se connecter à des serveurs dans différents pays, ce qui vous permet de profiter de contenus étrangers sans restriction. De plus, leur solution VPN offre une connexion rapide et fiable, ce qui signifie que vous pouvez profiter d'une expérience de navigation en ligne sans interruption.
 
-                PrivateVPN propose une interface facile à utiliser, des applications pour tous les appareils courants et un service clientèle amical et réactif. Avec une politique stricte de non-conservation des logs, vous pouvez être sûr que vos activités en ligne resteront privées et sécurisées.</p>
+            PrivateVPN propose une interface facile à utiliser, des applications pour tous les appareils courants et un service clientèle amical et réactif. Avec une politique stricte de non-conservation des logs, vous pouvez être sûr que vos activités en ligne resteront privées et sécurisées.</p>
         </div>
         <div class="col-sm-3 p-3  text-white">
-
             <div id="demo" class="carousel slide custom-carousel" data-bs-ride="carousel" data-bs-interval="2000">
-
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <img src="/Images/Accueil/Antivirus_image.png" alt="Antivirus_image" class="d-block" style="width:100%">
@@ -35,39 +33,14 @@ page_header();
                         <img src="/Images/Accueil/VPN_image.png" alt="VPN_image" class="d-block" style="width:100%">
                     </div>
                 </div>
-
-
-
             </div>
         </div>
         <div class="col-sm-1 p-3  text-white"></div>
     </div>
 </div>
-<style>
-    .custom-carousel {
-        max-width: 120%;
-        /* ou toute autre valeur de votre choix */
-    }
 
-    /*.col-sm-7 {
-  border: 1px solid blue;
-  border-radius: 10px;
-}*/
-</style>
 
-<style>
-    .container-fluid.custom {
-        background-color: #DCF3FF;
-        /* couleur de fond */
-        border-radius: 20px;
-        /* bordures arrondies */
 
-    }
-
-    img {
-        outline: none;
-    }
-</style>
 </br>
 </br>
 
@@ -75,7 +48,7 @@ page_header();
 
     <div class="col-sm-1  text-dark"></div>
     <div class="col-sm-10  text-dark">
-        <div class="container-fluid custom mt-3">
+        <div class="container-fluid custombleu mt-3">
             </br>
             </br>
 

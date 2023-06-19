@@ -12,9 +12,7 @@ setup();
     }
 </style>
 </br>
-</br>
-</br>
-</br>
+
 
 
 <div class="row">
@@ -33,6 +31,7 @@ setup();
                     </br>
                     </br>
                     <h3>1 - Nature des données collectées</h3>
+                    <hr>
                     <p>Dans le cadre de l'utilisation des Sites, l'Éditeur est susceptible de collecter les catégories 
                     de données suivantes concernant ses Utilisateurs :</p>
                     <ul>
@@ -45,6 +44,7 @@ setup();
 
 
                     <h3>2 - Nature des données collectées</h3>
+                    <hr>
                     <p>Dans le cadre de l'utilisation des Sites, l'Éditeur est susceptible de collecter les catégories 
                     de données suivantes concernant ses Utilisateurs :</p>
                     <ul>
@@ -55,6 +55,7 @@ setup();
                     </br>
                     
                     <h3>3 - Partage de vos données à caractère personnel</h3>
+                    <hr>
                     </br>
                     
                     <p>Nous ne partageons pas vos données à caractère personnel avec des tiers, sauf dans les conditions décrites dans la présente Politique de confidentialité.</p>
@@ -64,6 +65,7 @@ setup();
                     </br>
                     
                     <h3>4 - Choix liés à vos données à caractère personnel</h3>
+                    <hr>
                     <p>Il existe différentes lois sur la protection des données qui vous confèrent des droits en matière de confidentialité en tant que personne concernée. Sous réserve des lois applicables en matière de protection des données, vous pouvez avoir les droits suivants :</p>
                     <ul>
                     <li>Suppression : demander l'effacement de vos données à caractère personnel ;</li>
@@ -92,13 +94,15 @@ setup();
                     <p><strong>Désabonnement</strong> : Si vous ne souhaitez plus recevoir de communications de PrivateVPN, vous pouvez vous désinscrire à tout moment en cliquant sur le lien « se désabonner » au bas de chaque e-mail ou en nous contactant à l'adresse privacy@PrivateVPNaccount.com.</p>
                     </br>       
                     <h3>5 - Sécurité des données</h3>
+                    <hr>
                     <p>Nous avons mis en place des mesures physiques, techniques et organisationnelles pour protéger les données personnelles contre toute forme de traitement illégal ou d'accès non autorisé.</p>
                     <p><strong>Mesures physiques :</strong> Accès contrôlé aux installations, stockage des appareils dans des endroits fermés à clé, et politiques de bureau bien rangé.</p>
                     <p><strong>Mesures techniques :</strong> Système de défense en couches avec pare-feu, protection contre les logiciels malveillants, détection et prévention des intrusions, régulièrement mis à jour avec des scans de vulnérabilité. Les serveurs sont renforcés et tous les postes de travail sont gérés depuis un outil de gestion centralisé. Les données sont chiffrées et les protocoles de chiffrement sont conformes aux pratiques de sécurité les plus récentes.</p>
                     <p><strong>Mesures organisationnelles :</strong> Politiques de sécurité de l'information et de traitement des données conformes aux meilleures pratiques. Audits externes pour prouver la conformité aux normes. Culture de développement constant de la sécurité et de la sensibilisation à la protection des données parmi les employés, avec des formations régulières et continues. Nous analysons les menaces et la surface d'attaque et mettons constamment à jour nos mesures de sécurité. L'accès aux bases de données contenant des données à caractère personnel est accordé sur la base du besoin de savoir.</p>
                     <p>Si nous détectons quelque chose de suspect, nous vous informerons immédiatement et vous guider</p>
-</br>
+                    </br>
                     <h3>6 - Conservation et suppression des données</h3>
+                    <hr>
                     <p>privateVPN conservera vos données à caractère personnel aussi longtemps que nécessaire pour vous fournir les Services, ou aussi longtemps que nous avons un autre motif légitime de le faire, mais pas plus longtemps que ce qui est permis ou exigé par la loi. Certains des termes de conservation des données plus spécifiques sont fournis ci-dessous :</p>
                     <ul>
                     <li>Les informations de facturation du client et les détails du paiement sont conservés par privateVPN pendant 10 ans à compter de la dernière transaction de paiement.</li>
@@ -107,6 +111,7 @@ setup();
                     <p>Lorsque nous n'avons plus de motif légal pour conserver vos données à caractère personnel, elles seront soit éliminées de manière sécurisée, soit dépersonnalisées par des moyens d'anonymisation appropriés.</p>
                     </br>
                     <h3>7 - Géolocalisation</h3>
+                    <hr>
                     
                     <p><strong>Géolocalisation à des fins de fourniture du service</strong>Nous collectons et traitons vos données de géolocalisation afin de vous fournir nos services. Nous pouvons être amenés à faire usage des données personnelles dans le but de déterminer votre position géographique en temps réel. Conformément à votre droit d'opposition prévu par la loi n°78-17 du 6 janvier 1978 relative à l'informatique, aux fichiers et aux libertés, vous avez la possibilité, à tout moment, de désactiver les fonctions relatives à la géolocalisation.</p>
                     
@@ -114,6 +119,7 @@ setup();
                     <p><strong>Géolocalisation avec mise à disposition des partenaires pour référencement et agrégation</strong>Nous pouvons collecter et traiter vos données de géolocalisation avec nos partenaires. Nous nous engageons à anonymiser les données utilisées. Conformément à votre droit d'opposition prévu par la loi n°78-17 du 6 janvier 1978 relative à l'informatique, aux fichiers et aux libertés, vous avez la possibilité, à tout moment, de désactiver les fonctions relatives à la géolocalisation.</p>
                     </br>
                     <h3>8 - Cookies</h3>
+                    <hr>
                     
                     <p><strong>Durée de conservation des cookies</strong>Conformément aux recommandations de la CNIL, la durée maximale de conservation des cookies est de 13 mois au maximum après leur premier dépôt dans le terminal de l'Utilisateur, tout comme la durée de la validité du consentement de l’Utilisateur à l’utilisation de ces cookies. La durée de vie des cookies n’est pas prolongée à chaque visite. Le consentement de l’Utilisateur devra donc être renouvelé à l'issue de ce délai.</p>
                     
@@ -121,7 +127,16 @@ setup();
                     <p>Vous êtes informé que l'Éditeur est susceptible de déposer des cookies sur votre terminal. Le cookie enregistre des informations relatives à la navigation sur le service (les pages que vous avez consultées, la date et l'heure de la consultation...) que nous pourrons lire lors de vos visites ultérieures.</p>
                     
                     <p><strong>Droit de l'Utilisateur de refuser les cookies</strong>Vous reconnaissez avoir été informé que l'Éditeur peut avoir recours à des cookies. Si vous ne souhaitez pas que des cookies soient utilisés sur votre terminal, la plupart des navigateurs vous permettent de désactiver les cookies en passant par les options de réglage.</p>
+                
+                    </br>
+                
+                
+                <button type="button" class="btn btn-outline-dark text-black custom-btn" onclick="history.back()">Retour</button>
+    
+                </br>     
+                </br>
                 </div>
+                
                 <div class="col-sm-1 text-dark"></div>
             </div>
         </div>
@@ -129,10 +144,11 @@ setup();
     <div class="col-sm-1  text-dark"></div>
 
 
-
+    
 
 </div>
-
+</br>     
+    </br>
 
 
 </html>
