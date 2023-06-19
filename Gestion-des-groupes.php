@@ -66,16 +66,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {        // Traitement du formulaire
                 // Enregistrement des modifications dans le fichier JSON
                 $nouveau_groupe_json = json_encode($groupes);
                 file_put_contents('Data/groupes.json', $nouveau_groupe_json);
-
 ?>
                 <div class="alert alert-success" role="alert">
-                    Le membre <?php echo $nouveau_membre; ?> a été ajouté au groupe <?php echo $groupe; ?> avec succès.
+                    <b><?php echo $nouveau_membre; ?></b> a été ajouté au groupe <b><?php echo $groupe; ?></b> avec succès.
                 </div>
             <?php
             } else {
             ?>
                 <div class="alert alert-warning" role="alert">
-                    Le membre <?php echo $nouveau_membre; ?> existe déjà dans le groupe <?php echo $groupe; ?>.
+                    <b><?php echo $nouveau_membre; ?></b> est déjà dans le groupe <b><?php echo $groupe; ?></b>.
                 </div>
             <?php
             }
@@ -90,8 +89,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {        // Traitement du formulaire
         $nom_groupe = $_POST['nom_groupe'];
         $user = $_POST['user'];
         supprimerMembre($nom_groupe, $user);
-        echo '<meta http-equiv="refresh" content="0">';
-        echo '<meta http-equiv="refresh" content="0">';
     } elseif (isset($_POST['newgrp'])) {
         $newgrp = $_POST['name-newgrp'];
         if (!array_key_exists($newgrp, $groupes)) {
@@ -122,13 +119,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {        // Traitement du formulaire
             $groupes_json_updated = json_encode($groupes, JSON_PRETTY_PRINT);
             file_put_contents('Data/groupes.json', $groupes_json_updated);
             echo '<meta http-equiv="refresh" content="0">';
-            
         } else {
         ?>
             <div class="alert alert-warning" role="alert">
                 Veuillez sélectionner un groupe à supprimer.
             </div>
-        <?php
+<?php
         }
     }
 }
@@ -138,17 +134,6 @@ $groupes = json_decode($groupes_json, true);
 
 $utilisateurs_json = file_get_contents('Data\login-mdp.json');  // Recuperation des utilisateurs
 $utilisateurs = json_decode($utilisateurs_json, true);
-
-
-if (isset($_POST['nouveau_membre']) && isset($_POST['groupe'])) { // Traitement pour ajouter un membre
-    $nouveau_membre = $_POST['nouveau_membre'];
-    $groupe = $_POST['groupe'];
-    $nouveau_membre_data = array('user' => $nouveau_membre);
-    array_push($groupes[$groupe]['membres'], $nouveau_membre_data);
-    file_put_contents('Data\groupes.json', json_encode($groupes));
-    echo '<meta http-equiv="refresh" content="0">';
-    exit();
-}
 ?>
 <div class="row">
     <?php                    // Affichage

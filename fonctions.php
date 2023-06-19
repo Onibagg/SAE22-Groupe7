@@ -3,7 +3,7 @@ session_start();
 
 function setup()
 {
-?>
+    ?>
     <!DOCTYPE html>
     <html lang="fr">
 
@@ -367,7 +367,7 @@ function connexion_traitement()
 }
 function ajout_utilisateur_format()
 {
-    ?>
+        ?>
         <form action="Portail-de-connexion.php" id="new-user" method="POST">
             <div class="row">
                 <div class="col">
@@ -419,6 +419,7 @@ function ajout_utilisateur_format()
         } else {
         }
     }
+
     function addUser($prenom, $nom, $usr, $mdp, $email, $poste)
     {
         $users = file_decod('Data\login-mdp.json');
@@ -655,6 +656,7 @@ function ajout_utilisateur_format()
         }
 
         file_put_contents('Data\groupes.json', json_encode($groupes));    // Enregistrement des modifs
+        echo '<meta http-equiv="refresh" content="0">';
 
         exit;
     }
@@ -1215,8 +1217,6 @@ function ajout_utilisateur_format()
         <?php endif; ?>
     <?php
     }
-
-
 
     function display_partenaires_site_vitrine()
     {
