@@ -1,3 +1,9 @@
+<head>
+    <link href="/Vitrine/Assets/page_header.css" rel="stylesheet">
+</head>
+<?php
+include("Vitrine/Models/connexion.php");
+?>
 <div class="mt-0 p-4 custom">
     <div class="row">
         <div class="col text-center">
@@ -45,21 +51,11 @@
                 <img src="/Images/login.png" width="40" height="40" class="rounded" alt="Connexion"></br></br>
                 <p id="texte5">Connexion</p>
             </button>
-            <style>
-                .btn:hover {
-                    background-color: #9DDEFF;
-                    color: #9DDEFF;
-                }
-
-                .btn {
-                    border-color: #9FBDCC;
-                }
-            </style>
             <div class="modal fade" id="myModal">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="login-form">
-                            <form id="connexion" action="page-accueil.php" method="POST" class="needs-validation">
+                            <form id="connexion" action="/" method="POST" class="needs-validation">
                                 <div class="modal-header">
                                     <p class="modal-title display-5">Connexion</p>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
@@ -81,10 +77,11 @@
                                         <div class="valid-feedback"></div>
                                         <div class="invalid-feedback">Veuillez compléter ce champ</div>
                                     </div>
-
+                                    <!-- 
                                     <div class="form-group">
                                         <a href="reset-password.php">Mot de passe oublié ?</a>
-                                    </div>
+                                    </div> 
+                                    -->
                                     <br>
                                     <div class="form-group">
                                         Pas de compte? <a href="new-account.php">Faire une demande</a>
@@ -101,7 +98,7 @@
                         </div>
                         <?php
                         if (isset($_POST['connexion'])) {
-                            connexion_traitement();
+                            connexion();
                         } else {
                         }
                         ?>

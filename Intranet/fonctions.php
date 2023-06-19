@@ -13,10 +13,6 @@ function setup()
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <link href="Style\style.css" type="text/css" rel="stylesheet">
-        <link href="Style\page-histoire-style.css" type="text/css" rel="stylesheet">
-        <link href="Style\intranet-navbar.css" type="text/css" rel="stylesheet">
-        <link href="Style\page-activite-style.css" type="text/css" rel="stylesheet">
         <link rel="icon" type="image/x-icon" href="Images\PrivateVPN_logo.png">
         <title>Private VPN | Le meilleur des VPN</title>
         <style>
@@ -33,14 +29,6 @@ function setup()
 
     <body>
     <?php
-}
-
-function page_foot()
-{
-    ?>
-        
-    <?php
-
 }
 
 function danslegroup($nomdugroup)
@@ -171,38 +159,6 @@ function intranet_navbar()
     function file_decod($file)
     {
         return json_decode(file_get_contents($file), true);
-    }
-
-    function connexion_traitement()
-    {
-        if (!isset($_POST['user'])) {
-            echo 'Utilisateur non renseigné';
-            $user = "";
-        } else {
-            $user = $_POST['user'];
-        }
-
-        if (!isset($_POST['mdp'])) {
-            echo 'Mot de Passe non renseigné';
-            $mdp = "";
-        } else {
-            $mdp = $_POST['mdp'];
-        }
-
-        $data = file_decod('Data\login-mdp.json');
-        $ok = false;
-
-        foreach ($data as $u) {
-            if ($u['user'] == $user && password_verify($mdp, $u['mdp']) == true) {
-                $ok = true;
-                break;
-            }
-        }
-
-        if ($ok) {
-            $_SESSION["user"] = $user;
-            echo '<meta http-equiv="refresh" content="0; url=Accueil-Intranet.php">';
-        }
     }
 
     function afficher_comments($utilisateurs)
@@ -487,7 +443,7 @@ function intranet_navbar()
     function deconnexion()
     {
         session_unset();
-        echo '<meta http-equiv="refresh" content="0; url=page-accueil.php">';
+        echo '<meta http-equiv="refresh" content="0; url=/">';
         exit;
     }
 

@@ -14,7 +14,7 @@
 
 - il manque plus qu'a faire en sorte que l'on puisse modifier son nom d'utilisateur et que ca nous deconnecte
 
--faire en sorte de pouvoir trier les colones des différents tableaux
+- faire en sorte de pouvoir trier les colones des différents tableaux
 
 
 
