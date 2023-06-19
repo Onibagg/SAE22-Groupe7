@@ -1,13 +1,13 @@
 {
-    "emarchand": {
-        "prenom": "Emeric",
-        "nom": "Marchand",
-        "user": "emarchand",
-        "mdp": "$2y$10$a6X9FPLfXtEf5WoDk97FYOkBZ.BBhEVwfQl\/CilsTheikjCKj2BqK",
-        "email": "emeric5612@gmail.com",
+    "nriou": {
+        "prenom": "Nicolas",
+        "nom": "Riou",
+        "user": "nriou",
+        "mdp": "$2y$10$\/sCEUvXXg8oaunwRC68vbOBweuUBrrAMxxhYq8t3zz.hjnFtscGLa",
+        "email": "riounicolas.perso@gmail.com",
         "groupe": "",
-        "poste": "Chef de l'IT",
-        "description": "igzieiyfgidfvqdfyvqydvfsqdvyvfizvfisqdpfiusqdfosfu sdifugsidufug siug f"
+        "poste": "Ing\u00e9nieur",
+        "description": "Notre employ\u00e9 est un atout pr\u00e9cieux pour notre \u00e9quipe. Son professionnalisme et son d\u00e9vouement sont exemplaires"
     },
     "gdeme": {
         "prenom": "Gabin",
@@ -17,7 +17,7 @@
         "email": "gabindeme@gmail.com",
         "groupe": "",
         "poste": "Directeur",
-        "description": null
+        "description": "L'employ\u00e9 est extr\u00eamement fiable et toujours pr\u00eat \u00e0 relever de nouveaux d\u00e9fis. Nous pouvons compter sur lui pour accomplir les t\u00e2ches avec pr\u00e9cision et dans les d\u00e9lais impartis."
     },
     "echapin": {
         "prenom": "Emmanuel",
@@ -27,7 +27,7 @@
         "email": "studio.manu00@gmail.com",
         "groupe": "",
         "poste": "Chef de la Production",
-        "description": null
+        "description": "Son attitude positive et sa capacit\u00e9 \u00e0 travailler en \u00e9quipe font de lui un excellent collaborateur. Il sait comment motiver les autres et cr\u00e9er un environnement de travail harmonieux."
     },
     "mgagnon": {
         "nom": "Gagnon",
@@ -37,7 +37,7 @@
         "email": "mgagnon@gmail.com",
         "groupe": "",
         "poste": "Comptable",
-        "description": null
+        "description": "Nous appr\u00e9cions l'engagement constant de cet employ\u00e9 envers l'excellence. Sa volont\u00e9 d'apprendre et de se perfectionner est admirable."
     },
     "aroy": {
         "nom": "Roy",
@@ -47,7 +47,7 @@
         "email": "aroy@gmail.com",
         "groupe": "",
         "poste": "Responsable marketing",
-        "description": null
+        "description": "Cet employ\u00e9 est dot\u00e9 d'une grande expertise dans son domaine. Son expertise et son exp\u00e9rience sont inestimables pour notre entreprise."
     },
     "pgirard": {
         "nom": "Girard",
@@ -57,6 +57,36 @@
         "email": "pgirard@gmail.com",
         "groupe": "",
         "poste": "Assistant administratif",
-        "description": null
+        "description": "Il est toujours pr\u00eat \u00e0 aider ses coll\u00e8gues et \u00e0 partager ses connaissances. Sa g\u00e9n\u00e9rosit\u00e9 et sa volont\u00e9 d'aider font de lui un v\u00e9ritable mentor pour les autres."
+    },
+    "ifortin": {
+        "nom": "Fortin",
+        "prenom": "Isabelle",
+        "user": "ifortin",
+        "mdp": "$2y$10$x5Vs6uSt9lbRqo3j2nCFa.MLeFbwILxthjCgyDETZ2wP2mhyousGW",
+        "email": "ifortin@gmail.com",
+        "groupe": "",
+        "poste": "Analyste financier",
+        "description": "Nous sommes impressionn\u00e9s par la capacit\u00e9 de cet employ\u00e9 \u00e0 r\u00e9soudre les probl\u00e8mes de mani\u00e8re efficace et innovante. Il trouve toujours des solutions intelligentes aux d\u00e9fis auxquels il est confront\u00e9."
+    },
+    "dpelletier": {
+        "nom": "Pelletier",
+        "prenom": "David",
+        "user": "dpelletier",
+        "mdp": "$2y$10$GLcHKa3r0SCVgHDpVO5FvuHV8B12pTqG0q22Ku3NK8p5WVEtVFweW",
+        "email": "dpelletier@gmail.com",
+        "groupe": "",
+        "poste": "D\u00e9veloppeur web",
+        "description": "L'employ\u00e9 est un communicateur exceptionnel. Il sait transmettre ses id\u00e9es de mani\u00e8re claire et concise, ce qui facilite la collaboration et la compr\u00e9hension mutuelle."
+    },
+    "cbeaulieu": {
+        "nom": "Beaulieu",
+        "prenom": "Caroline",
+        "user": "cbeaulieu",
+        "mdp": "$2y$10$rJWYNIFqNqLfC.mk\/y34uuW\/L.o4MH2b8702pZ2oz8RkzvZodHN\/2",
+        "email": "cbeaulieu@gmail.com",
+        "groupe": "",
+        "poste": "Chef de produit",
+        "description": "Sa passion pour son travail est palpable. Il apporte une \u00e9nergie positive \u00e0 l'\u00e9quipe et inspire les autres \u00e0 donner le meilleur d'eux-m\u00eames."
     }
 }
