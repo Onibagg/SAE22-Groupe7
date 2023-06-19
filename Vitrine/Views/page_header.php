@@ -9,7 +9,7 @@
         <div class="col"></div>
         <div class="col"></div>
         <div class="col text-center">
-            <a href="page-pres.php">
+            <a href="/Vitrine/page-pres.php">
                 <button type="button" class="btn btn-outline-dark text-black custom-btn" style="width: 150px; height: 130px;" onmouseover="document.getElementById('texte1').style.fontWeight='bold';" onmouseout="document.getElementById('texte1').style.fontWeight='normal';">
                     <img src="/Images/point-dinterrogation.png" width="40" height="40" class="rounded" alt="?"></br></br>
                     <p id="texte1">Qui sommes-nous ?</p>
@@ -17,7 +17,7 @@
             </a>
         </div>
         <div class="col text-center">
-            <a href="Vitrine/page_histoire.php">
+            <a href="/Vitrine/page_histoire.php">
                 <button type="button" class="btn btn-outline-dark text-black custom-btn" style="width: 150px; height: 130px;" onmouseover="document.getElementById('texte2').style.fontWeight='bold';" onmouseout="document.getElementById('texte2').style.fontWeight='normal';">
                     <img src="/Images/histoire.png" width="40" height="40" class="rounded" alt="Histoire"></br></br>
                     <p id="texte2">Histoire</p>
@@ -25,7 +25,7 @@
             </a>
         </div>
         <div class="col text-center">
-            <a href="page-activites.php">
+            <a href="/Vitrine/page_activites.php">
                 <button type="button" class="btn btn-outline-dark text-black custom-btn" style="width: 150px; height: 130px;" onmouseover="document.getElementById('texte3').style.fontWeight='bold';" onmouseout="document.getElementById('texte3').style.fontWeight='normal';">
                     <img src="/Images/activites.png" width="40" height="40" class="rounded" alt="Activités"></br></br>
                     <p id="texte3">Activités</p>
@@ -33,7 +33,7 @@
             </a>
         </div>
         <div class="col text-center">
-            <a href="page-partenaires.php">
+            <a href="/Vitrine/page_partenaires.php">
                 <button type="button" class="btn btn-outline-dark text-black custom-btn" style="width: 150px; height: 130px;" onmouseover="document.getElementById('texte4').style.fontWeight='bold';" onmouseout="document.getElementById('texte4').style.fontWeight='normal';">
                     <img src="/Images/les-partenaires.png" width="40" height="40" class="rounded" alt="Partenaires"></br></br>
                     <p id="texte4">Partenaires</p>

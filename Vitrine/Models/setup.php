@@ -10,7 +10,7 @@
     <link href="Style\page-histoire-style.css" type="text/css" rel="stylesheet">
     <link href="Style\intranet-navbar.css" type="text/css" rel="stylesheet">
     <link href="Style\page-activite-style.css" type="text/css" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="Images\PrivateVPN_logo.png">
+    <link rel="icon" type="image/x-icon" href="../Images/PrivateVPN_logo.png">
     <title>Private VPN | Le meilleur des VPN</title>
     <style>
         .custom {
