@@ -2,8 +2,10 @@
     <link href="/Vitrine/Assets/page_header.css" rel="stylesheet">
 </head>
 <?php
-include("Vitrine/Models/connexion.php");
+$chemin = ($_SERVER['REQUEST_URI'] === '/') ? 'Vitrine/Models/connexion.php' : '../Vitrine/Models/connexion.php';
+include($chemin);
 ?>
+
 <div class="mt-0 p-4 custom">
     <div class="row">
         <div class="col text-center">
