@@ -1,0 +1,20 @@
+body {
+  background: rgb(0, 212, 255);
+  background: linear-gradient(
+    123deg,
+    rgba(0, 212, 255, 1) 0%,
+    rgba(9, 9, 121, 1) 78%,
+    rgba(2, 0, 36, 1) 100%
+  );
+}
+.anim {
+  position: relative;
+  left: -100%;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}

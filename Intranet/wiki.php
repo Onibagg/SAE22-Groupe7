@@ -23,7 +23,7 @@ intranet_navbar();
                                 Vous pouvez retrouver sur la page d'acceuil, les évenements a venir dans l'entreprise, ils sont gérés par les RH, mais visibles par tout les colaborateurs. <br><br><br><br><b>Screen à modifier</b>
                             </div>
                             <div class="col">
-                                <img src="Images\Screen\a-venir.png" width="350px">
+                                <img src="../Images/Screen/a-venir.png" width="350px">
                             </div>
                         </div>
                     </div>
@@ -43,7 +43,7 @@ intranet_navbar();
                                 Vous pouvez retrouver sur la page d'acceuil, les évenements a venir dans l'entreprise, ils sont gérés par les RH, mais visibles par tout les colaborateurs. <br><br><br><br><b>Screen à modifier</b>
                             </div>
                             <div class="col">
-                                <img src="Images\Screen\a-venir.png" width="350px">
+                                <img src="../Images/Screen/a-venir.png" width="350px">
                             </div>
                         </div>
                     </div>
@@ -63,7 +63,7 @@ intranet_navbar();
                                 Grâce à la card de droite vous pouvez voir les nouveaux utilisateurs qui souhaite rejoindre l'intranet. Vous pouvez visualiser la demande d'ajout complète en cliquant sur l'oeil bleu. Ou bien accepter ou refuser la demande grace au deux boutons sur la droite.<br>(Visible uniquement si vous faites partie des <b>RH</b> ou de la <b>Direction </b>)
                             </div>
                             <div class="col">
-                                <img src="Images\Screen\newusers.png" width="350px">
+                                <img src="../Images/Screen/newusers.png" width="350px">
                             </div>
                         </div>
                     </div>
@@ -254,10 +254,10 @@ intranet_navbar();
                 <div id="collapse1113" class="collapse" data-bs-parent="#accordion">
                     <div class="card-body">
                         <a>Sur cette page, il est possible d'ajouter un partenaire au site vitrine. Pour ce faire, cliquer sur ajouter</a><div class="col">
-                                <img src="Images\Screen\ajouter.png" width="350px">
+                                <img src="../Images/Screen/ajouter.png" width="350px">
                             </div>
                             <a>Cela ouvre un modal permettant d'entrer les informations et de charger sur le serveur le logo du dit partenaire</a><div class="col">
-                                <img src="Images\Screen\ajouter2.png" width="350px">
+                                <img src="../Images/Screen/ajouter2.png" width="350px">
                             </div>
                     </div>
                 </div>
@@ -272,7 +272,7 @@ intranet_navbar();
                 <div id="collapse2223" class="collapse" data-bs-parent="#accordion">
                     <div class="card-body">
                     <a>Notons qu'une fois un partenaire entré, on peut modifier ses informationse ou le supprimer. En appuyant sur modifier voici les paramètres sur lesquels on peut jouer</a><div class="col">
-                                <img src="Images\Screen\modif.png" width="350px">
+                                <img src="../Images/Screen/modif.png" width="350px">
                             </div>                    </div>
                 </div>
             </div>

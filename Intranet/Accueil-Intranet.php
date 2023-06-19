@@ -7,7 +7,7 @@ intranet_navbar();
 ?>
 
 <head>
-    <script src="JS\heure.js"></script>
+    <script src="Assets/heure.js"></script>
     <style>
         #map {
             height: 400px;
@@ -121,7 +121,7 @@ intranet_navbar();
         <?php
         if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
             $user = $_SESSION['user'];
-            $usersData = file_decod('Data\login-mdp.json');
+            $usersData = file_decod('../Data/login-mdp.json');
             $userData = $usersData[$user];
             $prenom = $userData['prenom'];
             $nom = $userData['nom'];
@@ -415,7 +415,7 @@ intranet_navbar();
                     <p class="display-6">Nouveau Utilisateurs :</p>
                     <?php
                     $user = $_SESSION['user'];
-                    $data = file_get_contents('Data\groupes.json');
+                    $data = file_get_contents('../Data/groupes.json');
                     $groupes = json_decode($data, true);
 
                     $isIT = false;

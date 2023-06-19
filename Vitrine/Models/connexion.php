@@ -28,7 +28,7 @@ function connexion()
 
     if ($ok) {
         $_SESSION["user"] = $user;
-        echo '<meta http-equiv="refresh" content="0; url=/Accueil-Intranet.php">';
+        echo '<meta http-equiv="refresh" content="0; url=Intranet/Accueil-Intranet.php">';
     }
 }
 ?>

@@ -20,7 +20,7 @@ intranet_navbar();
         </div>
         <?php
         $user = $_SESSION['user'];
-        $data = file_decod('Data/login-mdp.json');
+        $data = file_decod('../Data/login-mdp.json');
 
         if (isset($data[$user])) {
             $prenom = $data[$user]['prenom'];
@@ -104,7 +104,7 @@ intranet_navbar();
 //  $nouveauMdp === $confirmationMdp
 if (isset($_POST['new-profile'])) {
     if (isset($_FILES['photo']) && $_FILES['photo']['error'] === 0) {
-        $targetDir = 'Images/Employés/';
+        $targetDir = '../Images/Employés/';
         $targetFile = $targetDir . $_SESSION['user'] . '.jpg';
 
         if (file_exists($targetFile)) {
@@ -129,7 +129,7 @@ if (isset($_POST['new-profile'])) {
         exit();
     }
 
-    $data = file_decod('Data/login-mdp.json');
+    $data = file_decod('../Data/login-mdp.json');
     if (isset($data[$user])) {
         $data[$user]['prenom'] = $prenom;
         $data[$user]['nom'] = $nom;
@@ -139,7 +139,7 @@ if (isset($_POST['new-profile'])) {
             $data[$user]['mdp'] = $nouveauMdp;
         }
 
-        file_put_contents('Data/login-mdp.json', json_encode($data));
+        file_put_contents('../Data/login-mdp.json', json_encode($data));
 
         echo '<meta http-equiv="refresh" content="0">';
         exit();

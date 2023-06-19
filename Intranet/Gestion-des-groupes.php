@@ -24,7 +24,7 @@ intranet_navbar();
         <form method="POST">
             <div class="input-group mb-3">
                 <?php
-                $groupes_json = file_get_contents('Data/groupes.json'); // Récupération des groupes
+                $groupes_json = file_get_contents('../Data/groupes.json'); // Récupération des groupes
                 $groupes = json_decode($groupes_json, true);
                 ?>
                 <select name="selected-group" class="form-select" aria-label="Groupes existants">
@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {        // Traitement du formulaire
         $nouveau_membre = $_POST['nouveau_membre'];
 
         // Récupération des groupes existants depuis le fichier JSON
-        $groupes_json = file_get_contents('Data/groupes.json');
+        $groupes_json = file_get_contents('../Data/groupes.json');
         $groupes = json_decode($groupes_json, true);
 
         // Vérification si le groupe existe
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {        // Traitement du formulaire
 
                 // Enregistrement des modifications dans le fichier JSON
                 $nouveau_groupe_json = json_encode($groupes);
-                file_put_contents('Data/groupes.json', $nouveau_groupe_json);
+                file_put_contents('../Data/groupes.json', $nouveau_groupe_json);
 ?>
                 <div class="alert alert-success" role="alert">
                     <b><?php echo $nouveau_membre; ?></b> a été ajouté au groupe <b><?php echo $groupe; ?></b> avec succès.
@@ -96,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {        // Traitement du formulaire
                 'nom' => $newgrp,
                 'membres' => array()
             );
-            file_put_contents('Data\groupes.json', json_encode($groupes));
+            file_put_contents('../Data/groupes.json', json_encode($groupes));
             echo '<meta http-equiv="refresh" content="0">';
         } else {
         }
@@ -104,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {        // Traitement du formulaire
         if ($_POST['selected-group'] != 'Choisir un groupe à supprimer') {
             $groupToDelete = $_POST['selected-group'];
             // Supprimer le groupe du fichier JSON ici
-            $groupes_json = file_get_contents('Data/groupes.json');
+            $groupes_json = file_get_contents('../Data/groupes.json');
             $groupes = json_decode($groupes_json, true);
 
             // Recherche du groupe à supprimer dans le tableau des groupes
@@ -117,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {        // Traitement du formulaire
 
             // Enregistrer les modifications dans le fichier JSON
             $groupes_json_updated = json_encode($groupes, JSON_PRETTY_PRINT);
-            file_put_contents('Data/groupes.json', $groupes_json_updated);
+            file_put_contents('../Data/groupes.json', $groupes_json_updated);
             echo '<meta http-equiv="refresh" content="0">';
         } else {
         ?>
@@ -129,10 +129,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {        // Traitement du formulaire
     }
 }
 
-$groupes_json = file_get_contents('Data\groupes.json'); // Recuperation des groupes
+$groupes_json = file_get_contents('../Data/groupes.json'); // Recuperation des groupes
 $groupes = json_decode($groupes_json, true);
 
-$utilisateurs_json = file_get_contents('Data\login-mdp.json');  // Recuperation des utilisateurs
+$utilisateurs_json = file_get_contents('../Data/login-mdp.json');  // Recuperation des utilisateurs
 $utilisateurs = json_decode($utilisateurs_json, true);
 ?>
 <div class="row">

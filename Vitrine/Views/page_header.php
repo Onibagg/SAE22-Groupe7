@@ -84,7 +84,7 @@ include("Vitrine/Models/connexion.php");
                                     -->
                                     <br>
                                     <div class="form-group">
-                                        Pas de compte? <a href="new-account.php">Faire une demande</a>
+                                        Pas de compte? <a href="Vitrine/new-account.php">Faire une demande</a>
                                     </div>
 
                                 </div>
