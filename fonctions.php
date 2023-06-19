@@ -177,15 +177,97 @@ function page_foot()
                     <a class="text-dark" href="Mes_donnees_personnelles.php">Mes données personnelles</a>
                 </div>
                 <div class="col-sm-6">
-                    <img src="Images\Screen_475-removebg.png" width="400" height="60">
+                    <img src="Images\Screen_475-removebg.png" width="400" height="60"></br></br>
+
+                    <!----------------MODALE--------------------->
+
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal1">
+                        Nous contacter
+                    </button>
+
+                    <div class="modal fade" id="myModal1">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title">NOUS CONTACTER</h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    <form method="POST" action="">
+
+                                        <div class="mb-3">
+                                            <label for="inputPrenom" class="form-label">Mail</label>
+                                            <input type="mail" class="form-control" id="inpuptmail" name="mail" placeholder="Votre adresse mail">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="inputRaison" class="form-label">Raison du contact</label>
+                                            <input type="text" class="form-control" id="inputRaison" name="raison" rows="3" placeholder="Indiquez la raison de votre contact"></input>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="inputContenu" class="form-label">Contenu</label>
+                                            <textarea class="form-control" id="inputContenu" name="contenu" placeholder="Votre explication"></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-danger" name="envoyer">Envoyer</button>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <?php
+                    if (isset($_POST['envoyer'])) {
+
+                        $contact = file_decod('Data/contacts.json');
+
+                        $mail = $_POST['mail'];
+                        $raison = $_POST['raison'];
+                        $contenu = $_POST['contenu'];
+
+                        $contact[$mail] = [
+                            'mail' => $mail,
+                            'raison' => $raison,
+                            'contenu' => $contenu
+                        ];
+
+
+                        $jsonContact = json_encode($contact);
+
+                        // Chemin vers le fichier JSON
+                        $cheminFichier = 'Data/contacts.json';
+
+                        // Écriture des données dans le fichier JSON
+                        file_encod($cheminFichier, $contact);
+
+                        echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.5/dist/sweetalert2.all.min.js"></script>';
+                        echo '<script>
+                            Swal.fire({
+                                icon: "success",
+                                title: "Succès",
+                                text: "Les informations ont été enregistrées avec succès.",
+                                toast: true,
+                                position: "top-end",
+                                showConfirmButton: false,
+                                timer: 3000
+                            });
+                        </script>';
+                    }
+                    ?>
+
+
                 </div>
 
 
             </div>
-            </br>
-            </br>
-            <p>© <?php echo (" Année : ");
-                    echo date("Y"); ?> - PrivateVPN.fr </p>
+
+            <p>©
+                <?php echo (" Année : ");
+                echo date("Y"); ?> - PrivateVPN.fr
+            </p>
         </div>
     <?php
 
@@ -313,51 +395,122 @@ function intranet_navbar()
             deconnexion();
         }
         ?>
-    <?php
-}
-
-function file_decod($file)
-{
-    $contents = file_get_contents($file);
-    $data = json_decode($contents, true);
-
-    if ($data === null) {
-        // Gestion de l'erreur de décodage JSON
-        throw new Exception('Erreur de décodage JSON : ' . json_last_error_msg());
+        <?php
     }
 
-    return $data;
-}
-
-function file_encod($file)
-{
-    return file_put_contents(json_encode(file_decod($file)), $file);
-}
-
-function connexion_traitement()
-{
-    if (!isset($_POST['user'])) {
-        echo 'Utilisateur non renseigné';
-        $user = "";
-    } else {
-        $user = $_POST['user'];
+    function file_decod($file)
+    {
+        return json_decode(file_get_contents($file), true);
     }
 
-    if (!isset($_POST['mdp'])) {
-        echo 'Mot de Passe non renseigné';
-        $mdp = "";
-    } else {
-        $mdp = $_POST['mdp'];
-    }
-
-    $data = file_decod('Data\login-mdp.json');
-    $ok = false;
-
-    foreach ($data as $u) {
-        if ($u['user'] == $user && password_verify($mdp, $u['mdp']) == true) {
-            $ok = true;
-            break;
+    function connexion_traitement()
+    {
+        if (!isset($_POST['user'])) {
+            echo 'Utilisateur non renseigné';
+            $user = "";
+        } else {
+            $user = $_POST['user'];
         }
+
+        if (!isset($_POST['mdp'])) {
+            echo 'Mot de Passe non renseigné';
+            $mdp = "";
+        } else {
+            $mdp = $_POST['mdp'];
+        }
+
+        $data = file_decod('Data\login-mdp.json');
+        $ok = false;
+
+        foreach ($data as $u) {
+            if ($u['user'] == $user && password_verify($mdp, $u['mdp']) == true) {
+                $ok = true;
+                break;
+            }
+        }
+
+        if ($ok) {
+            $_SESSION["user"] = $user;
+            echo '<meta http-equiv="refresh" content="0; url=Accueil-Intranet.php">';
+        }
+    }
+
+    function afficher_comments($utilisateurs)
+    {
+        if (empty($utilisateurs)) {
+        ?>
+            <img src="Images\Icons\sleep.png" style="height: 200px;display: block; margin-left: auto; margin-right: auto">
+            <p class="text-center">Aucun contact pour le moment</p>
+        <?php
+        } else {
+        ?>
+            <form method="post">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <tr>
+                            <th></th>
+                            <th>Raison</th>
+                            <th></th>
+                        </tr>
+                        <?php
+                        foreach ($utilisateurs as $mail => $infos) {
+                            $mail = $infos['mail'];
+                            $raison = $infos['raison'];
+                            $contenu = $infos['contenu'];
+                            $modalId = uniqid();
+
+                            echo "<tr>";
+                            echo "<td><button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#modal-$modalId'><img src='Images/Icons/eye.png' width='25px'></button></td>";
+                            echo "<td>$raison</td>";
+                            echo '<td>
+                                <input type="image" src="Images/Icons/correct.png" width="50" name="ok[' . $mail . ']" value="Accepter" class="btn btn-success">
+                                </td>';
+                            echo "</tr>";
+
+                            // Modal content
+                            echo "<div class='modal fade' id='modal-$modalId' tabindex='-1' aria-labelledby='modalLabel' aria-hidden='true'>";
+                            echo "<div class='modal-dialog'>";
+                            echo "<div class='modal-content'>";
+                            echo "<div class='modal-header'>";
+                            echo "<h5 class='modal-title' id='modalLabel'>Détails de l'utilisateur</h5>";
+                            echo "<button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>";
+                            echo "</div>";
+                            echo "<div class='modal-body'>";
+                            echo "<p><strong>Mail:</strong> <A class='text-dark' style='text-decoration:underline black;'HREF='mailto:$mail'>$mail</A></p>";
+                            echo "<p><strong>Raison:</strong> $raison</p>";
+                            echo "<p><strong>Contenu:</strong> $contenu</p>";
+                            echo "</div>";
+                            echo "<div class='modal-footer'>";
+                            echo "<button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Fermer</button>";
+                            echo "</div>";
+                            echo "</div>";
+                            echo "</div>";
+                            echo "</div>";
+                        }
+                        ?>
+                    </table>
+                </div>
+            </form>
+        <?php
+        }
+    }
+
+
+
+    function gestion_comments()
+    {
+        $contacts = 'Data/contacts.json';
+        $users = json_decode(file_get_contents($contacts), true);
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (isset($_POST['ok'])) {
+                foreach ($_POST['ok'] as $mail => $valeur) {
+                    unset($users[$mail]); //vire le new des demande
+                }
+                file_encod($contacts, $users);
+            }
+        }
+        afficher_comments($users);
     }
 
     if ($ok) {
@@ -386,6 +539,9 @@ function ajout_utilisateur_format()
                     <input class="form-control" type="password" placeholder="Confirmation" rows="1" id="confirmation" name="confirmation"></input>
                 </div>
                 <div class="col">
+                    <input class="form-control" placeholder="Poste" rows="1" id="poste" name="poste"></input>
+                </div>
+                <div class="col">
                     <input class="form-control" placeholder="E-Mail" rows="1" id="email" name="email"></input>
                 </div>
                 <div class="col">
@@ -404,6 +560,7 @@ function ajout_utilisateur_format()
                 $usr = $_POST['pseudo'];
                 $mdp = $_POST['mdp'];
                 $confirmation = $_POST['confirmation'];
+                $poste = $_POST['poste'];
                 $email = $_POST['email'];
                 $poste = $_POST['poste'];
 
@@ -506,6 +663,7 @@ function ajout_utilisateur_format()
             echo '<td><input type="text" name="nom[' . $nom . ']" value="' . $infos['nom'] . '" class="form-control"></td>';
             echo '<td><input type="text" name="user[' . $nom . ']" value="' . $infos['user'] . '" class="form-control"></td>';
             echo '<td><input type="text" name="mdp[' . $nom . ']" value="" class="form-control"></td>';
+            echo '<td><input type="text" name="poste[' . $nom . ']" value="' . $infos['poste'] . '" class="form-control"></td>';
             echo '<td><input type="text" name="email[' . $nom . ']" value="' . $infos['email'] . '" class="form-control"></td>';
             echo '<td class="text-center"><input type="submit" name="modifier[' . $nom . ']" value="Enregistrer" class="btn btn-outline-success"></td>';
             echo '<td class="text-center"><input type="submit" name="supprimer[' . $nom . ']" value="Supprimer" class="btn btn-danger"></td>';
@@ -563,7 +721,7 @@ function ajout_utilisateur_format()
     function deconnexion()
     {
         session_unset();
-        header("Location: page-accueil.php");
+        echo '<meta http-equiv="refresh" content="0; url=page-accueil.php">';
         exit;
     }
 
@@ -577,17 +735,19 @@ function ajout_utilisateur_format()
         return $countdown_days . " J " . $countdown_hours . " H " . $countdown_minutes . " M ";
     }
 
+
+
     function afficher($utilisateurs)
     {
         echo '<form method="post">';
         echo '<div class="table-responsive">';
         echo '<table class="table table-hover">';
-        echo "<tr><th></th><th>Prénom</th><th>Nom</th><th></th></tr>";
+        echo "<tr><th>Prénom</th><th>Nom</th><th>Poste</th><th></th></tr>";
         foreach ($utilisateurs as $nom => $infos) {
             echo '<tr>';
-            echo '<td class="text-center"><input type="image" src="Images\Icons\eye.png" width="50" name="voir[' . $nom . ']" value="Voir" class="btn btn-outline-primary" disabled></td>';
             echo '<td><input type="text" name="prenom[' . $nom . ']" value="' . $infos['prenom'] . '" class="form-control"></td>';
             echo '<td><input type="text" name="nom[' . $nom . ']" value="' . $infos['nom'] . '" class="form-control"></td>';
+            echo '<td><input type="text" name="poste[' . $nom . ']" value="' . $infos['poste'] . '" class="form-control"></td>';
             echo '<td class="text-center"><input type="image" src="Images\Icons\correct.png" width="50" name="accepter[' . $nom . ']" value="Accepter" class="btn btn-success"></td>';
             echo '<td class="text-center"><input type="image" src="Images\Icons\cross.png" width="50" name="refuser[' . $nom . ']" value="Refuser" class="btn btn-danger"></td>';
             echo '</tr>';
@@ -599,17 +759,16 @@ function ajout_utilisateur_format()
 
     function gestion_new_users()
     {
-        $demande_compte = 'Data\demande-compte.json';
-        $login_mdp = 'Data\login-mdp.json';
+        $demande_compte = 'Data/demande-compte.json';
+        $login_mdp = 'Data/login-mdp.json';
 
-        $users = file_get_contents($demande_compte);
-        $users = json_decode($users, true);
+        $users = json_decode(file_get_contents($demande_compte), true);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['accepter'])) {
                 foreach ($_POST['accepter'] as $nom => $valeur) {
-                    $user_accepte = $users[$nom]; //récuparation des infos
-                    $nouvel_utilisateur = array( //création d'un array avec les infos 
+                    $user_accepte = $users[$nom]; // récupération des infos
+                    $nouvel_utilisateur = array(
                         'prenom' => $user_accepte['prenom'],
                         'nom' => $user_accepte['nom'],
                         'user' => $user_accepte['user'],
@@ -617,27 +776,34 @@ function ajout_utilisateur_format()
                         'email' => $user_accepte['email'],
                         'groupe' => '',
                     );
-                    $login_mdp_contenu = file_get_contents($login_mdp); //récupère le fichier des vrai users
-                    $login_mdp_contenu = json_decode($login_mdp_contenu, true); //converti en tableau
-                    $login_mdp_contenu[$user_accepte['user']] = $nouvel_utilisateur; //ajout du new
-                    file_put_contents($login_mdp, json_encode($login_mdp_contenu)); //màj du fichier des vrai users
-                    unset($users[$nom]); //suppréssion du new du fichier des demandes
+                    $login_mdp_contenu = json_decode(file_get_contents($login_mdp), true); // récupère le fichier des vrais utilisateurs
+                    $login_mdp_contenu[$user_accepte['user']] = $nouvel_utilisateur; // ajout du nouvel utilisateur
+                    file_encod($login_mdp, $login_mdp_contenu); // màj du fichier des vrais utilisateurs
+                    unset($users[$nom]); // suppression du nouvel utilisateur du fichier des demandes
                 }
-                file_put_contents($demande_compte, json_encode($users));
+                file_encod($demande_compte, $users);
             } elseif (isset($_POST['refuser'])) {
                 foreach ($_POST['refuser'] as $nom => $valeur) {
-                    unset($users[$nom]); //vire le new des demande
-                    $photo_path = "Images\Employés\\" . $nom . ".jpg";
+                    unset($users[$nom]); // suppression du nouvel utilisateur des demandes
+                    $photo_path = "Images/Employés/" . $nom . ".jpg";
                     if (file_exists($photo_path)) {
-                        unlink($photo_path); //suppr la photo si il en a une
+                        unlink($photo_path); // suppression de la photo s'il y en a une
                     }
                 }
-                file_put_contents($demande_compte, json_encode($users)); //màj du fichier des demandes
+                file_encod($demande_compte, $users); // màj du fichier des demandes
+
             }
         }
 
         afficher($users);
     }
+
+    function file_encod($file_path, $data)
+    {
+        file_put_contents($file_path, json_encode($data, JSON_PRETTY_PRINT));
+    }
+
+    // Appeler la fonction gestion_new_users() à l'endroit approprié dans votre script
 
     function supprimerMembre($nom_groupe, $user)
     {
@@ -946,6 +1112,41 @@ function ajout_utilisateur_format()
         <?php
     }
 
+    function partenaire_exists($nom)
+    {
+        $partenaires = json_decode(file_get_contents("Data/ListePartenaire.json"), true);
+        return isset($partenaires[$nom]);
+    }
+
+    function addPartenaire($nom, $description, $img)
+    {
+        $partenaires = json_decode(file_get_contents("Data/ListePartenaire.json"), true);
+        $partenaires[$nom] = array(
+            "description" => $description,
+            "partenaire_logo" => $img
+        );
+        file_put_contents("Data/ListePartenaire.json", json_encode($partenaires));
+    }
+
+    function delPartenaire($nom)
+    {
+        $json_file = 'Data/ListePartenaire.json';
+        $partenaires = json_decode(file_get_contents($json_file), true);
+
+        if (isset($partenaires[$nom])) {
+            $image = $partenaires[$nom]['partenaire_logo'];
+            $image_path = 'Images/Partenaires/' . $image;
+
+            if (file_exists($image_path)) {
+                unlink($image_path);
+            }
+
+            unset($partenaires[$nom]);
+            file_put_contents($json_file, json_encode($partenaires));
+            echo '<meta http-equiv="refresh" content="0">';
+            exit();
+        }
+    }
     function gestion_partenaires()
     {
         if (isset($_POST['ajouter'])) {
@@ -1009,8 +1210,6 @@ function ajout_utilisateur_format()
                 </div>
                 <div class="col"></div>
             </div>
-
-            <!-- Add Modal -->
             <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -1022,8 +1221,10 @@ function ajout_utilisateur_format()
                             <form method='post' enctype='multipart/form-data'>
                                 <div class='form-group'>
                                     <input type='text' class='form-control' name='new_partenaire_name' placeholder='Nom du partenaire' required><br>
-                                    <textarea class="form-control" rows="4" name='new_partenaire_description' placeholder='Description du partenaire' required></textarea><br>
-                                    <input type="file" class="form-control" id="photopart" name="photopart"><br>
+                                    <input type='text' class='form-control' name='new_partenaire_description' placeholder='Description du partenaire' required><br>
+                                    <div class="form-group">
+                                        <input type="file" class="form-control" id="photopart" name="photopart">
+                                    </div>
                                 </div>
                                 <button type='submit' class='mt-2 btn btn-success' name="ajouter">Ajouter</button>
                             </form>
@@ -1035,36 +1236,30 @@ function ajout_utilisateur_format()
         }
     }
 
-    function partenaire_exists($nom)
-    {
-        $partenaires = json_decode(file_get_contents("Data/ListePartenaire.json"), true);
-        return isset($partenaires[$nom]);
-    }
 
-    function addPartenaire($nom, $description, $img)
-    {
-        $partenaires = json_decode(file_get_contents("Data/ListePartenaire.json"), true);
-        $partenaires[$nom] = array(
-            "description" => $description,
-            "partenaire_logo" => $img
-        );
-        file_put_contents("Data/ListePartenaire.json", json_encode($partenaires));
-    }
-
-    function delPartenaire($nom)
+    function modifyPartenaire($nom, $description, $image)
     {
         $json_file = 'Data/ListePartenaire.json';
         $partenaires = json_decode(file_get_contents($json_file), true);
 
         if (isset($partenaires[$nom])) {
-            $image = $partenaires[$nom]['partenaire_logo'];
-            $image_path = 'Images/Partenaires/' . $image;
+            $old_image = $partenaires[$nom]['partenaire_logo'];
+            $targetDir = 'Images/Partenaires/';
 
-            if (file_exists($image_path)) {
-                unlink($image_path); // Delete the image file
+            $partenaires[$nom]['description'] = $description;
+
+            if (isset($image) && $image['error'] === 0) {
+                $old_image_path = $targetDir . $old_image;
+                if (file_exists($old_image_path)) {
+                    unlink($old_image_path);
+                }
+                $new_image = $nom . '_logo.jpg';
+                $tmpFile = $image['tmp_name'];
+                $newFile = $targetDir . $new_image;
+                move_uploaded_file($tmpFile, $newFile);
+                $partenaires[$nom]['partenaire_logo'] = $new_image;
             }
 
-            unset($partenaires[$nom]);
             file_put_contents($json_file, json_encode($partenaires));
             echo '<meta http-equiv="refresh" content="0">';
             exit();
@@ -1077,7 +1272,7 @@ function ajout_utilisateur_format()
         $json_file = 'Data/ListePartenaire.json';
         $partenaires = json_decode(file_get_contents($json_file), true);
 
-        echo "<div class='row'>"; // Start row
+        echo "<div class='row'>";
 
         foreach ($partenaires as $nom => $partenaire) {
             $description = $partenaire['description'];
@@ -1090,20 +1285,71 @@ function ajout_utilisateur_format()
                       <div class='card-body'>
                           <h5 class='card-title'>$nom</h5>
                           <p class='card-text'>$description</p>
-                          <form method='post'>
-                              <input type='hidden' name='supprimer' value='$nom'>
-                              <button type='submit' class='btn btn-danger'>Supprimer</button>
-                          </form>
+                          <div class='btn-group d-flex justify-content-end'>
+                              <button type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#deleteModal$nom'>Supprimer</button>
+                              <button type='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#editModal$nom'>Modifier</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>";
+
+            echo "
+              <div class='modal fade' id='deleteModal$nom' tabindex='-1' aria-labelledby='deleteModalLabel$nom' aria-hidden='true'>
+                  <div class='modal-dialog'>
+                      <div class='modal-content'>
+                          <div class='modal-header'>
+                              <h5 class='modal-title' id='deleteModalLabel$nom'>Supprimer le partenaire</h5>
+                              <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                          </div>
+                          <div class='modal-body'>
+                              <p>Êtes-vous sûr de vouloir supprimer ce partenaire ?</p>
+                              <form method='post'>
+                                  <input type='hidden' name='supprimer' value='$nom'>
+                                  <button type='submit' class='btn btn-danger'>Supprimer</button>
+                              </form>
+                          </div>
+                      </div>
+                  </div>
+              </div>";
+
+            echo "
+              <div class='modal fade' id='editModal$nom' tabindex='-1' aria-labelledby='editModalLabel$nom' aria-hidden='true'>
+                  <div class='modal-dialog'>
+                      <div class='modal-content'>
+                          <div class='modal-header'>
+                              <h5 class='modal-title' id='editModalLabel$nom'>Modifier le partenaire</h5>
+                              <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                          </div>
+                          <div class='modal-body'>
+                              <form method='post' enctype='multipart/form-data'>
+                                  <div class='form-group'>
+                                      <input type='hidden' name='modify_partenaire_name' value='$nom'>
+                                      <label for='modify_partenaire_description'>Description :</label><br>
+                                      <input type='text' class='form-control' id='modify_partenaire_description' name='modify_partenaire_description' value='$description' required><br>
+                                      <input type='file' class='form-control' id='modify_photopart' name='modify_photopart'><br>
+                                  </div>
+                                  <br>
+                                  <button type='submit' class='btn btn-primary' name='modify_partenaire_submit'>Sauvegarder les modifications</button>
+                              </form>
+                          </div>
                       </div>
                   </div>
               </div>";
         }
 
-        echo "</div>"; // End row
+        echo "</div>";
 
         if (isset($_POST['supprimer'])) {
             $nom = $_POST['supprimer'];
             delPartenaire($nom);
+        }
+
+        if (isset($_POST['modify_partenaire_submit'])) {
+            $nom = $_POST['modify_partenaire_name'];
+            $description = $_POST['modify_partenaire_description'];
+            $image = $_FILES['modify_photopart'];
+
+            modifyPartenaire($nom, $description, $image);
         }
     }
 
@@ -1261,13 +1507,16 @@ function ajout_utilisateur_format()
                         $poste = $infos['poste'];
                         $user = $infos['user'];
                         $description = $infos['description'];
-
                     ?>
                         <div class="col-3">
                             <div class="card card-sm mb-4">
+                                <img src="../Images/Employés/<?php echo $user ?>.jpg" class="card-img-top" alt="Photo" style="height: 100%;">
                                 <div class="card-body">
-                                    <h5 class="card-title"> <?php echo $prenom . " " . $nom ?></h5>
-                                    <p class="card-text text-center"><i><?php echo $poste ?></i><br><img src="../Images/Employés/<?php echo $user ?>.jpg" class="img-fluid rounded-circle mt-3" style="max-width: 75px;"><br><?php echo $description ?></p>
+                                    <h6 class="card-title"> <?php echo $prenom . " " . $nom ?></h6>
+                                    <p class="card-text"><?php echo $poste ?>
+                                        <hr><?php echo $description ?>
+                                    </p>
+
                                 </div>
                             </div>
                         </div>

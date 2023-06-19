@@ -4,11 +4,9 @@ setup();
 page_header();
 ?>
 </br>
-</br>
-
 <div class="container py-1">
 <h2 class="text-dark text-center py-1">Activité</h2>
-<hr class="my-5">
+<hr>
 </div>
 
 <div class="row">
@@ -110,7 +108,7 @@ page_header();
                     <h3 class="text-dark text-center">6.99€/mois</h3></br></br>
                     <p class="text-center">VPN sûr et rapide</p>
                     <p class="text-center">Bloqueur de suivi et de publicités</p>
-                    <p class="text-center">512 To de Cloud</p></br></br></br>
+                    <p class="text-center">512 Go de Cloud</p></br></br></br>
                 </div>
             </div>
             <div class="col-sm-3 text-dark">
@@ -124,15 +122,21 @@ page_header();
                 </div>
             </div>
             <div class="col-sm-1.5 text-dark"></div>
-
         </div>
-
-
-
+        <br>
+        <br>
     </div>
-    <div class="col-sm-1  text-dark"></div>
+</div>
+
+<style>
+.container-fluid.custom {
+  background-color: #DCF3FF;
+  border-radius: 20px; 
+
+}
 
 
+</style>
     <?php
     page_foot();
     ?>
