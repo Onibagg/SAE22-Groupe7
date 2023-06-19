@@ -4,11 +4,13 @@ setup();
 page_header();
 ?>
 
+</br>
+<div class="container py-1">
+<h2 class="text-dark text-center py-1">Histoire</h2>
+<hr>
+</div>
 <div class="container py-4">
-    <h2 class=" text-center text-dark py-3">Notre Histoire</h2>
-
-    <hr class="my-5">
-
+    
     <div class="container py-4">
 
         <div class="row no-gutters">
