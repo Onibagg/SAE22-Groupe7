@@ -20,8 +20,8 @@ if (isset($_POST['demande'])) {
             'poste' => $poste
         ];
 
-        $src = "../Images/Employés/blank-profile-picture.jpg";
-        $dst = "../Images/Employés/" . $user . ".jpg";
+        $src = "../Data/Images/Employés/blank-profile-picture.jpg";
+        $dst = "../Data/Images/Employés/" . $user . ".jpg";
         copy($src, $dst);
 
         file_encod('../Data/demande-compte.json', $users);

@@ -11,7 +11,7 @@ intranet_navbar();
         <div class="col-4 card me-4 text-center">
 
             <div class="text-center">
-                <img src="../Images/Employés/<?php echo $_SESSION['user']; ?>.jpg" class="img-fluid rounded-circle mt-3" style="max-width: 250px;">
+                <img src="../Data/Images/Employés/<?php echo $_SESSION['user']; ?>.jpg" class="img-fluid rounded-circle mt-3" style="max-width: 250px;">
             </div>
             <form id="new-profile" action="monprofil.php" method="post" enctype="multipart/form-data">
                 <div class="form-group mt-4">
@@ -104,7 +104,7 @@ intranet_navbar();
 //  $nouveauMdp === $confirmationMdp
 if (isset($_POST['new-profile'])) {
     if (isset($_FILES['photo']) && $_FILES['photo']['error'] === 0) {
-        $targetDir = '../Images/Employés/';
+        $targetDir = '../Data/Images/Employés/';
         $targetFile = $targetDir . $_SESSION['user'] . '.jpg';
 
         if (file_exists($targetFile)) {

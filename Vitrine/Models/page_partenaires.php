@@ -11,7 +11,7 @@ foreach ($partenaires as $nom => $partenaire) {
     echo "
               <div class='col-md-4'>
                   <div class='card mb-4'>
-                      <img src='/Images/Partenaires/$image' class='card-img-top' alt='$nom' style='height: 200px; object-fit: contain;'>
+                      <img src='../Data/Images/Partenaires/$image' class='card-img-top' alt='$nom' style='height: 200px; object-fit: contain;'>
                       <div class='card-body'>
                           <h5 class='card-title'>$nom</h5>
                           <p class='card-text'>$description</p>

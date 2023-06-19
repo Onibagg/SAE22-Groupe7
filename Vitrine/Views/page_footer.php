@@ -14,7 +14,7 @@
             <a class="text-dark" href="/Vitrine/Mes_donnees_personnelles.php">Mes données personnelles</a>
         </div>
         <div class="col-sm-6">
-            <img src="../Images/Screen_475-removebg.png" width="400" height="60"></br></br>
+            <img src="../Data/Images/Screen_475-removebg.png" width="400" height="60"></br></br>
 
             <!----------------MODALE--------------------->
 

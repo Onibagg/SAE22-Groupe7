@@ -8,7 +8,7 @@ include("Vitrine/Models/connexion.php");
     <div class="row">
         <div class="col text-center">
             <a href="../">
-                <img src="../Images/Logo_complet.png" height="115" class="rounded" alt="?"></br></br>
+                <img src="../Data/Images/Logo_complet.png" height="115" class="rounded" alt="?"></br></br>
             </a>
         </div>
         <div class="col"></div>
@@ -17,7 +17,7 @@ include("Vitrine/Models/connexion.php");
         <div class="col text-center">
             <a href="/Vitrine/page-pres.php">
                 <button type="button" class="btn btn-outline-dark text-black custom-btn" style="width: 150px; height: 130px;" onmouseover="document.getElementById('texte1').style.fontWeight='bold';" onmouseout="document.getElementById('texte1').style.fontWeight='normal';">
-                    <img src="/Images/point-dinterrogation.png" width="40" height="40" class="rounded" alt="?"></br></br>
+                    <img src="../Data/Images/point-dinterrogation.png" width="40" height="40" class="rounded" alt="?"></br></br>
                     <p id="texte1">Qui sommes-nous ?</p>
                 </button>
             </a>
@@ -25,7 +25,7 @@ include("Vitrine/Models/connexion.php");
         <div class="col text-center">
             <a href="/Vitrine/page_histoire.php">
                 <button type="button" class="btn btn-outline-dark text-black custom-btn" style="width: 150px; height: 130px;" onmouseover="document.getElementById('texte2').style.fontWeight='bold';" onmouseout="document.getElementById('texte2').style.fontWeight='normal';">
-                    <img src="/Images/histoire.png" width="40" height="40" class="rounded" alt="Histoire"></br></br>
+                    <img src="../Data/Images/histoire.png" width="40" height="40" class="rounded" alt="Histoire"></br></br>
                     <p id="texte2">Histoire</p>
                 </button>
             </a>
@@ -33,7 +33,7 @@ include("Vitrine/Models/connexion.php");
         <div class="col text-center">
             <a href="/Vitrine/page_activites.php">
                 <button type="button" class="btn btn-outline-dark text-black custom-btn" style="width: 150px; height: 130px;" onmouseover="document.getElementById('texte3').style.fontWeight='bold';" onmouseout="document.getElementById('texte3').style.fontWeight='normal';">
-                    <img src="/Images/activites.png" width="40" height="40" class="rounded" alt="Activités"></br></br>
+                    <img src="../Data/Images/activites.png" width="40" height="40" class="rounded" alt="Activités"></br></br>
                     <p id="texte3">Activités</p>
                 </button>
             </a>
@@ -41,14 +41,14 @@ include("Vitrine/Models/connexion.php");
         <div class="col text-center">
             <a href="/Vitrine/page_partenaires.php">
                 <button type="button" class="btn btn-outline-dark text-black custom-btn" style="width: 150px; height: 130px;" onmouseover="document.getElementById('texte4').style.fontWeight='bold';" onmouseout="document.getElementById('texte4').style.fontWeight='normal';">
-                    <img src="/Images/les-partenaires.png" width="40" height="40" class="rounded" alt="Partenaires"></br></br>
+                    <img src="../Data/Images/les-partenaires.png" width="40" height="40" class="rounded" alt="Partenaires"></br></br>
                     <p id="texte4">Partenaires</p>
                 </button>
             </a>
         </div>
         <div class="col text-center">
             <button type="button" class="btn btn-outline-dark text-black custom-btn" data-bs-toggle="modal" data-bs-target="#myModal" style="width: 150px; height: 130px;" onmouseover="document.getElementById('texte5').style.fontWeight='bold';" onmouseout="document.getElementById('texte5').style.fontWeight='normal';">
-                <img src="/Images/login.png" width="40" height="40" class="rounded" alt="Connexion"></br></br>
+                <img src="../Data/Images/login.png" width="40" height="40" class="rounded" alt="Connexion"></br></br>
                 <p id="texte5">Connexion</p>
             </button>
             <div class="modal fade" id="myModal">

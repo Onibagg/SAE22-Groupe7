@@ -10,13 +10,13 @@
         <div class="row">
             <div class="col-md-1 px-0">
                 <a href="/" class="ms-5">
-                    <img id="accueil" src="/Images/accueil.png" class="anim" style="width: 30%;"></img>
+                    <img id="accueil" src="../Data/Images/accueil.png" class="anim" style="width: 30%;"></img>
                 </a>
             </div>
             <div class="col-md-4 px-0 text-center">
                 <br><br><br>
-                <img id="logo" src="/Images/PrivateVPN_logo.png" class="anim" style="width: 60%;">
-                <img id="text" src="/Images/Screen_475-removebg.png" class="mt-1 anim" style="width: 85%;">
+                <img id="logo" src="../Data/Images/PrivateVPN_logo.png" class="anim" style="width: 60%;">
+                <img id="text" src="../Data/Images/Screen_475-removebg.png" class="mt-1 anim" style="width: 85%;">
             </div>
             <div class="col-md-1 px-0">
             </div>

@@ -16,7 +16,7 @@ $annuaire = file_decod('../Data/annuaire.json');
             ?>
                 <div class="col-3">
                     <div class="card card-sm mb-4">
-                        <img src="../Images/Employés/<?php echo $user ?>.jpg" class="card-img-top" alt="Photo" style="height: 100%;">
+                        <img src="../Data/Images/Employés/<?php echo $user ?>.jpg" class="card-img-top" alt="Photo" style="height: 100%;">
                         <div class="card-body">
                             <h6 class="card-title"> <?php echo $prenom . " " . $nom ?></h6>
                             <p class="card-text"><?php echo $poste ?>

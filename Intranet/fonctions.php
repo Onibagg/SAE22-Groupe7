@@ -13,7 +13,7 @@ function setup()
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <link rel="icon" type="image/x-icon" href="../Images/PrivateVPN_logo.png">
+        <link rel="icon" type="image/x-icon" href="../Data/Images/PrivateVPN_logo.png">
         <title>Private VPN | Le meilleur des VPN</title>
         <style>
             .custom {
@@ -102,46 +102,46 @@ function intranet_navbar()
             <ul class="navbar-nav">
                 <li class="nav-item me-4 ms-4">
                     <a class="navbar-brand" href="Accueil-Intranet.php">
-                        <img src="../Images/PrivateVPN_logo.png" alt="Avatar Logo" style="width:45px;" class="rounded-pill">
+                        <img src="../Data/Images/PrivateVPN_logo.png" alt="Avatar Logo" style="width:45px;" class="rounded-pill">
                     </a>
                 </li>
 
                 <?php if ($isIT || $isDirection) { ?>
                     <li class="nav-item me-4 ms-4">
-                        <a class="nav-link" href="Portail-de-connexion.php"><img src="../Images/Icons/key.png" draggable="false" height="28px"></a>
+                        <a class="nav-link" href="Portail-de-connexion.php"><img src="../Data/Images/Icons/key.png" draggable="false" height="28px"></a>
                     </li>
                 <?php } ?>
 
                 <?php if ($isRH || $isDirection) { ?>
                     <li class="nav-item me-4 ms-4">
-                        <a class="nav-link" href="Gestion-des-groupes.php"><img src="../Images/Icons/groups.png" draggable="false" height="32px"></a>
+                        <a class="nav-link" href="Gestion-des-groupes.php"><img src="../Data/Images/Icons/groups.png" draggable="false" height="32px"></a>
                     </li>
                 <?php } ?>
 
                 <li class="nav-item me-4 ms-4">
-                    <a class="nav-link" href="gest-fichiers.php"><img src="../Images/Icons/folder.png" draggable="false" height="32px"></a>
+                    <a class="nav-link" href="gest-fichiers.php"><img src="../Data/Images/Icons/folder.png" draggable="false" height="32px"></a>
                 </li>
 
                 <li class="nav-item me-4 ms-4">
-                    <a class="nav-link" href="annuaire.php"><img src="../Images/Icons/phone.png" draggable="false" height="32px"></a>
+                    <a class="nav-link" href="annuaire.php"><img src="../Data/Images/Icons/phone.png" draggable="false" height="32px"></a>
                 </li>
 
                 <?php if ($isFinances || $isDirection || $isCommerciaux) { ?>
                     <li class="nav-item me-4 ms-4">
-                        <a class="nav-link" href="gest-partenaires.php"><img src="../Images/Icons/person.png" draggable="false" height="35px"></a>
+                        <a class="nav-link" href="gest-partenaires.php"><img src="../Data/Images/Icons/person.png" draggable="false" height="35px"></a>
                     </li>
                 <?php } ?>
 
                 <li class="nav-item me-4 ms-4">
-                    <a class="nav-link" href="wiki.php"><img src="../Images/Icons/book.png" draggable="false" height="32px"></a>
+                    <a class="nav-link" href="wiki.php"><img src="../Data/Images/Icons/book.png" draggable="false" height="32px"></a>
                 </li>
                 <li class="nav-item dropdown me-4 ms-4">
-                    <a class="nav-link dropdown-toggle" href="monprofil.php" role="button" data-bs-toggle="dropdown"><img src="../Images/Employés/<?php echo $_SESSION['user']; ?>.jpg" alt="Avatar Logo" style="width:32px;" class="rounded-pill"></a>
+                    <a class="nav-link dropdown-toggle" href="monprofil.php" role="button" data-bs-toggle="dropdown"><img src="../Data/Images/Employés/<?php echo $_SESSION['user']; ?>.jpg" alt="Avatar Logo" style="width:32px;" class="rounded-pill"></a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="monprofil.php">Mon Profil</a></li>
                         <li>
                             <form id="deconnexion" method="POST">
-                                <button type="submit" name="deconnexion" class="btn ms-1"><img src="../Images/Icons/log_out.png" style="height:26px"></button>
+                                <button type="submit" name="deconnexion" class="btn ms-1"><img src="../Data/Images/Icons/log_out.png" style="height:26px"></button>
                             </form>
                         </li>
                     </ul>
@@ -165,7 +165,7 @@ function intranet_navbar()
     {
         if (empty($utilisateurs)) {
         ?>
-            <img src="../Images/Icons/sleep.png" style="height: 200px;display: block; margin-left: auto; margin-right: auto">
+            <img src="../Data/Images/Icons/sleep.png" style="height: 200px;display: block; margin-left: auto; margin-right: auto">
             <p class="text-center">Aucun contact pour le moment</p>
         <?php
         } else {
@@ -186,10 +186,10 @@ function intranet_navbar()
                             $modalId = uniqid();
 
                             echo "<tr>";
-                            echo "<td><button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#modal-$modalId'><img src='../Images/Icons/eye.png' width='25px'></button></td>";
+                            echo "<td><button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#modal-$modalId'><img src='../Data/Images/Icons/eye.png' width='25px'></button></td>";
                             echo "<td>$raison</td>";
                             echo '<td>
-                                <input type="image" src="../Images/Icons/correct.png" width="50" name="ok[' . $mail . ']" value="Accepter" class="btn btn-success">
+                                <input type="image" src="../Data/Images/Icons/correct.png" width="50" name="ok[' . $mail . ']" value="Accepter" class="btn btn-success">
                                 </td>';
                             echo "</tr>";
 
@@ -312,8 +312,8 @@ function intranet_navbar()
             'description' => null
         ];
 
-        $src = "../Images/Employés/blank-profile-picture.jpg";
-        $dst = "../Images/Employés/" . $usr . ".jpg";
+        $src = "../Data/Images/Employés/blank-profile-picture.jpg";
+        $dst = "../Data/Images/Employés/" . $usr . ".jpg";
         copy($src, $dst);
 
         file_put_contents('../Data/login-mdp.json', json_encode($users));
@@ -327,21 +327,21 @@ function intranet_navbar()
         echo "
         <tr>
         <th>Prénom 
-        <button type='submit' name='tri' value='prenom_asc' class='btn btn-link'><i class='fas fa-sort-up'></i><img src='../Images/Icons/uparrow.png'></button>
-        <button type='submit' name='tri' value='prenom_desc' class='btn btn-link'><i class='fas fa-sort-down'></i><img src='../Images/Icons/downarrow.png'></button>
+        <button type='submit' name='tri' value='prenom_asc' class='btn btn-link'><i class='fas fa-sort-up'></i><img src='../Data/Images/Icons/uparrow.png'></button>
+        <button type='submit' name='tri' value='prenom_desc' class='btn btn-link'><i class='fas fa-sort-down'></i><img src='../Data/Images/Icons/downarrow.png'></button>
         </th>
         <th>Nom 
-        <button type='submit' name='tri' value='nom_asc' class='btn btn-link'><i class='fas fa-sort-up'></i><img src='../Images/Icons/uparrow.png'></button>
-        <button type='submit' name='tri' value='nom_desc' class='btn btn-link'><i class='fas fa-sort-down'></i><img src='../Images/Icons/downarrow.png'></button>
+        <button type='submit' name='tri' value='nom_asc' class='btn btn-link'><i class='fas fa-sort-up'></i><img src='../Data/Images/Icons/uparrow.png'></button>
+        <button type='submit' name='tri' value='nom_desc' class='btn btn-link'><i class='fas fa-sort-down'></i><img src='../Data/Images/Icons/downarrow.png'></button>
         </th>
         <th>Nom d'utilisateur 
-        <button type='submit' name='tri' value='user_asc' class='btn btn-link'><i class='fas fa-sort-up'></i><img src='../Images/Icons/uparrow.png'></button>
-        <button type='submit' name='tri' value='user_desc' class='btn btn-link'><i class='fas fa-sort-down'></i><img src='../Images/Icons/downarrow.png'></button>
+        <button type='submit' name='tri' value='user_asc' class='btn btn-link'><i class='fas fa-sort-up'></i><img src='../Data/Images/Icons/uparrow.png'></button>
+        <button type='submit' name='tri' value='user_desc' class='btn btn-link'><i class='fas fa-sort-down'></i><img src='../Data/Images/Icons/downarrow.png'></button>
         </th>
         <th>Nouveau MDP</th>
         <th>Poste</th>
-        <th>E-Mail <button type='submit' name='tri' value='email_asc' class='btn btn-link'><i class='fas fa-sort-up'></i><img src='../Images/Icons/uparrow.png'></button>
-        <button type='submit' name='tri' value='email_desc' class='btn btn-link'><i class='fas fa-sort-down'></i><img src='../Images/Icons/downarrow.png'></button>
+        <th>E-Mail <button type='submit' name='tri' value='email_asc' class='btn btn-link'><i class='fas fa-sort-up'></i><img src='../Data/Images/Icons/uparrow.png'></button>
+        <button type='submit' name='tri' value='email_desc' class='btn btn-link'><i class='fas fa-sort-down'></i><img src='../Data/Images/Icons/downarrow.png'></button>
         </th><th>Actions</th>
         <th></th>
         </tr>
@@ -416,8 +416,8 @@ function intranet_navbar()
                     $users[$nom]['mdp'] = password_hash($mdp[$nom], PASSWORD_DEFAULT);
                     $users[$nom]['email'] = $email[$nom];
                     if ($users[$nom]['user'] !== $user[$nom]) {
-                        $old_photo_path = "../Images/Employés/" . $users[$nom]['user'] . ".jpg";
-                        $new_photo_path = "../Images/Employés/" . $user[$nom] . ".jpg";
+                        $old_photo_path = "../Data/Images/Employés/" . $users[$nom]['user'] . ".jpg";
+                        $new_photo_path = "../Data/Images/Employés/" . $user[$nom] . ".jpg";
                         if (file_exists($old_photo_path)) {
                             rename($old_photo_path, $new_photo_path);
                         }
@@ -428,7 +428,7 @@ function intranet_navbar()
             } elseif (isset($_POST['supprimer'])) {
                 foreach ($_POST['supprimer'] as $nom => $valeur) {
                     unset($users[$nom]);
-                    $photo_path = "../Images/Employés/" . $nom . ".jpg";
+                    $photo_path = "../Data/Images/Employés/" . $nom . ".jpg";
                     if (file_exists($photo_path)) {
                         unlink($photo_path);
                     }
@@ -470,8 +470,8 @@ function intranet_navbar()
             echo '<td><input type="text" name="prenom[' . $nom . ']" value="' . $infos['prenom'] . '" class="form-control"></td>';
             echo '<td><input type="text" name="nom[' . $nom . ']" value="' . $infos['nom'] . '" class="form-control"></td>';
             echo '<td><input type="text" name="poste[' . $nom . ']" value="' . $infos['poste'] . '" class="form-control"></td>';
-            echo '<td class="text-center"><input type="image" src="../Images/Icons/correct.png" width="50" name="accepter[' . $nom . ']" value="Accepter" class="btn btn-success"></td>';
-            echo '<td class="text-center"><input type="image" src="../Images/Icons/cross.png" width="50" name="refuser[' . $nom . ']" value="Refuser" class="btn btn-danger"></td>';
+            echo '<td class="text-center"><input type="image" src="../Data/Images/Icons/correct.png" width="50" name="accepter[' . $nom . ']" value="Accepter" class="btn btn-success"></td>';
+            echo '<td class="text-center"><input type="image" src="../Data/Images/Icons/cross.png" width="50" name="refuser[' . $nom . ']" value="Refuser" class="btn btn-danger"></td>';
             echo '</tr>';
         }
         echo '</table>';
@@ -562,7 +562,7 @@ function intranet_navbar()
                     <div class='card shadow-sm'>
                         <div class='card-body'>
                             <p class='card-title'>
-                                <img src='../Images/Icons/return.png' height='25px'>
+                                <img src='../Data/Images/Icons/return.png' height='25px'>
                             </p>
                         </div>
                     </div>
@@ -584,9 +584,9 @@ function intranet_navbar()
                                     <div class='card shadow-sm'>
                                         <div class='card-body'>
                                             <h5>
-                                                <img src='../Images/Icons/folder.png' height='25px'> <?php echo $entry; ?>
+                                                <img src='../Data/Images/Icons/folder.png' height='25px'> <?php echo $entry; ?>
                                                 <button type='submit' name='delete_folder' class='float-end btn btn-danger btn-sm'>
-                                                    <img src='../Images/Icons/delete.png' height='25px'>
+                                                    <img src='../Data/Images/Icons/delete.png' height='25px'>
                                                     <input type='hidden' name='folder_name_to_delete' value="<?php echo $entry; ?>">
                                                 </button>
                                             </h5>
@@ -735,43 +735,43 @@ function intranet_navbar()
                                         $ext = pathinfo($entry, PATHINFO_EXTENSION);
                                         switch ($ext) {
                                             case "pdf":
-                                                $img_src = "../Images/Icons/file/pdf.png";
+                                                $img_src = "../Data/Images/Icons/file/pdf.png";
                                                 break;
                                             case "doc":
                                             case "docx":
-                                                $img_src = "../Images/Icons/file/docx.png";
+                                                $img_src = "../Data/Images/Icons/file/docx.png";
                                                 break;
                                             case "xls":
                                             case "xlsx":
-                                                $img_src = "../Images/Icons/file/xlsx.png";
+                                                $img_src = "../Data/Images/Icons/file/xlsx.png";
                                                 break;
                                             case "html":
-                                                $img_src = "../Images/Icons/file/html.png";
+                                                $img_src = "../Data/Images/Icons/file/html.png";
                                                 break;
                                             case "css":
-                                                $img_src = "../Images/Icons/file/css.png";
+                                                $img_src = "../Data/Images/Icons/file/css.png";
                                                 break;
                                             case "ppt":
                                             case "pptx":
-                                                $img_src = "../Images/Icons/file/pptx.png";
+                                                $img_src = "../Data/Images/Icons/file/pptx.png";
                                                 break;
                                             case "mp3":
-                                                $img_src = "../Images/Icons/file/mp3.png";
+                                                $img_src = "../Data/Images/Icons/file/mp3.png";
                                                 break;
                                             case "mp4":
-                                                $img_src = "../Images/Icons/file/mp4.png";
+                                                $img_src = "../Data/Images/Icons/file/mp4.png";
                                                 break;
                                             case "jpg":
                                             case "jpeg":
                                             case "gif":
                                             case "png":
-                                                $img_src = "../Images/Icons/file/png.png";
+                                                $img_src = "../Data/Images/Icons/file/png.png";
                                                 break;
                                             case "zip":
-                                                $img_src = "../Images/Icons/file/zip.png";
+                                                $img_src = "../Data/Images/Icons/file/zip.png";
                                                 break;
                                             default:
-                                                $img_src = "../Images/Icons/file/default.png";
+                                                $img_src = "../Data/Images/Icons/file/default.png";
                                         }
                                         echo "<tr>";
                                         echo "<td><img src='$img_src' height='25px'> $entry</td>";
@@ -785,24 +785,24 @@ function intranet_navbar()
                                             ?>
                                                 <form method="post">
                                                     <a href="<?php echo $dir . $entry ?>" target="_blank" class="btn btn-sm btn-outline-primary">
-                                                        <img src="../Images/Icons/eye.png" height="25px">
+                                                        <img src="../Data/Images/Icons/eye.png" height="25px">
                                                     </a>
                                                 <?php
                                             } else {
                                                 ?>
                                                     <a href="<?php echo $dir . $entry ?>" target="_blank" class="btn btn-sm btn-outline-secondary disabled">
-                                                        <img src="../Images/Icons/eye-cross.png" height="25px">
+                                                        <img src="../Data/Images/Icons/eye-cross.png" height="25px">
                                                     </a>
                                                 <?php
                                             }
                                                 ?>
                                                 <a href='<?php echo "$dir$entry" ?>' download class='btn btn-sm btn-outline-success me-0'>
-                                                    <img src='../Images/Icons/download.png' height='25px'>
+                                                    <img src='../Data/Images/Icons/download.png' height='25px'>
                                                 </a>
 
                                                 <input type="hidden" name="file_name" value="<?php echo $entry ?>">
                                                 <button type="submit" class="ms-0 btn btn-sm btn-outline-danger" name="delete_file">
-                                                    <img src="../Images/Icons/delete.png" height="25px">
+                                                    <img src="../Data/Images/Icons/delete.png" height="25px">
                                                 </button>
                                                 </form>
 
@@ -966,7 +966,7 @@ function intranet_navbar()
 
         if (isset($partenaires[$nom])) {
             $old_image = $partenaires[$nom]['partenaire_logo'];
-            $targetDir = '../Images/Partenaires/';
+            $targetDir = '../Data/Images/Partenaires/';
 
             $partenaires[$nom]['description'] = $description;
 
