@@ -142,7 +142,7 @@ intranet_navbar();
                             <button type="button" class="mt-1 btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal1">
                                 <p class="mb-0">Atelier sensibilisation à la cybersécurité</p>
                                 <div class="progress">
-                                    <div id="progress-bar" class="progress-bar bg-dark" style="width: 90%;"></div>
+                                    <div id="progress-bar" class="progress-bar bg-dark" style="width: 98%;"></div>
                                 </div>
                                 <?php
                                 echo countdown("2023-06-25 12:15:00");
@@ -225,7 +225,7 @@ intranet_navbar();
                             <button type="button" class="mt-1 btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal4">
                                 <p class="mb-0">Intégration avec Apple</p>
                                 <div class="progress">
-                                    <div id="progress-bar" class="progress-bar bg-dark" style="width: 85%;"></div>
+                                    <div id="progress-bar" class="progress-bar bg-dark" style="width: 95%;"></div>
                                 </div>
                                 <?php
                                 echo countdown("2023-06-29 12:15:00");
@@ -281,7 +281,7 @@ intranet_navbar();
                             <button type="button" class="mt-1 btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal6">
                                 <p class="mb-0">Promotion spéciale pour les étudiants</p>
                                 <div class="progress">
-                                    <div id="progress-bar" class="progress-bar bg-dark" style="width: 86%;"></div>
+                                    <div id="progress-bar" class="progress-bar bg-dark" style="width: 95%;"></div>
                                 </div>
                                 <?php
                                 echo countdown("2023-06-29 1:15:00");
@@ -309,7 +309,7 @@ intranet_navbar();
                             <button type="button" class="mt-1 btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal7">
                                 <p class="mb-0">Expansion de nos serveurs</p>
                                 <div class="progress">
-                                    <div id="progress-bar" class="progress-bar bg-dark" style="width: 10%;"></div>
+                                    <div id="progress-bar" class="progress-bar bg-dark" style="width: 3%;"></div>
                                 </div>
                                 <?php
                                 echo countdown("2023-12-29 12:15:00");
@@ -360,7 +360,7 @@ intranet_navbar();
                             <button type="button" class="mt-1 btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal9">
                                 <p class="mb-0">Partenariat avec Google </p>
                                 <div class="progress">
-                                    <div id="progress-bar" class="progress-bar bg-dark" style="width: 4%;"></div>
+                                    <div id="progress-bar" class="progress-bar bg-dark" style="width: 6%;"></div>
                                 </div>
                                 <?php
                                 echo countdown("2023-11-29 12:15:00");

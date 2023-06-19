@@ -613,6 +613,7 @@ function intranet_navbar()
         <button type='submit' name='tri' value='user_desc' class='btn btn-link'><i class='fas fa-sort-down'></i><img src='Images/Icons/downarrow.png'></button>
         </th>
         <th>Nouveau MDP</th>
+        <th>Poste</th>
         <th>E-Mail <button type='submit' name='tri' value='email_asc' class='btn btn-link'><i class='fas fa-sort-up'></i><img src='Images/Icons/uparrow.png'></button>
         <button type='submit' name='tri' value='email_desc' class='btn btn-link'><i class='fas fa-sort-down'></i><img src='Images/Icons/downarrow.png'></button>
         </th><th>Actions</th>
