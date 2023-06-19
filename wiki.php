@@ -205,44 +205,34 @@ intranet_navbar();
             <div class="card">
                 <a data-bs-toggle="collapse" href="#collapse1112" style="text-decoration: none;" class="text-dark">
                     <div class="card-header">
-                        Collapsible Group Item #1
+                        Ajout d'un employé sur l'annuaire
                     </div>
                 </a>
 
                 <div id="collapse1112" class="collapse" data-bs-parent="#accordion">
-                    <div class="card-body">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                <div class="card-body">
+                        <a>Sur cette page, il est possible d'ajouter un membre sur l'annuaire. Pour ce faire, appuyer sur Ajouter. Attention, cela a un impact sur le site vitrine</a><div class="col">
+                                <img src="Images\Screen\annuB.jpg" width="350px">
+                            </div>
                     </div>
                 </div>
             </div>
             <div class="card">
                 <a data-bs-toggle="collapse" href="#collapse2222" style="text-decoration: none;" class="text-dark">
                     <div class="card-header">
-                        Collapsible Group Item #2
+                        Modification d'un membre de l'annuaire
                     </div>
                 </a>
 
                 <div id="collapse2222" class="collapse" data-bs-parent="#accordion">
-                    <div class="card-body">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                <div class="card-body">
+                        <a>Sur cette page, il est possible de modifier les caractéristiques des employés sur l'Annuaire. Pour ce faire, cliquer sur Enregistrer. Il est aussi possible de les supprimer. Attention, cela a un impact sur le site vitrine</a><div class="col">
+                                <img src="Images\Screen\annuA.jpg" width="350px">
+                            </div>
                     </div>
-                </div>
-            </div>
-            <div class="card">
-                <a data-bs-toggle="collapse" href="#collapse3332" style="text-decoration: none;" class="text-dark">
-                    <div class="card-header">
-                        Collapsible Group Item #3
-                    </div>
-                </a>
-
-                <div id="collapse3332" class="collapse" data-bs-parent="#accordion">
-                    <div class="card-body">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </div>
-                </div>
             </div>
         </div>
-
+        </div>
         <dt class="display-6">Gestion des Partenaires</dt>
         <div id="accordion" class="ms-5 me-5 mb-5 mt-3">
             <div class="card">

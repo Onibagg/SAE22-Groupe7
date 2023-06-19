@@ -29,6 +29,16 @@
         "poste": "Chef de la Production",
         "description": "Son attitude positive et sa capacit\u00e9 \u00e0 travailler en \u00e9quipe font de lui un excellent collaborateur. Il sait comment motiver les autres et cr\u00e9er un environnement de travail harmonieux."
     },
+    "emarchand": {
+        "prenom": "Emeric",
+        "nom": "Marchand",
+        "user": "emarchand",
+        "mdp": "$2y$10$a6X9FPLfXtEf5WoDk97FYOkBZ.BBhEVwfQl\/CilsTheikjCKj2BqK",
+        "email": "emeric5612@gmail.com",
+        "groupe": "",
+        "poste": "Chef de l'IT",
+        "description": "Nous sommes ravis d'avoir un employ\u00e9 aussi talentueux dans notre entreprise. Sa cr\u00e9ativit\u00e9 et ses id\u00e9es novatrices ont contribu\u00e9 \u00e0 la croissance de notre entreprise. Jaaj"
+    },
     "mgagnon": {
         "nom": "Gagnon",
         "prenom": "Marie",
