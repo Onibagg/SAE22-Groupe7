@@ -409,11 +409,13 @@ function intranet_navbar()
                 $nomm = $_POST['nom'];
                 $user = $_POST['user'];
                 $mdp = $_POST['mdp'];
+                $poste = $_POST['poste'];
                 $email = $_POST['email'];
                 foreach ($_POST['modifier'] as $nom => $valeur) {
                     $users[$nom]['prenom'] = $prenom[$nom];
                     $users[$nom]['nom'] = $nomm[$nom];
                     $users[$nom]['mdp'] = password_hash($mdp[$nom], PASSWORD_DEFAULT);
+                    $users[$nom]['poste'] = $poste[$nom];
                     $users[$nom]['email'] = $email[$nom];
                     if ($users[$nom]['user'] !== $user[$nom]) {
                         $old_photo_path = "../Data/Images/Employés/" . $users[$nom]['user'] . ".jpg";
