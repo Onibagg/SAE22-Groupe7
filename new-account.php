@@ -86,8 +86,8 @@ setup();
                                     $users = file_decod('Data\demande-compte.json');
 
                                     $users[$user] = [
-                                        'prenom' => $prenom,
                                         'nom' => $nom,
+                                        'prenom' => $prenom,
                                         'user' => $user,
                                         'mdp' => password_hash($mdp, PASSWORD_DEFAULT),
                                         'email' => $email,
