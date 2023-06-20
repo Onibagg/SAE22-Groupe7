@@ -58,8 +58,8 @@
 
             <?php
             if (isset($_POST['envoyer'])) {
-
-                $contact = file_decod('../Data/contacts.json');
+                include("Vitrine/Models/file_usage.php");
+                $contact = file_decod('Data/contacts.json');
 
                 $mail = $_POST['mail'];
                 $raison = $_POST['raison'];
@@ -75,7 +75,8 @@
                 $jsonContact = json_encode($contact);
 
                 // Chemin vers le fichier JSON
-                $cheminFichier = '../Data/contacts.json';
+                $cheminFichier = 'Data/contacts.json';
+
 
                 // Écriture des données dans le fichier JSON
                 file_encod($cheminFichier, $contact);
