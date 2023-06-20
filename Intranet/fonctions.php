@@ -863,28 +863,28 @@ function intranet_navbar()
 
     function partenaire_exists($nom)
     {
-        $partenaires = json_decode(file_get_contents("Data/ListePartenaire.json"), true);
+        $partenaires = json_decode(file_get_contents("../Data/ListePartenaire.json"), true);
         return isset($partenaires[$nom]);
     }
 
     function addPartenaire($nom, $description, $img)
     {
-        $partenaires = json_decode(file_get_contents("Data/ListePartenaire.json"), true);
+        $partenaires = json_decode(file_get_contents("../Data/ListePartenaire.json"), true);
         $partenaires[$nom] = array(
             "description" => $description,
             "partenaire_logo" => $img
         );
-        file_put_contents("Data/ListePartenaire.json", json_encode($partenaires));
+        file_put_contents("../Data/ListePartenaire.json", json_encode($partenaires));
     }
 
     function delPartenaire($nom)
     {
-        $json_file = 'Data/ListePartenaire.json';
+        $json_file = '../Data/ListePartenaire.json';
         $partenaires = json_decode(file_get_contents($json_file), true);
 
         if (isset($partenaires[$nom])) {
             $image = $partenaires[$nom]['partenaire_logo'];
-            $image_path = 'Images/Partenaires/' . $image;
+            $image_path = '../Data/Images/Partenaires/' . $image;
 
             if (file_exists($image_path)) {
                 unlink($image_path);
@@ -904,7 +904,7 @@ function intranet_navbar()
             $img = $nom . '_logo.jpg';
 
             if (isset($_FILES['photopart']) && $_FILES['photopart']['error'] === 0) {
-                $targetDir = 'Images/Partenaires/';
+                $targetDir = '../Data/Images/Partenaires/';
                 $targetFile = $targetDir . $nom . '_logo.jpg';
 
                 if (file_exists($targetFile)) {
