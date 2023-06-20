@@ -322,30 +322,34 @@ function intranet_navbar()
     function afficherUtilisateurs($utilisateurs)
     {
         echo '<form method="post">';
+        echo '<div class="form-group">';
+        echo '<label for="search">Rechercher un utilisateur :</label>';
+        echo '<input type="text" name="search" id="search" class="form-control">';
+        echo '</div>';
         echo '<div class="table-responsive">';
         echo '<table class="table table-hover">';
         echo "
-        <tr>
-        <th>Prénom 
-        <button type='submit' name='tri' value='prenom_asc' class='btn btn-link'><i class='fas fa-sort-up'></i><img src='../Data/Images/Icons/uparrow.png'></button>
-        <button type='submit' name='tri' value='prenom_desc' class='btn btn-link'><i class='fas fa-sort-down'></i><img src='../Data/Images/Icons/downarrow.png'></button>
-        </th>
-        <th>Nom 
-        <button type='submit' name='tri' value='nom_asc' class='btn btn-link'><i class='fas fa-sort-up'></i><img src='../Data/Images/Icons/uparrow.png'></button>
-        <button type='submit' name='tri' value='nom_desc' class='btn btn-link'><i class='fas fa-sort-down'></i><img src='../Data/Images/Icons/downarrow.png'></button>
-        </th>
-        <th>Nom d'utilisateur 
-        <button type='submit' name='tri' value='user_asc' class='btn btn-link'><i class='fas fa-sort-up'></i><img src='../Data/Images/Icons/uparrow.png'></button>
-        <button type='submit' name='tri' value='user_desc' class='btn btn-link'><i class='fas fa-sort-down'></i><img src='../Data/Images/Icons/downarrow.png'></button>
-        </th>
-        <th>Nouveau MDP</th>
-        <th>Poste</th>
-        <th>E-Mail <button type='submit' name='tri' value='email_asc' class='btn btn-link'><i class='fas fa-sort-up'></i><img src='../Data/Images/Icons/uparrow.png'></button>
-        <button type='submit' name='tri' value='email_desc' class='btn btn-link'><i class='fas fa-sort-down'></i><img src='../Data/Images/Icons/downarrow.png'></button>
-        </th><th>Actions</th>
-        <th></th>
-        </tr>
-        ";
+    <tr>
+    <th>Prénom 
+    <button type='submit' name='tri' value='prenom_asc' class='btn btn-link'><i class='fas fa-sort-up'></i><img src='../Data/Images/Icons/uparrow.png'></button>
+    <button type='submit' name='tri' value='prenom_desc' class='btn btn-link'><i class='fas fa-sort-down'></i><img src='../Data/Images/Icons/downarrow.png'></button>
+    </th>
+    <th>Nom 
+    <button type='submit' name='tri' value='nom_asc' class='btn btn-link'><i class='fas fa-sort-up'></i><img src='../Data/Images/Icons/uparrow.png'></button>
+    <button type='submit' name='tri' value='nom_desc' class='btn btn-link'><i class='fas fa-sort-down'></i><img src='../Data/Images/Icons/downarrow.png'></button>
+    </th>
+    <th>Nom d'utilisateur 
+    <button type='submit' name='tri' value='user_asc' class='btn btn-link'><i class='fas fa-sort-up'></i><img src='../Data/Images/Icons/uparrow.png'></button>
+    <button type='submit' name='tri' value='user_desc' class='btn btn-link'><i class='fas fa-sort-down'></i><img src='../Data/Images/Icons/downarrow.png'></button>
+    </th>
+    <th>Nouveau MDP</th>
+    <th>Poste</th>
+    <th>E-Mail <button type='submit' name='tri' value='email_asc' class='btn btn-link'><i class='fas fa-sort-up'></i><img src='../Data/Images/Icons/uparrow.png'></button>
+    <button type='submit' name='tri' value='email_desc' class='btn btn-link'><i class='fas fa-sort-down'></i><img src='../Data/Images/Icons/downarrow.png'></button>
+    </th><th>Actions</th>
+    <th></th>
+    </tr>
+    ";
 
         // Vérifier si le tri est demandé
         $tri = isset($_POST['tri']) ? $_POST['tri'] : '';
@@ -379,7 +383,24 @@ function intranet_navbar()
             uasort($utilisateurs, $sortFunction);
         }
 
-        foreach ($utilisateurs as $nom => $infos) {
+        // Vérifier si une recherche a été soumise
+        $search = isset($_POST['search']) ? $_POST['search'] : '';
+
+        // Filtrer les utilisateurs en fonction de la recherche
+        $utilisateursFiltres = array_filter($utilisateurs, function ($infos) use ($search) {
+            $prenom = $infos['prenom'];
+            $nom = $infos['nom'];
+            $user = $infos['user'];
+            $email = $infos['email'];
+
+            // Vérifier si la recherche correspond à l'un des champs
+            return (strpos($prenom, $search) !== false ||
+                strpos($nom, $search) !== false ||
+                strpos($user, $search) !== false ||
+                strpos($email, $search) !== false);
+        });
+
+        foreach ($utilisateursFiltres as $nom => $infos) {
             echo '<tr>';
             echo '<td><input type="text" name="prenom[' . $nom . ']" value="' . $infos['prenom'] . '" class="form-control"></td>';
             echo '<td><input type="text" name="nom[' . $nom . ']" value="' . $infos['nom'] . '" class="form-control"></td>';
@@ -401,7 +422,7 @@ function intranet_navbar()
     function gestionUtilisateurs()
     {
         $path = '../Data/login-mdp.json';
-        $users = file_decod($path);
+        $users = json_decode(file_get_contents($path), true);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['modifier'])) {
@@ -441,6 +462,7 @@ function intranet_navbar()
 
         afficherUtilisateurs($users);
     }
+
 
     function deconnexion()
     {
@@ -559,7 +581,7 @@ function intranet_navbar()
         if ($dir !== "../Data/Gestionnaire-de-fichier/") {
             $parent_dir = dirname($dir);
         ?>
-            <div class='col'>
+            <!-- <div class='col'>
                 <a href='gest-fichiers.php' class='text-dark' style='text-decoration: none;'>
                     <div class='card shadow-sm'>
                         <div class='card-body'>
@@ -569,7 +591,7 @@ function intranet_navbar()
                         </div>
                     </div>
                 </a>
-            </div>
+            </div>-->
             <?php
 
         }
@@ -580,23 +602,26 @@ function intranet_navbar()
                 if ($entry != "." && $entry != "..") {
                     if (is_dir($dir . $entry)) {
             ?>
-                        <div class='col'>
+                        <!-- <div class='col'>
                             <form action='gest-fichiers.php' method='post' name='folder_name'>
-                                <a href='?dir=<?php echo $entry; ?>' class='text-dark' style='text-decoration: none;'>
+                                <a href='?dir=<?php //echo $entry; 
+                                                ?>' class='text-dark' style='text-decoration: none;'>
                                     <div class='card shadow-sm'>
                                         <div class='card-body'>
                                             <h5>
-                                                <img src='../Data/Images/Icons/folder.png' height='25px'> <?php echo $entry; ?>
+                                                <img src='../Data/Images/Icons/folder.png' height='25px'> <?php //echo $entry; 
+                                                                                                            ?>
                                                 <button type='submit' name='delete_folder' class='float-end btn btn-danger btn-sm'>
                                                     <img src='../Data/Images/Icons/delete.png' height='25px'>
-                                                    <input type='hidden' name='folder_name_to_delete' value="<?php echo $entry; ?>">
+                                                    <input type='hidden' name='folder_name_to_delete' value="<?php //echo $entry; 
+                                                                                                                ?>">
                                                 </button>
                                             </h5>
                                         </div>
                                     </div>
                                 </a>
                             </form>
-                        </div>
+                        </div> -->
         <?php
                     } else {
                     }
@@ -610,7 +635,7 @@ function intranet_navbar()
             <div class="col">
             </div>
             <div class="col text-center">
-                <div class='card shadow-sm'>
+                <!-- <div class='card shadow-sm'>
                     <div class='card-body'>
                         <h5 class='card-title'>Nouveau dossier</h5>
                         <form action='' method='post'>
@@ -620,7 +645,7 @@ function intranet_navbar()
                             <button type='submit' class=' mt-2 btn btn-outline-dark'>Ajouter</button>
                         </form>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="col"></div>
         </div>
@@ -684,8 +709,8 @@ function intranet_navbar()
             if (file_exists($target_file)) {
                 echo "<div class='alert alert-danger'>Désolé, ce fichier existe déjà.</div>";
                 $uploadOk = 0;
-            } elseif ($_FILES["fileToUpload"]["size"] > 500000000) {
-                echo "<div class='alert alert-danger'>Désolé, votre fichier est trop volumineux. (Max 500 Mo)</div>";
+            } elseif ($_FILES["fileToUpload"]["size"] > 3000000) {
+                echo "<div class='alert alert-danger'>Désolé, votre fichier est trop volumineux. (Max 3 Mo)</div>";
                 $uploadOk = 0;
             } elseif ($imageFileType != "jpg" && $imageFileType != "jpeg" && $imageFileType != "png" && $imageFileType != "gif" && $imageFileType != "pdf" && $imageFileType != "doc" && $imageFileType != "docx" && $imageFileType != "xls" && $imageFileType != "xlsx" && $imageFileType != "html" && $imageFileType != "css" && $imageFileType != "ppt" && $imageFileType != "pptx" && $imageFileType != "mp3" && $imageFileType != "mp4" && $imageFileType != "zip" && $imageFileType != "txt") {
                 echo "<div class='alert alert-danger'>Désolé, seuls les fichiers de type JPG, JPEG, PNG, GIF, PDF, DOC, DOCX, XLS, XLSX, HTML, CSS, PPT, PPTX, MP3, MP4, ZIP et TXT sont autorisés.</div>";

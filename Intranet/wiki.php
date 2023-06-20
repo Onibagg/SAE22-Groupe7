@@ -34,7 +34,7 @@ intranet_navbar();
                                 Vous pouvez retrouver sur la page d'acceuil, les évenements a venir dans l'entreprise.
                             </div>
                             <div class="col text-center">
-                                <img src="../DataImages/Screen/avenir.png" width="350px">
+                                <img src="../Data/Images/Screen/avenir.png" width="350px">
                             </div>
                         </div>
                     </div>
@@ -54,7 +54,7 @@ intranet_navbar();
                                 Vous pouvez retrouver sur la page d'acceuil, les endroits stratégiques : Futurs évènements, réunion de fin d'année, emplacement de nos bureaux dans le monde...
                             </div>
                             <div class="col text-center">
-                                <img src="../DataImages/Screen/carte.png" width="350px">
+                                <img src="../Data/Images/Screen/carte.png" width="350px">
                             </div>
                         </div>
                     </div>
@@ -74,7 +74,7 @@ intranet_navbar();
                                 Grâce à la card de droite vous pouvez voir les nouveaux utilisateurs qui souhaite rejoindre l'intranet. Vous pouvez accepter ou refuser la demande grace au deux boutons sur la droite.<br>(Visible uniquement si vous faites partie des <b>RH</b> ou de la <b>Direction </b>)
                             </div>
                             <div class="col">
-                                <img src="../DataImages/Screen/newusr.png" width="350px">
+                                <img src="../Data/Images/Screen/newusr.png" width="350px">
                             </div>
                         </div>
                     </div>
@@ -116,10 +116,10 @@ intranet_navbar();
                             <div class="col text-center">
                                 <p class='mb-2 mt-2'>Sur cette page, il est possible d'ajouter un utilisateur au site. Pour ce faire, remplire ses données dans le formulaire</p>
                                 <br> <br>
-                                <img class='mt-5' src="../DataImages/Screen/Newuser.png" width="600px">
+                                <img class='mt-5' src="../Data/Images/Screen/Newuser.png" width="600px">
                             </div>
                             <div class="col text-center">
-                                <img class='mt-2' src="../DataImages/Screen/Portail.png" width="500px">
+                                <img class='mt-2' src="../Data/Images/Screen/Portail.png" width="500px">
                                 <p class='mt-5'>On obtient donc notre nouvel utilisateur !</p>
                             </div>
                         </div>
@@ -136,10 +136,10 @@ intranet_navbar();
                     <div class="card-body">
                         <div class="row">
                             <div class="col text-center">
-                                <p> Il est effectivement possible de visualiser tout ses utilisateurs, ainsi que de les trier par ordre alphabétique</p>
+                                <p> Il est effectivement possible de visualiser tout ses utilisateurs, ainsi que de les trier par ordre alphabétique ainsi que de faire une recherche pour trouver le bon utilsateur</p>
                             </div>
                             <div class="col text-center">
-                                <img src="../DataImages/Screen/visuusr.png" width="900px">
+                                <img src="../Data/Images/Screen/visuusr.png" width="900px">
                             </div>
                         </div>
                     </div>
@@ -162,7 +162,7 @@ intranet_navbar();
                                 Vous pouvez créer et supprimer les groupes d'administration.
                             </div>
                             <div class="col">
-                                <img src="../DataImages/Screen/gp.png" width="600px">
+                                <img src="../Data/Images/Screen/gp.png" width="600px">
                             </div>
                         </div>
                     </div>
@@ -182,7 +182,7 @@ intranet_navbar();
                                 <br><br>Il faut ensuite uniquement cliquer sur ajouter, et le membre est ajouté.
                             </div>
                             <div class="col">
-                                <img src="../DataImages/Screen/dropdown.png" width="400px">
+                                <img src="../Data/Images/Screen/dropdown.png" width="400px">
                             </div>
                         </div>
                     </div>
@@ -201,7 +201,7 @@ intranet_navbar();
                                 Rien de plus simple, il suffit de cliquer sur le bouton supprimer a coté du nom d'utilisateur du membre du groupe, et le personne est suprimée automatiquement.
                             </div>
                             <div class="col">
-                                <img src="../DataImages/Screen/suprrgrp.png" width="400px">
+                                <img src="../Data/Images/Screen/suprrgrp.png" width="400px">
                             </div>
                         </div>
                     </div>
@@ -225,7 +225,7 @@ intranet_navbar();
                                 <p>Pour créer un dossier, rien de plus simple, il suffit de rentrer le nom du dossier que vous voulez créer, et de cliquer sur ajouter, vous pouvez maintenant visualiser votre nouveau dossier.</p>
                             </div>
                             <div class="col text-center">
-                                <img src="../DataImages/Screen/newdir.png" width="400px">
+                                <img src="../Data/Images/Screen/newdir.png" width="400px">
                             </div>
                         </div>
                         <hr>
@@ -234,7 +234,7 @@ intranet_navbar();
                                 <p>Pour supprimer un dossier, il suffit de cliquer sur l'icon supprimer a côté du dossier que vous voulez supprimer.</p>
                             </div>
                             <div class="col text-center">
-                                <img src="../DataImages/Screen/deldir.png" width="400px">
+                                <img src="../Data/Images/Screen/deldir.png" width="400px">
                             </div>
                         </div>
                     </div>
@@ -252,7 +252,7 @@ intranet_navbar();
                         <div class="row">
                             <div class="col text-center">
                                 <p>Pour créer un uploader un fichier il suffit de cliquer sur la barre d'upload, et de choisir le fichier que vous souhaitez uploader sur le site.</p>
-                                <img src="../DataImages/Screen/upload.png" width="1000px">
+                                <img src="../Data/Images/Screen/upload.png" width="1000px">
                             </div>
                         </div>
                     </div>
@@ -280,7 +280,7 @@ intranet_navbar();
                                 </p>
                             </div>
                             <div class="col text-center">
-                                <img src="../DataImages/Screen/actions.png" width="300px">
+                                <img src="../Data/Images/Screen/actions.png" width="300px">
                             </div>
                         </div>
                     </div>
@@ -301,7 +301,7 @@ intranet_navbar();
                     <div class="card-body">
                         <a>Sur cette page, il est possible d'ajouter un membre sur l'annuaire. Pour ce faire, appuyer sur Ajouter. Attention, cela a un impact sur le site vitrine</a>
                         <div class="col">
-                            <img src="../DataImages/Screen/annuB.jpg" width="350px">
+                            <img src="../Data/Images/Screen/annuB.jpg" width="350px">
                         </div>
                     </div>
                 </div>
@@ -317,7 +317,7 @@ intranet_navbar();
                     <div class="card-body">
                         <a>Sur cette page, il est possible de modifier les caractéristiques des employés sur l'Annuaire. Pour ce faire, cliquer sur Enregistrer. Il est aussi possible de les supprimer. Attention, cela a un impact sur le site vitrine</a>
                         <div class="col">
-                            <img class="img-border" src="../DataImages/Screen/annuA.jpg" width="350px">
+                            <img class="img-border" src="../Data/Images/Screen/annuA.jpg" width="350px">
                         </div>
                     </div>
                 </div>
@@ -335,11 +335,11 @@ intranet_navbar();
                     <div class="card-body">
                         <a>Sur cette page, il est possible d'ajouter un partenaire au site vitrine. Pour ce faire, cliquer sur ajouter : </a>
                         <div class="col text-center">
-                            <img src="../DataImages/Screen/ajouter.png" width="350px">
+                            <img src="../Data/Images/Screen/ajouter.png" width="350px">
                         </div>
                         <a>Cela ouvre un modal permettant d'entrer les informations et de charger sur le serveur le logo du dit partenaire : </a>
                         <div class="col text-center">
-                            <img src="../DataImages/Screen/ajouter2.png" width="350px">
+                            <img src="../Data/Images/Screen/ajouter2.png" width="350px">
                         </div>
                     </div>
                 </div>
@@ -355,7 +355,7 @@ intranet_navbar();
                     <div class="card-body">
                         <a>Notons qu'une fois un partenaire entré, on peut modifier ses informationse ou le supprimer. En appuyant sur modifier voici les paramètres sur lesquels on peut jouer:</a>
                         <div class="col text-center">
-                            <img src="../DataImages/Screen/modif.png" width="500px">
+                            <img src="../Data/Images/Screen/modif.png" width="500px">
                         </div>
                     </div>
                 </div>
