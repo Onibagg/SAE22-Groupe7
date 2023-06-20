@@ -520,7 +520,7 @@ function intranet_navbar()
                         'user' => $user_accepte['user'],
                         'mdp' => $user_accepte['mdp'],
                         'email' => $user_accepte['email'],
-                        'groupe' => '',
+                        'poste' => $user_accepte['poste']
                     );
                     $login_mdp_contenu = json_decode(file_get_contents($login_mdp), true); // récupère le fichier des vrais utilisateurs
                     $login_mdp_contenu[$user_accepte['user']] = $nouvel_utilisateur; // ajout du nouvel utilisateur
