@@ -86,12 +86,6 @@ intranet_navbar();
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <dt class="display-6">Portail de Connexion</dt>
-        <div id="accordion" class="ms-5 me-5 mb-5 mt-3">
             <div class="card">
                 <a data-bs-toggle="collapse" href="#collapse22" style="text-decoration: none;" class="text-dark">
                     <div class="card-header">
