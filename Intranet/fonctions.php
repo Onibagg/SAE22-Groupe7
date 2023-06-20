@@ -469,9 +469,9 @@ function intranet_navbar()
         echo "<tr><th>Prénom</th><th>Nom</th><th>Poste</th><th></th></tr>";
         foreach ($utilisateurs as $nom => $infos) {
             echo '<tr>';
-            echo '<td><input type="text" name="prenom[' . $nom . ']" value="' . $infos['prenom'] . '" class="form-control"></td>';
-            echo '<td><input type="text" name="nom[' . $nom . ']" value="' . $infos['nom'] . '" class="form-control"></td>';
-            echo '<td><input type="text" name="poste[' . $nom . ']" value="' . $infos['poste'] . '" class="form-control"></td>';
+            echo '<td><span>' . $infos['prenom'] . '</span><input type="hidden" name="prenom[' . $nom . ']" value="' . $infos['prenom'] . '"></td>';
+            echo '<td><span>' . $infos['nom'] . '</span><input type="hidden" name="nom[' . $nom . ']" value="' . $infos['nom'] . '"></td>';
+            echo '<td><span>' . $infos['poste'] . '</span><input type="hidden" name="poste[' . $nom . ']" value="' . $infos['poste'] . '"></td>';
             echo '<td class="text-center"><input type="image" src="../Data/Images/Icons/correct.png" width="50" name="accepter[' . $nom . ']" value="Accepter" class="btn btn-success"></td>';
             echo '<td class="text-center"><input type="image" src="../Data/Images/Icons/cross.png" width="50" name="refuser[' . $nom . ']" value="Refuser" class="btn btn-danger"></td>';
             echo '</tr>';
