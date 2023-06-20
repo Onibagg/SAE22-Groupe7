@@ -1,4 +1,3 @@
 <?php
-include("Models/setup.php");
-include("Views/new_account.php");
+include("../Vitrine/Controllers/new_account.php");
 ?>
