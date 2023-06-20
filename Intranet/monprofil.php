@@ -31,68 +31,37 @@ intranet_navbar();
 
         ?>
             <div class="col-4 card">
-                <div class="input-group mb-3 mt-3">
-                    <span class="input-group-text">Prénom</span>
-                    <div class="form-floating">
-                        <input type="text" class="form-control" id="prenom" placeholder="<?php echo $prenom; ?>" name="prenom" required>
-                        <label for="prenom"><?php echo $prenom; ?></label>
+                <form>
+                    <div class="input-group mb-3 mt-3">
+                        <span class="input-group-text">Prénom</span>
+                        <input type="text" class="form-control" id="prenom" placeholder="<?php echo $prenom; ?>" name="prenom" required value="<?php echo $prenom; ?>">
                     </div>
-                </div>
-                <div class="input-group mb-3 mt-3">
-                    <span class="input-group-text">Prénom</span>
-                    <div class="form-floating">
-                        <input type="text" class="form-control" id="nom" placeholder="<?php echo $nom; ?>" name="nom" required>
-                        <label for="nom"><?php echo $nom; ?></label>
+                    <div class="input-group mb-3 mt-3">
+                        <span class="input-group-text">Nom</span>
+                        <input type="text" class="form-control" id="nom" placeholder="<?php echo $nom; ?>" name="nom" required value="<?php echo $nom; ?>">
                     </div>
-                </div>
-                <div class="input-group mb-3 mt-3">
-                    <span class="input-group-text">User</span>
-                    <div class="form-floating">
-                        <input type="text" class="form-control" id="user" placeholder="<?php echo $user; ?>" name="user" disabled>
-                        <label for="user"><?php echo $user; ?></label>
+                    <div class="input-group mb-3 mt-3 input-group-sm">
+                        <span class="input-group-text">User</span>
+                        <input type="text" class="form-control" id="user" placeholder="<?php echo $user; ?>" name="user" disabled value="<?php echo $user; ?>">
                     </div>
-                </div>
-                <div class="input-group mb-3 mt-3">
-                    <span class="input-group-text">E-mail</span>
-                    <div class="form-floating">
-                        <input type="text" class="form-control" id="email" placeholder="<?php echo $email; ?>" name="email" required>
-                        <label for="email"><?php echo $email; ?></label>
+                    <div class="input-group mb-3 mt-3">
+                        <span class="input-group-text">E-mail</span>
+                        <input type="text" class="form-control" id="email" placeholder="<?php echo $email; ?>" name="email" required value="<?php echo $email; ?>">
                     </div>
-                </div>
-                <div class="form-floating mb-2 mt-5">
-                    <input type="password" class="form-control" id="nouveauMdp" placeholder="Mot de passe" name="nouveauMdp">
-                    <label for="nouveauMdp">Nouveau Mot de passe</label>
-                </div>
-                <div class="form-floating mb-3 mt-2">
-                    <input type="password" class="form-control" id="confirmationMdp" placeholder="Mot de passe" name="confirmationMdp">
-                    <label for="confirmationMdp">Confirmation</label>
-                </div>
-            </div>
-            <div class="col-2">
-            </div>
-            <div class="mt-5 mb-5 text-center">
-                <button name="new-profile" type="submit" class="btn btn-outline-success">Enregistrer les modifications</button>
+                    <div class="form-floating mb-2 mt-5">
+                        <input type="password" class="form-control" id="nouveauMdp" placeholder="Mot de passe" name="nouveauMdp">
+                        <label for="nouveauMdp">Nouveau Mot de passe</label>
+                    </div>
+                    <div class="form-floating mb-3 mt-2">
+                        <input type="password" class="form-control" id="confirmationMdp" placeholder="Mot de passe" name="confirmationMdp">
+                        <label for="confirmationMdp">Confirmation</label>
+                    </div>
+                    <div class="mt-5 mb-5 text-center">
+                        <button name="new-profile" type="submit" class="btn btn-outline-success">Enregistrer les modifications</button>
+                    </div>
                 </form>
             </div>
-            <script>
-                // Récupérer les éléments de formulaire
-                var prenomInput = document.getElementById('prenom');
-                var nomInput = document.getElementById('nom');
-                var emailInput = document.getElementById('email');
 
-                // Ajouter des écouteurs d'événements pour chaque champ
-                prenomInput.addEventListener('click', function() {
-                    prenomInput.value = "<?php echo $prenom; ?>";
-                });
-
-                nomInput.addEventListener('click', function() {
-                    nomInput.value = "<?php echo $nom; ?>";
-                });
-
-                emailInput.addEventListener('click', function() {
-                    emailInput.value = "<?php echo $email; ?>";
-                });
-            </script>
 
         <?php
         }

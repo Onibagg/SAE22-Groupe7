@@ -260,9 +260,6 @@ function intranet_navbar()
                     <input class="form-control" type="password" placeholder="Confirmation" rows="1" id="confirmation" name="confirmation"></input>
                 </div>
                 <div class="col">
-                    <input class="form-control" placeholder="Poste" rows="1" id="poste" name="poste"></input>
-                </div>
-                <div class="col">
                     <input class="form-control" placeholder="E-Mail" rows="1" id="email" name="email"></input>
                 </div>
                 <div class="col">
@@ -281,7 +278,6 @@ function intranet_navbar()
                 $usr = $_POST['pseudo'];
                 $mdp = $_POST['mdp'];
                 $confirmation = $_POST['confirmation'];
-                $poste = $_POST['poste'];
                 $email = $_POST['email'];
                 $poste = $_POST['poste'];
 
@@ -321,101 +317,105 @@ function intranet_navbar()
 
     function afficherUtilisateurs($utilisateurs)
     {
-        echo '<form method="post">';
-        echo '<div class="form-group">';
-        echo '<label for="search">Rechercher un utilisateur :</label>';
-        echo '<input type="text" name="search" id="search" class="form-control">';
-        echo '</div>';
-        echo '<div class="table-responsive">';
-        echo '<table class="table table-hover">';
-        echo "
-    <tr>
-    <th>Prénom 
-    <button type='submit' name='tri' value='prenom_asc' class='btn btn-link'><i class='fas fa-sort-up'></i><img src='../Data/Images/Icons/uparrow.png'></button>
-    <button type='submit' name='tri' value='prenom_desc' class='btn btn-link'><i class='fas fa-sort-down'></i><img src='../Data/Images/Icons/downarrow.png'></button>
-    </th>
-    <th>Nom 
-    <button type='submit' name='tri' value='nom_asc' class='btn btn-link'><i class='fas fa-sort-up'></i><img src='../Data/Images/Icons/uparrow.png'></button>
-    <button type='submit' name='tri' value='nom_desc' class='btn btn-link'><i class='fas fa-sort-down'></i><img src='../Data/Images/Icons/downarrow.png'></button>
-    </th>
-    <th>Nom d'utilisateur 
-    <button type='submit' name='tri' value='user_asc' class='btn btn-link'><i class='fas fa-sort-up'></i><img src='../Data/Images/Icons/uparrow.png'></button>
-    <button type='submit' name='tri' value='user_desc' class='btn btn-link'><i class='fas fa-sort-down'></i><img src='../Data/Images/Icons/downarrow.png'></button>
-    </th>
-    <th>Nouveau MDP</th>
-    <th>Poste</th>
-    <th>E-Mail <button type='submit' name='tri' value='email_asc' class='btn btn-link'><i class='fas fa-sort-up'></i><img src='../Data/Images/Icons/uparrow.png'></button>
-    <button type='submit' name='tri' value='email_desc' class='btn btn-link'><i class='fas fa-sort-down'></i><img src='../Data/Images/Icons/downarrow.png'></button>
-    </th><th>Actions</th>
-    <th></th>
-    </tr>
-    ";
+        ?>
+        <form method="post">
+            <div class="form-group ms-5 me-5 mt-4 mb-4">
+                <label for="search">Rechercher un utilisateur :</label>
+                <input type="text" name="search" id="search" class="form-control">
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover">
 
-        // Vérifier si le tri est demandé
-        $tri = isset($_POST['tri']) ? $_POST['tri'] : '';
+                    <tr>
+                        <th>Prénom
+                            <button type='submit' name='tri' value='prenom_asc' class='btn btn-link'><i class='fas fa-sort-up'></i><img src='../Data/Images/Icons/uparrow.png'></button>
+                            <button type='submit' name='tri' value='prenom_desc' class='btn btn-link'><i class='fas fa-sort-down'></i><img src='../Data/Images/Icons/downarrow.png'></button>
+                        </th>
+                        <th>Nom
+                            <button type='submit' name='tri' value='nom_asc' class='btn btn-link'><i class='fas fa-sort-up'></i><img src='../Data/Images/Icons/uparrow.png'></button>
+                            <button type='submit' name='tri' value='nom_desc' class='btn btn-link'><i class='fas fa-sort-down'></i><img src='../Data/Images/Icons/downarrow.png'></button>
+                        </th>
+                        <th>Nom d'utilisateur
+                            <button type='submit' name='tri' value='user_asc' class='btn btn-link'><i class='fas fa-sort-up'></i><img src='../Data/Images/Icons/uparrow.png'></button>
+                            <button type='submit' name='tri' value='user_desc' class='btn btn-link'><i class='fas fa-sort-down'></i><img src='../Data/Images/Icons/downarrow.png'></button>
+                        </th>
+                        <th>Nouveau MDP</th>
+                        <th>Poste</th>
+                        <th>E-Mail <button type='submit' name='tri' value='email_asc' class='btn btn-link'><i class='fas fa-sort-up'></i><img src='../Data/Images/Icons/uparrow.png'></button>
+                            <button type='submit' name='tri' value='email_desc' class='btn btn-link'><i class='fas fa-sort-down'></i><img src='../Data/Images/Icons/downarrow.png'></button>
+                        </th>
+                        <th>Actions</th>
+                        <th></th>
+                    </tr>
+                    <?php
 
-        // Fonction de tri
-        $sortFunction = function ($a, $b) use ($tri) {
-            if ($tri === 'prenom_asc') {
-                return $a['prenom'] <=> $b['prenom'];
-            } elseif ($tri === 'prenom_desc') {
-                return $b['prenom'] <=> $a['prenom'];
-            } elseif ($tri === 'nom_asc') {
-                return $a['nom'] <=> $b['nom'];
-            } elseif ($tri === 'nom_desc') {
-                return $b['nom'] <=> $a['nom'];
-            } elseif ($tri === 'user_asc') {
-                return $a['user'] <=> $b['user'];
-            } elseif ($tri === 'user_desc') {
-                return $b['user'] <=> $a['user'];
-            } elseif ($tri === 'email_asc') {
-                return $a['email'] <=> $b['email'];
-            } elseif ($tri === 'email_desc') {
-                return $b['email'] <=> $a['email'];
-            } else {
-                // Pas de tri, garder l'ordre initial
-                return 0;
-            }
-        };
+                    // Vérifier si le tri est demandé
+                    $tri = isset($_POST['tri']) ? $_POST['tri'] : '';
 
-        // Appliquer le tri
-        if ($tri !== '') {
-            uasort($utilisateurs, $sortFunction);
-        }
+                    // Fonction de tri
+                    $sortFunction = function ($a, $b) use ($tri) {
+                        if ($tri === 'prenom_asc') {
+                            return $a['prenom'] <=> $b['prenom'];
+                        } elseif ($tri === 'prenom_desc') {
+                            return $b['prenom'] <=> $a['prenom'];
+                        } elseif ($tri === 'nom_asc') {
+                            return $a['nom'] <=> $b['nom'];
+                        } elseif ($tri === 'nom_desc') {
+                            return $b['nom'] <=> $a['nom'];
+                        } elseif ($tri === 'user_asc') {
+                            return $a['user'] <=> $b['user'];
+                        } elseif ($tri === 'user_desc') {
+                            return $b['user'] <=> $a['user'];
+                        } elseif ($tri === 'email_asc') {
+                            return $a['email'] <=> $b['email'];
+                        } elseif ($tri === 'email_desc') {
+                            return $b['email'] <=> $a['email'];
+                        } else {
+                            // Pas de tri, garder l'ordre initial
+                            return 0;
+                        }
+                    };
 
-        // Vérifier si une recherche a été soumise
-        $search = isset($_POST['search']) ? $_POST['search'] : '';
+                    // Appliquer le tri
+                    if ($tri !== '') {
+                        uasort($utilisateurs, $sortFunction);
+                    }
 
-        // Filtrer les utilisateurs en fonction de la recherche
-        $utilisateursFiltres = array_filter($utilisateurs, function ($infos) use ($search) {
-            $prenom = $infos['prenom'];
-            $nom = $infos['nom'];
-            $user = $infos['user'];
-            $email = $infos['email'];
+                    // Vérifier si une recherche a été soumise
+                    $search = isset($_POST['search']) ? $_POST['search'] : '';
 
-            // Vérifier si la recherche correspond à l'un des champs
-            return (strpos($prenom, $search) !== false ||
-                strpos($nom, $search) !== false ||
-                strpos($user, $search) !== false ||
-                strpos($email, $search) !== false);
-        });
+                    // Filtrer les utilisateurs en fonction de la recherche
+                    $utilisateursFiltres = array_filter($utilisateurs, function ($infos) use ($search) {
+                        $prenom = $infos['prenom'];
+                        $nom = $infos['nom'];
+                        $user = $infos['user'];
+                        $email = $infos['email'];
 
-        foreach ($utilisateursFiltres as $nom => $infos) {
-            echo '<tr>';
-            echo '<td><input type="text" name="prenom[' . $nom . ']" value="' . $infos['prenom'] . '" class="form-control"></td>';
-            echo '<td><input type="text" name="nom[' . $nom . ']" value="' . $infos['nom'] . '" class="form-control"></td>';
-            echo '<td><input type="text" name="user[' . $nom . ']" value="' . $infos['user'] . '" class="form-control"></td>';
-            echo '<td><input type="text" name="mdp[' . $nom . ']" value="" class="form-control"></td>';
-            echo '<td><input type="text" name="poste[' . $nom . ']" value="' . $infos['poste'] . '" class="form-control"></td>';
-            echo '<td><input type="text" name="email[' . $nom . ']" value="' . $infos['email'] . '" class="form-control"></td>';
-            echo '<td class="text-center"><input type="submit" name="modifier[' . $nom . ']" value="Enregistrer" class="btn btn-outline-success"></td>';
-            echo '<td class="text-center"><input type="submit" name="supprimer[' . $nom . ']" value="Supprimer" class="btn btn-danger"></td>';
-            echo '</tr>';
-        }
+                        // Vérifier si la recherche correspond à l'un des champs
+                        return (strpos($prenom, $search) !== false ||
+                            strpos($nom, $search) !== false ||
+                            strpos($user, $search) !== false ||
+                            strpos($email, $search) !== false);
+                    });
 
-        echo '</table>';
-        echo '</div>';
-        echo '</form>';
+                    foreach ($utilisateursFiltres as $nom => $infos) {
+                        echo '<tr>';
+                        echo '<td><input type="text" name="prenom[' . $nom . ']" value="' . $infos['prenom'] . '" class="form-control"></td>';
+                        echo '<td><input type="text" name="nom[' . $nom . ']" value="' . $infos['nom'] . '" class="form-control"></td>';
+                        echo '<td><input type="text" name="user[' . $nom . ']" value="' . $infos['user'] . '" class="form-control"></td>';
+                        echo '<td><input type="text" name="mdp[' . $nom . ']" value="" class="form-control"></td>';
+                        echo '<td><input type="text" name="poste[' . $nom . ']" value="' . $infos['poste'] . '" class="form-control"></td>';
+                        echo '<td><input type="text" name="email[' . $nom . ']" value="' . $infos['email'] . '" class="form-control"></td>';
+                        echo '<td class="text-center"><input type="submit" name="modifier[' . $nom . ']" value="Enregistrer" class="btn btn-outline-success"></td>';
+                        echo '<td class="text-center"><input type="submit" name="supprimer[' . $nom . ']" value="Supprimer" class="btn btn-danger"></td>';
+                        echo '</tr>';
+                    }
+                    ?>
+
+                </table>
+            </div>
+        </form>
+        <?php
     }
 
 
@@ -729,7 +729,7 @@ function intranet_navbar()
 
     function format_size($size)
     {
-        $units = array('o', 'Ko', 'Mo', 'Go', 'To');
+        $units = array('o', 'Ko', 'Mo', 'Go');
         $i = 0;
         while ($size >= 1024) {
             $size /= 1024;

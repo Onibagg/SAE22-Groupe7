@@ -1,1 +1,10 @@
-[]
+{
+    "mdumas": {
+        "prenom": "Marc",
+        "nom": "Dumas",
+        "user": "mdumas",
+        "mdp": "$2y$10$aRfDs1MFdrY8c3ut8FP2cemUHxdhzGG.f0BC8nkk4ZJ\/jFLICWR5C",
+        "email": "mdumas@mail.com",
+        "poste": "Ing\u00e9nieur R\u00e9seau"
+    }
+}
