@@ -1,1 +1,10 @@
-[]
+{
+    "DEME ANNE LAURE": {
+        "prenom": "DEME",
+        "nom": "LAURE",
+        "user": "DEME ANNE LAURE",
+        "mdp": "$2y$10$oBXMrZ1\/dXJNWc205yQjyOhuBUhvbmjQk88NCDCntKOaBwsIc9gQi",
+        "email": "gabindeme@gmail.com",
+        "poste": "Professeur"
+    }
+}
