@@ -1,1 +1,18 @@
-[]
+{
+  "flaval": {
+    "prenom": "Francois",
+    "nom": "Laval",
+    "user": "flaval",
+    "mdp": "$2y$10$yxOEBRBf1fVtYvHMTog08eAJ7nFzbtrCTbH4qDEyBlnSKQseZS2ba",
+    "email": "flaval@mail.com",
+    "poste": "D\u00e9veloppeur"
+  },
+  "mdumas": {
+    "prenom": "Marc",
+    "nom": "Dumas",
+    "user": "mdumas",
+    "mdp": "$2y$10$nHXfeWDD0gX.8yro3xLMz.Ja5wGGsVskLPMpUMRlavy8O21GOrDz.",
+    "email": "mdumas@mail.com",
+    "poste": "Architecte R\u00e9seau"
+  }
+}
