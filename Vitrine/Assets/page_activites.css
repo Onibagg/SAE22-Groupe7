@@ -1,0 +1,18 @@
+.container-fluid.custom {
+  background-color: #dcf3ff;
+  border-radius: 20px;
+}
+
+.container-fluid.custombleu {
+  background-color: #dcf3ff;
+  border-radius: 20px;
+}
+.container-fluid.customgreen {
+  background-color: #7bd699;
+  border-radius: 20px;
+}
+
+.center-img {
+  display: block;
+  margin: auto;
+}
